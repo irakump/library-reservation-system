@@ -8,3 +8,10 @@ Reserve books and check availability.
 Get reminders for due dates and overdue books.
 ### Technologies: 
 JavaFX, MariaDB (for book, reservation, and user data).
+
+
+# Development
+
+### Frontend
+npm install
+npm run dev
