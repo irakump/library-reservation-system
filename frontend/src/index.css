@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Use Tailwind theme colors: "bg-background", "bg-navbar" for example */
+
 @theme {
   --color-background: #BEE1F626;
   --color-navbar: #9DB5E3;
