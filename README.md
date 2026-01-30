@@ -16,5 +16,5 @@ MariaDB, Docker
 # Development
 
 ### Frontend
-npm install \ 
+npm install  
 npm run dev
