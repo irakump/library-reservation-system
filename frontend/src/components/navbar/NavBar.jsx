@@ -1,11 +1,12 @@
-import React, { useState } from "react";
 import ProfileMenu from "./ProfileMenu";
 import DesktopMenu from "./DesktopMenu";
+import {useMenu} from "../../contexts/MenuContext";
 
 const NavBar = () => {
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
-  const toggleMenu = () => setProfileMenuOpen(!profileMenuOpen);
+  const {isProfileMenuOpen, toggleMenu} = useMenu();
+
+  //const toggleMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
 
   return (
     <div>
@@ -19,7 +20,7 @@ const NavBar = () => {
           </div>
 
           <div className="sm:hidden">
-          {profileMenuOpen ? (
+          {isProfileMenuOpen ? (
             <button onClick={toggleMenu} 
             className="text-6xl font-light pb-3 mr-2 w-8">
               &times;
@@ -31,7 +32,7 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      {profileMenuOpen && <ProfileMenu />}
+      {isProfileMenuOpen && <ProfileMenu />}
     </div>
   );
 };
