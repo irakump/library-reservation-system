@@ -23,7 +23,7 @@ const NavBar = () => {
           )}
         </div>
       </div>
-      {profileMenuOpen ? <ProfileMenu /> : <div></div>}
+      {profileMenuOpen && <ProfileMenu />}
     </div>
   );
 };
