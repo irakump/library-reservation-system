@@ -1,6 +1,7 @@
-import './App.css';
-import Home from './pages/Home.jsx';
-import { Routes, Route } from 'react-router';
+import "./App.css";
+import Home from "./pages/Home.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import { Routes, Route } from "react-router";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <main></main>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );
