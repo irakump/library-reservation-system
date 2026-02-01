@@ -8,7 +8,7 @@ export const SearchResults = () => {
   return (
     <>
       <div>SearchResults</div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 md:mx-15 lg:mx-15 xl:mx-40 md:grid-rows-7 bg-tag p-15 gap-4'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 md:mx-15 lg:mx-15 xl:mx-49 md:grid-rows-7 bg-tag p-15 gap-4'>
         {books.map(book => 
           <BookInfo 
           key={book.id}
