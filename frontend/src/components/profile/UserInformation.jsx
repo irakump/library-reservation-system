@@ -13,11 +13,11 @@ const UserInformation = () => {
         </h3>
         <div className="space-y-2">
           {userInfo.map((info) => (
-            <div key={info.id} className="flex gap-4">
-              <span className="w-32 text-sm font-semibold">{info.label}</span>
-              <span className="text-sm font-medium break-all">
-                {info.value}
+            <div key={info.id} className="flex ">
+              <span className="w-32  text-sm font-semibold text-left ml-2">
+                {info.label}
               </span>
+              <span className="text-sm font-medium">{info.value}</span>
             </div>
           ))}
         </div>
