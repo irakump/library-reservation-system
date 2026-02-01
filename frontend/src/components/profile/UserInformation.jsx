@@ -1,8 +1,8 @@
 const UserInformation = () => {
   const userInfo = [
-    { id: "nickname", label: "Nickname", value: "User123" },
-    { id: "email", label: "Email", value: "user123@metropolia.fi" },
-    { id: "created", label: "User Created", value: "1.1.2024" },
+    { id: "nickname", label: "Nickname:", value: "User123" },
+    { id: "email", label: "Email:", value: "user123@metropolia.fi" },
+    { id: "created", label: "User Created:", value: "1.1.2024" },
   ];
 
   return (
