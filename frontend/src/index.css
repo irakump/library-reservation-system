@@ -3,17 +3,18 @@
 /* Use Tailwind theme colors: "bg-background", "bg-navbar" for example */
 
 @theme {
-  --color-background: #BEE1F626;
-  --color-navbar: #9DB5E3;
-  --color-menu: #9DB5E3BA;
-  --color-filter: #83C7EF;
-  --color-filterBorder: #59A7D5;
-  --color-tag: #BEE1F6;
-  --color-tagBorder: #59A7D5;
-  --color-card: #F3F3F3;
-  --color-loginButton: #2A65E5CC;
+  --color-background: #bee1f626;
+  --color-profileBackground: #ceebff;
+  --color-navbar: #9db5e3;
+  --color-menu: #9db5e3ba;
+  --color-filter: #83c7ef;
+  --color-filterBorder: #59a7d5;
+  --color-tag: #bee1f6;
+  --color-tagBorder: #59a7d5;
+  --color-card: #f3f3f3;
+  --color-loginButton: #2a65e5cc;
   --color-heading: #062980;
-  --color-logo: #0A4976;
-  --color-favourite: #E40909;
-  --color-favouriteBorder: #7E0505;
+  --color-logo: #0a4976;
+  --color-favourite: #e40909;
+  --color-favouriteBorder: #7e0505;
 }
