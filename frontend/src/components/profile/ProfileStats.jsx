@@ -9,7 +9,22 @@ const ProfileStats = () => {
     { id: "favourites", label: "Favourites:", value: "22" },
   ];
 
-  return <></>;
+  return (
+    <>
+      <div className="bg-white rounded-lg p-2 shadow-sm">
+        <div className=" divide-y-2 divide-blue-200">
+          {stats.map((info) => (
+            <div key={info.id} className="flex gap-4 py-3 items-center">
+              <span className="w-36 text-sm font-semibold text-left ml-4">
+                {info.label}
+              </span>
+              <span className="text-sm font-medium">{info.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default ProfileStats;
