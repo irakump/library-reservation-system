@@ -26,8 +26,8 @@ const NavBar = () => {
               &times;
             </button>
           ) : (
-            <img src="/hamburger-menu.png" alt="Menu" className="h-10" 
-            onClick={toggleMenu}/>
+            <button className="h-10 mt-2" onClick={toggleMenu}><img src="/hamburger-menu.png" alt="Menu" className="h-10" 
+            /></button>
           )}
           </div>
         </div>
