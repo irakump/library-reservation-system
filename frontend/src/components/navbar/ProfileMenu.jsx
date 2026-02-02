@@ -2,7 +2,7 @@ import React from "react";
 
 const ProfileMenu = () => {
 
-    // TODO: change profile page routes (all components are not separate pages)
+    // TODO: change profile page routes (all components are not separate pages, check App.jsx)
     const openPage = () => {
         console.log('MyPage pressed!');
     }
@@ -17,7 +17,7 @@ const ProfileMenu = () => {
         <li><a href="/profile/reservations">Reservations</a></li>
         <li><a href="/profile/history">History</a></li>
         <li><a href="/profile/favorites">Favorites</a></li>
-        <li>Log Out →</li>
+        <li><button>Log Out →</button></li>
       </ul>
     </div>
   );
