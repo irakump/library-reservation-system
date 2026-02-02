@@ -29,15 +29,14 @@ const BookModal = ({setOpen}) => {
                 </div>
                 <div className="mt-6 flex items-end justify-between">
                 <div className="text-sm">
-                    <p className="flex items-center gap-2 text-red-600">
+                    <p className="flex items-center gap-2">
                     🔴 Not available
                     </p>
                     <p className="mt-1">2 people in queue</p>
                     <p className="text-gray-500">Estimated loan date x.x.2026</p>
                 </div>
                 <button className="px-5 py-2 rounded-xl bg-filter font-medium">
-                    Reserve
-                </button>
+                    Loan</button>
                 </div>
             </div>
             </div>

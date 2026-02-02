@@ -6,7 +6,7 @@ import SearchResultsNavigation from './SearchResultsNavigation';
 export const SearchResults = () => {
   const [open, setOpen] = useState(null);
 
-  const books = [{id: 1, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 2,name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 3, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 4, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}]  //mockdata
+  const books = [{id: 1, name: "nimi", author: "author", genre: "genre", year: 2000, availibility: "available"}, {id: 2,name: "nimi", author: "author", genre: "genre", year: 2004, availibility: "available"}, {id: 3, name: "nimi", author: "author", genre: "genre", year: 1960, availibility: "available"}, {id: 4, name: "nimi", author: "author", genre: "genre", year: 1870, availibility: "available"}]  //mockdata
 
   return (
     <>
