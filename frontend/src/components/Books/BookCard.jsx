@@ -1,17 +1,27 @@
 const BookCard = ({ book, pageType }) => {
   return (
-    <div>
-      <h3>{book.title}</h3>
-      <button>♡</button>
-      <p>{book.author}</p>
-      <p>Year: {book.year}</p>
+    <div className="bg-white rounded-lg shadow-sm p-2 flex gap-6">
+      <div className="w-24 h-32 mt-2 bg-gray-300 rounded flex-shrink-0 "></div>
 
-      {pageType === "loans" && (
-        <>
-          <p>Due date: {book.dueDate}</p>
-          <button>Return</button>
-        </>
-      )}
+      <div className="flex-1">
+        <div className="flex justify-between items-start">
+          <h3 className="font-bold text-lg">{book.title}</h3>
+          <button className="text-xl">♡</button>
+        </div>
+
+        <p className="text-sm mb-1 text-left">{book.author}</p>
+        <p className="text-sm mb-1 text-left">Year: {book.year}</p>
+
+        {pageType === "loans" && (
+          <>
+            <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
+
+            <button className="bg-filter font-semibold rounded-lg px-4 py-2 float-right">
+              Return
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };
