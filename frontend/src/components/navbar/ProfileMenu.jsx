@@ -10,8 +10,8 @@ const ProfileMenu = () => {
     // TODO: set profile menu fixed under profile button
 
   return (
-    <div className="flex sm:justify-end">
-      <ul className="flex flex-col w-full sm:w-55 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
+    <div className="absolute max-sm:w-full sm:right-32">
+      <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
         <li onClick={openPage}><a href="/profile">My Page</a></li>
         <li><a href="/profile/loans">Loans</a></li>
         <li><a href="/profile/reservations">Reservations</a></li>
