@@ -11,7 +11,7 @@ const ProfileStats = () => {
 
   return (
     <>
-      <div className="bg-white rounded-lg p-2 shadow-sm">
+      <div className="bg-white rounded-lg shadow-sm">
         <div className=" divide-y-2 divide-blue-200">
           {stats.map((info) => (
             <div key={info.id} className="flex gap-4 py-3 items-center">
