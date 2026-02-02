@@ -15,6 +15,11 @@ const ProfilePage = () => {
 
           <UserInformation />
         </div>
+        <img
+          src="/book-icon.svg"
+          alt="Book Icon"
+          className="mx-auto h-30 p-2 "
+        />
       </div>
     </>
   );
