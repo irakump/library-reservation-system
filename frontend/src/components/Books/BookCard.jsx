@@ -4,7 +4,7 @@ const BookCard = ({ book, pageType }) => {
       <h3>{book.title}</h3>
       <button>♡</button>
       <p>{book.author}</p>
-      <p>{book.year}</p>
+      <p>Year: {book.year}</p>
 
       {pageType === "loans" && (
         <>
