@@ -30,6 +30,18 @@ const BookCard = ({ book, pageType }) => {
             </button>
           </>
         )}
+        {pageType === "favourite" && (
+          <>
+            <p className="text-sm mb-1 text-left">🟢 Available</p>
+
+            <button className="bg-filter font-semibold rounded-lg px-4 py-2 float-right">
+              Cancel
+            </button>
+            <button className="bg-filter font-semibold rounded-lg px-6 py-2 ">
+              Loan
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
