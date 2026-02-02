@@ -1,11 +1,14 @@
 import UserInformation from "../components/profile/UserInformation.jsx";
-import Navbar from "../components/navbar/Navbar.jsx";
+import NavBar from "../components/navbar/NavBar.jsx";
+import { MenuProvider } from "../contexts/MenuContext";
 import ProfileStats from "../components/profile/ProfileStats.jsx";
 
 const ProfilePage = () => {
   return (
     <>
-      <Navbar />
+      <MenuProvider>
+        <NavBar />
+      </MenuProvider>
       <div className="bg-background min-h-screen">
         <h1 className="text-2xl font-bold text-center text-heading p-7 ">
           Hello, user123!
