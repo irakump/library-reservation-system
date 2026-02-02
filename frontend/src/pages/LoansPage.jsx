@@ -9,7 +9,21 @@ const LoansPage = () => {
       dueDate: "1.1.2025",
     },
     {
-      id: 1,
+      id: 2,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+      dueDate: "1.1.2025",
+    },
+    {
+      id: 3,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+      dueDate: "1.1.2025",
+    },
+    {
+      id: 4,
       title: "Book Title",
       author: "Author name",
       year: "2025",
