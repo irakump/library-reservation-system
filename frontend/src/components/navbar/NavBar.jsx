@@ -11,9 +11,9 @@ const NavBar = () => {
   return (
     <div>
       <div className="flex flex-row justify-between items-center bg-navbar p-2">
-        <p className="font-bold text-3xl">MetBook</p>
+        <a href="/" className="font-bold text-3xl">MetBook</a>
         <div className="flex flex-row gap-3 items-center h-10">
-          <img src="/language-icon.png" alt="Language" className="h-8" />
+          <img src="/language-icon.png" alt="Language" className="h-8" tabIndex={0} />
 
           <div className="max-sm:hidden">
             <DesktopMenu />
@@ -26,8 +26,8 @@ const NavBar = () => {
               &times;
             </button>
           ) : (
-            <img src="/hamburger-menu.png" alt="Menu" className="h-10" 
-            onClick={toggleMenu}/>
+            <button className="h-10 mt-2" onClick={toggleMenu}><img src="/hamburger-menu.png" alt="Menu" className="h-10" 
+            /></button>
           )}
           </div>
         </div>

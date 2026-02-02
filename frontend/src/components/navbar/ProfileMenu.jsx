@@ -2,22 +2,17 @@ import React from "react";
 
 const ProfileMenu = () => {
 
-    // TODO: open profile pages by clicking li elements
-    const openPage = () => {
-        console.log('MyPage pressed!');
-    }
-
-    // TODO: set profile menu fixed under profile button
+    // TODO: change profile page routes (all components are not separate pages, check App.jsx)
 
   return (
-    <div className="flex sm:justify-end">
-      <ul className="flex flex-col w-full sm:w-55 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
-        <li onClick={openPage}>My Page</li>
-        <li>Loans</li>
-        <li>Reservations</li>
-        <li>History</li>
-        <li>Favorites</li>
-        <li>Log Out →</li>
+    <div className="absolute max-sm:w-full sm:right-32 text-center">
+      <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
+        <li><a href="/profile">My Page</a></li>
+        <li><a href="/profile/loans">Loans</a></li>
+        <li><a href="/profile/reservations">Reservations</a></li>
+        <li><a href="/profile/history">History</a></li>
+        <li><a href="/profile/favorites">Favorites</a></li>
+        <li><button>Log Out →</button></li>
       </ul>
     </div>
   );

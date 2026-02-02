@@ -1,3 +1,4 @@
+import Footer from "../components/footer/Footer";
 import AvailableFilter from "../components/home/FilterAvailable";
 import SearchBar from "../components/home/SearchBar";
 import { SearchResults } from "../components/home/SearchResults";
@@ -17,6 +18,7 @@ const Home = () => {
       <SearchBar />
       <AvailableFilter />
       <SearchResults />
+      <Footer />
     </>
   );
 };
