@@ -1,4 +1,5 @@
 import NavBar from "../components/navbar/NavBar.jsx";
+import Footer from "../components/footer/Footer";
 import { MenuProvider } from "../contexts/MenuContext.jsx";
 import BookCard from "../components/Books/BookCard.jsx";
 
@@ -18,6 +19,7 @@ const BookDataPage = ({ title, books, pageType }) => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

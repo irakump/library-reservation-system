@@ -2,6 +2,7 @@ import UserInformation from "../components/profile/UserInformation.jsx";
 import NavBar from "../components/navbar/NavBar.jsx";
 import { MenuProvider } from "../contexts/MenuContext";
 import ProfileStats from "../components/profile/ProfileStats.jsx";
+import Footer from "../components/footer/Footer";
 
 const ProfilePage = () => {
   return (
@@ -21,9 +22,10 @@ const ProfilePage = () => {
         <img
           src="/book-icon.svg"
           alt="Book Icon"
-          className="mx-auto h-30 p-2 "
+          className="mx-auto h-50 p-1 mt-3 "
         />
       </div>
+      <Footer />
     </>
   );
 };
