@@ -1,6 +1,6 @@
 import NavBar from "../components/navbar/NavBar.jsx";
 import { MenuProvider } from "../contexts/MenuContext.jsx";
-import BookCard from "../components/books/BookCard.jsx";
+import BookCard from "../components/Books/BookCard.jsx";
 
 const BookDataPage = ({ title, books, pageType }) => {
   return (
