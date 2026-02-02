@@ -1,4 +1,5 @@
 import BookInfo from './BookInfo';
+import BookModal from './BookModal';
 import SearchResultsNavigation from './SearchResultsNavigation';
 
 export const SearchResults = () => {
@@ -16,6 +17,7 @@ export const SearchResults = () => {
           />
         )}
       </div>
+      <BookModal></BookModal>
       <SearchResultsNavigation />
     </>
   );
