@@ -9,7 +9,7 @@ const BookCard = ({ book, pageType }) => {
       {pageType === "loans" && (
         <>
           <p>Due date: {book.dueDate}</p>
-          <button>Renew Loan</button>
+          <button>Return</button>
         </>
       )}
     </div>
