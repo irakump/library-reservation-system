@@ -1,6 +1,38 @@
 import BookDataPage from "./BookDataPage";
 const ReservationPage = () => {
-  return <BookDataPage title="My Reservations (4)" />;
+  const reservationsData = [
+    {
+      id: 1,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+    },
+    {
+      id: 1,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+    },
+    {
+      id: 1,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+    },
+    {
+      id: 1,
+      title: "Book Title",
+      author: "Author name",
+      year: "2025",
+    },
+  ];
+  return (
+    <BookDataPage
+      title="My Reservations (4)"
+      books={reservationsData}
+      pageType="reservation"
+    />
+  );
 };
 
 export default ReservationPage;
