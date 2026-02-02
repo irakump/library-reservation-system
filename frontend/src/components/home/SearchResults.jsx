@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import BookInfo from './BookInfo';
 import BookModal from './BookModal';
 import SearchResultsNavigation from './SearchResultsNavigation';
 
 export const SearchResults = () => {
+  const [open, setOpen] = useState(null);
 
   const books = [{id: 1, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 2,name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 3, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}, {id: 4, name: "nimi", author: "author", genre: "genre", year: "year", availibility: "available"}]  //mockdata
 
@@ -14,10 +16,16 @@ export const SearchResults = () => {
           <BookInfo 
           key={book.id}
           book={book}
+          setOpen={setOpen}
           />
         )}
       </div>
-      <BookModal></BookModal>
+      {open && (
+      <BookModal
+      open={open}
+      setOpen={setOpen}
+      />
+      )}
       <SearchResultsNavigation />
     </>
   );

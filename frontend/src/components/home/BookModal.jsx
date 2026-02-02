@@ -1,9 +1,9 @@
-const BookModal = () => {
+const BookModal = ({setOpen}) => {
     return(
         <>
-            <div className="fixed inset-0 flex items-center justify-center bg-black/40">
+            <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
             <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter">
-                <button className="absolute top-0 right-4 text-xl">✕</button>
+                <button onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
                 <button className="absolute top-10 right-4 text-4xl">♡</button>
 
                 <div className="flex gap-4">

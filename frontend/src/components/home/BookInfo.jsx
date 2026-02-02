@@ -1,25 +1,39 @@
-const BookInfo = ({book}) => {
+import { useState } from "react"
+
+const BookInfo = ({book, setOpen}) => {
+
+    const handleCardClick = () => {
+        setOpen(book.id);
+    };
+
     return (
-        <>
-          <div className="bg-white rounded shadow-xl grid grid-cols-6 grid-rows-6 max-h-45 gap-1 ">
-            <div>
-                <img src="https://placehold.co/100x150/png" alt="placeholder" className="m-5 col-start-1 object-cover absolute"/>
-            </div>
-            <div className="capitalize mt-1 items-start ml-18 sm:ml-12 md:ml-12 lg:ml-18 xl:ml-16">
-                <h3 className="font-bold text-xl" >{book.name}</h3>
-                <p>{book.author}</p>
-                <p>{book.year}</p>
-                
-            </div>
-            <button className=" rounded-md ml-auto col-start-7 row-start-1 m-3 px-5 text-3xl">♡</button>
-            <span className="col-start-2 row-start-5 bg-filter ml-18 lg:ml-18">🔴 Not available</span>
-            <button className="rounded-md bg-filter text-black px-5 py-2 text-sm justify-self-end self-start col-start-7 row-start-5 mr-3 mt-3    leading-none inline-flex items-center"
-            >Loan</button>
-            
-            
+      <div className="w-full mx-auto">
+        <div className="flex gap-4 sm:gap-6 rounded-2xl border border-blue-200 bg-white p-4 sm:p-6 shadow-sm">
+          <div className="h-32 w-24 sm:h-40 sm:w-28 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200">
+            <img src="https://placehold.co/100x150" alt='placeholder' className="h-full w-full object-cover"/>
           </div>
-        </>
-    )
+          <div className="flex flex-1 flex-col">
+            <div className="flex items-start justify-between">
+              <div className="text-gray-700 capitalize">
+                <h3 className="text-lg font-bold"> {book.name} </h3>
+                <p className="text-sm sm:text-base text-gray-700"> {book.author}</p>
+                <p className="text-sm text-gray-700">{book.year}</p>
+              </div>
+              <button className="text-gray-700 hover:text-black">
+              <div className="h-6 w-6 text-2xl">♡</div>
+              </button>
+            </div>
+            <div className="mt-auto flex items-center justify-between pt-4">
+              <div className="flex items-center gap-2">
+  
+              <span className="text-sm sm:text-base">Available</span>
+              </div>
+              <button className="rounded-xl bg-filter px-6 py-2 text-sm sm:text-base font-semibold text-black hover:bg-sky-500   transition">Loan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 
 }
 export default BookInfo
