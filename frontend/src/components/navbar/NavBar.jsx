@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="flex flex-row justify-between items-center bg-navbar p-2">
         <a href="/" className="font-bold text-3xl">MetBook</a>
         <div className="flex flex-row gap-3 items-center h-10">
-          <img src="/language-icon.png" alt="Language" className="h-8" />
+          <img src="/language-icon.png" alt="Language" className="h-8" tabIndex={0} />
 
           <div className="max-sm:hidden">
             <DesktopMenu />
