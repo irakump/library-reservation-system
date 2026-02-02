@@ -16,11 +16,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilePage />} />
 
-        {/* TODO: Add elements AND Change profile route names, if they are not separate pages (e.g. different content is rendered to same page) */}
-        <Route path="/profile/loans" />
-        <Route path="/profile/reservations" />
-        <Route path="/profile/history" />
-        <Route path="/profile/favorites" />
+        <Route path="/profile/loans" element={<LoansPage />} />
+        <Route path="/profile/history" element={<HistoryPage />} />
+        <Route path="/profile/favourite" element={<FavouritePage />} />
+        <Route path="/profile/reservation" element={<ReservationPage />} />
       </Routes>
     </>
   );
