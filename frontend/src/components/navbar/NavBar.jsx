@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <div>
       <div className="flex flex-row justify-between items-center bg-navbar p-2">
-        <p className="font-bold text-3xl">MetBook</p>
+        <a href="/" className="font-bold text-3xl">MetBook</a>
         <div className="flex flex-row gap-3 items-center h-10">
           <img src="/language-icon.png" alt="Language" className="h-8" />
 
