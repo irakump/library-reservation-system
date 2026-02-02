@@ -42,6 +42,17 @@ const BookCard = ({ book, pageType }) => {
             </button>
           </>
         )}
+
+        {pageType === "history" && (
+          <>
+            <p className="text-sm mb-1 text-left">
+              Borrowed: {book.borrowedDate}
+            </p>
+            <p className="text-sm mb-1 text-left">
+              Returned: {book.returnedDate}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
