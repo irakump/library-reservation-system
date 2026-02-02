@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilePage />} />
 
-        {/* TODO: Change profile route names, if they are not separate pages (e.g. different content is rendered to same page) */}
+        {/* TODO: Add elements AND Change profile route names, if they are not separate pages (e.g. different content is rendered to same page) */}
         <Route path="/profile/loans" />
         <Route path="/profile/reservations" />
         <Route path="/profile/history" />
