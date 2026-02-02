@@ -35,7 +35,7 @@ const HistoryPage = () => {
     },
   ];
   return (
-    <BookDataPage title="History" books={historyData} pageType="history" />
+    <BookDataPage title="My History" books={historyData} pageType="history" />
   );
 };
 
