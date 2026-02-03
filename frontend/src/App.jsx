@@ -1,6 +1,12 @@
-import './App.css';
-import Home from './pages/Home.jsx';
-import { Routes, Route } from 'react-router';
+import "./App.css";
+import Home from "./pages/Home.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import LoansPage from "./pages/LoansPage.jsx";
+import ReservationPage from "./pages/ReservationPage.jsx";
+import HistoryPage from "./pages/HistoryPage.jsx";
+import FavouritePage from "./pages/FavouritePage.jsx";
+
+import { Routes, Route } from "react-router";
 
 function App() {
   return (
@@ -8,6 +14,12 @@ function App() {
       <main></main>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<ProfilePage />} />
+
+        <Route path="/profile/loans" element={<LoansPage />} />
+        <Route path="/profile/history" element={<HistoryPage />} />
+        <Route path="/profile/favourite" element={<FavouritePage />} />
+        <Route path="/profile/reservation" element={<ReservationPage />} />
       </Routes>
     </>
   );
