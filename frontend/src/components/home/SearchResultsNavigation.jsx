@@ -1,8 +1,8 @@
 const SearchResultsNavigation = () => {
   return (
     <>
-      <div className="flex flex-row items-center">
-        <button className="button rounded-md">{'<'}</button>
+      <div className="flex flex-row items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md">
+        <button>{'<'}</button>
 
         {/* Links to search result pages */}
         <div className="mx-4 [&>a]:mx-1">
@@ -11,7 +11,7 @@ const SearchResultsNavigation = () => {
           <a href="#">3</a>
         </div>
 
-        <button className="button rounded-md">{'>'}</button>
+        <button>{'>'}</button>
       </div>
     </>
   );

@@ -6,11 +6,11 @@ const SearchBar = () => {
       </label>
       <div className="flex flex-row w-full">
         <input
-          className="rounded-sm border border-black"
+          className="rounded-sm border border-black bg-white"
           type="text"
           id="search"
         />
-        <button className="button">Search</button>
+        <button className="rounded-sm p-1 pl-3 pr-3 bg-filter">Search</button>
       </div>
     </div>
   );

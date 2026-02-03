@@ -12,11 +12,12 @@ const Home = () => {
         <NavBar />
       </MenuProvider>
 
-      <h1>Home</h1>
-      <p>Welcome to the home page!</p>
-      <SearchBar />
-      <SearchFiltersHider /> {/* Contains SearchFilters */}
-      <SearchResults />
+      <div className="p-4 bg-background">
+        <SearchBar />
+        <SearchFiltersHider /> {/* Contains SearchFilters */}
+        <SearchResults />
+      </div>
+
       <Footer />
     </>
   );

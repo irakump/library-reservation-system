@@ -6,7 +6,7 @@ const SearchFilters = () => {
       <div className="flex flex-col items-start [&>div]:w-full">
         <p className="ml-1">Search Filters</p>
 
-        <div className="flex flex-col gap-5 bg-blue-100 p-4 rounded-md mb-1">
+        <div className="flex flex-col gap-5 bg-profileBackground p-4 rounded-md mb-1">
           <div className="flex items-start">
             {/* Availability filter */}
             <div className="flex items-center gap-2">
@@ -15,7 +15,7 @@ const SearchFilters = () => {
             </div>
           </div>
 
-          <div className="flex flex-col [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-blue-200 [&>div>label>select]:w-full [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-blue-300">
+          <div className="flex flex-col [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:w-full [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder">
             {/* Language filter */}
             <div>
               <label htmlFor="language">
