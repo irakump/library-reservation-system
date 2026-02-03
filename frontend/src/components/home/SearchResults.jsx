@@ -10,7 +10,12 @@ export const SearchResults = () => {
 
   return (
     <>
-      <div>SearchResults</div>
+      {/* Search result header */}
+      <div className="flex flex-row justify-between mb-2">
+        <h2>Search Results</h2>
+        <h2>1 - 20 / 53</h2>
+      </div>
+
       <div className='grid grid-cols-1 lg:grid-cols-2 md:mx-15 lg:mx-15 xl:mx-49 md:grid-rows-7 bg-tag p-15 gap-4'>
         {books.map(book => 
           <BookInfo 
@@ -26,7 +31,13 @@ export const SearchResults = () => {
       setOpen={setOpen}
       />
       )}
-      <SearchResultsNavigation />
+      
+      {/* Search result navigation */}
+      <div className="flex justify-center mt-2">
+        <SearchResultsNavigation />
+      </div>
     </>
   );
 };
+
+export default SearchResults;

@@ -1,7 +1,7 @@
 import Footer from "../components/footer/Footer";
-import AvailableFilter from "../components/home/FilterAvailable";
 import SearchBar from "../components/home/SearchBar";
-import { SearchResults } from "../components/home/SearchResults";
+import SearchResults from '../components/home/SearchResults';
+import SearchFiltersHider from '../components/home/SearchFiltersHider';
 import NavBar from "../components/navbar/NavBar";
 import { MenuProvider } from "../contexts/MenuContext";
 
@@ -12,12 +12,12 @@ const Home = () => {
         <NavBar />
       </MenuProvider>
 
-      <h1>Home</h1>
-      <p>Welcome to the home page!</p>
+      <div className="p-4 bg-background">
+        <SearchBar />
+        <SearchFiltersHider /> {/* Contains SearchFilters */}
+        <SearchResults />
+      </div>
 
-      <SearchBar />
-      <AvailableFilter />
-      <SearchResults />
       <Footer />
     </>
   );
