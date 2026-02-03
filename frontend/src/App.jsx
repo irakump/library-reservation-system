@@ -18,8 +18,8 @@ function App() {
 
         <Route path="/profile/loans" element={<LoansPage />} />
         <Route path="/profile/history" element={<HistoryPage />} />
-        <Route path="/profile/favourite" element={<FavouritePage />} />
-        <Route path="/profile/reservation" element={<ReservationPage />} />
+        <Route path="/profile/favorites" element={<FavouritePage />} />
+        <Route path="/profile/reservations" element={<ReservationPage />} />
       </Routes>
     </>
   );
