@@ -1,0 +1,306 @@
+{
+  "books": [
+    {
+      "isbn": "9789528083030",
+      "bookTitle": "Selkeästi Python",
+      "publishingYear": 2024,
+      "imageName": "9789528083030.jpg",
+      "description": "Selkeästi Python on helposti sulava suomenkielinen opas ohjelmointiin Python-kielellä. Kirja esittelee Python-ohjelmointia helppojen esimerkkien avulla, ja johdattelee kokeilemaan erilaisia tietojenkäsittelyn tehtäviä omalla tietokoneella. Kirja on tarkoitettu kaikille Pythonista kiinnostuneille, ja se soveltuu itseopiskeluun sekä oppilaitosten kurssikirjaksi.",
+      "genre": "nonfiction",
+      "language": "finnish",
+      "authors": [1]
+    },
+    {
+      "isbn": "9781118951309",
+      "bookTitle": "Coding For Dummies",
+      "publishingYear": 2015,
+      "imageName": "9781118951309.jpg",
+      "description": "Build your Python coding skills step-by-step and have fun doing it! Learn to program simple games, apps, and more. Gradually build knowledge from functions to space treasure game projects. Hints and helpful tips assist with common problems and encourage creative thinking.",
+      "genre": "nonfiction",
+      "language": "english",
+      "authors": [2]
+    },
+    {
+      "isbn": "9789528001454",
+      "bookTitle": "Ohjelmistoprojektin sudenkuopat ja miten ne vältetään",
+      "publishingYear": 2018,
+      "imageName": "9789528001454.jpg",
+      "description": "Tiesitkö, että suurin osa ohjelmistoprojekteista epäonnistuu? Jopa kokeneet ammattilaiset kokevat ohjelmistoprojektien hallinnan hankalaksi. Digitalisaation myötä ohjelmistotyön määrä on kuitenkin jatkuvassa kasvussa. Tässä helppotajuinen selviytymisopas kaikille ohjelmistoprojektien parissa työskenteleville.",
+      "genre": "nonfiction",
+      "language": "finnish",
+      "authors": [3]
+    },
+    {
+      "isbn": "9780984782857",
+      "bookTitle": "Cracking the Coding Interview",
+      "publishingYear": 2015,
+      "imageName": "9780984782857.jpg",
+      "description": "Now in the 6th edition, the book gives you the interview preparation you need to get the top software developer jobs. Includes 189 programming interview questions and answers.",
+      "genre": "nonfiction",
+      "language": "english",
+      "authors": [4]
+    },
+    {
+      "isbn": "9780135957059",
+      "bookTitle": "The Pragmatic Programmer",
+      "publishingYear": 2020,
+      "imageName": "9780135957059.jpg",
+      "description": "The Pragmatic Programmer is one of those rare tech books you'll read, re-read, and read again over the years. Covers software development, programming techniques, and practical advice.",
+      "genre": "nonfiction",
+      "language": "english",
+      "authors": [5, 6]
+    },
+    {
+      "isbn": "9780241286869",
+      "bookTitle": "Computer Coding Python Projects for Kids",
+      "publishingYear": 2017,
+      "imageName": "9780241286869.jpg",
+      "description": "Build your Python coding skills step-by-step and have fun doing it! Learn to program simple games, apps, and more. Gradually build knowledge from functions to space treasure game projects. Hints and helpful tips assist with common problems and encourage creative thinking.",
+      "genre": "children",
+      "language": "english",
+      "authors": [7]
+    },
+    {
+      "isbn": "9781526365132",
+      "bookTitle": "The History of the Computer",
+      "publishingYear": 2022,
+      "imageName": "9781526365132.jpg",
+      "description": "Explore the fascinating history of the computer and the people who made them, from ancient counting systems to AI, space travel, and wearable tech. Accessible information, fun facts and discussion starters for children.",
+      "genre": "children",
+      "language": "english",
+      "authors": [8]
+    },
+    {
+      "isbn": "9789811681929",
+      "bookTitle": "Machine Learning: The Basics",
+      "publishingYear": 2022,
+      "imageName": "9789811681929.jpg",
+      "description": "Machine learning (ML) has become commonplace in everyday life. This book explains the underlying principles and computational implementations, including model adaptation, prediction, and minimizing loss.",
+      "genre": "nonfiction",
+      "language": "english",
+      "authors": [9]
+    },
+    {
+      "isbn": "9781492051725",
+      "bookTitle": "Learning React: Modern Patterns for Developing React Apps",
+      "publishingYear": 2020,
+      "imageName": "9781492051725.jpg",
+      "description": "Learn to build efficient React applications. Covers functional programming, component lifecycle, best practices, and modern ECMAScript features. Suitable for web developers and software engineers.",
+      "genre": "nonfiction",
+      "language": "english",
+      "authors": [10, 11]
+    },
+    {
+      "isbn": "9780192786982",
+      "bookTitle": "Coding",
+      "publishingYear": 2024,
+      "imageName": "9780192786982.jpg",
+      "description": "Learn coding through games and activities designed for children. Focus on sequencing, puzzles, and developing coding vocabulary. Illustrated with engaging scenes.",
+      "genre": "children",
+      "language": "english",
+      "authors": [12]
+    },
+    {
+      "isbn": "9789513241667",
+      "bookTitle": "Kivaa koodausta: opetellaan ohjelmointia",
+      "publishingYear": 2016,
+      "imageName": "9789513241667.jpg",
+      "description": "Opetellaan Python-ohjelmointia hauskojen tehtävien avulla. Tietotekniikan perusteita lapsille selkokielisesti ja havainnollisesti.",
+      "genre": "children",
+      "language": "finnish",
+      "authors": [13]
+    },
+    {
+      "isbn": "9789513111465",
+      "bookTitle": "Harry Potter ja viisasten kivi",
+      "publishingYear": 1998,
+      "imageName": "9789513111465.jpg",
+      "description": "Harry Potter on mielestään ihan tavallinen poika. Tosin hän asuu huoltajiensa luona portaiden alla olevassa kaapissa. Harryn elämä muuttuu täysin, kun hän saa 11-vuotispäivänään merkillisen kirjeen. Se on kutsu Tylypahkan velhojen ja noitien kouluun. Harrylle avautuu kokonaan uusi maailma, johon kuuluvat velhot, noidat, yksisarviset ja lohikäärmeet. Harry saa tietää olevansa velhojen sukua! Viisasten kivi on ensimmäinen teos kaiken ikäisten suosion saavuttaneessa Harry Potter -sarjassa.",
+      "genre": "fantasy",
+      "language": "finnish",
+      "authors": [14]
+    },
+    {
+      "isbn": "9789513162641",
+      "bookTitle": "Harry Potter ja salaisuuksien kammio",
+      "publishingYear": 2011,
+      "imageName": "9789513162641.jpg",
+      "description": "Harryn Potterin ankea kesäloma Dursleyn perheen luona päättyy, kun Weasleyn veljekset hakevat hänet lentävällä Anglialla. Sekopäinen Dobby-tonttu on varoittanut Harrya palaamasta takaisin Tylypahkan velhojen ja noitien kouluun, mutta mikään ei saisi Harrya jäämään pois. Toinen lukuvuosi Tylypahkassa alkaa odottamattomasti, ja salaperäiset tapahtumat saavat Harryn, Ronin ja Hermionen tutkimaan 50 vuotta vanhaa arvoitusta. Vain Harry kuulee uhkaavan äänen, joka kuiskuttaa kuolemasta läpi koulun seinien.",
+      "genre": "fantasy",
+      "language": "finnish",
+      "authors": [14]
+    },
+    {
+      "isbn": "9780747560777",
+      "bookTitle": "Harry Potter and the Prisoner of Azkaban",
+      "publishingYear": 2002,
+      "imageName": "9780747560777.jpg",
+      "description": "Join Harry Potter on the magical journey of a lifetime in this large print edition of the third book in J.K. Rowling’s series. Dementors patrol Hogwarts and Sirius Black is on the loose. Harry faces omens of death and challenges in Divination class, navigating magic and dark forces with his friends.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [14]
+    },
+    {
+      "isbn": "9780747550990",
+      "bookTitle": "Harry Potter and the Goblet of Fire",
+      "publishingYear": 2000,
+      "imageName": "9780747550990.jpg",
+      "description": "In his fourth year at Hogwarts, Harry faces darkening events and a fate orchestrated by his worst enemy. With spells, potions, and Divination lessons, Harry navigates friendships, magic, and challenges with wit and emotional depth.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [14]
+    },
+    {
+      "isbn": "9780747569602",
+      "bookTitle": "Harry Potter and the Order of the Phoenix",
+      "publishingYear": 2003,
+      "imageName": "9780747569602.jpg",
+      "description": "Harry Potter faces new dangers at Hogwarts as Voldemort returns. With the help of friends and a secret order, he must navigate magic, mystery, and dark forces in this fifth adventure of the series.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [14]
+    },
+    {
+      "isbn": "9780349436999",
+      "bookTitle": "Fourth Wing",
+      "publishingYear": 2023,
+      "imageName": "9780349436999.jpg",
+      "description": "Violet Sorrengail must survive Basgiath War College, a deadly training ground for dragon riders, where friends, enemies, and lovers all have agendas. Dragons, battles, and secrets abound in this epic fantasy adventure.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [15]
+    },
+    {
+      "isbn": "9780349437026",
+      "bookTitle": "Iron Flame",
+      "publishingYear": 2023,
+      "imageName": "9780349437026.jpg",
+      "description": "The thrilling sequel to Fourth Wing, Violet Sorrengail faces higher stakes at Basgiath War College. Secrets, sacrifices, and battles intensify, testing her courage and wit against a new powerful enemy.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [15]
+    },
+    {
+      "isbn": "9789510514986",
+      "bookTitle": "Onyx Storm",
+      "publishingYear": 2025,
+      "imageName": "9789510514986.jpg",
+      "description": "The third installment of the Empyrean series finds Violet Sorrengail in deadlier peril than ever, facing dragons, battles, and secrets in a richly imagined fantasy world.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [15]
+    },
+    {
+      "isbn": "9789511389576",
+      "bookTitle": "Tulevaisuuden historia",
+      "publishingYear": 2021,
+      "imageName": "9789511389576.jpg",
+      "description": "Tummanpuhuva satiiri naisista, jotka mahdollistavat kehityksen, ja miehistä, jotka yrittävät pysäyttää heidät. Mian perhe on muokannut ihmiskunnan historiaa yli 99 sukupolven ajan. Ihmishenki on ollut halpa, kun päämääränä on ollut avaruus. Mian tehtävä on salakuljettaa Wernher Von Braun natsi-Saksasta amerikkalaisten käsiin ja varmistaa avaruusvarustelun tulevaisuus. Apua tarvitsevat myös venäläiset, jotta suurvaltojen välinen jännite onnistuu lopulta saattelemaan ihmisen tähtiin. Mian perhe ei ole kuitenkaan ainoa, joka yrittää vaikuttaa historian kulkuun. Armoton vihollinen seuraa kannoilla jatkuvasti. Keitä Mian perhe on ja mistä he tulevat? Entä keitä ovat heitä jahtaavat miehet?",
+      "genre": "science fiction",
+      "language": "finnish",
+      "authors": [16]
+    },
+    {
+      "isbn": "0575039434",
+      "bookTitle": "Trillion Year Spree: The History of Science Fiction",
+      "publishingYear": 1986,
+      "imageName": "0575039434.jpg",
+      "description": "A comprehensive history of science fiction literature by Brian W. Aldiss, covering its evolution and impact, with contributions from David Wingrove.",
+      "genre": "science fiction",
+      "language": "english",
+      "authors": [17, 18]
+    },
+    {
+      "isbn": "9780008117498",
+      "bookTitle": "Foundation",
+      "publishingYear": 2016,
+      "imageName": "9780008117498.jpg",
+      "description": "Isaac Asimov's classic series about Hari Seldon's Foundations, established to preserve knowledge and shape the fate of the galaxy during the decline of the Galactic Empire.",
+      "genre": "science fiction",
+      "language": "english",
+      "authors": [19]
+    },
+    {
+      "isbn": "9780261103252",
+      "bookTitle": "The Lord of the Rings",
+      "publishingYear": 2007,
+      "imageName": "9780261103252.jpg",
+      "description": "Frodo Baggins embarks on a perilous journey across Middle-earth to destroy the One Ring. Magic, battles, friendship, and courage define this epic fantasy saga.",
+      "genre": "fantasy",
+      "language": "english",
+      "authors": [20]
+    },
+    [
+      {
+        "isbn": "9789510479209",
+        "bookTitle": "Hildur",
+        "publishingYear": 2022,
+        "imageName": "9789510479209.jpg",
+        "description": "Satu Rämö vie lukijansa Islannin vuonojen hämärään – eikä ruumiilta vältytä. Lapsuudessaan traumatisoitunut rikosetsivä ja kadonneiden lasten yksikön päällikkö Hildur Rúnarsdóttir taistelee omaa ahdistustaan vastaan surffaamalla Atlantin kylmissä vesissä. Hildurin työpariksi saapuu suomalainen poliisiharjoittelija Jakob Johanson, joka on lähtenyt Islantiin pakoon omaa hankalaa elämäntilannettaan. Pian Hildur ja Jakob ovat keskellä omituista rikosvyyhtiä, kun vuosikymmeniä hämärässä olleiden salaisuuksien sumuverho alkaa vähitellen hälvetä. Hildur aloittaa päähenkilönsä nimeä kantavan, nordic noirin hengelle uskollisen dekkarisarjan, jossa on ripaus islantilaista mystiikkaa.",
+        "genre": "crime fiction",
+        "language": "finnish",
+        "authors": [21]
+      },
+      {
+        "isbn": "9789523129580",
+        "bookTitle": "Agatha Christie: arvoituksellinen elämä",
+        "publishingYear": 2020,
+        "imageName": "9789523129580.jpg",
+        "description": "Tuore kattava elämäkerta osoittaa, että Agatha Christien elämä oli yhtä vaiheikasta ja jännittävää kuin hänen kuuluisilla henkilöhahmoillaan neiti Marplella ja Hercule Poirotilla. Rikosten kuningatar oli seikkailija, joka ei piitannut sovinnaisuudesta, vaikka muuten oli elämänasenteiltaan varsin ”viktoriaaninen”. Alkuperäiset ranskalaiset lähteet tuovat uutta tietoa Agatha Christien elämästä. Agatha syntyi Millerien perheen kolmantena lapsena vuonna 1890. Perheen taloudellisten vaikeuksien takia hän ei saanut lainkaan muodollista koulutusta. Ensimmäisen rikostarinansa hän kuitenkin kirjoitti jo pikkutyttönä, ja hänestä tuli lopulta William Shakespearen jälkeen kaikkien aikojen myydyin kirjailija. Ensimmäisen maailmansodan sytyttyä vuonna 1914 Agatha ryhtyi työskentelemään sairaanhoitajana. Sairaalan apteekissa hän oppi myös paljon myrkyistä, joilla tulisi olemaan merkittävä osa monissa hänen romaaneissaan. Joulukuussa 1914 24-vuotias Agatha Miller meni naimisiin Kuninkaallisten ilmavoimien upseerin Archibald Christien kanssa. Avioliiton hajoaminen toisen naisen takia vuonna 1926 oli Agathalle kova isku. Hän katosi tietymättömiin kymmeneksi päiväksi koko Englannin etsiessä häntä. Sanomalehdet - ja varsinkin keltainen lehdistö - tarttuivat hanakasti aiheeseen ja yksityinen avio-ongelma muodostui valtakunnan ykkösuutiseksi. Agatha Christien toinen avioliitto Max Mallowanin kanssa muutti elämän suunnan. Christie vietti paljon aikaa Irakissa ja Syyriassa osallistuen kaivauksiin ja kirjoittaen samalla suuren määrän salapoliisikirjallisuuden klassikoita.",
+        "genre": "biography",
+        "language": "finnish",
+        "authors": [22]
+      },
+      {
+        "isbn": "9780593068632",
+        "bookTitle": "Stephen Hawking: his life and work",
+        "publishingYear": 2011,
+        "imageName": "9780593068632.jpg",
+        "description": "Stephen Hawking is one of the most remarkable figures of our time - a Cambridge genius who has earned international celebrity as a brilliant theoretical physicist and become an inspiration and revelation to those who have witnessed his courageous triumph over disability. Twenty years ago, Kitty Ferguson's \"Stephen Hawking: Quest for a Theory of Everything\" became a \"Sunday Times\" bestseller and took the world by storm. She now returns to the subject to transform that short book into a hugely expanded, carefully researched, up to the minute biography, giving a rich picture of Hawking's childhood, the heartrending beginning of his struggle with Motor Neurone Disease when he was a first-year graduate student, his ever-increasing international fame, and his long personal battle for survival in pursuit of a scientific understanding of the universe. Throughout she also summarizes and explains to the layman the cutting-edge science in which Hawking has been engaged.",
+        "genre": "biography",
+        "language": "english",
+        "authors": [23]
+      },
+      {
+        "isbn": "9780241600948",
+        "bookTitle": "History: the definitive visual guide",
+        "publishingYear": 2023,
+        "imageName": "9780241600948.jpg",
+        "description": "This lavishly illustrated visual encyclopedia tells the story of our world in depth and detail from the dawn of civilization to the present day. Charting human endeavour from every angle, History chronicles the significant events, ground-breaking ideas, political forces, and technological advances that have shaped our planet. Every historical episode is explored and explained with the help of stunning images that bring the authoritative text to life. Important points in history, from the battle of Hastings and the storming of the Bastille to D-Day and 9/11, have clear but concise coverage, together with profiles of influential figures, such as Julius Caesar, Cleopatra, and Nelson Mandela. With its broad-themed approach to important historical events, this book shows that ours is a history with genes and viruses, not just battle and treaties - and the stories and biographies of men and women from every corner of the globe who have shaped today's world reaffirm that History is the story of humankind in which everyone has a part to play.",
+        "genre": "history",
+        "language": "english",
+        "authors": [24]
+      },
+      {
+        "isbn": "9781787390645",
+        "bookTitle": "A history of videogames",
+        "publishingYear": 2018,
+        "imageName": "9781787390645.jpg",
+        "description": "Forget about bits and bytes, data and code and see the world of videogames through the most unique, important and sometimes downright ordinary stuff on the planet. From the humble audio cassette to out-of-this-world virtual reality, this is the story of videogames - told through objects! The curators of the UK's award-winning National Videogame Arcade take you on a journey through joysticks and microchips, Game Boys and cuddly toys, guitars, drums and Ocarinas as they tell the story of how videogames are made, played and loved. Whatever your interest in gaming - casual Pokemon player, GTA expert, medal-winning FIFA champion of anything in-between - this is the book for you.",
+        "genre": "history",
+        "language": "english",
+        "authors": [25, 26]
+      },
+      {
+        "isbn": "9781472259059",
+        "bookTitle": "Humans: a brief history of how we f*cked it all up",
+        "publishingYear": 2019,
+        "imageName": "9781472259059.jpg",
+        "description": "'This book is brilliant. Utterly, utterly brilliant. Apart from the epilogue, which is idiotic' Jeremy Clarkson. 'F*cking brilliant' Sarah Knight. AN EXHILARATING JOURNEY THROUGH THE MOST CREATIVE AND CATASTROPHIC F*CK-UPS OF HUMAN HISTORY. In the seventy thousand years that modern human beings have walked this earth, we've come a long way. Art, science, culture, trade - on the evolutionary food chain, we're real winners. But, frankly, it's not exactly been plain sailing, and sometimes - just occasionally - we've managed to really, truly, quite unbelievably f*ck things up. From Chairman Mao's Four Pests Campaign, to the American Dustbowl; from the Austrian army attacking itself one drunken night, to the world's leading superpower electing a reality TV mogul as President... it's pretty safe to say that, as a species, we haven't exactly grown wiser with age. So, next time you think you've really f*cked up, this book will remind you: it could be so much worse...",
+        "genre": "history",
+        "language": "english",
+        "authors": [27]
+      },
+      {
+        "isbn": "9789513169633",
+        "bookTitle": "Tove Jansson: tee työtä ja rakasta",
+        "publishingYear": 2013,
+        "imageName": "9789513169633.jpg",
+        "description": "Tove Jansson (1914-2001) oli monilahjakkuus - kuvataiteilija, kirjailija, kuvittaja, käsikirjoittaja, laulujen sanoittaja ja miltei mitä vain. Tuula Karjalaisen kirjoittama uutuuselämäkerta asettaa Tove Janssonin pitkän, värikkään ja tuotteliaan elämän osaksi 1900-luvun historiaa ja osoittaa, miten Janssonin elämä ja taide nivoutuivat tiiviisti toisiinsa ja miten esimerkiksi Muumilaakso ja sen asukkaat syntyivät toisen maailmansodan aikoihin, jolloin kirjailijan itsensä oli paettava julmaa aikaa mielikuvitukseensa, jonnekin lempeämpään maailmaan.",
+        "genre": "biography",
+        "language": "finnish",
+        "authors": [28]
+      }
+    ]
+  ]
+}
