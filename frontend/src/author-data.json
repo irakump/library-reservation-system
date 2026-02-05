@@ -1,0 +1,144 @@
+{
+  "authors": [
+    {
+      "authorId": 1,
+      "firstName": "Jere",
+      "lastName": "Käpyaho"
+    },
+    {
+      "authorId": 2,
+      "firstName": "Nikhil",
+      "lastName": "Abraham"
+    },
+    {
+      "authorId": 3,
+      "firstName": "Rami",
+      "lastName": "Juvonen"
+    },
+    {
+      "authorId": 4,
+      "firstName": "Gayle Laakmann",
+      "lastName": "McDowell"
+    },
+    {
+      "authorId": 5,
+      "firstName": "Dave",
+      "lastName": "Thomas"
+    },
+    {
+      "authorId": 6,
+      "firstName": "Andy",
+      "lastName": "Hunt"
+    },
+    {
+      "authorId": 7,
+      "firstName": "Carol",
+      "lastName": "Vorderman"
+    },
+    {
+      "authorId": 8,
+      "firstName": "Rachel",
+      "lastName": "Ignotofsky"
+    },
+    {
+      "authorId": 9,
+      "firstName": "Alexander",
+      "lastName": "Jung"
+    },
+    {
+      "authorId": 10,
+      "firstName": "Alex",
+      "lastName": "Banks"
+    },
+    {
+      "authorId": 11,
+      "firstName": "Eve",
+      "lastName": "Porcello"
+    },
+    {
+      "authorId": 12,
+      "firstName": "Helen",
+      "lastName": "Mortimer"
+    },
+    {
+      "authorId": 13,
+      "firstName": "Jon",
+      "lastName": "Woodcock"
+    },
+    {
+      "authorId": 14,
+      "firstName": "J.K.",
+      "lastName": "Rowling"
+    },
+    {
+      "authorId": 15,
+      "firstName": "Rebecca",
+      "lastName": "Yarros"
+    },
+    {
+      "authorId": 16,
+      "firstName": "Sylvain",
+      "lastName": "Neuvel"
+    },
+    {
+      "authorId": 17,
+      "firstName": "Brian",
+      "lastName": "Aldiss"
+    },
+    {
+      "authorId": 18,
+      "firstName": "David",
+      "lastName": "Wingrove"
+    },
+    {
+      "authorId": 19,
+      "firstName": "Isaac",
+      "lastName": "Asimov"
+    },
+    {
+      "authorId": 20,
+      "firstName": "J.R.R.",
+      "lastName": "Tolkien"
+    },
+    {
+      "authorId": 21,
+      "firstName": "Satu",
+      "lastName": "Rämö"
+    },
+    {
+      "authorId": 22,
+      "firstName": "Marie-Hélène",
+      "lastName": "Baylac"
+    },
+    {
+      "authorId": 23,
+      "firstName": "Kitty",
+      "lastName": "Ferguson"
+    },
+    {
+      "authorId": 24,
+      "firstName": "Simon",
+      "lastName": "Adams"
+    },
+    {
+      "authorId": 25,
+      "firstName": "Iain",
+      "lastName": "Simons"
+    },
+    {
+      "authorId": 26,
+      "firstName": "James",
+      "lastName": "Newman"
+    },
+    {
+      "authorId": 27,
+      "firstName": "Tom",
+      "lastName": "Phillips"
+    },
+    {
+      "authorId": 28,
+      "firstName": "Tuula",
+      "lastName": "Karjalainen"
+    }
+  ]
+}

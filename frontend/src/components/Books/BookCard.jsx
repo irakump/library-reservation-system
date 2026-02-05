@@ -1,7 +1,7 @@
 const BookCard = ({ book, pageType }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm p-2 flex gap-6">
-      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded flex-shrink-0 "></div>
+      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0 "></div>
 
       <div className="flex-1">
         <div className="flex justify-between items-start">

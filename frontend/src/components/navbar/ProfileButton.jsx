@@ -9,7 +9,7 @@ const ProfileButton = () => {
         <button onClick={toggleMenu}
          className="flex flex-row gap-2 items-center w-50 justify-center"
          >Profile
-            <img src="dropdown.png" alt="dropdown icon" className="h-7 w-7 mt-1" />
+            <img src="down.png" alt="dropdown icon" className="h-5 mt-1" />
         </button>
       
     </div>
