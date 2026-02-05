@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const BookCard = ({ book, pageType }) => {
+  const [isFavourite, setIsFavourite] = useState(false);
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-2 flex gap-6">
       <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0 "></div>
@@ -6,7 +10,12 @@ const BookCard = ({ book, pageType }) => {
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <button className="text-xl">♡</button>
+          <button
+            className="text-xl"
+            onClick={() => setIsFavourite(!isFavourite)}
+          >
+            {isFavourite ? "♥︎" : "♡"}
+          </button>
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
