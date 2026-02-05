@@ -25,7 +25,7 @@ const BookCard = ({ book, pageType }) => {
           <>
             <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 float-right">
+            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
               Return
             </button>
           </>
@@ -34,7 +34,7 @@ const BookCard = ({ book, pageType }) => {
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 float-right">
+            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
               Cancel
             </button>
           </>
@@ -43,7 +43,7 @@ const BookCard = ({ book, pageType }) => {
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-xl px-6 py-2 float-right">
+            <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right">
               Loan
             </button>
           </>
