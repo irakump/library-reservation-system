@@ -10,7 +10,7 @@ const ProfileMenu = () => {
         <li><a href="/profile/reservations">Reservations</a></li>
         <li><a href="/profile/history">History</a></li>
         <li><a href="/profile/favorites">Favorites</a></li>
-        <li className="sm:hidden"><button>Log Out →</button></li>
+        <li className="sm:hidden"><button>Log out →</button></li>
       </ul>
     </div>
   );

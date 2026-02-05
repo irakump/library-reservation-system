@@ -5,7 +5,7 @@ const LoginButton = () => {
   
     return (
     <div>
-      <button className='w-30'>Log Out</button>
+      <button className='w-30'>Log out</button>
     </div>
   )
 }
