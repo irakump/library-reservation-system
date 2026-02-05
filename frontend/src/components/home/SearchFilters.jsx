@@ -1,6 +1,87 @@
 import ActiveFilters from './ActiveFilters';
+import { useState } from 'react';
 
 const SearchFilters = () => {
+  const mockCategories = [
+    'Fiction',
+    'Non-Fiction',
+    'Science Fiction',
+    'Fantasy',
+  ];
+  const mockLanguages = ['English', 'Finnish'];
+  const mockYears = [2020, 2021, 2022, 2023];
+
+  const filterTypes = {
+    categories: 'category',
+    languages: 'language',
+    years: 'year',
+  };
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [selectedYears, setSelectedYears] = useState([]);
+
+  const addNewFilter = (filterSetter, filters, newFilter) => {
+    if (filters.includes(newFilter)) return;
+    filterSetter([...filters, newFilter]);
+  };
+
+  const addFilter = (filter, filterType) => {
+    switch (filterType) {
+      case filterTypes.categories:
+        addNewFilter(setSelectedCategories, selectedCategories, filter);
+        break;
+
+      case filterTypes.languages:
+        addNewFilter(setSelectedLanguages, selectedLanguages, filter);
+        break;
+
+      case filterTypes.years:
+        addNewFilter(setSelectedYears, selectedYears, filter);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const removeAFilter = (filterSetter, filterToRemove) => {
+    filterSetter((previous) => previous.filter((filter) => filter !== filterToRemove));
+  };
+
+  const removeFilter = (filter, filterType) => {
+    // remove all filters
+    if (filter === null && filterType === null) {
+      setSelectedCategories([]);
+      setSelectedLanguages([]);
+      setSelectedYears([]);
+    }
+
+    switch (filterType) {
+      case filterTypes.categories:
+        removeAFilter(setSelectedCategories, filter);
+        break;
+
+      case filterTypes.languages:
+        removeAFilter(setSelectedLanguages, filter);
+        break;
+
+      case filterTypes.years:
+        removeAFilter(setSelectedYears, filter);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const [categoryValue, setCategoryValue] = useState('');
+
+  const handleValueSelect = (e) => {
+    addFilter(e.target.value, e.target.name);
+    setCategoryValue('');
+  };
+
   return (
     <>
       <div className="flex flex-col items-start [&>div]:w-full">
@@ -20,10 +101,24 @@ const SearchFilters = () => {
             <div>
               <label htmlFor="language">
                 Language
-                <select id="language" name="language">
-                  <option value=""></option>
-                  <option value="english">English</option>
-                  <option value="finnish">Finnish</option>
+                <select
+                  id="language"
+                  name="language"
+                  value={categoryValue}
+                  onChange={handleValueSelect}
+                >
+                  <option value="" disabled>
+                    Select Language
+                  </option>
+                  {mockLanguages.map((item) => (
+                    <option
+                      key={item}
+                      value={item}
+                      disabled={selectedLanguages.includes(item)}
+                    >
+                      {item}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
@@ -32,15 +127,24 @@ const SearchFilters = () => {
             <div>
               <label htmlFor="year">
                 Year
-                <select id="year" name="year">
-                  <option value=""></option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-                  <option value="2023">2023</option>
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026">2026</option>
+                <select
+                  id="year"
+                  name="year"
+                  value={categoryValue}
+                  onChange={handleValueSelect}
+                >
+                  <option value="" disabled>
+                    Select Year
+                  </option>
+                  {mockYears.map((item) => (
+                    <option
+                      key={item}
+                      value={item}
+                      disabled={selectedYears.includes(item.toString())}
+                    >
+                      {item}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
@@ -49,12 +153,24 @@ const SearchFilters = () => {
             <div>
               <label htmlFor="category">
                 Category
-                <select id="category" name="category">
-                  <option value=""></option>
-                  <option value="fiction">Fiction</option>
-                  <option value="non-fiction">Non-Fiction</option>
-                  <option value="science">Science</option>
-                  <option value="history">History</option>
+                <select
+                  id="category"
+                  name="category"
+                  value={categoryValue}
+                  onChange={handleValueSelect}
+                >
+                  <option value="" disabled>
+                    Select Category
+                  </option>
+                  {mockCategories.map((item) => (
+                    <option
+                      key={item}
+                      value={item}
+                      disabled={selectedCategories.includes(item)}
+                    >
+                      {item}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
@@ -62,7 +178,14 @@ const SearchFilters = () => {
             <br />
           </div>
 
-          <ActiveFilters />
+          <ActiveFilters
+            filters={{
+              [filterTypes.categories]: selectedCategories,
+              [filterTypes.languages]: selectedLanguages,
+              [filterTypes.years]: selectedYears,
+            }}
+            onRemove={removeFilter}
+          />
         </div>
       </div>
     </>
