@@ -9,13 +9,13 @@ const SearchFilters = () => {
         <div className="flex flex-col gap-5 bg-profileBackground p-4 rounded-md mb-1">
           <div className="flex items-start">
             {/* Availability filter */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 *:cursor-pointer">
               <label htmlFor="availability">Available:</label>
               <input type="checkbox" id="availability" name="availability" />
             </div>
           </div>
 
-          <div className="flex flex-col [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:w-full [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder">
+          <div className="flex flex-col [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:w-full [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer">
             {/* Language filter */}
             <div>
               <label htmlFor="language">
