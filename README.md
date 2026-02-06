@@ -18,3 +18,21 @@ MariaDB, Docker
 ### Frontend
 npm install  
 npm run dev
+
+### Backend
+
+### Database
+Create database and add data in the following order (.sql files):
+1. database
+2. genre
+3. language
+4. author
+5. book
+6. writes
+
+Mock user data (only for development):
+7. mock-users
+8. loan
+9. reservation
+10. favorite
+
