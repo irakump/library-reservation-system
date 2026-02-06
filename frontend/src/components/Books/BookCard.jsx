@@ -1,21 +1,38 @@
 import { useState } from "react";
+import FavBtn from "./FavBtn";
 
-const BookCard = ({ book, pageType }) => {
-  const [isFavourite, setIsFavourite] = useState(false);
+function Button({ onClick, children }) {
+  return (
+    <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right"
+    onClick={e => {
+      e.stopPropagation();
+      onClick();
+      ;
+    }}>
+      {children}
+    </button>
+  );
+}
+
+
+
+
+
+const BookCard = ({ book, pageType, setOpen }) => {
+  
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-2 flex gap-6">
-      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0 "></div>
+    <div className="bg-white rounded-lg shadow-lg p-2 flex gap-6" onClick={() => setOpen(book.id)}>
+      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0" ></div>
 
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <button
-            className="text-xl"
-            onClick={() => setIsFavourite(!isFavourite)}
-          >
-            {isFavourite ? "♥︎" : "♡"}
-          </button>
+          <FavBtn 
+          className="text-xl"
+          onClick={() => setIsFavourite(!isFavourite)
+          }>
+        </FavBtn> 
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
@@ -43,9 +60,9 @@ const BookCard = ({ book, pageType }) => {
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Loan
-            </button>
+            </Button>
           </>
         )}
 
