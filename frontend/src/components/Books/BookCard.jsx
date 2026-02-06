@@ -16,8 +16,6 @@ function Button({ onClick, children }) {
 
 
 
-
-
 const BookCard = ({ book, pageType, setOpen }) => {
   
 
@@ -42,18 +40,18 @@ const BookCard = ({ book, pageType, setOpen }) => {
           <>
             <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
               Return
-            </button>
+            </Button>
           </>
         )}
         {pageType === "reservation" && (
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
               Cancel
-            </button>
+            </Button>
           </>
         )}
         {pageType === "favourite" && (
