@@ -1,38 +1,27 @@
-import { useState } from 'react';
 import FilterTag from './FilterTag';
 
-const ActiveFilters = () => {
-  const [activeFilters, setActiveFilters] = useState([
-    'filterrrrrrrrrrrrrrrrrrr1',
-    'filter2',
-    'filter3',
-    'filter4',
-  ]);
-
-  const removeFilter = (filterName) => {
-    setActiveFilters(activeFilters.filter((name) => name !== filterName));
-  };
-
-  const clearFilters = () => {
-    setActiveFilters([]);
-  };
-
+const ActiveFilters = ({ filters, onRemove }) => {
   return (
     <>
       <div className="flex flex-wrap gap-2">
+        {/* remove all filters */}
         <FilterTag
           filterName={`Clear Filters`}
           closeButton={false}
-          onRemove={clearFilters}
+          onRemove={() => onRemove(null, null)}
         />
 
-        {activeFilters.map((filter) => (
-          <FilterTag
-            key={filter}
-            filterName={filter}
-            onRemove={() => removeFilter(filter)}
-          />
-        ))}
+        {/* individual filters */}
+        {Object.entries(filters).map(([filterType, filters]) =>
+          filters.map((filter) => (
+            <FilterTag
+              key={filter}
+              filterName={filter}
+              filterType={filterType}
+              onRemove={() => onRemove(filter, filterType)}
+            />
+          )),
+        )}
       </div>
     </>
   );

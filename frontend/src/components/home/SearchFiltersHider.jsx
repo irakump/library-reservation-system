@@ -12,7 +12,7 @@ const SearchFiltersHider = () => {
     <div className="mb-8">
       {filtersVisible && <SearchFilters />}
       <div className="flex justify-end mr-1">
-        <button onClick={toggleFilters}>
+        <button onClick={toggleFilters} className='cursor-pointer'>
           {filtersVisible ? 'Hide' : 'Show'} Filters
         </button>
       </div>
