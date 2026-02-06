@@ -30,9 +30,10 @@ Create database and add data in the following order (.sql files):
 5. book
 6. writes
 
-Mock user data (only for development):
-7. mock-users
-8. loan
-9. reservation
-10. favorite
+Add mock user data (only for development):
+
+1. mock-users
+2. loan
+3. reservation
+4. favorite
 
