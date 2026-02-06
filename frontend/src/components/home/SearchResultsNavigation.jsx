@@ -1,7 +1,7 @@
 const SearchResultsNavigation = () => {
   return (
     <>
-      <div className="flex flex-row items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md">
+      <div className="flex flex-row items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer">
         <button>{'<'}</button>
 
         {/* Links to search result pages */}
