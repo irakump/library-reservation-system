@@ -1,7 +1,7 @@
 import BookCard from "../components/Books/BookCard.jsx";
 import { useState } from 'react';
 import BookModal from "../components/Books/BookModal.jsx";
-import { getAvailibility } from "../utils/getAvailibility.js";
+
 
 const BookDataPage = ({ title, books, pageType, action }) => {
   const [open, setOpen] = useState(null);  //passes bookobject
@@ -19,8 +19,6 @@ const BookDataPage = ({ title, books, pageType, action }) => {
             book={book} 
             pageType={pageType}
             setOpen={setOpen}
-            action={action}
-            available={getAvailibility(book)}
             />
           ))}
         </div>
@@ -29,7 +27,6 @@ const BookDataPage = ({ title, books, pageType, action }) => {
       book={open}
       pageType={pageType}
       setOpen={setOpen}
-      action={action}
       >
 
       </BookModal>

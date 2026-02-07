@@ -1,28 +1,12 @@
 import { useState } from "react";
 import Button from "./Button";
+import { getPage } from "../../utils/getPage";
 
 
-//maybe use conditional rendering just here or bookdatapage to see if book is available or no
 
-//possibly not needed
-export function getAvailibility(book) {
-  if (book.available) {
-    return {
-      BtnText: "Loan",
-      onClick: (book) => loanBook(book),
-    };
-  } else {
-    return {
-      BtnText: "Reserve",
-      onClick: () => reserveBook(book),
-    };
-
-  }
-} 
-
-
-const BookCard = ({ book, pageType, setOpen, action, available }) => {
+const BookCard = ({ book, pageType, setOpen, }) => {
   const [isFavourite, setIsFavourite] = useState(false); //will be replaced
+  const page = getPage(pageType, book)
 
   return (
     <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
@@ -42,18 +26,24 @@ const BookCard = ({ book, pageType, setOpen, action, available }) => {
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
         <p className="text-sm mb-1 text-left">Year: {book.year}</p>
-        <p className="text-sm mb-1 text-left">{action.p(book)}</p>
+
+        {page.showDates && (
+          <>
+            <p className="text-sm mb-1 text-left">Borrowed: {book.borrowedDate}</p>
+            <p className="text-sm mb-1 text-left">Returned: {book.returnedDate}</p>
+          </>
+        )}
+        
+
+        {/* Button for loan/reserve/return jene */}
+        {!page.showDates && (
+          <Button onClick={()=> page.action(book)}> {page.BtnText} </Button>
+        )}
+    
+        
 
 
-        {pageType !== "history" || pageType !== "favourite" && 
-        <Button onClick={()=> action.func(book)}> {action.BtnText} </Button>
-        } 
-
-
-        {pageType === "favourite" && 
-        <Button onClick={() => available.onClick}> {available.BtnText}
-        </Button> }
-
+      
 
       </div>
     </div>

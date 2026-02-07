@@ -1,12 +1,5 @@
 import BookDataPage from "./BookDataPage";
 
-
-//This function can be modified for later use
-function ReturnBook(book) {
-  console.log(`${book.title} returned`);
-};
-
-
 const LoansPage = () => {
   let loansData = [
     {
@@ -40,21 +33,11 @@ const LoansPage = () => {
   ];
 
 
-
- //action object includes functionality and text for buttons (return, loan, cancel jne). works like prop. check others from other pages
-  const action = {
-    BtnText: "Return",
-    func: (book) => ReturnBook(book),
-    p: (book) => `Due date: ${book.dueDate}`
-  };
-
-
   return (
     <BookDataPage 
     title="My loans (4)" 
     books={loansData} 
     pageType="loans" 
-    action={action}
     />
   );
 };

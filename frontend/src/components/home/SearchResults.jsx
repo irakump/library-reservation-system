@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SearchResultsNavigation from './SearchResultsNavigation';
 import BookDataPage from '../../pages/BookDataPage';
-import { getAvailibility } from '../../utils/getAvailibility';
+
 
 //This function is just for demostration and it is NOT meant for loaning and is at the wrong place too!
 function LoanBook(book) {
@@ -37,7 +37,6 @@ export const SearchResults = () => {
           title=' '
           books={books}
           pageType="favourite"
-          action={action}
           />
       </div>
       

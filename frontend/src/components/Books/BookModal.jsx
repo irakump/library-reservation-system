@@ -1,8 +1,13 @@
 import Button from "./Button"
 import { useState } from "react";
+import { getPage } from "../../utils/getPage";
 
-const BookModal = ({book, pageType, setOpen, action}) => {
-    const [isFavourite, setIsFavourite] = useState(false); //will be replaced
+const BookModal = ({book, pageType, setOpen}) => {
+
+    const [isFavourite, setIsFavourite] = useState(false); 
+    const page = getPage(pageType, book)
+
+
     return(
         <>
         <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
@@ -43,18 +48,31 @@ const BookModal = ({book, pageType, setOpen, action}) => {
                 </div>
                 <div className="mt-6 flex items-end justify-between">
                   <div className="text-sm">
-                    <p className="flex items-center gap-2">
-                    {action.p(book)}
-                    </p>
-                    <p className="mt-1">2 people in queue</p>
-                    <p className="text-gray-500">Estimated loan date x.x.2026</p>
-                  </div>
+                    <p className="flex items-center gap-2"></p>
 
-                  {pageType !== "history" && 
-                  //This button is for cancel/loan/return
-                  <Button onClick={()=> action.func(book)}> 
-                  {action.BtnText} </Button>
-                  }    
+
+                    {/*for history page */}
+                    {page.showDates && (
+                      <>
+                        <p className="text-sm mb-1 text-left">Borrowed: {book.borrowedDate}</p>
+                        <p className="text-sm mb-1 text-left">Returned: {book.returnedDate}</p>
+                      </>
+                    )}
+
+
+                    {/*queue*/}
+                    {page.BtnText == "Reserve" && (
+                      <>
+                        <p className="mt-1">2 people in queue</p>
+                        <p className="text-gray-500">Estimated loan date x.x.2026</p>
+                      </>
+
+                    )}
+
+                    {/* Button for loan/reserve/return jene */}
+                  </div>
+                  <Button onClick={()=> page.action(book)}> {page.BtnText} </Button>
+                 
                 </div>
             </div>    
           </div>

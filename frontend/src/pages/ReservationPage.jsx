@@ -1,11 +1,5 @@
 import BookDataPage from "./BookDataPage";
 
-//This function can be modified for later use*
-function CancelReservation(book) {
-  console.log(`Canceled recervation for: ${book.title}`);
-  };
-
-
 const ReservationPage = () => {
   const reservationsData = [
     {
@@ -35,20 +29,11 @@ const ReservationPage = () => {
   ];
 
 
-  //action object includes functionality and text for buttons (return, loan, cancel jne). Works like prop
-  const action = {
-    BtnText: "Cancel",
-    return: (book) => CancelReservation(book),
-    p: (book) => `🔴 Not available`
-  };
-  
-
   return (
     <BookDataPage
       title="My Reservations (4)"
       books={reservationsData}
       pageType="reservation"
-      action={action}
     />
   );
 };
