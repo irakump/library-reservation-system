@@ -59,6 +59,7 @@ const BookModal = ({book, pageType, setOpen}) => {
                       </>
                     )}
 
+                    <p className="text-sm mb-1 text-left">{page.p} </p>
 
                     {/*queue*/}
                     {page.BtnText == "Reserve" && (
@@ -66,7 +67,6 @@ const BookModal = ({book, pageType, setOpen}) => {
                         <p className="mt-1">2 people in queue</p>
                         <p className="text-gray-500">Estimated loan date x.x.2026</p>
                       </>
-
                     )}
 
                     {/* Button for loan/reserve/return jene */}

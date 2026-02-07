@@ -33,6 +33,8 @@ const BookCard = ({ book, pageType, setOpen, }) => {
             <p className="text-sm mb-1 text-left">Returned: {book.returnedDate}</p>
           </>
         )}
+
+        <p className="text-sm mb-1 text-left">{page.p}</p>
         
 
         {/* Button for loan/reserve/return jene */}
@@ -40,9 +42,6 @@ const BookCard = ({ book, pageType, setOpen, }) => {
           <Button onClick={()=> page.action(book)}> {page.BtnText} </Button>
         )}
     
-        
-
-
       
 
       </div>

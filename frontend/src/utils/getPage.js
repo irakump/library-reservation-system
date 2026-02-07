@@ -1,11 +1,11 @@
 //functions for buttons
 
 export function ReserveBook(book) {
-    console.log(`${book.title} returned`);
+    console.log(`${book.title} reserved`);
 };
 
 export function ReturnBook(book) {
-  console.log(`${book.title} reserved`);
+  console.log(`${book.title} returned`);
 };
 
 export function LoanBook(book) {
@@ -21,9 +21,9 @@ export function getPage(pageType, book) {
     switch (pageType) {
         case "favourite":
             if (book.available) {
-                return { BtnText: "Loan", action: (book) => LoanBook(book)}
+                return { BtnText: "Loan", action: (book) => LoanBook(book), p: "🟢Available"}
             } 
-            else return { BtnText: "Reserve", action: (book) => ReserveBook(book)}
+            else return { BtnText: "Reserve", action: (book) => ReserveBook(book), p: "🔴 Not available"}
 
         case "loans":
         return { BtnText: "Return", action: (book) => ReturnBook(book)}
