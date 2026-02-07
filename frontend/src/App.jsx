@@ -7,6 +7,7 @@ import HistoryPage from "./pages/HistoryPage.jsx";
 import FavouritePage from "./pages/FavouritePage.jsx";
 import NavBar from "./components/navbar/NavBar.jsx";
 import { MenuProvider } from "./contexts/MenuContext.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 import { Routes, Route } from "react-router";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile/favorites" element={<FavouritePage />} />
       </Routes>
       </main>
+      <Footer/>
     </>
   );
 }

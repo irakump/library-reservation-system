@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BookCard from '../Books/BookCard';
-import BookModal from './BookModal';
+import BookModal from '../Books/BookModal';
 import SearchResultsNavigation from './SearchResultsNavigation';
 import BookDataPage from '../../pages/BookDataPage';
 

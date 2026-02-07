@@ -1,6 +1,6 @@
 import BookCard from "../components/Books/BookCard.jsx";
 import { useState } from 'react';
-import BookModal from "../components/home/BookModal.jsx";
+import BookModal from "../components/Books/BookModal.jsx";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null);
