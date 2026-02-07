@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FavBtn from "./FavBtn";
+
 
 function Button({ onClick, children }) {
   return (
-    <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right"
+    <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
     onClick={e => {
       e.stopPropagation();
       onClick();
@@ -15,22 +15,23 @@ function Button({ onClick, children }) {
 }
 
 
-
 const BookCard = ({ book, pageType, setOpen }) => {
-  
+  const [isFavourite, setIsFavourite] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-2 flex gap-6" onClick={() => setOpen(book.id)}>
+    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book.id)}>
       <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0" ></div>
 
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <FavBtn 
-          className="text-xl"
-          onClick={() => setIsFavourite(!isFavourite)
-          }>
-        </FavBtn> 
+          <button 
+          className="text-xl cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFavourite(!isFavourite);
+          }}> {isFavourite ? "♥︎" : "♡"}
+        </button> 
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
@@ -40,7 +41,7 @@ const BookCard = ({ book, pageType, setOpen }) => {
           <>
             <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
 
-            <Button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Return
             </Button>
           </>
@@ -49,7 +50,7 @@ const BookCard = ({ book, pageType, setOpen }) => {
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <Button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Cancel
             </Button>
           </>
