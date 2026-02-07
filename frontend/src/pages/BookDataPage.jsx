@@ -2,8 +2,8 @@ import BookCard from "../components/Books/BookCard.jsx";
 import { useState } from 'react';
 import BookModal from "../components/Books/BookModal.jsx";
 
-const BookDataPage = ({ title, books, pageType }) => {
-  const [open, setOpen] = useState(null);
+const BookDataPage = ({ title, books, pageType, action }) => {
+  const [open, setOpen] = useState(null);  //passes bookobject
 
   return (
     <>
@@ -18,15 +18,18 @@ const BookDataPage = ({ title, books, pageType }) => {
             book={book} 
             pageType={pageType}
             setOpen={setOpen}
+            action={action}
             />
           ))}
         </div>
         {open && (
       <BookModal
       book={open}
+      pageType={pageType}
       setOpen={setOpen}
+      action={action}
       >
-        
+
       </BookModal>
       )}
       </div>

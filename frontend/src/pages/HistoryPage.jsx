@@ -1,3 +1,4 @@
+import { act } from "react";
 import BookDataPage from "./BookDataPage";
 const HistoryPage = () => {
   const historyData = [
@@ -34,8 +35,21 @@ const HistoryPage = () => {
       returnedDate: "25.11.2024",
     },
   ];
+
+   //action object includes functionality and text for buttons (return, loan, cancel jne). Works like prop
+  const action = {
+    p: (book) => `Borrowed: ${book.borrowedDate}`,
+    p1: (book) => `Returned: ${book.returnedDate}`,
+  };
+
+
   return (
-    <BookDataPage title="My History" books={historyData} pageType="history" />
+    <BookDataPage 
+    title="My History" 
+    books={historyData} 
+    pageType="history" 
+    action={action}
+    />
   );
 };
 

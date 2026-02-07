@@ -1,21 +1,9 @@
 import { useState } from "react";
+import Button from "./Button";
 
 
-function Button({ onClick, children }) {
-  return (
-    <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
-    onClick={e => {
-      e.stopPropagation();
-      onClick();
-      ;
-    }}>
-      {children}
-    </button>
-  );
-}
 
-
-const BookCard = ({ book, pageType, setOpen }) => {
+const BookCard = ({ book, pageType, setOpen, action }) => {
   const [isFavourite, setIsFavourite] = useState(false);
 
   return (
@@ -37,44 +25,17 @@ const BookCard = ({ book, pageType, setOpen }) => {
         <p className="text-sm mb-1 text-left">{book.author}</p>
         <p className="text-sm mb-1 text-left">Year: {book.year}</p>
 
-        {pageType === "loans" && (
-          <>
-            <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
+        {/* the action.p and action.BtnText comes from action object from individual profile pages*/}
+        <p className="text-sm mb-1 text-left">{action.p(book)}</p>
 
-            <Button>
-              Return
-            </Button>
-          </>
-        )}
-        {pageType === "reservation" && (
-          <>
-            <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <Button>
-              Cancel
-            </Button>
-          </>
-        )}
-        {pageType === "favourite" && (
-          <>
-            <p className="text-sm mb-1 text-left">🟢 Available</p>
+        {pageType !== "history" && 
+        //This button is for cancel/loan/return
+        <Button onClick={()=> action.func(book)}> 
+        {action.BtnText} </Button>
+        }       
 
-            <Button>
-              Loan
-            </Button>
-          </>
-        )}
 
-        {pageType === "history" && (
-          <>
-            <p className="text-sm mb-1 text-left">
-              Borrowed: {book.borrowedDate}
-            </p>
-            <p className="text-sm mb-1 text-left">
-              Returned: {book.returnedDate}
-            </p>
-          </>
-        )}
       </div>
     </div>
   );

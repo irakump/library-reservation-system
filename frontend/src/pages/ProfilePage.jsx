@@ -1,6 +1,6 @@
 import UserInformation from "../components/profile/UserInformation.jsx";
 import ProfileStats from "../components/profile/ProfileStats.jsx";
-import Footer from "../components/footer/Footer";
+
 
 const ProfilePage = () => {
   return (
