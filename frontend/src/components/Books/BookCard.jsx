@@ -4,7 +4,7 @@ import Button from "./Button";
 
 
 const BookCard = ({ book, pageType, setOpen, action }) => {
-  const [isFavourite, setIsFavourite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false); //will be replaced
 
   return (
     <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
@@ -30,7 +30,7 @@ const BookCard = ({ book, pageType, setOpen, action }) => {
 
 
         {pageType !== "history" && 
-        //This button is for cancel/loan/return
+        //This button is for cancel/loan/return/reserve
         <Button onClick={()=> action.func(book)}> 
         {action.BtnText} </Button>
         }       

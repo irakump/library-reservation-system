@@ -1,13 +1,24 @@
 import Button from "./Button"
+import { useState } from "react";
 
 const BookModal = ({book, pageType, setOpen, action}) => {
+    const [isFavourite, setIsFavourite] = useState(false); //will be replaced
     return(
         <>
         <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
-          <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
+          <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter" 
+          onClick={(e) => e.stopPropagation()}>
+            <button 
+            onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
             <div >
-              <button className="absolute top-10 right-4 text-4xl">♡</button>
+              <button 
+                className="text-xl cursor-pointer absolute top-10 right-4 text-4xl"
+                onClick={(e) => {
+                e.stopPropagation();
+                setIsFavourite(!isFavourite);
+                }}> 
+                {isFavourite ? "♥︎" : "♡"}
+                </button> 
 
               <div className="flex gap-4">
               <img src="https://placehold.co/100x150" alt="Book cover" className="w-24 h-36 object-cover"
@@ -33,7 +44,7 @@ const BookModal = ({book, pageType, setOpen, action}) => {
                 <div className="mt-6 flex items-end justify-between">
                   <div className="text-sm">
                     <p className="flex items-center gap-2">
-                    🔴 Not available
+                    {action.p(book)}
                     </p>
                     <p className="mt-1">2 people in queue</p>
                     <p className="text-gray-500">Estimated loan date x.x.2026</p>
@@ -43,7 +54,7 @@ const BookModal = ({book, pageType, setOpen, action}) => {
                   //This button is for cancel/loan/return
                   <Button onClick={()=> action.func(book)}> 
                   {action.BtnText} </Button>
-                }    
+                  }    
                 </div>
             </div>    
           </div>
