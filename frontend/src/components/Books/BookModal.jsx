@@ -71,7 +71,10 @@ const BookModal = ({book, pageType, setOpen}) => {
 
                     {/* Button for loan/reserve/return jene */}
                   </div>
-                  <Button onClick={()=> page.action(book)}> {page.BtnText} </Button>
+
+                  {!page.showDates && (
+                    <Button onClick={()=> page.action(book)}> {page.BtnText} </Button>
+                  )}
                  
                 </div>
             </div>    
