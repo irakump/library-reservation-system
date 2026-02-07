@@ -23,7 +23,7 @@ const BookDataPage = ({ title, books, pageType }) => {
         </div>
         {open && (
       <BookModal
-      open={open}
+      book={open}
       setOpen={setOpen}
       />
       )}

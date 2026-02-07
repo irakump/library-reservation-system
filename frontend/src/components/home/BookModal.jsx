@@ -1,19 +1,20 @@
-const BookModal = ({setOpen}) => {
+const BookModal = ({book, setOpen}) => {
     return(
         <>
             <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
-            <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter">
-                <button onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
+            <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
+            <div >
                 <button className="absolute top-10 right-4 text-4xl">♡</button>
 
                 <div className="flex gap-4">
                 <img src="https://placehold.co/100x150" alt="Book cover" className="w-24 h-36 object-cover"
                 />
                 <div className="flex-1">
-                    <h1 className="bold">Book Title</h1>
-                    <p >Author</p>
-                    <p >2004</p>
-                    <p>
+                    <h1 className="font-bold text-lg">{book.title}</h1>
+                    <p className="text-sm mb-1"> {book.author} </p>
+                    <p className="text-sm mb-1">{book.year} </p>
+                    <p className="text-sm mb-1">
                     Description
                     </p>
                 </div>
@@ -38,6 +39,7 @@ const BookModal = ({setOpen}) => {
                 <button className="px-5 py-2 rounded-xl bg-filter font-medium">
                     Loan</button>
                 </div>
+            </div>    
             </div>
             </div>
 

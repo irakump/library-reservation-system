@@ -19,7 +19,7 @@ const BookCard = ({ book, pageType, setOpen }) => {
   const [isFavourite, setIsFavourite] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book.id)}>
+    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
       <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0" ></div>
 
       <div className="flex-1">
