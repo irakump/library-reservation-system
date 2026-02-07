@@ -1,21 +1,37 @@
 import { useState } from "react";
 
-const BookCard = ({ book, pageType }) => {
+
+function Button({ onClick, children }) {
+  return (
+    <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
+    onClick={e => {
+      e.stopPropagation();
+      onClick();
+      ;
+    }}>
+      {children}
+    </button>
+  );
+}
+
+
+const BookCard = ({ book, pageType, setOpen }) => {
   const [isFavourite, setIsFavourite] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-2 flex gap-6">
-      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0 "></div>
+    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
+      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0" ></div>
 
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <button
-            className="text-xl"
-            onClick={() => setIsFavourite(!isFavourite)}
-          >
-            {isFavourite ? "♥︎" : "♡"}
-          </button>
+          <button 
+          className="text-xl cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFavourite(!isFavourite);
+          }}> {isFavourite ? "♥︎" : "♡"}
+        </button> 
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
@@ -25,27 +41,27 @@ const BookCard = ({ book, pageType }) => {
           <>
             <p className="text-sm mb-1 text-left">Due date: {book.dueDate}</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Return
-            </button>
+            </Button>
           </>
         )}
         {pageType === "reservation" && (
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-lg px-4 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Cancel
-            </button>
+            </Button>
           </>
         )}
         {pageType === "favourite" && (
           <>
             <p className="text-sm mb-1 text-left">🟢 Available</p>
 
-            <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right">
+            <Button>
               Loan
-            </button>
+            </Button>
           </>
         )}
 
