@@ -2,8 +2,26 @@ import { useState } from "react";
 import Button from "./Button";
 
 
+//maybe use conditional rendering just here or bookdatapage to see if book is available or no
 
-const BookCard = ({ book, pageType, setOpen, action }) => {
+//possibly not needed
+export function getAvailibility(book) {
+  if (book.available) {
+    return {
+      BtnText: "Loan",
+      onClick: (book) => loanBook(book),
+    };
+  } else {
+    return {
+      BtnText: "Reserve",
+      onClick: () => reserveBook(book),
+    };
+
+  }
+} 
+
+
+const BookCard = ({ book, pageType, setOpen, action, available }) => {
   const [isFavourite, setIsFavourite] = useState(false); //will be replaced
 
   return (
@@ -24,16 +42,17 @@ const BookCard = ({ book, pageType, setOpen, action }) => {
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
         <p className="text-sm mb-1 text-left">Year: {book.year}</p>
-
-        {/* the action.p and action.BtnText comes from action object from individual profile pages*/}
         <p className="text-sm mb-1 text-left">{action.p(book)}</p>
 
 
-        {pageType !== "history" && 
-        //This button is for cancel/loan/return/reserve
-        <Button onClick={()=> action.func(book)}> 
-        {action.BtnText} </Button>
-        }       
+        {pageType !== "history" || pageType !== "favourite" && 
+        <Button onClick={()=> action.func(book)}> {action.BtnText} </Button>
+        } 
+
+
+        {pageType === "favourite" && 
+        <Button onClick={() => available.onClick}> {available.BtnText}
+        </Button> }
 
 
       </div>

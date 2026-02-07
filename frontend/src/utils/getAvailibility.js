@@ -1,12 +1,14 @@
+
+
 export function getAvailibility(book) {
   if (book.available) {
     return {
-      BtnText: "Buy",
-      onClick: () => buyBook(book),
+      BtnText: "Loan",
+      onClick: (book) => loanBook(book),
     };
   } else {
     return {
-      text: "Reserve",
+      BtnText: "Reserve",
       onClick: () => reserveBook(book),
     };
 
