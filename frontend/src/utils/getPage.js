@@ -21,15 +21,23 @@ export function getPage(pageType, book) {
     switch (pageType) {
         case "favourite":
             if (book.available) {
-                return { BtnText: "Loan", action: (book) => LoanBook(book), p: "🟢Available"}
+                return { 
+                    BtnText: "Loan", 
+                    action: (book) => LoanBook(book), p: "🟢 Available"}
             } 
-            else return { BtnText: "Reserve", action: (book) => ReserveBook(book), p: "🔴 Not available"}
+            else return { 
+                BtnText: "Reserve", 
+                action: (book) => ReserveBook(book), p: "🔴 Not available"}
 
         case "loans":
-        return { BtnText: "Return", action: (book) => ReturnBook(book)}
+        return { 
+            BtnText: "Return", 
+            action: (book) => ReturnBook(book)}
 
         case "reservation":
-        return { BtnText: "Cancel", action: (book) => CancelReservation(book) }
+        return { 
+            BtnText: "Cancel", 
+            action: (book) => CancelReservation(book) }
 
         case "history":
         return { BtnText: null, showDates: true }
