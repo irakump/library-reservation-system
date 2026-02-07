@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BookCard from '../Books/BookCard';
 import BookModal from './BookModal';
 import SearchResultsNavigation from './SearchResultsNavigation';
+import BookDataPage from '../../pages/BookDataPage';
 
 export const SearchResults = () => {
   const [open, setOpen] = useState(null);
@@ -16,22 +17,12 @@ export const SearchResults = () => {
         <h2>1 - 20 / 53</h2>
       </div>
 
-      <div className='grid grid-cols-1 lg:grid-cols-2 md:mx-15 lg:mx-15 xl:mx-49 md:grid-rows-7 bg-tag p-15 gap-4'>
-        {books.map(book => 
-          <BookCard 
-          key={book.id}
-          book={book}
-          setOpen={setOpen}
+      <div>
+          <BookDataPage title=' '
+          books={books}
           pageType="favourite"
           />
-        )}
       </div>
-      {open && (
-      <BookModal
-      open={open}
-      setOpen={setOpen}
-      />
-      )}
       
       {/* Search result navigation */}
       <div className="flex justify-center mt-2">
