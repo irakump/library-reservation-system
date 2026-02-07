@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import BookInfo from './BookInfo';
 import BookCard from '../Books/BookCard';
 import BookModal from './BookModal';
 import SearchResultsNavigation from './SearchResultsNavigation';
