@@ -1,4 +1,4 @@
-INSERT INTO LOAN (DueDate, Returndate, UserId, ISBN)
+INSERT INTO LOAN (due_date, return_date, user_id, isbn)
 VALUES
 ('2026-02-07', NULL, 1, '0575039434'),
 ('2026-03-02', NULL, 1, '9789513111465'),
