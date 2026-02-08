@@ -74,3 +74,20 @@ Get all users:
 Get user by id:  
 **endpoint:** '/users/{id}'  
 **example:** '/users/1'  
+
+#### Reservations
+
+Get all reservations:  
+**endpoint:** '/reservations'  
+
+Get reservation by id:  
+**endpoint:** '/reservations/{id}'  
+**example:** '/reservations/2'  
+
+Get reservations by user:  
+**endpoint:** '/reservations/user/{user_id}'  
+**example:** '/reservations/user/1'  
+
+Get reservations by book:  
+**endpoint:** '/reservations/book/{isbn}'  
+**example:** '/reservations/book/9780241600948'  
