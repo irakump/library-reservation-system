@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Genre {
 
     @Id
-    @Column(name = "Genre", length = 50)
+    @Column(name = "genre", length = 50)
     private String genre;
 
     public Genre() {}
