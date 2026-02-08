@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/genre')
+      .get('http://localhost:8081/api/genre')
       .then((response) => setGenres(response.data))
       .catch((error) => console.error(error));
   }, []);
