@@ -2,18 +2,19 @@
 
 export function ReserveBook(book) {
     console.log(`${book.title} reserved`);
+    alert(`Reservation for ${book.title} succeed`);
 };
 
 export function ReturnBook(book) {
-  console.log(`${book.title} returned`);
+    confirm(`Returning ${book.title}`);
 };
 
 export function LoanBook(book) {
-  console.log(`${book.title} loaned`);
+    alert(`Loaning ${book.title}`);
 };
 
 export function CancelReservation(book) {
-  console.log(`Canceled recervation for: ${book.title}`);
+    confirm(`Canceling recervation for: ${book.title}`);
   };
 
 

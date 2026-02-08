@@ -9,14 +9,14 @@ const BookCard = ({ book, pageType, setOpen, }) => {
   const page = getPage(pageType, book)
 
   return (
-    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-xl hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
+    <div className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-lg hover:opacity-90 transition-all " onClick={() => setOpen(book)}>
       <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0" ></div>
 
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
           <button 
-          className="text-xl cursor-pointer"
+          className="text-2xl cursor-pointer hover:text-red-700"
           onClick={(e) => {
             e.stopPropagation();
             setIsFavourite(!isFavourite);

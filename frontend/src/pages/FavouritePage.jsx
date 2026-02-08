@@ -5,28 +5,28 @@ const FavouritePage = () => {
   const favouriteData = [
     {
       id: 1,
-      title: "Book Title",
+      title: "Book Title1",
       author: "Author name",
       year: "2025",
       available: false,
     },
     {
       id: 2,
-      title: "Book Title",
+      title: "Book Title2",
       author: "Author name",
       year: "2025",
       available: false,
     },
     {
       id: 3,
-      title: "Book Title",
+      title: "Book Title3",
       author: "Author name",
       year: "2025",
       available: true,
     },
     {
       id: 4,
-      title: "Book Title",
+      title: "Book Title4",
       author: "Author name",
       year: "2025",
       available: true,

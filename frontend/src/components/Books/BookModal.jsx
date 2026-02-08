@@ -17,7 +17,7 @@ const BookModal = ({book, pageType, setOpen}) => {
             onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
             <div >
               <button 
-                className="text-xl cursor-pointer absolute top-10 right-4 text-4xl"
+                className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl"
                 onClick={(e) => {
                 e.stopPropagation();
                 setIsFavourite(!isFavourite);
