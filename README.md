@@ -31,11 +31,11 @@ Create database and add data in the following order (.sql files):
 1. database (+ give permissions to user:)
 - GRANT ALL PRIVILEGES ON metbook.* TO 'library_db_user'@'localhost';
 - FLUSH PRIVILEGES;
-3. genre
-4. language
-5. author
-6. book
-7. writes
+2. genre
+3. language
+4. author
+5. book
+6. writes
 
 Add mock user data (only for development):
 1. mock-users
@@ -44,7 +44,7 @@ Add mock user data (only for development):
 4. favorite
 
 ### Spring Boot + database + database to frontend
-1. Run "mvn spring-boot:run".
+1. Run "mvn spring-boot:run" or "mvn clean spring-boot:run".
 2. Optionally run BackendApplication class in backend/src/main/java/com/library/backend.
 
 One of the above needs to be running for frontend to get the data.
@@ -53,3 +53,24 @@ Open console in http://localhost:5173, it should have printed genre list.
 #### How to add more database endpoints?
 1. Navigate to backend/src/main/java/com/library/backend.
 2. Look at examples from Genre.java, GenreController.java, and GenreRepository.java.
+
+## API endpoints
+Base URL: http://localhost:8081/api
+
+#### Genres
+
+Get all genres:  
+**endpoint:** '/genre'  
+
+Get one genre:  
+**endpoint:** '/genre/{name}'  
+**example:** '/genre/fantasy'  
+
+#### Users
+
+Get all users:  
+**endpoint:** '/users'  
+
+Get user by id:  
+**endpoint:** '/users/{id}'  
+**example:** '/users/1'  
