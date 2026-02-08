@@ -10,15 +10,27 @@ const Home = () => {
 
   // example, delete
   const [genres, setGenres] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
       .get('http://localhost:8081/api/genre')
       .then((response) => setGenres(response.data))
       .catch((error) => console.error(error));
-  }, []);
+  
+    }, []);
 
   console.log('Genres:', genres);
+
+
+    useEffect(() => {
+      axios
+      .get('http://localhost:8081/api/users')
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.error(error));
+    }, []);
+
+  console.log('Users: ', users);
   //
 
   return (
