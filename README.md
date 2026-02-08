@@ -22,17 +22,20 @@ npm run dev
 ### Backend
 
 ### Database
-Create user (use these as they're hardcoded to files)
-User: library_db_user
-Password: password
+Create user (use these as they're hardcoded to files)  
+User: library_db_user  
+Password: password  
+  - CREATE USER 'library_db_user'@'localhost' IDENTIFIED BY 'password';  
 
 Create database and add data in the following order (.sql files):
-1. database (+ give permissions to user)
-2. genre
-3. language
-4. author
-5. book
-6. writes
+1. database (+ give permissions to user:)
+- GRANT ALL PRIVILEGES ON metbook.* TO 'library_db_user'@'localhost';
+- FLUSH PRIVILEGES;
+3. genre
+4. language
+5. author
+6. book
+7. writes
 
 Add mock user data (only for development):
 1. mock-users
