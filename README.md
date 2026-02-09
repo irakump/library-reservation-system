@@ -101,13 +101,13 @@ Get loans by user:
 **endpoint:** '/loans/user/{user_id}'  
 **example:** '/loans/user/1'  
 
-Get active loans (not returned) by user and return date:  **not implemented yet**
-**endpoint:** '/loans/user/{userId}/active'
-**example:** '/loans/user/1/active'
+Get active loans (not returned) by user and return date:  **not implemented yet**  
+**endpoint:** '/loans/user/{userId}/active'  
+**example:** '/loans/user/1/active'  
 
-Get returned loans by user and return date:  **not implemented yet**
-**endpoint:** '/loans/user/{userId}/returned'
-**example:** '/loans/user/1/returned'
+Get returned loans by user and return date:  **not implemented yet**  
+**endpoint:** '/loans/user/{userId}/returned'  
+**example:** '/loans/user/1/returned'  
 
 #### Reservations
 
