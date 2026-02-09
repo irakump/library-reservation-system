@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Book {
     @Id
     @Column(name = "isbn", length = 20)
-    private String id;
+    private String isbn;
 
     @Column(name = "book_title", length = 100, nullable = false)
     private String title;
@@ -37,7 +37,7 @@ public class Book {
 
 
     public String getIsbn() {
-        return id;
+        return isbn;
     }
 
     public String getTitle() {return title;}

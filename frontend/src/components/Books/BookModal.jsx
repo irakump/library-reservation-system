@@ -33,13 +33,13 @@ const BookModal = ({book, pageType, setOpen}) => {
                   <p className="text-sm mb-1"> {book.author} </p>
                   <p className="text-sm mb-1">{book.year} </p>
                   <p className="text-sm mb-1">
-                    Description
+                      {book.description}
                   </p>
                 </div>
                 </div>
-                <div className="mt-6 text-sm text-gray-700 space-y-1">
-                  <p><span className="font-medium">Language:</span> Finnish</p>
-                  <p><span className="font-medium">Genre:</span> History</p>
+                <div className="mt-6 text-sm text-gray-700 space-y-1 capitalize">
+                  <p><span className="font-medium">Language:</span> {book.language}</p>
+                  <p><span className="font-medium">Genre:</span> {book.genre}</p>
                 </div>
                 <div className="mt-3 flex items-center gap-2">
                   <span className="px-3 py-1 text-xs rounded-full bg-gray-100">Finnish</span>
