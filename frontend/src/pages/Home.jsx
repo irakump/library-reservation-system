@@ -4,6 +4,7 @@ import SearchResults from '../components/home/SearchResults';
 import SearchFiltersHider from '../components/home/SearchFiltersHider';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { SearchResultProvider } from '../contexts/SearchResultContext';
 
 
 const Home = () => {
@@ -35,12 +36,13 @@ const Home = () => {
 
   return (
     <>
-
-      <div className="p-4 bg-background">
-        <SearchBar />
-        <SearchFiltersHider /> {/* Contains SearchFilters */}
-        <SearchResults />
-      </div>
+      <SearchResultProvider>
+        <div className="p-4 bg-background">
+          <SearchBar />
+          <SearchFiltersHider /> {/* Contains SearchFilters */}
+          <SearchResults />
+        </div>
+      </SearchResultProvider>
     </>
   );
 };
