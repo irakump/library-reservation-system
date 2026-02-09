@@ -1,7 +1,10 @@
 package com.library.backend.user;
 
+import com.library.backend.book.Book;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +30,20 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
+
+    //manages favorites table
+    @ManyToMany
+    @JoinTable(
+            name = "favorite",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "isbn")
+    )
+    private Set<Book> favorites = new HashSet<>();
+
+    public Set<Book> getFavorites() {
+        return favorites;
+    }
+
 
     public User() {}
 

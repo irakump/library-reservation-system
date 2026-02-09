@@ -21,7 +21,7 @@ export function CancelReservation(book) {
 export function getPage(pageType, book) {
     switch (pageType) {
         case "favourite":
-            if (book.available) {
+            if (book.availability) {
                 return { 
                     BtnText: "Loan", 
                     action: (book) => LoanBook(book), p: "🟢 Available"}

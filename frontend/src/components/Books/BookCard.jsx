@@ -25,7 +25,8 @@ const BookCard = ({ book, pageType, setOpen, }) => {
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>
-        <p className="text-sm mb-1 text-left">Year: {book.year}</p>
+        <p className="text-sm mb-1 text-left ">{book.year}</p>
+        <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
 
         {page.showDates && (
           <>
@@ -34,7 +35,7 @@ const BookCard = ({ book, pageType, setOpen, }) => {
           </>
         )}
 
-        <p className="text-sm mb-1 text-left">{page.p}</p>
+        <p className="text-sm mb-0 text-left">{page.p}</p>
         
 
         {/* Button for loan/reserve/return jene */}

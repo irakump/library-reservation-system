@@ -15,7 +15,7 @@ const BookDataPage = ({ title, books, pageType, action }) => {
         <div className='grid grid-cols-1 lg:grid-cols-2 md:mx-5 lg:mx-15 xl:mx-30  bg-profileBackground p-15 gap-4'>
           {books.map((book) => (
             <BookCard 
-            key={book.id} 
+            key={book.isbn}
             book={book} 
             pageType={pageType}
             setOpen={setOpen}

@@ -21,7 +21,6 @@ CREATE TABLE language(
     PRIMARY KEY (language)
 );
 
-DROP TABLE IF EXISTS book;
 CREATE TABLE book(
     isbn VARCHAR(20) PRIMARY KEY,
     book_title VARCHAR(100) NOT NULL,
