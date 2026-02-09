@@ -88,6 +88,27 @@ Get user by id:
 **endpoint:** '/users/{id}'  
 **example:** '/users/1'
 
+#### Loans
+
+Get all loans:   
+**endpoint:** '/loans'  
+
+Get loan by id:  
+**endpoint:** '/loans/{id}'  
+**example:** '/loans/2'  
+
+Get loans by user:  
+**endpoint:** '/loans/user/{user_id}'  
+**example:** '/loans/user/1'  
+
+Get active loans (not returned) by user and return date:  **not implemented yet**
+**endpoint:** '/loans/user/{userId}/active'
+**example:** '/loans/user/1/active'
+
+Get returned loans by user and return date:  **not implemented yet**
+**endpoint:** '/loans/user/{userId}/returned'
+**example:** '/loans/user/1/returned'
+
 #### Reservations
 
 Get all reservations:  
