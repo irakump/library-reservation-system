@@ -1,4 +1,4 @@
-package com.library.backend;
+package com.library.backend.genre;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
