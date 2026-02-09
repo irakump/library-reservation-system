@@ -26,7 +26,7 @@ const BookModal = ({book, pageType, setOpen}) => {
                 </button> 
 
               <div className="flex gap-4">
-              <img src="https://placehold.co/100x150" alt="Book cover" className="w-24 h-36 object-cover"
+              <img src={book.image} alt="Book cover" className="w-24 h-36 object-cover"
                 />
               <div className="flex-1">
                   <h1 className="font-bold text-lg">{book.title}</h1>
