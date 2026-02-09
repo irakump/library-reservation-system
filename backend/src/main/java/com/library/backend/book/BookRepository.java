@@ -18,8 +18,8 @@ public interface BookRepository extends CrudRepository<Book, String> {
             "(:y is null or book.year in :y) and " +
             "(:l is null or book.language in :l)")
     List<Book> findByFilters(
-            @Param("g") List<String> g,
-            @Param("y") List<Integer> y,
-            @Param("l") List<String> l
+            @Param("g") List<String> genres,
+            @Param("y") List<Integer> years,
+            @Param("l") List<String> languages
     );
 }
