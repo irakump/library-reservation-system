@@ -107,9 +107,18 @@ Get reservations by book:
 
 #### Languages
 
-Get all languages:
-**endpoint:** '/language'
+Get all languages:  
+**endpoint:** '/language'  
 
-Get language by name:
-**endpoint:** '/language/{name}
+Get language by name:  
+**endpoint:** '/language/{name}'  
 **example:** '/language/english'
+
+#### Authors
+
+Get all authors:  
+**endpoint:** '/author'  
+
+Get authors by id:  
+**endpoint:** '/author/{id}'  
+**example:** '/author/1'
