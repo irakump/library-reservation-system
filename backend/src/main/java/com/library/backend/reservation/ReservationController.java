@@ -19,7 +19,9 @@ public class ReservationController {
     @GetMapping
     public List<ReservationDTO> getAllReservations() {
         Iterable<Reservation> reservations = repository.findAll();
-        return StreamSupport.stream(reservations.spliterator(), false)  // Convert Iterable (from CrudRepository) to stream
+
+        // Convert Iterable (from CrudRepository) to stream to remove unnecessary data (e.g. hibernate lazy initializer)
+        return StreamSupport.stream(reservations.spliterator(), false)
                 .map(ReservationDTO::new)
                 .toList();
     }
