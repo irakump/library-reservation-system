@@ -46,6 +46,21 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
              rounded-xl focus:outline-none focus:border-blue-400"
             />
           </div>
+
+          {/* Login button */}
+          <button className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8">
+            Login
+          </button>
+
+          {/* Register link */}
+          <div className="flex justify-center">
+            <button
+              onClick={onSwitchToRegister}
+              className="text-center font-semibold text-gray-800 hover:text-blue-600 text-lg"
+            >
+              Register
+            </button>
+          </div>
         </div>
       </div>
     </div>
