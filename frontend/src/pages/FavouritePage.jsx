@@ -1,7 +1,10 @@
 import BookDataPage from "./BookDataPage";
+import { useEffect, useState} from "react";
+import axios from "axios";
 
 
 const FavouritePage = () => {
+    const [favorites, setFavorites] = useState([]); //toiseen paikkaan
   const favouriteData = [
     {
       id: 1,
@@ -34,7 +37,19 @@ const FavouritePage = () => {
   ];
 
 
-  return (
+  //siirrä toiseen paikkaan useApi tms fetchiin parametri isbn + favorite context
+    useEffect(() => {
+        axios
+            .get('http://localhost:8081/api/users/favorite') //korjaa oikea endpoint
+            .then((response) => setFavorites(response.data))
+            .catch((error) => console.error(error));
+    }, []);
+
+    console.log("books: ", favorites)
+
+
+
+    return (
     <BookDataPage
       title="My Favourites (4)"
       books={favouriteData}

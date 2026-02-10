@@ -88,6 +88,27 @@ Get user by id:
 **endpoint:** '/users/{id}'  
 **example:** '/users/1'
 
+#### Loans
+
+Get all loans:   
+**endpoint:** '/loans'  
+
+Get loan by id:  
+**endpoint:** '/loans/{id}'  
+**example:** '/loans/2'  
+
+Get loans by user:  
+**endpoint:** '/loans/user/{user_id}'  
+**example:** '/loans/user/1'  
+
+Get active loans (not returned) by user and return date:  **not implemented yet**  
+**endpoint:** '/loans/user/{userId}/active'  
+**example:** '/loans/user/1/active'  
+
+Get returned loans by user and return date:  **not implemented yet**  
+**endpoint:** '/loans/user/{userId}/returned'  
+**example:** '/loans/user/1/returned'  
+
 #### Reservations
 
 Get all reservations:  
@@ -122,3 +143,29 @@ Get all authors:
 Get authors by id:  
 **endpoint:** '/author/{id}'  
 **example:** '/author/1'
+
+#### Books
+Get book by ISBN:  
+**endpoint:** '/book/{isbn}'  
+**example:** '/book/9780241600948'
+
+Get books by genre:  
+**endpoint:** '/book/genre/{genre}'  
+**example:** '/book/genre/fantasy'
+
+Get books by year:  
+**endpoint:** '/book/year/{year}'  
+**example:** '/book/year/2024'
+
+Get books by language:  
+**endpoint:** '/book/language/{language}'  
+**example:** '/book/language/english'
+
+Get books by filters (any combination, multiple values allowed):  
+**endpoint:** '/book/filter?g=fantasy&y=2024&l=english&l=finnish'  
+**example:** '/book/filter?g=fantasy&y=2024&l=english&l=finnish'
+
+#### Years
+Get years used by books:  
+**endpoint:** '/book/years'  
+**example:** '/book/years'

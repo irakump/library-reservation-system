@@ -1,25 +1,68 @@
 import ActiveFilters from './ActiveFilters';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useSearchResult} from '../../contexts/SearchResultContext.jsx';
 
 const SearchFilters = () => {
-  const mockCategories = [
-    'Fiction',
-    'Non-Fiction',
-    'Science Fiction',
-    'Fantasy',
-  ];
-  const mockLanguages = ['English', 'Finnish'];
-  const mockYears = [2020, 2021, 2022, 2023];
+  const { setSearchResults } = useSearchResult();
+
+  const [genres, setGenres] = useState([]);
+  const [languages, setLanguages] = useState([]);
+  const [years, setYears] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8081/api/genre')
+      .then((response) => setGenres(response.data))
+      .catch((error) => console.error(error));
+
+    axios
+      .get('http://localhost:8081/api/language')
+      .then((response) => setLanguages(response.data))
+      .catch((error) => console.error(error));
+
+    axios
+      .get('http://localhost:8081/api/book/years')
+      .then((response) => setYears(response.data))
+      .catch((error) => console.error(error));
+  }, []);
 
   const filterTypes = {
-    categories: 'category',
+    genres: 'genre',
     languages: 'language',
     years: 'year',
   };
 
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  // selected filters: variables and methods
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedYears, setSelectedYears] = useState([]);
+
+  // fetch filtered books when active filters change
+  useEffect(() => {
+    const fetchFilteredBooks = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:8081/api/book/filter',
+          {
+            params: {
+              genres: selectedGenres.length > 0 ? selectedGenres : undefined,
+              years: selectedYears.length > 0 ? selectedYears : undefined,
+              languages:
+                selectedLanguages.length > 0 ? selectedLanguages : undefined,
+            },
+          },
+        );
+        
+        console.log('Filtered Books:', response.data);
+        setSearchResults(response.data);
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFilteredBooks();
+  }, [selectedGenres, selectedYears, selectedLanguages]);
 
   const addNewFilter = (filterSetter, filters, newFilter) => {
     if (filters.includes(newFilter)) return;
@@ -28,8 +71,8 @@ const SearchFilters = () => {
 
   const addFilter = (filter, filterType) => {
     switch (filterType) {
-      case filterTypes.categories:
-        addNewFilter(setSelectedCategories, selectedCategories, filter);
+      case filterTypes.genres:
+        addNewFilter(setSelectedGenres, selectedGenres, filter);
         break;
 
       case filterTypes.languages:
@@ -46,20 +89,22 @@ const SearchFilters = () => {
   };
 
   const removeAFilter = (filterSetter, filterToRemove) => {
-    filterSetter((previous) => previous.filter((filter) => filter !== filterToRemove));
+    filterSetter((previous) =>
+      previous.filter((filter) => filter !== filterToRemove),
+    );
   };
 
   const removeFilter = (filter, filterType) => {
     // remove all filters
     if (filter === null && filterType === null) {
-      setSelectedCategories([]);
+      setSelectedGenres([]);
       setSelectedLanguages([]);
       setSelectedYears([]);
     }
 
     switch (filterType) {
-      case filterTypes.categories:
-        removeAFilter(setSelectedCategories, filter);
+      case filterTypes.genres:
+        removeAFilter(setSelectedGenres, filter);
         break;
 
       case filterTypes.languages:
@@ -110,13 +155,13 @@ const SearchFilters = () => {
                   <option value="" disabled>
                     Select Language
                   </option>
-                  {mockLanguages.map((item) => (
+                  {languages.map((item) => (
                     <option
-                      key={item}
-                      value={item}
-                      disabled={selectedLanguages.includes(item)}
+                      key={item.language}
+                      value={item.language}
+                      disabled={selectedLanguages.includes(item.language)}
                     >
-                      {item}
+                      {item.language}
                     </option>
                   ))}
                 </select>
@@ -136,7 +181,7 @@ const SearchFilters = () => {
                   <option value="" disabled>
                     Select Year
                   </option>
-                  {mockYears.map((item) => (
+                  {years.map((item) => (
                     <option
                       key={item}
                       value={item}
@@ -149,26 +194,26 @@ const SearchFilters = () => {
               </label>
             </div>
 
-            {/* Category filter */}
+            {/* Genre filter */}
             <div>
-              <label htmlFor="category">
-                Category
+              <label htmlFor="genre">
+                Genre
                 <select
-                  id="category"
-                  name="category"
+                  id="genre"
+                  name="genre"
                   value={categoryValue}
                   onChange={handleValueSelect}
                 >
                   <option value="" disabled>
-                    Select Category
+                    Select Genre
                   </option>
-                  {mockCategories.map((item) => (
+                  {genres.map((item) => (
                     <option
-                      key={item}
-                      value={item}
-                      disabled={selectedCategories.includes(item)}
+                      key={item.genre}
+                      value={item.genre}
+                      disabled={selectedGenres.includes(item.genre)}
                     >
-                      {item}
+                      {item.genre}
                     </option>
                   ))}
                 </select>
@@ -180,7 +225,7 @@ const SearchFilters = () => {
 
           <ActiveFilters
             filters={{
-              [filterTypes.categories]: selectedCategories,
+              [filterTypes.genres]: selectedGenres,
               [filterTypes.languages]: selectedLanguages,
               [filterTypes.years]: selectedYears,
             }}

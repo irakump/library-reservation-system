@@ -26,9 +26,10 @@ CREATE TABLE book(
     book_title VARCHAR(100) NOT NULL,
     publishing_year INT NOT NULL,
     image_name VARCHAR(100),
-    description TEXT NOT NULL,
+    description VARCHAR NOT NULL,
     genre VARCHAR(50) NOT NULL,
     language VARCHAR(100) NOT NULL,
+    available BOOLEAN NOT NULL DEFAULT TRUE,
     FOREIGN KEY (genre) REFERENCES genre(genre),
     FOREIGN KEY (language) REFERENCES language(language)
 );
