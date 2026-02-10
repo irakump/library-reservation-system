@@ -13,6 +13,7 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class);
     }
 
+    /*
     @Bean
     public CommandLineRunner testGenre(GenreRepository repository) {
         return args -> {
@@ -20,4 +21,6 @@ public class BackendApplication {
             repository.findAll().forEach(genre -> System.out.println(genre.getGenre()));
         };
     }
+
+     */
 }
