@@ -147,6 +147,7 @@ const SearchFilters = () => {
               <label htmlFor="language">
                 Language
                 <select
+                    className={"capitalize"}
                   id="language"
                   name="language"
                   value={categoryValue}
@@ -157,6 +158,7 @@ const SearchFilters = () => {
                   </option>
                   {languages.map((item) => (
                     <option
+                      className={"capitalize"}
                       key={item.language}
                       value={item.language}
                       disabled={selectedLanguages.includes(item.language)}
@@ -209,6 +211,7 @@ const SearchFilters = () => {
                   </option>
                   {genres.map((item) => (
                     <option
+                        className={"capitalize"}
                       key={item.genre}
                       value={item.genre}
                       disabled={selectedGenres.includes(item.genre)}
