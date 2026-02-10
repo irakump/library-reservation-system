@@ -1,24 +1,10 @@
 import SearchResultsNavigation from './SearchResultsNavigation';
 import BookDataPage from '../../pages/BookDataPage';
-import {useEffect, useState} from "react";
-import axios from "axios";
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 
-
 export const SearchResults = () => {
-
-  //const books = [{id: 1, title: "kirja1", author: "author", genre: "genre", year: 2000, available: false}, {id: 2, title: "kirja2", author: "author", genre: "genre", year: 2004, available: false}, {id: 3, title: "kirja3", author: "author", genre: "genre", year: 1960, available: true}, {id: 4, title: "kirja4", author: "author", genre: "genre", year: 1870, available: true}]  //mockdata
-    //const [books, setBooks] = useState([]);
-    const { searchResults, setSearchResults } = useSearchResult();
-
-    useEffect(() => {
-        axios
-            .get('http://localhost:8081/api/book')
-            .then((response) => setSearchResults(response.data))
-            .catch((error) => console.error(error));
-    }, []);
-
-    console.log("books: ", searchResults)
+  const { searchResults } = useSearchResult();
+  console.log('books: ', searchResults);
 
   return (
     <>
@@ -29,13 +15,9 @@ export const SearchResults = () => {
       </div>
 
       <div>
-          <BookDataPage 
-          title=' '
-          books={searchResults}
-          pageType="favourite"
-          />
+        <BookDataPage title=" " books={searchResults} pageType="favourite" />
       </div>
-      
+
       {/* Search result navigation */}
       <div className="flex justify-center mt-2">
         <SearchResultsNavigation />
