@@ -2,9 +2,12 @@ import ActiveFilters from './ActiveFilters';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
+import { useSearchFilters } from '../../contexts/SearchFilterContext.jsx';
 
 const SearchFilters = () => {
-  const { setSearchResults } = useSearchResult(); // context
+  // context
+  const { fetchSearchResults } = useSearchResult();
+  const { searchFilters, setSearchFilters } = useSearchFilters();
 
   // data from database
   const [genres, setGenres] = useState([]);
@@ -42,29 +45,21 @@ const SearchFilters = () => {
 
   // fetch filtered books when active filters change
   useEffect(() => {
-    const fetchFilteredBooks = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:8081/api/book/filter',
-          {
-            params: {
-              genres: selectedGenres.length > 0 ? selectedGenres : undefined,
-              years: selectedYears.length > 0 ? selectedYears : undefined,
-              languages:
-                selectedLanguages.length > 0 ? selectedLanguages : undefined,
-              available: available,
-            },
-          },
-        );
-
-        console.log('Filtered Books:', response.data);
-        setSearchResults(response.data);
-      } catch (error) {
-        console.error(error);
-      }
+    const handleFilterChange = () => {
+      setSearchFilters({
+        genres: selectedGenres,
+        languages: selectedLanguages,
+        years: selectedYears,
+        available: available,
+      });
+      console.log('Search Filters:', searchFilters);
     };
-    fetchFilteredBooks();
-  }, [selectedGenres, selectedYears, selectedLanguages, available]);
+    handleFilterChange();
+  }, [selectedGenres, selectedLanguages, selectedYears, available]);
+
+  useEffect(() => {
+    fetchSearchResults();
+  }, [searchFilters]);
 
   const addNewFilter = (filterSetter, filters, newFilter) => {
     if (filters.includes(newFilter)) return;
