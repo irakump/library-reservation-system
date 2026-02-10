@@ -1,6 +1,8 @@
 package com.library.backend.book;
 
+import com.library.backend.author.Author;
 import jakarta.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -32,6 +34,13 @@ public class Book {
     @Column(name = "available", nullable = false)
     private boolean available;
 
+    @ManyToMany
+    @JoinTable(
+        name = "writes",
+        joinColumns = @JoinColumn(name = "isbn"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
 
     public Book() {}
 
@@ -65,4 +74,8 @@ public class Book {
     public boolean getAvailability() {return available;}
 
     //public void setIsbn(String book) {this.isbn = isbn;}
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
 }

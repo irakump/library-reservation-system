@@ -13,13 +13,21 @@ public interface BookRepository extends CrudRepository<Book, String> {
 
     // todo: rework (AND/OR, etc.)
     // books by any matching filter combination (genre, year, language)
-    @Query("select book from Book book where " +
-            "(:g is null or book.genre in :g) and " +
-            "(:y is null or book.year in :y) and " +
-            "(:l is null or book.language in :l)")
+    @Query("select distinct book from Book book " +
+            "left join book.authors a " +
+            "where " +
+            "(:genres is null or book.genre in :genres) and " +
+            "(:years is null or book.year in :years) and " +
+            "(:languages is null or book.language in :languages) and " +
+            "(:available is null or book.available = :available) and " +
+            "(:title_author is null or lower(book.title) like lower(concat('%', :title_author, '%')) " +
+            "or lower(a.firstName) like lower(concat('%', :title_author, '%')) " +
+            "or lower(a.lastName) like lower(concat('%', :title_author, '%')))")
     List<Book> findByFilters(
-            @Param("g") List<String> genres,
-            @Param("y") List<Integer> years,
-            @Param("l") List<String> languages
+            @Param("genres") List<String> genres,
+            @Param("years") List<Integer> years,
+            @Param("languages") List<String> languages,
+            @Param("available") Boolean available,
+            @Param("title_author") String title_author
     );
 }
