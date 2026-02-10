@@ -4,9 +4,9 @@ const FilterTag = ({ filterName, onRemove, closeButton = true }) => {
   return (
     <button
       onClick={onRemove}
-      className="text-xs flex items-center rounded-md p-1 bg-tag border border-tagBorder cursor-pointer"
+      className="text-xs flex items-center rounded-md p-1 bg-tag border border-tagBorder cursor-pointer capitalize"
     >
-      <span className="flex-1 ml-1">{filterName}</span>
+      <span className="flex-1 ml-1 capitalize">{filterName}</span>
       {closeButton && <XMark className="ml-1 size-4" />}
     </button>
   );
