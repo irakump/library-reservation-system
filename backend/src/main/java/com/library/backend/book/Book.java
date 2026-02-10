@@ -35,6 +35,16 @@ public class Book {
 
     public Book() {}
 
+    public Book(String isbn, String title, int year, String description, String genre, String language, boolean available) {
+        this.isbn = isbn;
+        this.title = title;
+        this.year = year;
+        this.description = description;
+        this.genre = genre;
+        this.language = language;
+        this.available = available;
+    }
+
 
     public String getIsbn() {
         return isbn;
