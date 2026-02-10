@@ -45,6 +45,14 @@ public class User {
     }
 
 
+    public User(String email, String nickname, String passwordHash) {
+        this.email = email;
+        this.nickname = nickname;
+        this.passwordHash = passwordHash;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.role = Role.user;
+    }
+
     public User() {}
 
     public int getUserId() {
@@ -55,20 +63,40 @@ public class User {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getNickname() {
         return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPasswordHash() {
         return passwordHash;
     }
 
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public Role getRole() {
         return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public enum Role {
