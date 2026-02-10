@@ -1,11 +1,12 @@
 import ActiveFilters from './ActiveFilters';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSearchResult} from '../../contexts/SearchResultContext.jsx';
+import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 
 const SearchFilters = () => {
-  const { setSearchResults } = useSearchResult();
+  const { setSearchResults } = useSearchResult(); // context
 
+  // data from database
   const [genres, setGenres] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [years, setYears] = useState([]);
@@ -37,6 +38,7 @@ const SearchFilters = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedYears, setSelectedYears] = useState([]);
+  const [available, setAvailable] = useState(true);
 
   // fetch filtered books when active filters change
   useEffect(() => {
@@ -50,19 +52,19 @@ const SearchFilters = () => {
               years: selectedYears.length > 0 ? selectedYears : undefined,
               languages:
                 selectedLanguages.length > 0 ? selectedLanguages : undefined,
+              available: available,
             },
           },
         );
-        
+
         console.log('Filtered Books:', response.data);
         setSearchResults(response.data);
-        
       } catch (error) {
         console.error(error);
       }
     };
     fetchFilteredBooks();
-  }, [selectedGenres, selectedYears, selectedLanguages]);
+  }, [selectedGenres, selectedYears, selectedLanguages, available]);
 
   const addNewFilter = (filterSetter, filters, newFilter) => {
     if (filters.includes(newFilter)) return;
@@ -137,7 +139,13 @@ const SearchFilters = () => {
             {/* Availability filter */}
             <div className="flex items-center gap-2 *:cursor-pointer">
               <label htmlFor="availability">Available:</label>
-              <input type="checkbox" id="availability" name="availability" />
+              <input
+                type="checkbox"
+                id="availability"
+                name="availability"
+                checked={available}
+                onChange={(e) => setAvailable(e.target.checked)}
+              />
             </div>
           </div>
 
@@ -147,7 +155,7 @@ const SearchFilters = () => {
               <label htmlFor="language">
                 Language
                 <select
-                    className={"capitalize"}
+                  className={'capitalize'}
                   id="language"
                   name="language"
                   value={categoryValue}
@@ -158,7 +166,7 @@ const SearchFilters = () => {
                   </option>
                   {languages.map((item) => (
                     <option
-                      className={"capitalize"}
+                      className={'capitalize'}
                       key={item.language}
                       value={item.language}
                       disabled={selectedLanguages.includes(item.language)}
@@ -211,7 +219,7 @@ const SearchFilters = () => {
                   </option>
                   {genres.map((item) => (
                     <option
-                        className={"capitalize"}
+                      className={'capitalize'}
                       key={item.genre}
                       value={item.genre}
                       disabled={selectedGenres.includes(item.genre)}
