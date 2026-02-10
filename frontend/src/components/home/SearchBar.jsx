@@ -1,23 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchResult } from '../../contexts/SearchResultContext';
+import { useSearchFilters } from '../../contexts/SearchFilterContext';
 
 import MagnifyingGlass from '@heroicons/react/16/solid/MagnifyingGlassIcon';
 
 const SearchBar = () => {
-  const allBooks = ['book1', 'the book2', 'book3', 'harry potter', 'the hobbit'];
-  const [books, setBooks] = useState(allBooks);
+  const { fetchSearchResults } = useSearchResult(); // context
+  const { searchFilters, setSearchFilters } = useSearchFilters();
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
-    if (searchTerm.trim() === '') {
-      setBooks(allBooks);
-      return;
-    }
+    setSearchFilters({ title_author: searchTerm });
+    console.log('Search Filters:', searchFilters);
 
-    const filteredBooks = allBooks.filter((book) =>
-      book.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-    setBooks(filteredBooks);
+    fetchSearchResults();
   };
 
   return (
@@ -49,13 +46,6 @@ const SearchBar = () => {
           Search
         </button>
       </form>
-
-      {/* mock data, delete */}
-      <div>
-        {books.map((book) => (
-          <div key={book}>{book}</div>
-        ))}
-      </div>
     </div>
   );
 };
