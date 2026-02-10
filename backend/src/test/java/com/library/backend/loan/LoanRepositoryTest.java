@@ -1,6 +1,7 @@
 package com.library.backend.loan;
 
 import com.library.backend.book.Book;
+import com.library.backend.reservation.Reservation;
 import com.library.backend.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,13 @@ public class LoanRepositoryTest {
         Optional<Loan> fetchedLoan = repository.findById(loan.getLoanId());
         assertTrue(fetchedLoan.isPresent());
         assertEquals(insertedLoan.getLoanId(), fetchedLoan.get().getLoanId());
+    }
+
+    // Empty loan
+    @Test
+    void shouldNotFindNonExistingLoan() {
+        Optional<Loan> foundLoan = repository.findById(9999);
+        assertTrue(foundLoan.isEmpty());
     }
 
 }
