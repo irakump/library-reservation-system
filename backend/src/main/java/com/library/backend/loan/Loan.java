@@ -34,10 +34,12 @@ public class Loan {
 
     public Loan() {}
 
-    public Loan(Timestamp createdAt, Timestamp dueDate, Timestamp returnDate) {
+    public Loan(Timestamp createdAt, Timestamp dueDate, Timestamp returnDate, User user, Book book) {
         this.createdAt = createdAt;
         this.dueDate = dueDate;
         this.returnDate = returnDate;
+        this.user = user;
+        this.book = book;
     }
 
     public int getLoanId() {

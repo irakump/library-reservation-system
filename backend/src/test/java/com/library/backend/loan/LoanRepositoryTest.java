@@ -31,10 +31,7 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null); // Due date 2 weeks
-
-        loan.setUser(user);
-        loan.setBook(book);
+        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
 
         Loan insertedLoan = repository.save(loan);
         em.flush();
@@ -57,10 +54,7 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null); // Due date 2 weeks
-
-        loan.setUser(user);
-        loan.setBook(book);
+        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
 
         Loan insertedLoan = repository.save(loan);
         em.flush();
