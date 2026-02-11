@@ -52,7 +52,7 @@ public class BookRepositoryTest {
 
         Optional<Book> result = repository.findById(book.getIsbn());
 
-        assertThat(result.get().getIsbn()).isEqualTo("1111");
+        assertThat(result).contains(book);
 
     }
 

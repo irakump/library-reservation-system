@@ -22,6 +22,7 @@ public class FavoriteController {
     @GetMapping
     public Set<Book> getFavorites(@PathVariable int userId) {
         User user = userRepo.findById(userId).orElse(null);
+        assert user != null;
         return user.getFavorites();
     }
 
@@ -30,6 +31,7 @@ public class FavoriteController {
         User user = userRepo.findById(userId).orElse(null);
         Book book = bookRepo.findById(isbn).orElse(null);
 
+        assert user != null;
         user.getFavorites().add(book);
         userRepo.save(user);
     }
@@ -39,6 +41,7 @@ public class FavoriteController {
         User user = userRepo.findById(userId).orElse(null);
         Book book = bookRepo.findById(isbn).orElse(null);
 
+        assert user != null;
         user.getFavorites().remove(book);
         userRepo.save(user);
     }
