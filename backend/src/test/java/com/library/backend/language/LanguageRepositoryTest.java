@@ -73,4 +73,11 @@ public class LanguageRepositoryTest {
 
         assertThat(count).isEqualTo(2);
     }
+
+    @Test
+    public void testSetLanguage() {
+        Language language = new Language();
+        language.setLanguage("Spanish");
+        assertThat(language.getLanguage()).isEqualTo("Spanish");
+    }
 }
