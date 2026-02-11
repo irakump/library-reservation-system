@@ -1,7 +1,6 @@
 package com.library.backend.loan;
 
 import com.library.backend.book.Book;
-import com.library.backend.reservation.Reservation;
 import com.library.backend.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import java.sql.Timestamp;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest
@@ -23,7 +21,7 @@ public class LoanRepositoryTest {
     @Autowired
     TestEntityManager em;
 
-    // Update operation
+    // Create operation
     @Test
     void shouldCreateNewLoan() {
         User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
@@ -44,6 +42,31 @@ public class LoanRepositoryTest {
         assertEquals(user.getUserId(), foundLoan.getUser().getUserId());
         assertEquals(book.getIsbn(), foundLoan.getBook().getIsbn());
         assertEquals(loan.getLoanId(), foundLoan.getLoanId());
+    }
+
+    // Update operation
+    @Test
+    void shouldUpdateReturnDate() {
+        User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
+        Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
+
+        em.persist(user);
+        em.persist(book);
+
+        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+
+        repository.save(loan);
+        em.flush();
+        em.clear();
+
+        Timestamp returnDate = Timestamp.valueOf("2026-02-11 00:00:00");
+        loan.setReturnDate(returnDate);
+        repository.save(loan);
+
+        Loan updatedLoan = em.find(Loan.class, loan.getLoanId());
+
+        assertThat(updatedLoan).isNotNull();
+        assertEquals(returnDate, updatedLoan.getReturnDate());
     }
 
     // Test find loan by id
@@ -73,4 +96,21 @@ public class LoanRepositoryTest {
         assertTrue(foundLoan.isEmpty());
     }
 
+    // Delete operation
+    @Test
+    void shouldDeleteLoan() {
+        User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
+        Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
+
+        em.persist(user);
+        em.persist(book);
+
+        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+
+        repository.save(loan);
+        repository.delete(loan);
+        em.flush();
+        assertThat(em.find(Loan.class, loan.getLoanId())).isNull();
+
+    }
 }
