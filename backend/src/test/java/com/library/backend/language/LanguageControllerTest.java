@@ -1,0 +1,56 @@
+package com.library.backend.language;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.Arrays;
+import java.util.Optional;
+
+import static org.mockito.Mockito.when;
+
+@WebMvcTest(LanguageController.class)
+public class LanguageControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockitoBean
+    private LanguageRepository repository;
+
+    @Test
+    public void testGetAllLanguages() throws Exception {
+        Language english = new Language("English");
+        Language finnish = new Language("Finnish");
+        when(repository.findAll()).thenReturn(Arrays.asList(english, finnish));
+
+        mockMvc.perform(get("/api/language"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].language").value("English"))
+                .andExpect(jsonPath("$[1].language").value("Finnish"));
+    }
+
+    @Test
+    public void testGetLanguageByName() throws Exception {
+        Language english = new Language("English");
+        when(repository.findById("English")).thenReturn(Optional.of(english));
+
+        mockMvc.perform(get("/api/language/English"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.language").value("English"));
+    }
+
+    @Test
+    public void testGetLanguageByName_NotFound() throws Exception {
+        when(repository.findById("Swedish")).thenReturn(Optional.empty());
+        mockMvc.perform(get("/api/language/Swedish"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
+    }
+}
+
