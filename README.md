@@ -23,7 +23,16 @@ MariaDB, Docker
 npm install  
 npm run dev
 
+**Test:**  
+Run `npm run test` in frontend folder
+
 ### Backend
+
+**Test:** 
+Run test files or test methods separately
+
+JaCoCo report:  
+Run `mvn clean test` and `mvn clean verify`. Open index.html document from target/site/jacoco.
 
 ### Database
 
