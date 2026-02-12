@@ -32,7 +32,9 @@ Run `npm run test` in frontend folder
 Run test files or test methods separately
 
 JaCoCo report:  
-Run `mvn clean test` and `mvn clean verify`. Open index.html document from target/site/jacoco.
+Run `mvn clean test` (compile and unit tests) and `mvn clean verify` (integration tests). Open index.html document from target/site/jacoco.  
+
+Deploy the project: `mvn deploy` (when publishing the final product).
 
 ### Database
 
