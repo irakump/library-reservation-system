@@ -40,7 +40,7 @@ const SearchBar = () => {
         <button
           type="submit"
           onClick={handleSearch}
-          className="flex flex-row h-full px-4 bg-filter gap-1 cursor-pointer"
+          className="flex flex-row h-full px-4 bg-filter gap-1 cursor-pointer items-center"
         >
           <MagnifyingGlass className="h-full size-4" />
           Search
