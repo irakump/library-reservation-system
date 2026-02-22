@@ -173,37 +173,12 @@ const SearchFilters = () => {
               </label>
             </div>
 
-            {/* Year filter */}
-            <div>
-              <label htmlFor="year">
-                Year
-                <select
-                  id="year"
-                  name="year"
-                  value={categoryValue}
-                  onChange={handleValueSelect}
-                >
-                  <option value="" disabled>
-                    Select Year
-                  </option>
-                  {years.map((item) => (
-                    <option
-                      key={item}
-                      value={item}
-                      disabled={selectedYears.includes(item.toString())}
-                    >
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
             {/* Genre filter */}
             <div>
               <label htmlFor="genre">
                 Genre
                 <select
+                  className={'capitalize'}
                   id="genre"
                   name="genre"
                   value={categoryValue}
@@ -220,6 +195,32 @@ const SearchFilters = () => {
                       disabled={selectedGenres.includes(item.genre)}
                     >
                       {item.genre}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            {/* Year filter */}
+            <div>
+              <label htmlFor="year">
+                Year
+                <select
+                  id="year"
+                  name="year"
+                  value={categoryValue}
+                  onChange={handleValueSelect}
+                >
+                  <option value="" disabled>
+                    Select Year
+                  </option>
+                  {years.sort((a, b) => b - a).map((item) => (
+                    <option
+                      key={item}
+                      value={item}
+                      disabled={selectedYears.includes(item.toString())}
+                    >
+                      {item}
                     </option>
                   ))}
                 </select>
