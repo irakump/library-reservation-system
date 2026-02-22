@@ -10,24 +10,27 @@ import { MenuProvider } from "./contexts/MenuContext.jsx";
 import Footer from "./components/footer/Footer.jsx";
 
 import { Routes, Route } from "react-router";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 function App() {
   return (
     <>
-      <MenuProvider>
-        <NavBar />
-      </MenuProvider>
+      <AuthProvider>
+        <MenuProvider>
+          <NavBar />
+        </MenuProvider>
+      </AuthProvider>
       <main>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/loans" element={<LoansPage />} />
-        <Route path="/profile/reservations" element={<ReservationPage />} />
-        <Route path="/profile/history" element={<HistoryPage />} />
-        <Route path="/profile/favorites" element={<FavouritePage />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/loans" element={<LoansPage />} />
+          <Route path="/profile/reservations" element={<ReservationPage />} />
+          <Route path="/profile/history" element={<HistoryPage />} />
+          <Route path="/profile/favorites" element={<FavouritePage />} />
+        </Routes>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
