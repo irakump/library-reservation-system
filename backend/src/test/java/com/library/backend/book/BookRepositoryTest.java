@@ -23,7 +23,7 @@ public class BookRepositoryTest {
 
 
     @Test
-    void shouldFindBooks() {
+    void testShouldFindBooks() {
 
         repository.saveAll(List.of(
         new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true),
@@ -40,13 +40,13 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void shouldntFindBooks() {
+    void testShouldntFindBooks() {
         List<Book> books = (List<Book>) repository.findAll();
         assertThat(books).isEmpty();
     }
 
     @Test
-    void shouldFindByIsbn() {
+    void TestShouldFindByIsbn() {
         Book b = new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true);
         Book book = repository.save(b);
 
@@ -57,7 +57,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void shouldReturnEmptyIfBookNotFound() {
+    void testShouldReturnEmptyIfBookNotFound() {
         Optional<Book> result = repository.findById("2299464");
 
         assertThat(result).isEmpty();
