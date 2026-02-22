@@ -41,7 +41,6 @@ public class Book {
     )
     private List<Author> authors;
 
-    public Book(String number) {}
 
     public Book(String isbn, String title, int year, String description, String genre, String language, boolean available) {
         this.isbn = isbn;
@@ -51,6 +50,9 @@ public class Book {
         this.genre = genre;
         this.language = language;
         this.available = available;
+    }
+
+    public Book() {
     }
 
 
