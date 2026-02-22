@@ -98,11 +98,11 @@ public class FavoritesTest {
     void testWrongIsbn() {
         IllegalArgumentException exception =
                 assertThrows(IllegalArgumentException.class, () -> service.addFavorite(userId, "pppp"));
-        assertEquals("Isbn not found:" + userId, exception.getMessage());
+        assertEquals("Book not found: pppp", exception.getMessage());
 
         IllegalArgumentException exception1 =
                 assertThrows(IllegalArgumentException.class, () -> service.removeFavorite(userId, "pppp"));
-        assertEquals("Isbn not found:" + userId, exception1.getMessage());
+        assertEquals("Book not found: pppp", exception1.getMessage());
     }
 
     @Test
@@ -111,11 +111,11 @@ public class FavoritesTest {
 
         IllegalArgumentException exception =
                 assertThrows(IllegalArgumentException.class, () -> service.addFavorite(0001111, "1111"));
-        assertEquals("User not found:" + 0001111, exception.getMessage());
+        assertEquals("User not found: " + 0001111, exception.getMessage());
 
         IllegalArgumentException exception1 =
                 assertThrows(IllegalArgumentException.class, () -> service.removeFavorite(0001111, "1111"));
-        assertEquals("User not found:" + 0001111, exception1.getMessage());
+        assertEquals("User not found: " + 0001111, exception1.getMessage());
     }
 
 }
