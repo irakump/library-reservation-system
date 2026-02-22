@@ -1,13 +1,27 @@
 import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useMenu } from "../../contexts/MenuContext";
 
 const ProfileMenu = () => {
+  const { isLoggedIn, openLogin, openLogout } = useAuth();
+  const { toggleMenu } = useMenu();
+
+  const handleAuthClick = () => {
+    toggleMenu();
+    if (isLoggedIn) {
+      openLogout();
+    } else {
+      openLogin();
+    }
+  };
+
   return (
     <div className="absolute max-sm:w-full sm:right-32 text-center">
       <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
         <a href="/profile" className="w-full">
           <li>My Page</li>
         </a>
-        
+
         <a href="/profile/loans" className="w-full">
           <li>Loans</li>
         </a>
@@ -24,9 +38,12 @@ const ProfileMenu = () => {
           <li>Favorites</li>
         </a>
 
-        <a href="/logout" className="w-full sm:hidden">
-          <li>Log out →</li>
-        </a>
+        {/* <a href="/logout" className="w-full sm:hidden">
+          <li>Log out →</li> 
+        </a>*/}
+        <button onClick={handleAuthClick} className="w-full sm:hidden">
+          {isLoggedIn ? "Log out" : "Login"}
+        </button>
       </ul>
     </div>
   );
