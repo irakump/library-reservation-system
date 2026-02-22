@@ -42,7 +42,7 @@ public class Book {
     )
     private List<Author> authors;
 
-    public Book() {}
+    public Book(String number) {}
 
     public Book(String isbn, String title, int year, String description, String genre, String language, boolean available) {
         this.isbn = isbn;
