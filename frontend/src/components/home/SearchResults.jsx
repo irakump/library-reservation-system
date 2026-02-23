@@ -39,7 +39,7 @@ export const SearchResults = () => {
       >
         <h2>Search Results</h2>
         <h2>
-          {startIndex + 1} - {endIndex} / {searchResults.length}
+          {startIndex + 1} - {endIndex < searchResults.length ? endIndex : searchResults.length} / {searchResults.length}
         </h2>
       </div>
 
