@@ -8,7 +8,7 @@ export const SearchResults = () => {
   const { searchResults } = useSearchResult();
   //console.log('books: ', searchResults.length, searchResults);
 
-  const resultsPerPage = 6;
+  const resultsPerPage = 4;
   const pagesToShow = Math.ceil(searchResults.length / resultsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(
@@ -26,6 +26,9 @@ export const SearchResults = () => {
   useEffect(() => {
     searchResultsStartRef.current.focus();
   }, [currentPage]);
+
+  let firstDotsRendered = false;
+  let lastDotsRendered = false;
 
   return (
     <>
@@ -62,8 +65,22 @@ export const SearchResults = () => {
         {/* Links to search result pages */}
         <div className="mx-4 [&>a]:mx-1">
           {[...Array(pagesToShow)].map((_, i) => {
-            if (pagesToShow > 3 && i > 2 && i !== pagesToShow - 1) {
-              return <p key={`dots-${i}`}>...</p>;
+            const page = i + 1;
+            if (
+              page !== 1 &&
+              page !== pagesToShow &&
+              page !== currentPage &&
+              page !== currentPage - 1 &&
+              page !== currentPage + 1
+            ) {
+              if (page < currentPage && !firstDotsRendered) {
+                firstDotsRendered = true;
+                return <p>...</p>;
+              } else if (page > currentPage && !lastDotsRendered) {
+                lastDotsRendered = true;
+                return <p>...</p>;
+              }
+              return;
             } else {
               return (
                 <a
@@ -73,6 +90,7 @@ export const SearchResults = () => {
                     e.preventDefault();
                     setCurrentPage(i + 1);
                   }}
+                  className={currentPage === page ? 'font-bold ' : undefined}
                 >
                   {i + 1}
                 </a>
