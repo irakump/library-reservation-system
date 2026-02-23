@@ -1,12 +1,13 @@
 import {useBookContext} from "../../contexts/BookContext.jsx";
 
 const FavoriteButton = ({book}) => {
-    const {isFavorite, addToFavorites, removeFromFavorites} = useBookContext()
+    const {isFavorite, addToFavorites, removeFromfavorites} = useBookContext()
     const favorite = isFavorite(book.isbn)
+    //console.log(("Removefav: ", removeFromfavorites))
 
     function onFavoriteClick(e) {
         e.stopPropagation();
-        if (favorite) removeFromFavorites(book.isbn)
+        if (favorite) removeFromfavorites(book.isbn)
         else addToFavorites(book.isbn)
     }
 

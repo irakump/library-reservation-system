@@ -1,5 +1,5 @@
 import {createContext, useState, useContext, useEffect} from "react";
-import {addFavorite, removeFavorite} from "../api/favoritesApi.js";
+import {addFavorite, getFavorites, removeFavorite} from "../api/favoritesApi.js";
 
 const BookContext = createContext()
 
@@ -7,36 +7,33 @@ export const useBookContext = () => useContext(BookContext)
 
 export const BookProvider = ({children}) => {
     const [favorites, setFavorites] = useState([])
+    const userId = 2; //for testing
 
     useEffect(() => {
-        const storedFavs = localStorage.getItem("favorites")
-
-        if (storedFavs) {
-            setFavorites(JSON.parse(storedFavs))
-        }
+        getFavorites(userId)
+            .then(res => setFavorites(res.data));
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites))
-    }, [favorites])
 
     const isFavorite = (isbn) => {
-        return favorites.some(f => f === isbn)
+        return favorites.includes(isbn)
     }
 
-    const addToFavorites = (isbn) => {
-        addFavorite(2, isbn).then(() => setFavorites(isbn))
+    const addToFavorites = async (isbn) => {
+        await addFavorite(2, isbn).then(() => {
+            setFavorites(prev => [...prev, isbn]);
+        })
     }
 
-    const removeFromfavorites = (isbn) => {
-        removeFavorite(2, isbn)
+    const removeFromfavorites = async (isbn) => {
+        await removeFavorite(2, isbn);
+        await setFavorites(prev => prev.filter(f => f !== isbn));
     }
 
     const value = {
         isFavorite,
         addToFavorites,
         removeFromfavorites,
-        useBookContext
     }
 
     return <BookContext.Provider value={value}>
