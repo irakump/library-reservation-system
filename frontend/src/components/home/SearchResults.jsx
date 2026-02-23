@@ -24,6 +24,10 @@ export const SearchResults = () => {
   }, [searchResults, currentPage]);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [searchResults]);
+
+  useEffect(() => {
     searchResultsStartRef.current.focus();
   }, [currentPage]);
 
@@ -39,7 +43,9 @@ export const SearchResults = () => {
       >
         <h2>Search Results</h2>
         <h2>
-          {startIndex + 1} - {endIndex < searchResults.length ? endIndex : searchResults.length} / {searchResults.length}
+          {startIndex + 1} -{' '}
+          {endIndex < searchResults.length ? endIndex : searchResults.length} /{' '}
+          {searchResults.length}
         </h2>
       </div>
 
@@ -75,20 +81,20 @@ export const SearchResults = () => {
             ) {
               if (page < currentPage && !firstDotsRendered) {
                 firstDotsRendered = true;
-                return <p>...</p>;
+                return <p key={'first-nav-dots'}>...</p>;
               } else if (page > currentPage && !lastDotsRendered) {
                 lastDotsRendered = true;
-                return <p>...</p>;
+                return <p key={'second-nav-dots'}>...</p>;
               }
               return;
             } else {
               return (
                 <a
-                  key={i}
+                  key={page}
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    setCurrentPage(i + 1);
+                    setCurrentPage(page);
                   }}
                   className={currentPage === page ? 'font-bold ' : undefined}
                 >
