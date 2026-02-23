@@ -52,7 +52,7 @@ export const SearchResults = () => {
       </div>
 
       {/* Search result navigation */}
-      <div className="flex flex-row items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer">
+      <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer">
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -63,7 +63,7 @@ export const SearchResults = () => {
         </button>
 
         {/* Links to search result pages */}
-        <div className="mx-4 [&>a]:mx-1">
+        <div className="flex flex-row mx-4 [&>a]:mx-1 gap-1">
           {[...Array(pagesToShow)].map((_, i) => {
             const page = i + 1;
             if (
