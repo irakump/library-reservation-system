@@ -185,7 +185,7 @@ Get years used by books:
 Get favorites by userId:
 **endpoint** '/users/{userId}/favorites'
 
-Add favorites by isbn:
+post favorites by isbn:
 **endpoint** '/users/{userId}/favorites/{isbn}'
 
 Remove favorites by isbn:

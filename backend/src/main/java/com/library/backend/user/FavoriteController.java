@@ -18,7 +18,7 @@ public class FavoriteController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<String > getIsbns(@PathVariable int userId) {
         return service.getFavoriteIsbnsByUserId(userId);
     }

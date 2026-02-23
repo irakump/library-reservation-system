@@ -11,10 +11,12 @@ import { MenuProvider } from "./contexts/MenuContext.jsx";
 import Footer from "./components/footer/Footer.jsx";
 
 import { Routes, Route } from "react-router";
+import {BookProvider} from "./contexts/BookContext.jsx";
 
 function App() {
   return (
     <>
+      <BookProvider>
       <AuthProvider>
         <MenuProvider>
           <NavBar />
@@ -31,6 +33,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      </BookProvider>
     </>
   );
 }

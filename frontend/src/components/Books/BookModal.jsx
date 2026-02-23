@@ -1,10 +1,8 @@
 import Button from "./Button"
-import { useState } from "react";
 import { getPage } from "../../utils/getPage";
+import FavoriteButton from "./FavoriteButton.jsx";
 
 const BookModal = ({book, pageType, setOpen}) => {
-
-    const [isFavourite, setIsFavourite] = useState(false); 
     const page = getPage(pageType, book)
 
 
@@ -15,15 +13,11 @@ const BookModal = ({book, pageType, setOpen}) => {
           onClick={(e) => e.stopPropagation()}>
             <button 
             onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
-            <div >
-              <button 
-                className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl"
-                onClick={(e) => {
-                e.stopPropagation();
-                setIsFavourite(!isFavourite);
-                }}> 
-                {isFavourite ? "♥︎" : "♡"}
-                </button> 
+            <div>
+                <div className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl">
+                    <FavoriteButton book={book}
+                    ></FavoriteButton>
+                </div>
 
               <div className="flex gap-4">
               <img src={book.image} alt="Book cover" className="w-24 h-36 object-cover"
