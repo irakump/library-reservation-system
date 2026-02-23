@@ -18,10 +18,21 @@ public class FavoriteController {
         this.service = service;
     }
 
-    @GetMapping("/isbns")
+    @GetMapping("/")
     public List<String > getIsbns(@PathVariable int userId) {
         return service.getFavoriteIsbnsByUserId(userId);
     }
+
+    @PostMapping("/{isbn}")
+    public void addFavorite(@PathVariable int userId, @PathVariable String isbn) {
+        service.addFavorite(userId, isbn);
+    }
+
+    @DeleteMapping("/{isbn}")
+    public void removeFavorite(@PathVariable int userId, @PathVariable String isbn) {
+        service.removeFavorite(userId, isbn);
+    }
+
 
 
 }

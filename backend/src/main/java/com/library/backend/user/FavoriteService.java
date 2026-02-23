@@ -22,6 +22,7 @@ public class FavoriteService {
         User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
         Book book = bookRepo.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));
         user.addFavorites(book);
+        userRepo.save(user);
     }
 
     @Transactional
@@ -29,6 +30,7 @@ public class FavoriteService {
         User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
         Book book = bookRepo.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));
         user.removeFavorites(book);
+        userRepo.save(user);
     }
 
     @Transactional

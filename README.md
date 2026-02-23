@@ -180,3 +180,13 @@ Get books by filters (any combination, multiple values allowed):
 Get years used by books:  
 **endpoint:** '/book/years'  
 **example:** '/book/years'
+
+### Favorites
+Get favorites by userId:
+**endpoint** '/users/{userId}/favorites'
+
+Add favorites by isbn:
+**endpoint** '/users/{userId}/favorites/{isbn}'
+
+Remove favorites by isbn:
+**endpoint** '/users/{userId}/favorites/{isbn}'

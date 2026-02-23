@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Integer> { // Primary key in users table is Integer
 
-    @Query("select book.isbn from User user join user.favorites book where user.userId = :userId")
+    @Query(value = """ 
+        SELECT isbn
+        FROM favorite
+        WHERE user_id = :userId """, nativeQuery = true)
     List<String> findFavoriteIsbnsByUserId(@Param("userId") int userId);
 }

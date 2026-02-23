@@ -3,19 +3,19 @@
 export function ReserveBook(book) {
     console.log(`${book.title} reserved`);
     alert(`Reservation for ${book.title} succeed`);
-};
+}
 
 export function ReturnBook(book) {
     confirm(`Returning ${book.title}`);
-};
+}
 
 export function LoanBook(book) {
     alert(`Loaning ${book.title}`);
-};
+}
 
 export function CancelReservation(book) {
     confirm(`Canceling recervation for: ${book.title}`);
-  };
+  }
 
 
 export function getPage(pageType, book) {
