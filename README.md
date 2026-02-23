@@ -28,6 +28,9 @@ Run `npm run test` in frontend folder
 
 ### Backend
 
+`mvn clean install` (build + test + install)   
+`mvn spring-boot:run` (start backend)   
+
 **Test:** 
 Run test files or test methods separately
 
