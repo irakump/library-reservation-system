@@ -7,11 +7,11 @@ const BookModal = ({book, pageType, setOpen}) => {
     const [isFavourite, setIsFavourite] = useState(false); 
     const page = getPage(pageType, book)
 
-
+//
     return(
         <>
         <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
-          <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter" 
+          <div className="relative w-full max-w-[465px] bg-white rounded-xl p-9 border-20 border-filter max-h-full md:max-h-[95%] overflow-y-scroll" 
           onClick={(e) => e.stopPropagation()}>
             <button 
             onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
