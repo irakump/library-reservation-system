@@ -19,16 +19,16 @@ public class FavoriteService {
 
     @Transactional
     public void addFavorite(int userId, String isbn) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
-        Book book = bookRepo.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));
+        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found: " + userId));
+        Book book = bookRepo.findById(isbn).orElseThrow(() -> new RuntimeException("Book not found: " + isbn));
         user.addFavorites(book);
         userRepo.save(user);
     }
 
     @Transactional
     public void removeFavorite(int userId, String isbn) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
-        Book book = bookRepo.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));
+        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found: " + userId));
+        Book book = bookRepo.findById(isbn).orElseThrow(() -> new RuntimeException("Book not found: " + isbn));
         user.removeFavorites(book);
         userRepo.save(user);
     }
