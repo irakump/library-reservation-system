@@ -1,4 +1,3 @@
-import "./App.css";
 import Home from "./pages/Home.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import LoansPage from "./pages/LoansPage.jsx";
