@@ -1,11 +1,10 @@
-import { useState } from "react";
 import Button from "./Button";
 import { getPage } from "../../utils/getPage";
+import FavoriteButton from "./FavoriteButton.jsx";
 
 
 
 const BookCard = ({ book, pageType, setOpen, }) => {
-  const [isFavourite, setIsFavourite] = useState(false); //will be replaced
   const page = getPage(pageType, book)
 
   return (
@@ -15,13 +14,10 @@ const BookCard = ({ book, pageType, setOpen, }) => {
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <button 
-          className="text-2xl cursor-pointer hover:text-red-700"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsFavourite(!isFavourite);
-          }}> {isFavourite ? "♥︎" : "♡"}
-        </button> 
+            <div className="text-2xl cursor-pointer hover:text-red-700">
+                <FavoriteButton
+                book={book}/>
+            </div>
         </div>
 
         <p className="text-sm mb-1 text-left">{book.author}</p>

@@ -28,6 +28,9 @@ Run `npm run test` in frontend folder
 
 ### Backend
 
+`mvn clean install` (build + test + install)   
+`mvn spring-boot:run` (start backend)   
+
 **Test:** 
 Run test files or test methods separately
 
@@ -180,3 +183,13 @@ Get books by filters (any combination, multiple values allowed):
 Get years used by books:  
 **endpoint:** '/book/years'  
 **example:** '/book/years'
+
+### Favorites
+Get favorites by userId:
+**endpoint** '/users/{userId}/favorites'
+
+post favorites by isbn:
+**endpoint** '/users/{userId}/favorites/{isbn}'
+
+Remove favorites by isbn:
+**endpoint** '/users/{userId}/favorites/{isbn}'

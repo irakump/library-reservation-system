@@ -40,6 +40,14 @@ public class User {
     )
     private Set<Book> favorites = new HashSet<>();
 
+    public void addFavorites(Book book) {
+        this.getFavorites().add(book);
+    }
+
+    public void removeFavorites(Book book) {
+        this.getFavorites().remove(book);
+    }
+
     public Set<Book> getFavorites() {
         return favorites;
     }

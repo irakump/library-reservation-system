@@ -18,3 +18,7 @@
   --color-favourite: #e40909;
   --color-favouriteBorder: #7e0505;
 }
+
+html * {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}

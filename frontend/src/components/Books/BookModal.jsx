@@ -1,29 +1,23 @@
 import Button from "./Button"
-import { useState } from "react";
 import { getPage } from "../../utils/getPage";
+import FavoriteButton from "./FavoriteButton.jsx";
 
 const BookModal = ({book, pageType, setOpen}) => {
-
-    const [isFavourite, setIsFavourite] = useState(false); 
     const page = getPage(pageType, book)
 
-
+//
     return(
         <>
-        <div className="fixed inset-0 flex items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
-          <div className="relative w-full max-w-md bg-white rounded-xl p-9 border-20 border-filter" 
+        <div className="fixed inset-0 flex items-start md:items-center justify-center bg-black/40" onClick={() => setOpen(null)}>
+          <div className="relative w-full max-w-[465px] max-h-dvh md:max-h-[95dvh] overflow-y-auto bg-white rounded-xl p-9 border-20 border-filter" 
           onClick={(e) => e.stopPropagation()}>
             <button 
             onClick={() => setOpen(null)} className="absolute top-0 right-4 text-xl">✕</button>
-            <div >
-              <button 
-                className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl"
-                onClick={(e) => {
-                e.stopPropagation();
-                setIsFavourite(!isFavourite);
-                }}> 
-                {isFavourite ? "♥︎" : "♡"}
-                </button> 
+            <div>
+                <div className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl">
+                    <FavoriteButton book={book}
+                    ></FavoriteButton>
+                </div>
 
               <div className="flex gap-4">
               <img src={book.image} alt="Book cover" className="w-24 h-36 object-cover"

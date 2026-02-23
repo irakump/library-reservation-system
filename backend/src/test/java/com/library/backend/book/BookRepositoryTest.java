@@ -17,15 +17,18 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @DataJpaTest
 public class BookRepositoryTest {
+    List<Book> books;
 
     @Autowired
     private BookRepository repository;
 
+    @Autowired TestEntityManager testEntityManager;
+
 
     @Test
-    void shouldFindBooks() {
+    void testShouldFindBooks() {
 
-        repository.saveAll(List.of(
+        books = (List.of(
         new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true),
         new Book("2222", "Test book2", 2010, "Test book", "fantasy", "english", true),
         new Book("3333", "Test book3", 2004, "Test book", "history", "english", true),
@@ -33,6 +36,9 @@ public class BookRepositoryTest {
         new Book("5555", "Test book5", 2024, "Test book", "fantasy", "english", true),
         new Book("6666", "Test book6", 2010, "Test book", "fantasy", "english", true)));
 
+        for (Book book : books) {
+            testEntityManager.persist(book);
+        }
 
         List<Book> newBooks = (List<Book>) repository.findAll();
 
@@ -40,24 +46,23 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void shouldntFindBooks() {
+    void testShouldntFindBooks() {
         List<Book> books = (List<Book>) repository.findAll();
         assertThat(books).isEmpty();
     }
 
     @Test
-    void shouldFindByIsbn() {
-        Book b = new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true);
-        Book book = repository.save(b);
+    void TestShouldFindByIsbn() {
+        Book book = new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true);
+        testEntityManager.persist(book);
 
         Optional<Book> result = repository.findById(book.getIsbn());
 
         assertThat(result).contains(book);
-
     }
 
     @Test
-    void shouldReturnEmptyIfBookNotFound() {
+    void testShouldReturnEmptyIfBookNotFound() {
         Optional<Book> result = repository.findById("2299464");
 
         assertThat(result).isEmpty();

@@ -1,18 +1,38 @@
 import ProfileMenu from "./ProfileMenu";
 import DesktopMenu from "./DesktopMenu";
 import { useMenu } from "../../contexts/MenuContext";
+import { useAuth } from "../../contexts/AuthContext";
+import LoginModal from "../auth/LoginModal.jsx";
+import RegisterModal from "../auth/RegisterModal.jsx";
+import LogoutModal from "../auth/LogoutModal";
 
 const NavBar = () => {
   const { isProfileMenuOpen, toggleMenu } = useMenu();
 
   //const toggleMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
 
+  const {
+    isLoginOpen,
+    isRegisterOpen,
+    isLogoutOpen,
+    closeLogin,
+    closeRegister,
+    closeLogout,
+    handleSwitchToRegister,
+    handleSwitchToLogin,
+    handleLogout,
+  } = useAuth();
+
   return (
     <div>
       <div className="flex flex-row justify-between items-center bg-navbar p-2">
         <div className="flex flex-row items-center">
           <a href="/">
-            <img src="/book-logo.png" alt="Stack of books" className="h-7 pr-2 pt-1" />
+            <img
+              src="/book-logo.png"
+              alt="Stack of books"
+              className="h-7 pr-2 pt-1"
+            />
           </a>
           <a href="/" className="font-bold text-3xl">
             MetBook
@@ -47,6 +67,22 @@ const NavBar = () => {
         </div>
       </div>
       {isProfileMenuOpen && <ProfileMenu />}
+
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={closeLogin}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      <RegisterModal
+        isOpen={isRegisterOpen}
+        onClose={closeRegister}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        onClose={closeLogout}
+        onConfirm={handleLogout}
+      />
     </div>
   );
 };

@@ -21,7 +21,7 @@ public class BookController {
     //books by isbn
     @GetMapping("/{isbn}")
     public Book getBookByIsbn(@PathVariable String isbn) {
-        return repository.findById(isbn).orElse(null);}
+        return repository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));}
 
     // years used by books
     @GetMapping("/years")
