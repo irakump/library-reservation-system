@@ -24,7 +24,7 @@ public class UserController {
     }
 
     // Get user by id
-    @GetMapping("/id/{userId}")
+    @GetMapping("/{userId}")
     public User getUserById(@PathVariable Integer userId) {
         return repository.findById(userId).orElse(null);
     }

@@ -99,8 +99,8 @@ Get all users:
 **endpoint:** '/users'
 
 Get user by id:  
-**endpoint:** '/users/id/{id}'  
-**example:** '/users/id/1'
+**endpoint:** '/users/{id}'  
+**example:** '/users/1'
 
 Get user by email:  
 **endpoint:** '/users/email/{email}'  
