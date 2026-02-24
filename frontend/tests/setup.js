@@ -1,6 +1,24 @@
-import { expect, afterEach } from 'vitest';
+import { expect, beforeAll, afterAll, afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
-import * as matchers from "@testing-library/jest-dom/matchers";
+import * as matchers from '@testing-library/jest-dom/matchers';
+import { setupServer } from 'msw/node';
+import { http, HttpResponse } from 'msw';
+
+import bookData from '../src/book-data.json';
+
+export const restHandlers = [
+  http.get('http://localhost:8081/api/book/filter', () => {
+    return HttpResponse.json(bookData);
+  }),
+];
+
+const server = setupServer(...restHandlers);
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+// Close server after all tests
+afterAll(() => server.close());
+// Reset handlers after each test for test isolation
+afterEach(() => server.resetHandlers());
 
 expect.extend(matchers);
 
