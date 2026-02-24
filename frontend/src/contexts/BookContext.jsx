@@ -1,7 +1,12 @@
 import {createContext, useState, useContext, useEffect} from "react";
 import {addFavorite, getFavorites, removeFavorite} from "../api/favoritesApi.js";
 
-const BookContext = createContext()
+// set defaults so tests wont crash
+const BookContext = createContext({
+    isFavorite: () => false,
+    addToFavorites: async () => {},
+    removeFromfavorites: async () => {},
+})
 
 export const useBookContext = () => useContext(BookContext)
 
