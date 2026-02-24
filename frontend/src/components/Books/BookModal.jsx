@@ -52,12 +52,12 @@ const BookModal = ({ book, pageType, setOpen }) => {
                 <span className="font-medium">Genre:</span> {book.genre}
               </p>
             </div>
-            <div className="mt-3 flex items-center gap-2">
+            <div className="mt-3 flex items-center gap-2 capitalize">
               <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
-                Finnish
+                {book.language}
               </span>
               <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
-                History
+                {book.genre}
               </span>
             </div>
             <div className="mt-6 flex items-end justify-between">
