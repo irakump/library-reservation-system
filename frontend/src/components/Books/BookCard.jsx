@@ -23,7 +23,7 @@ const BookCard = ({ book, pageType, setOpen }) => {
         <p className="text-sm mb-1 text-left">
           {book.authors
             ?.map((author) => `${author.firstName} ${author.lastName}`)
-            .join(",")}
+            .join(", ")}
         </p>
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>

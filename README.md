@@ -28,14 +28,14 @@ Run `npm run test` in frontend folder
 
 ### Backend
 
-`mvn clean install` (build + test + install)   
-`mvn spring-boot:run` (start backend)   
+`mvn clean install` (build + test + install)  
+`mvn spring-boot:run` (start backend)
 
-**Test:** 
+**Test:**
 Run test files or test methods separately
 
 JaCoCo report:  
-Run `mvn clean test` (compile and unit tests) and `mvn clean verify` (integration tests). Open index.html document from target/site/jacoco.  
+Run `mvn clean test` (compile and unit tests) and `mvn clean verify` (integration tests). Open index.html document from target/site/jacoco.
 
 Deploy the project: `mvn deploy` (when publishing the final product).
 
@@ -104,24 +104,24 @@ Get user by id:
 
 #### Loans
 
-Get all loans:   
-**endpoint:** '/loans'  
+Get all loans:  
+**endpoint:** '/loans'
 
 Get loan by id:  
 **endpoint:** '/loans/{id}'  
-**example:** '/loans/2'  
+**example:** '/loans/2'
 
 Get loans by user:  
 **endpoint:** '/loans/user/{user_id}'  
-**example:** '/loans/user/1'  
+**example:** '/loans/user/1'
 
-Get active loans (not returned) by user and return date:  **not implemented yet**  
+Get active loans (not returned) by user and return date: **not implemented yet**  
 **endpoint:** '/loans/user/{userId}/active'  
-**example:** '/loans/user/1/active'  
+**example:** '/loans/user/1/active'
 
-Get returned loans by user and return date:  **not implemented yet**  
+Get returned loans by user and return date: **not implemented yet**  
 **endpoint:** '/loans/user/{userId}/returned'  
-**example:** '/loans/user/1/returned'  
+**example:** '/loans/user/1/returned'
 
 #### Reservations
 
@@ -143,7 +143,7 @@ Get reservations by book:
 #### Languages
 
 Get all languages:  
-**endpoint:** '/language'  
+**endpoint:** '/language'
 
 Get language by name:  
 **endpoint:** '/language/{name}'  
@@ -151,14 +151,15 @@ Get language by name:
 
 #### Authors
 
-Get all authors:  
-**endpoint:** '/author'  
+Get all authors and their books:  
+**endpoint:** '/author'
 
-Get authors by id:  
+Get authors and their books by id:  
 **endpoint:** '/author/{id}'  
 **example:** '/author/1'
 
 #### Books
+
 Get book by ISBN:  
 **endpoint:** '/book/{isbn}'  
 **example:** '/book/9780241600948'
@@ -180,11 +181,13 @@ Get books by filters (any combination, multiple values allowed):
 **example:** '/book/filter?g=fantasy&y=2024&l=english&l=finnish'
 
 #### Years
+
 Get years used by books:  
 **endpoint:** '/book/years'  
 **example:** '/book/years'
 
 ### Favorites
+
 Get favorites by userId:
 **endpoint** '/users/{userId}/favorites'
 
