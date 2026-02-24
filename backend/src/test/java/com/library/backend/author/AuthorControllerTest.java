@@ -1,5 +1,6 @@
 package com.library.backend.author;
 
+import com.library.backend.book.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -50,5 +51,25 @@ public class AuthorControllerTest {
                 .andExpect(jsonPath("$.authorId").value(1))
                 .andExpect(jsonPath("$.firstName").value("Tove"))
                 .andExpect(jsonPath("$.lastName").value("Jansson"));
+    }
+
+    @Test
+    public void testGetAuthorById_WithBooks() throws Exception {
+        Author author = new Author("J.K.", "Rowling");
+        author.setAuthorId(1);
+
+        Book book1 = new Book("123", "Book 1", 2000, "Desc", "Fantasy", "English", true);
+        Book book2 = new Book("456", "Book 2", 2001, "desc", "fantasy", "English", true);
+
+        author.setBooks(Arrays.asList(book1, book2));
+
+        when(repository.findById(1)).thenReturn(Optional.of(author));
+
+
+        mockMvc.perform(get("/api/author/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.authorId").value(1))
+                .andExpect(jsonPath("$.books").isArray())
+                .andExpect(jsonPath("$.books.length()").value(2));
     }
 }
