@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UserRepository extends CrudRepository<User, Integer> { // Primary key in users table is Integer
@@ -14,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, Integer> { // Prima
         FROM favorite
         WHERE user_id = :userId """, nativeQuery = true)
     List<String> findFavoriteIsbnsByUserId(@Param("userId") int userId);
+
+    Optional<User> findByEmail(String email);
 }

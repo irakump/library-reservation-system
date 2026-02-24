@@ -24,8 +24,14 @@ public class UserController {
     }
 
     // Get user by id
-    @GetMapping("/{userId}")
+    @GetMapping("/id/{userId}")
     public User getUserById(@PathVariable Integer userId) {
         return repository.findById(userId).orElse(null);
+    }
+
+    // Get user by email (used with registration to check if email (unique) already exists)
+    @GetMapping("/email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+        return repository.findByEmail(email).orElse(null);
     }
 }

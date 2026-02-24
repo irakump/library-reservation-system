@@ -99,8 +99,12 @@ Get all users:
 **endpoint:** '/users'
 
 Get user by id:  
-**endpoint:** '/users/{id}'  
-**example:** '/users/1'
+**endpoint:** '/users/id/{id}'  
+**example:** '/users/id/1'
+
+Get user by email:  
+**endpoint:** '/users/email/{email}'  
+**example:** '/users/email/hello@fakemail.com'
 
 #### Loans
 
