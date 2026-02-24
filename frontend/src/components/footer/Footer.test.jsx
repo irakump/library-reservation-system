@@ -8,7 +8,7 @@ describe("Footer", () => {
   it("renders footer component", () => {
     render(<Footer />);
 
-    screen.debug();
+    //screen.debug();
 
     expect(screen.getByAltText("MetBook logo")).toBeInTheDocument();
     expect(screen.getByText("Social Media")).toBeInTheDocument();
