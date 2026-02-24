@@ -1,6 +1,10 @@
 package com.library.backend.author;
 
+import com.library.backend.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "author")
@@ -16,6 +20,11 @@ public class Author {
 
     @Column(name = "last_name", length = 100, nullable = false)
     private String lastName;
+
+    // Many-to-Many relationship (inverse side)
+    @ManyToMany(mappedBy = "authors")
+    @JsonIgnoreProperties("authors") // Prevent infinite recursion during JSON serialization
+    private List<Book> books;
 
     public Author() {}
 
@@ -41,10 +50,18 @@ public class Author {
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
