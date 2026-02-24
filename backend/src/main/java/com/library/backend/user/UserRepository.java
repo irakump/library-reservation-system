@@ -17,4 +17,5 @@ public interface UserRepository extends CrudRepository<User, Integer> { // Prima
     List<String> findFavoriteIsbnsByUserId(@Param("userId") int userId);
 
     Optional<User> findByEmail(String email);
+    Boolean existsByEmail(String email);
 }

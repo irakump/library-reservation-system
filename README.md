@@ -188,12 +188,19 @@ Get years used by books:
 **endpoint:** '/book/years'  
 **example:** '/book/years'
 
-### Favorites
+#### Favorites
 Get favorites by userId:
 **endpoint** '/users/{userId}/favorites'
 
-post favorites by isbn:
+Post favorites by isbn:
 **endpoint** '/users/{userId}/favorites/{isbn}'
 
 Remove favorites by isbn:
 **endpoint** '/users/{userId}/favorites/{isbn}'
+
+#### Authorization (register, login)
+Register endpoint (register form sends data there and backend uses it):
+**endpoint:** '/auth/register'
+
+Use this endpoint with login **(does not exist yet)**:
+**endpoint:** '/auth/login'
