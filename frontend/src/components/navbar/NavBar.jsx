@@ -34,7 +34,7 @@ const NavBar = () => {
               className="h-7 pr-2 pt-1"
             />
           </a>
-          <a href="/" className="font-bold text-3xl">
+          <a href="/" className="font-bold text-2xl">
             MetBook
           </a>
         </div>
@@ -42,7 +42,7 @@ const NavBar = () => {
           <img
             src="/language-icon.png"
             alt="Language"
-            className="h-8"
+            className="h-7 mt-1"
             tabIndex={0}
           />
 

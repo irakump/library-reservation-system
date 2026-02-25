@@ -17,7 +17,7 @@ const ProfileMenu = () => {
 
   return (
     <div className="absolute max-sm:w-full sm:right-32 text-center">
-      <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-2xl font-bold">
+      <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
         <a href="/profile" className="w-full">
           <li>My Page</li>
         </a>
