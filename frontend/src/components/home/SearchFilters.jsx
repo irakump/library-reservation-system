@@ -37,6 +37,10 @@ const SearchFilters = () => {
     years: 'year',
   };
 
+  // option to limit genre and language filters for one per category
+  const allowMultipleGenresSearch = false;
+  const allowMultipleLanguagesSearch = false;
+
   // selected filters: variables and methods
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -61,23 +65,27 @@ const SearchFilters = () => {
     fetchSearchResults();
   }, [searchFilters]);
 
-  const addNewFilter = (filterSetter, filters, newFilter) => {
+  const addNewFilter = (filterSetter, filters, newFilter, multipleFilters) => {
     if (filters.includes(newFilter)) return;
-    filterSetter([...filters, newFilter]);
+    if (multipleFilters) {
+      filterSetter([...filters, newFilter]);
+    } else {
+      filterSetter([newFilter]);
+    }
   };
 
   const addFilter = (filter, filterType) => {
     switch (filterType) {
       case filterTypes.genres:
-        addNewFilter(setSelectedGenres, selectedGenres, filter);
+        addNewFilter(setSelectedGenres, selectedGenres, filter, allowMultipleGenresSearch);
         break;
 
       case filterTypes.languages:
-        addNewFilter(setSelectedLanguages, selectedLanguages, filter);
+        addNewFilter(setSelectedLanguages, selectedLanguages, filter, allowMultipleLanguagesSearch);
         break;
 
       case filterTypes.years:
-        addNewFilter(setSelectedYears, selectedYears, filter);
+        addNewFilter(setSelectedYears, selectedYears, filter, true);
         break;
 
       default:
