@@ -8,27 +8,55 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isNicknameFormError, setIsNicknameFormError] = useState(false);
+  const [nickNameErrorMessage, setNickNameErrorMessage] = useState("");
+
   const handleRegisterForm = (e) => {
+
     e.preventDefault();
     const register = { nickname, email, password };
 
-    // Send data to backend
+    if (!validateRegisterForm(register)) {
+      return;
+    }
+    
+    // Send data to backend after successful validation
     registerAPICall(register)
       .then((response) => {
         console.log("Success:", response.data);
         alert("Successful registration. Please log in."); // Feedback to user after successful registration
         onSwitchToLogin(); // Close registration, open login
+
       })
       .catch((error) => {
         if (error.response) {
           // Display response error message (unsuccessful registration)
           console.error("Reqistration error:", error.response.data);
+
         } else {
           // Other errors
           console.error("Error: ", error.message);
+          alert("Error occurred. Please try again.")
         }
+
+
       });
   };
+
+  // TODO: muokkaa nimi (asettaa myös error messaget)
+  const validateRegisterForm = (register) => {
+    console.log("nickname: ", register.nickname);
+
+    if (!register.nickname) {
+      setIsNicknameFormError(true);
+      setNickNameErrorMessage("Nickname is required");
+      return false;
+    }
+
+    // Successful validation
+    setIsNicknameFormError(false);
+    return true;
+  }
 
   return (
     <div
@@ -56,7 +84,8 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
         <div className="p-8">
           {/* Nickname */}
           <div className="mb-6 mt-4">
-            <label className="block text-gray-600 mb-2 text-sm">Nickname</label>
+            <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">Nickname* {isNicknameFormError && 
+            (<p className="text-red-600 font-semibold">{nickNameErrorMessage}</p>)}</label>
             <input
               type="text"
               placeholder="Enter your nickname"
@@ -67,7 +96,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
           {/* Email */}
           <div className="mb-6 mt-4">
-            <label className="block text-gray-600 mb-2 text-sm">Email</label>
+            <label className="block text-gray-600 mb-2 text-sm">Email*</label>
             <input
               type="email"
               placeholder="example@gmail.com"
@@ -78,7 +107,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
           {/* Password */}
           <div className="mb-12">
-            <label className="block text-gray-600 mb-2 text-sm">Password</label>
+            <label className="block text-gray-600 mb-2 text-sm">Password*</label>
             <input
               type="password"
               placeholder="Enter your Password"
