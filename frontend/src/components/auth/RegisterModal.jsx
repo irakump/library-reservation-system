@@ -16,7 +16,8 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     registerAPICall(register)
       .then((response) => {
         console.log("Success:", response.data);
-        onClose(); // Close modal only when registration is successful
+        alert("Successful registration. Please log in."); // Feedback to user after successful registration
+        onSwitchToLogin(); // Close registration, open login
       })
       .catch((error) => {
         if (error.response) {
