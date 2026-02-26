@@ -1,5 +1,6 @@
 package com.library.backend.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.library.backend.author.Author;
 import jakarta.persistence.*;
 import java.util.List;
@@ -39,6 +40,7 @@ public class Book {
         joinColumns = @JoinColumn(name = "isbn"),
         inverseJoinColumns = @JoinColumn(name = "author_id")
     )
+    @JsonIgnoreProperties("books")
     private List<Author> authors;
 
 
