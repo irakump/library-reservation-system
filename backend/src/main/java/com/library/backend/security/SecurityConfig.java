@@ -49,7 +49,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(registry -> {
                     // Anyone can access registration REST API without login
                     registry.requestMatchers("/api/auth/register").permitAll();
+                    registry.requestMatchers("/api/auth/login").permitAll();
                     registry.requestMatchers("/api/book/**").permitAll();
+                    registry.requestMatchers("/api/genre/**").permitAll();
+                    registry.requestMatchers("/api/language/**").permitAll();
+                    registry.requestMatchers("/api/author/**").permitAll();
                     //registry.anyRequest().authenticated();  // all endpoints (except above) need login
                     registry.anyRequest().permitAll();  // TODO: remove this after login is ready! => now all endpoints are accessible without login
                 })
