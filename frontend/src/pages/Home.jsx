@@ -28,8 +28,6 @@ const Home = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  console.log('Users: ', users);
-  //
 
   return (
     <>

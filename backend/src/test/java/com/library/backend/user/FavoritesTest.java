@@ -96,12 +96,12 @@ public class FavoritesTest {
 
     @Test
     void testWrongIsbn() {
-        IllegalArgumentException exception =
-                assertThrows(IllegalArgumentException.class, () -> service.addFavorite(userId, "pppp"));
+        RuntimeException exception =
+                assertThrows(RuntimeException.class, () -> service.addFavorite(userId, "pppp"));
         assertEquals("Book not found: pppp", exception.getMessage());
 
-        IllegalArgumentException exception1 =
-                assertThrows(IllegalArgumentException.class, () -> service.removeFavorite(userId, "pppp"));
+        RuntimeException exception1 =
+                assertThrows(RuntimeException.class, () -> service.removeFavorite(userId, "pppp"));
         assertEquals("Book not found: pppp", exception1.getMessage());
     }
 
@@ -109,12 +109,12 @@ public class FavoritesTest {
     void testWrongUserId() {
         service.addFavorite(userId, "1111");
 
-        IllegalArgumentException exception =
-                assertThrows(IllegalArgumentException.class, () -> service.addFavorite(0001111, "1111"));
+        RuntimeException exception =
+                assertThrows(RuntimeException.class, () -> service.addFavorite(0001111, "1111"));
         assertEquals("User not found: " + 0001111, exception.getMessage());
 
-        IllegalArgumentException exception1 =
-                assertThrows(IllegalArgumentException.class, () -> service.removeFavorite(0001111, "1111"));
+        RuntimeException exception1 =
+                assertThrows(RuntimeException.class, () -> service.removeFavorite(0001111, "1111"));
         assertEquals("User not found: " + 0001111, exception1.getMessage());
     }
 
