@@ -11,23 +11,24 @@ public interface BookRepository extends CrudRepository<Book, String> {
     Iterable<Book> findByYear(int year);
     Iterable<Book> findByLanguage(String language);
 
-    // todo: rework (AND/OR, etc.)
-    // books by any matching filter combination (genre, year, language)
+    // filter books by matching genre (if true) AND language (if true) AND any year (if true)
     @Query("select distinct book from Book book " +
             "left join book.authors a " +
             "where " +
-            "(:genres is null or book.genre in :genres) and " +
+            "(:genre is null or lower(book.genre) = lower(:genre)) and " +
             "(:years is null or book.year in :years) and " +
-            "(:languages is null or book.language in :languages) and " +
-            "(:available is null or book.available = :available) and " +
-            "(:title_author is null or lower(book.title) like lower(concat('%', :title_author, '%')) " +
-            "or lower(a.firstName) like lower(concat('%', :title_author, '%')) " +
-            "or lower(a.lastName) like lower(concat('%', :title_author, '%')))")
+            "(:language is null or lower(book.language) = lower(:language)) and " +
+            "(:available is null or book.available = :available) " +
+            "and " +
+            "((:search_term is null or lower(book.title) like lower(concat('%', :search_term, '%')) or " +
+            "lower(a.firstName) like lower(concat('%', :search_term, '%')) or " +
+            "lower(a.lastName) like lower(concat('%', :search_term, '%')) or " +
+            "lower(book.description) like lower(concat('%', :search_term, '%'))))")
     List<Book> findByFilters(
-            @Param("genres") List<String> genres,
+            @Param("genre") String genre,
             @Param("years") List<Integer> years,
-            @Param("languages") List<String> languages,
+            @Param("language") String language,
             @Param("available") Boolean available,
-            @Param("title_author") String title_author
+            @Param("search_term") String search_term
     );
 }
