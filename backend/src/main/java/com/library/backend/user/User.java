@@ -1,8 +1,10 @@
 package com.library.backend.user;
 
 import com.library.backend.book.Book;
+import com.library.backend.loan.Loan;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,6 +55,9 @@ public class User {
     }
 
 
+
+
+
     public User(String email, String nickname, String passwordHash) {
         this.email = email;
         this.nickname = nickname;
@@ -61,7 +66,9 @@ public class User {
         this.role = Role.user;
     }
 
+
     public User() {}
+
 
     public int getUserId() {
         return userId;

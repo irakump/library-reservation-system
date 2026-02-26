@@ -5,6 +5,7 @@ import com.library.backend.user.User;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "loan")
@@ -15,14 +16,14 @@ public class Loan {
     @Column(name = "loan_id")
     private int loanId;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     @Column(name = "due_date", nullable = false)
-    private Timestamp dueDate;
+    private LocalDateTime dueDate;
 
     @Column(name = "return_date")
-    private Timestamp returnDate;
+    private LocalDateTime returnDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -32,12 +33,10 @@ public class Loan {
     @JoinColumn(name = "isbn", nullable = false)
     private Book book;
 
-    public Loan() {}
+    protected Loan() {}
 
-    public Loan(Timestamp createdAt, Timestamp dueDate, Timestamp returnDate, User user, Book book) {
-        this.createdAt = createdAt;
+    public Loan(LocalDateTime dueDate, User user, Book book) {
         this.dueDate = dueDate;
-        this.returnDate = returnDate;
         this.user = user;
         this.book = book;
     }
@@ -46,28 +45,25 @@ public class Loan {
         return loanId;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
 
-    public Timestamp getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Timestamp dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Timestamp getReturnDate() {
+    public LocalDateTime getReturnDate() {
         return returnDate;
     }
 
     public void setReturnDate(Timestamp returnDate) {
-        this.returnDate = returnDate;
+        this.returnDate = returnDate.toLocalDateTime();
     }
 
     public User getUser() {
