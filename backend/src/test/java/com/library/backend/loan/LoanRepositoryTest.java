@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,9 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+
+        Loan loan = new Loan( dueDate, user, book); // Due date 2 weeks
 
         Loan insertedLoan = repository.save(loan);
         em.flush();
@@ -53,7 +56,8 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        Loan loan = new Loan(dueDate, user, book);
 
         repository.save(loan);
         em.flush();
@@ -78,7 +82,9 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+
+        Loan loan = new Loan(dueDate, user, book); // Due date 2 weeks
 
         Loan insertedLoan = repository.save(loan);
         em.flush();
@@ -105,7 +111,8 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Loan loan = new Loan(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis() + 14 * 24 * 3600 * 1000), null, user, book); // Due date 2 weeks
+        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        Loan loan = new Loan(dueDate, user, book); // Due date 2 weeks
 
         repository.save(loan);
         repository.delete(loan);

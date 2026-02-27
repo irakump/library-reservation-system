@@ -1,5 +1,15 @@
+import { useAuth } from "../../contexts/AuthContext";
+
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
+
+  const { handleLogout } = useAuth();
+
+  const handleLogoutClick = () => {
+    handleLogout(); // Clear localstorage and update state
+    onConfirm();
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
@@ -32,7 +42,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
               Cancel
             </button>
             <button
-              onClick={onConfirm}
+              onClick={handleLogoutClick}
               className="bg-filter hover:bg-blue-300 font-medium text-lg px-6 py-2 rounded-lg"
             >
               Log out

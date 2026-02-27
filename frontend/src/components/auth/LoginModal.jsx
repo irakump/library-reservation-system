@@ -1,5 +1,63 @@
+import { useEffect, useState } from "react";
+import { loginAPICall } from "../../api/AuthApi";
+import { useAuth } from "../../contexts/AuthContext";
+
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
-  if (!isOpen) return null;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { handleLogin, isLoggedIn } = useAuth();
+
+  // Clear form when modal opens/closes
+  useEffect(() => {
+    if (!isOpen) {
+      setEmail("");
+      setPassword("");
+      setError("");
+    }
+  }, [isOpen]);
+
+  // Don't show modal if already logged in
+  if (!isOpen || isLoggedIn) return null;
+
+  const handleLoginForm = (e) => {
+    e.preventDefault();
+
+    // Validates inputs
+    if (!email || !password) {
+      setError("Please enter both email and password");
+      return;
+    }
+
+    setError(""); // Clear previous errors
+
+    const login = { email, password };
+
+    console.log("Attempting login with: ", { email });
+
+    // call login API
+    loginAPICall(login)
+      .then((response) => {
+        console.log("Login successful: ", response.data);
+
+        // Use AuthContext's handlelogin to store token and update state
+        handleLogin(response.data);
+
+        // Clear form
+        setEmail("");
+        setPassword("");
+        setError("");
+      })
+      .catch((error) => {
+        if (error.response) {
+          // Backend returned an error
+          setError(error.response.data);
+        } else {
+          setError("Login failed. Please try again.");
+        }
+        console.error("Login error: ", error);
+      });
+  };
 
   return (
     <div
@@ -25,12 +83,21 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
         {/* Form */}
         <div className="p-8">
+          {/* Error message */}
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
           {/* Email */}
           <div className="mb-6 mt-4">
             <label className="block text-gray-600 mb-2 text-sm">Email</label>
             <input
               type="email"
               placeholder="example@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
              rounded-xl focus:outline-none focus:border-blue-400"
             />
@@ -42,13 +109,18 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
             <input
               type="password"
               placeholder="Enter your Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
              rounded-xl focus:outline-none focus:border-blue-400"
             />
           </div>
 
           {/* Login button */}
-          <button className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8">
+          <button
+            onClick={handleLoginForm}
+            className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8"
+          >
             Login
           </button>
 

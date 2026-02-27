@@ -1,5 +1,7 @@
 //functions for buttons
 
+import {createLoan} from "../api/loansApi.js";
+
 export function ReserveBook(book) {
     console.log(`${book.title} reserved`);
     alert(`Reservation for ${book.title} succeed`);
@@ -11,6 +13,7 @@ export function ReturnBook(book) {
 
 export function LoanBook(book) {
     alert(`Loaning ${book.title}`);
+    createLoan(2, book.isbn);
 }
 
 export function CancelReservation(book) {

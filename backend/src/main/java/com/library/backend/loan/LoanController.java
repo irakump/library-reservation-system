@@ -1,5 +1,6 @@
 package com.library.backend.loan;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -12,9 +13,11 @@ import java.util.stream.StreamSupport;
 public class LoanController {
 
     private final LoanRepository repository;
+    private final LoanService loanService;
 
-    public LoanController(LoanRepository repository) {
+    public LoanController(LoanRepository repository, LoanService loanService) {
         this.repository = repository;
+        this.loanService = loanService;
     }
 
     // Get all loans
@@ -42,6 +45,12 @@ public class LoanController {
                 .stream()
                 .map(LoanDTO::new)
                 .toList();
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Void> createLoan(@RequestBody CreateLoanDTO request) {
+        loanService.createLoan(request);
+        return ResponseEntity.ok().build();
     }
 
 

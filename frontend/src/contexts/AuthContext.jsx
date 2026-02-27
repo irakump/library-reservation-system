@@ -1,4 +1,10 @@
-import { Children, createContext, useContext, useState } from "react";
+import {
+  Children,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 
 const AuthContext = createContext();
 
@@ -6,7 +12,22 @@ export const AuthProvider = ({ children }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with actual auth state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null); // Store user info
+
+  // Check if user is already logged in (on app load)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    const email = localStorage.getItem("email");
+    const nickname = localStorage.getItem("nickname");
+    const role = localStorage.getItem("role");
+
+    if (token && userId) {
+      setIsLoggedIn(true);
+      setUser({ userId, email, nickname, role, token });
+    }
+  }, []);
 
   const openLogin = () => setIsLoginOpen(true);
   const closeLogin = () => setIsLoginOpen(false);
@@ -27,10 +48,35 @@ export const AuthProvider = ({ children }) => {
     openLogin();
   };
 
+  // Login function - stores token and user info
+  const handleLogin = (loginResponse) => {
+    const { token, userId, email, nickname, role } = loginResponse;
+
+    // Store in localStorage
+    localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("email", email);
+    localStorage.setItem("nickname", nickname);
+    localStorage.setItem("role", role);
+
+    // Update state
+    setIsLoggedIn(true);
+    setUser({ userId, email, nickname, role, token });
+    closeLogin();
+  };
+
   const handleLogout = () => {
+    // Clear localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("email");
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("role");
+
+    // Update state
     setIsLoggedIn(false);
+    setUser(null);
     closeLogout();
-    // TODO: add actual logout logic
   };
 
   return (
@@ -40,6 +86,7 @@ export const AuthProvider = ({ children }) => {
         isRegisterOpen,
         isLogoutOpen,
         isLoggedIn,
+        user,
         openLogin,
         closeLogin,
         openRegister,
@@ -48,6 +95,7 @@ export const AuthProvider = ({ children }) => {
         closeLogout,
         handleSwitchToRegister,
         handleSwitchToLogin,
+        handleLogin,
         handleLogout,
       }}
     >
