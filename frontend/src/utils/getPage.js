@@ -12,7 +12,7 @@ export function ReturnBook(book) {
 }
 
 export function LoanBook(book) {
-    alert(`Loaning ${book.title}`);
+    //alert(`Loaning ${book.title}`);
     createLoan(2, book.isbn);
 }
 

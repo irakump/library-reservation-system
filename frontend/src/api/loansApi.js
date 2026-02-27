@@ -2,10 +2,6 @@ import axios from "axios";
 
 const URL = "http://localhost:8081/api"
 
-export const getLoanByUserId = async (userID) => {
-    const response = await axios.get(`${URL}/user/${userID}`);
-    return response.data;
-}
 
 export function createLoan(userId, isbn) {
     axios.post( `${URL}/loans/new`, {
@@ -18,7 +14,7 @@ export function createLoan(userId, isbn) {
         }
     )
         .then(response => {
-            console.log('create res: ', response.data)
+            console.log('create res: ', response)
         })
         .catch(error => {
             console.log(error)

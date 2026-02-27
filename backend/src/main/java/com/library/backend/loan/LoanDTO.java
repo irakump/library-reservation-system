@@ -11,8 +11,13 @@ public class LoanDTO {
     private LocalDateTime createdAt;
     private LocalDateTime dueDate;
     private LocalDateTime returnDate;
-    private String bookIsbn;
+    private String isbn;
     private int userId;
+    private String title;
+    private String image;
+    private String description;
+    private int year;
+    private String language;
 
     public LoanDTO(Loan l) {
         this.loanId = l.getLoanId();
@@ -20,8 +25,29 @@ public class LoanDTO {
         this.dueDate = l.getDueDate();
         this.returnDate = l.getReturnDate();
         this.userId = l.getUser().getUserId();
-        this.bookIsbn = l.getBook().getIsbn();
+        this.isbn = l.getBook().getIsbn();
+        this.title = l.getBook().getTitle();
+        this.image = l.getBook().getTitle();
+        this.description = l.getBook().getDescription();
+        this.year = l.getBook().getYear();
+        this.language = l.getBook().getLanguage();
 
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public int getLoanId() {
@@ -44,7 +70,7 @@ public class LoanDTO {
         return userId;
     }
 
-    public String getBookIsbn() {
-        return bookIsbn;
+    public String getIsbn() {
+        return isbn;
     }
 }

@@ -2,6 +2,7 @@ package com.library.backend.loan;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.PutExchange;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -38,18 +39,26 @@ public class LoanController {
                 .orElse(null);
     }
 
-    // Get loans by user's id
+    // Get active loans by user's id
     @GetMapping("/user/{userId}")
     public List<LoanDTO> getLoansByUserId(@PathVariable Integer userId) {
         return repository.findByUserUserId(userId)
                 .stream()
+                .filter(loan -> loan.getReturnDate() == null)
                 .map(LoanDTO::new)
                 .toList();
     }
 
+
     @PostMapping("/new")
     public ResponseEntity<Void> createLoan(@RequestBody CreateLoanDTO request) {
         loanService.createLoan(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/return")
+    public ResponseEntity<Void> returnLoan(@RequestBody ReturnLoanDTO request) {
+        loanService.returnLoan(request);
         return ResponseEntity.ok().build();
     }
 

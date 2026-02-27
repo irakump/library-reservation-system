@@ -29,5 +29,21 @@ public class LoanService {
         LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
         Loan loan = new Loan(dueDate, user, book);
         loanRepo.save(loan);
+
+        book.setAvailable(false);
+        bookRepo.save(book);
+    }
+
+    @Transactional
+    public void returnLoan(ReturnLoanDTO dto) {
+        Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("book not found"));
+        Loan loan = loanRepo.findById(dto.getLoanId()).orElseThrow(() -> new RuntimeException("loan not found"));
+
+        LocalDateTime returnDate = LocalDateTime.now();
+        loan.setReturnDate(returnDate);
+        loanRepo.save(loan);
+
+        book.setAvailable(true);
+        bookRepo.save(book);
     }
 }
