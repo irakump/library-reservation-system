@@ -14,7 +14,7 @@ export function createLoan(userId, isbn) {
         }
     )
         .then(response => {
-            console.log('create res: ', response.data)
+            console.log('create res: ', response)
         })
         .catch(error => {
             console.log(error)

@@ -31,6 +31,7 @@ public class LoanService {
         loanRepo.save(loan);
 
         book.setAvailable(false);
+        bookRepo.save(book);
     }
 
     @Transactional
