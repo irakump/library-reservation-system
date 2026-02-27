@@ -51,6 +51,12 @@ class BookFilterTest {
         entityManager.persist(book6);
     }
 
+    /*@ParameterizedTest
+    @ValueSource(genres = {"history", "fantasy"})
+    void givenNewBooks_whenDBFilteredByGenre_withGenre__returnBooks() {
+
+    }*/
+
     @Test
     void givenNewBooks_whenDBFilteredByGenre_withGenreHistory_returnBooks() {
         List<Book> filteredBooks = (List<Book>) repository.findByGenre("history");
@@ -71,49 +77,49 @@ class BookFilterTest {
 
     @Test
     void givenNewBooks_whenDBFiltered_withGenreHistory_withLanguageEnglish_returnBooks() {
-        List<String> genres = List.of("history");
+        String genre = "history";
         List<Integer> years = null;
-        List<String> languages = List.of("english");
+        String language = "english";
         Boolean availability = true;
-        String title_author = null;
+        String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genres, years, languages, availability, title_author);
+        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).containsExactly(book3);
     }
 
     @Test
     void givenNewBooks_whenDBFiltered_withGenreFantasy_returnBooks() {
-        List<String> genres = List.of("fantasy");
+        String genre = "fantasy";
         List<Integer> years = null;
-        List<String> languages = null;
+        String language = null;
         Boolean availability = true;
-        String title_author = null;
+        String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genres, years, languages, availability, title_author);
+        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).containsExactly(book2, book5, book6);
     }
 
     @Test
     void givenNewBooks_whenDBFiltered_withGenreBiography_withGenreHistory_returnBooks() {
-        List<String> genres = List.of("biography", "history");
+        String genre = "biography";
         List<Integer> years = null;
-        List<String> languages = null;
+        String language = null;
         Boolean availability = true;
-        String title_author = null;
+        String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genres, years, languages, availability, title_author);
-        assertThat(filteredBooks).containsExactly(book1, book3, book4);
+        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
+        assertThat(filteredBooks).containsExactly(book1);
     }
 
     @Test
     void givenNewBooks_whenDBFiltered_withAvailableFalse_returnBooks() {
-        List<String> genres = null;
+        String genre = null;
         List<Integer> years = null;
-        List<String> languages = null;
+        String language = null;
         Boolean availability = false;
-        String title_author = null;
+        String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genres, years, languages, availability, title_author);
+        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).isEmpty();
     }
 }
