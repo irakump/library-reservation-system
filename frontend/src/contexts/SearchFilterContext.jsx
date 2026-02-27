@@ -8,7 +8,7 @@ export const SearchFilterProvider = ({ children }) => {
     languages: [],
     years: [],
     available: true,
-    title_author: "",
+    search_term: "",
   });
 
   return (
