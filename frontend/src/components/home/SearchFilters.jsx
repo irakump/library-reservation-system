@@ -51,6 +51,7 @@ const SearchFilters = () => {
   useEffect(() => {
     const handleFilterChange = () => {
       setSearchFilters({
+        ...searchFilters,
         genre: selectedGenres,
         language: selectedLanguages,
         years: selectedYears,

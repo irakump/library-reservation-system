@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState(null);
 
   const handleSearch = () => {
-    setSearchFilters({ search_term: searchTerm });
+    setSearchFilters({ ...searchFilters, search_term: searchTerm });
     console.log('Search Filters:', searchFilters);
 
     fetchSearchResults();
