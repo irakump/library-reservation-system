@@ -11,7 +11,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const [errors, setErrors] = useState({
     nickname: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleRegisterForm = (e) => {
@@ -48,15 +48,20 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       password: "",
     };
 
-    if (!register.nickname) {
+    // Nickname
+    if (!register.nickname.trim()) {
       newErrors.nickname = "Nickname is required";
-    } 
-    
-    if (!register.email) {
-      newErrors.email = "Email is required";
     }
-    
-    if (!register.password) {
+
+    // Email
+    if (!register.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!isValidEmail(register.email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    // Password
+    if (!register.password.trim()) {
       newErrors.password = "Password is required";
     }
 
@@ -70,9 +75,13 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     return true;
   };
 
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   return (
     <div
-      className="fixed inset-0  bg-black/40 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div
@@ -97,7 +106,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Nickname */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              Nickname*{" "}
+              Nickname*
               {errors.nickname && (
                 <p className="text-red-600 font-semibold">{errors.nickname}</p>
               )}
@@ -112,7 +121,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
           {/* Email */}
           <div className="mb-6 mt-4">
-            <label className="block text-gray-600 mb-2 text-sm">
+            <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
               Email*
               {errors.email && (
                 <p className="text-red-600 font-semibold">{errors.email}</p>
@@ -128,7 +137,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
           {/* Password */}
           <div className="mb-12">
-            <label className="block text-gray-600 mb-2 text-sm">
+            <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
               Password*
               {errors.password && (
                 <p className="text-red-600 font-semibold">{errors.password}</p>
