@@ -15,7 +15,7 @@ describe("NavBar", () => {
       </AuthProvider>,
     );
 
-    screen.debug();
+    //screen.debug();
 
     expect(screen.getByText("MetBook")).toBeInTheDocument();
     expect(screen.getByAltText("Stack of books")).toBeInTheDocument();

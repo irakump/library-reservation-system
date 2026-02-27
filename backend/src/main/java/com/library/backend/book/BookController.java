@@ -54,12 +54,12 @@ public class BookController {
     // books by filters (any combination)
     @GetMapping("/filter")
     public List<Book> getBooksByFilters(
-            @RequestParam(required = false) List<String> genres,
+            @RequestParam(required = false) String genre,
             @RequestParam(required = false) List<Integer> years,
-            @RequestParam(required = false) List<String> languages,
+            @RequestParam(required = false) String language,
             @RequestParam(required = false) Boolean available,
-            @RequestParam(required = false) String title_author
+            @RequestParam(required = false) String search_term
     ) {
-        return repository.findByFilters(genres, years, languages, available, title_author);
+        return repository.findByFilters(genre, years, language, available, search_term);
     }
 }

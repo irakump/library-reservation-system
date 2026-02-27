@@ -32,10 +32,14 @@ const SearchFilters = () => {
   }, []);
 
   const filterTypes = {
-    genres: 'genre',
-    languages: 'language',
-    years: 'year',
+    genre: 'genre',
+    language: 'language',
+    years: 'years',
   };
+
+  // option to limit genre and language filters for one per category
+  const allowMultipleGenresSearch = false;
+  const allowMultipleLanguagesSearch = false;
 
   // selected filters: variables and methods
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -47,8 +51,9 @@ const SearchFilters = () => {
   useEffect(() => {
     const handleFilterChange = () => {
       setSearchFilters({
-        genres: selectedGenres,
-        languages: selectedLanguages,
+        ...searchFilters,
+        genre: selectedGenres,
+        language: selectedLanguages,
         years: selectedYears,
         available: available,
       });
@@ -61,23 +66,27 @@ const SearchFilters = () => {
     fetchSearchResults();
   }, [searchFilters]);
 
-  const addNewFilter = (filterSetter, filters, newFilter) => {
+  const addNewFilter = (filterSetter, filters, newFilter, multipleFilters) => {
     if (filters.includes(newFilter)) return;
-    filterSetter([...filters, newFilter]);
+    if (multipleFilters) {
+      filterSetter([...filters, newFilter]);
+    } else {
+      filterSetter([newFilter]);
+    }
   };
 
   const addFilter = (filter, filterType) => {
     switch (filterType) {
-      case filterTypes.genres:
-        addNewFilter(setSelectedGenres, selectedGenres, filter);
+      case filterTypes.genre:
+        addNewFilter(setSelectedGenres, selectedGenres, filter, allowMultipleGenresSearch);
         break;
 
-      case filterTypes.languages:
-        addNewFilter(setSelectedLanguages, selectedLanguages, filter);
+      case filterTypes.language:
+        addNewFilter(setSelectedLanguages, selectedLanguages, filter, allowMultipleLanguagesSearch);
         break;
 
       case filterTypes.years:
-        addNewFilter(setSelectedYears, selectedYears, filter);
+        addNewFilter(setSelectedYears, selectedYears, Number(filter), true);
         break;
 
       default:
@@ -100,11 +109,11 @@ const SearchFilters = () => {
     }
 
     switch (filterType) {
-      case filterTypes.genres:
+      case filterTypes.genre:
         removeAFilter(setSelectedGenres, filter);
         break;
 
-      case filterTypes.languages:
+      case filterTypes.language:
         removeAFilter(setSelectedLanguages, filter);
         break;
 
@@ -207,7 +216,7 @@ const SearchFilters = () => {
                 Year
                 <select
                   id="year"
-                  name="year"
+                  name="years"
                   value={categoryValue}
                   onChange={handleValueSelect}
                 >
@@ -218,7 +227,7 @@ const SearchFilters = () => {
                     <option
                       key={item}
                       value={item}
-                      disabled={selectedYears.includes(item.toString())}
+                      disabled={selectedYears.includes(item)}
                     >
                       {item}
                     </option>
@@ -232,8 +241,8 @@ const SearchFilters = () => {
 
           <ActiveFilters
             filters={{
-              [filterTypes.genres]: selectedGenres,
-              [filterTypes.languages]: selectedLanguages,
+              [filterTypes.genre]: selectedGenres,
+              [filterTypes.language]: selectedLanguages,
               [filterTypes.years]: selectedYears,
             }}
             onRemove={removeFilter}
