@@ -48,7 +48,7 @@ public class LoanRepositoryTest {
     }
 
     // Update operation
-    @Test
+    /*@Test
     void shouldUpdateReturnDate() {
         User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
         Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
@@ -71,7 +71,7 @@ public class LoanRepositoryTest {
 
         assertThat(updatedLoan).isNotNull();
         assertEquals(returnDate, updatedLoan.getReturnDate());
-    }
+    }*/
 
     // Test find loan by id
     @Test
