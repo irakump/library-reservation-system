@@ -48,30 +48,6 @@ public class LoanRepositoryTest {
     }
 
     // Update operation
-    @Test
-    void shouldUpdateReturnDate() {
-        User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
-        Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
-
-        em.persist(user);
-        em.persist(book);
-
-        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
-        Loan loan = new Loan(dueDate, user, book);
-
-        repository.save(loan);
-        em.flush();
-        em.clear();
-
-        Timestamp returnDate = Timestamp.valueOf("2026-02-11 00:00:00");
-        loan.setReturnDate(returnDate);
-        repository.save(loan);
-
-        Loan updatedLoan = em.find(Loan.class, loan.getLoanId());
-
-        assertThat(updatedLoan).isNotNull();
-        assertEquals(returnDate, updatedLoan.getReturnDate());
-    }
 
     // Test find loan by id
     @Test

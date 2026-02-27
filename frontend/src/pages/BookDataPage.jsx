@@ -3,9 +3,10 @@ import { useState } from 'react';
 import BookModal from "../components/Books/BookModal.jsx";
 
 
-const BookDataPage = ({ title, books, pageType, action }) => {
+const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null);  //passes bookobject
 
+    console.log(books);
   return (
     <>
       <div className="min-h-screen">

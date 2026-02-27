@@ -1,44 +1,22 @@
 import BookDataPage from "./BookDataPage";
+import {useApi} from "../hooks/useApi.js";
 
 const LoansPage = () => {
-  let loansData = [
-    {
-      id: 1,
-      title: "Kirja1",
-      author: "Author name",
-      year: "2025",
-      dueDate: "1.1.2025",
-    },
-    {
-      id: 2,
-      title: "Kirja2",
-      author: "Author name",
-      year: "2025",
-      dueDate: "1.1.2025",
-    },
-    {
-      id: 3,
-      title: "Book Title",
-      author: "Author name",
-      year: "2025",
-      dueDate: "1.1.2025",
-    },
-    {
-      id: 4,
-      title: "Book Title",
-      author: "Author name",
-      year: "2025",
-      dueDate: "1.1.2025",
-    },
-  ];
+    const userID = 2;
 
+    const {data, loading} = useApi(`/loans/user/${userID}`);
 
   return (
-    <BookDataPage 
-    title="My loans (4)" 
-    books={loansData} 
-    pageType="loans" 
-    />
+      <>
+          {!loading && data && (
+              <BookDataPage
+                  title="My loans"
+                  books={data}
+                  pageType="loans"
+              />
+          )}
+      </>
+
   );
 };
 
