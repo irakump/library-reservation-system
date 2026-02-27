@@ -45,7 +45,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     const newErrors = {
       nickname: "",
       email: "",
-      password: "",
+      password: [],
     };
 
     // Nickname
@@ -62,12 +62,36 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
     // Password
     if (!register.password.trim()) {
-      newErrors.password = "Password is required";
+      newErrors.password.push("Password is required");
+    } else {
+      if (register.password.length < 8) {
+        newErrors.password.push("At least 8 characters");
+      }
+      if (!/[a-z]/.test(register.password)) {
+        newErrors.password.push("Lowercase letter required");
+      }
+      if (!/[A-Z]/.test(register.password)) {
+        newErrors.password.push("Uppercase letter required");
+      }
+      if (!hasNumber(register.password)) {
+        newErrors.password.push("Number required");
+      }
+      if (!hasSpecialCharacter(register.password)) {
+        newErrors.password.push("Special character required");
+      }
     }
 
-    setErrors(newErrors);
+    setErrors({
+      ...newErrors,
+      // Set password array to string
+      password: newErrors.password.join(", "),
+    });
 
-    if (newErrors.nickname || newErrors.email || newErrors.password) {
+    if (
+      newErrors.nickname ||
+      newErrors.email ||
+      newErrors.password.length > 0
+    ) {
       return false;
     }
 
@@ -77,6 +101,14 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const hasNumber = (password) => {
+    return /\d/.test(password);
+  };
+
+  const hasSpecialCharacter = (password) => {
+    return /[^a-zA-Z0-9]/.test(password);
   };
 
   return (
@@ -145,10 +177,15 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
             </label>
             <input
               type="password"
-              placeholder="Enter your Password"
+              placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
+            <p className="text-gray-600 mt-1 text-sm">
+              Password must be at least 8 characters long and include:
+              <br />
+              uppercase, lowercase, number, and special character
+            </p>
           </div>
 
           {/* Register button */}
