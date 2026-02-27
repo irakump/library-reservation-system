@@ -8,10 +8,10 @@ const SearchBar = () => {
   const { fetchSearchResults } = useSearchResult(); // context
   const { searchFilters, setSearchFilters } = useSearchFilters();
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(null);
 
   const handleSearch = () => {
-    setSearchFilters({ title_author: searchTerm });
+    setSearchFilters({ search_term: searchTerm });
     console.log('Search Filters:', searchFilters);
 
     fetchSearchResults();
@@ -33,7 +33,7 @@ const SearchBar = () => {
         <input
           type="text"
           id="search"
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => e.target.value !== "" ? setSearchTerm(e.target.value) : null}
           className="flex-1 h-full bg-white px-1"
         />
 
