@@ -132,7 +132,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>BackendApplication</mainClass>
+                            <mainClass>com.library.backend.BackendApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
