@@ -3,7 +3,7 @@ LABEL authors="library-reservation-system-devs"
 
 WORKDIR /app
 COPY pom.xml .
-COPY . .
+COPY . /app
 
 RUN mvn package
 CMD ["java", "-jar", "target/library-reservation-system.jar"]
