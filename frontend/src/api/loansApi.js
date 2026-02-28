@@ -21,8 +21,17 @@ export function createLoan(userId, isbn) {
         })
 }
 
-//export function returnLoan(userId, isbn) {
-//    axios.put(
-//        `${URL}`
-//
-//}
+export function returnLoan(userId, isbn) {
+    axios.put(
+        `${URL}/loans/return`, {
+            userId,
+            isbn
+        }, {headers: {
+            'Content-Type': "application/json"}
+        }).then(response => {
+            console.log('return: ', response)
+    }).catch(error => {
+        console.error(error)
+    })
+
+}
