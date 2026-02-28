@@ -15,17 +15,20 @@ export function createLoan(userId, isbn) {
     )
         .then(response => {
             console.log('create res: ', response)
+            return response.data;
         })
         .catch(error => {
             console.log(error)
         })
+
 }
 
-export function returnLoan(userId, isbn) {
+export function returnLoan(userId, isbn, loanId) {
     axios.put(
         `${URL}/loans/return`, {
             userId,
-            isbn
+            isbn,
+            loanId
         }, {headers: {
             'Content-Type': "application/json"}
         }).then(response => {
@@ -34,4 +37,8 @@ export function returnLoan(userId, isbn) {
         console.error(error)
     })
 
+}
+
+export const getLoans = async (userId) => {
+    return await axios.get(`${URL}/loans/user/${userId}`)
 }

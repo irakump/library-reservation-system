@@ -59,7 +59,7 @@ public class Loan {
     }
 
     public void setReturnDate(LocalDateTime returnDate) {
-        this.dueDate = dueDate;
+        this.returnDate = returnDate;
     }
 
     public LocalDateTime getReturnDate() {

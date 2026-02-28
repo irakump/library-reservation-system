@@ -9,13 +9,15 @@ import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { MenuProvider } from "./contexts/MenuContext.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import { Routes, Route } from "react-router";
-import { BookProvider } from "./contexts/BookContext.jsx";
 import Notification from "./components/notification/Notification.jsx";
 import { NotificationProvider } from "./contexts/NotificationContext.jsx";
+import {BookProvider} from "./contexts/BookContext.jsx";
+import {LoanProvider} from "./contexts/LoanContext.jsx";
 
 function App() {
   return (
     <>
+      <LoanProvider>
       <BookProvider>
         <AuthProvider>
           <MenuProvider>
@@ -38,6 +40,7 @@ function App() {
         </main>
         <Footer />
       </BookProvider>
+      </LoanProvider>
     </>
   );
 }

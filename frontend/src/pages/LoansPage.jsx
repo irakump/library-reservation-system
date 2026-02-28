@@ -1,17 +1,17 @@
 import BookDataPage from "./BookDataPage";
-import {useApi} from "../hooks/useApi.js";
+import {useLoanContext} from "../contexts/LoanContext.jsx";
 
 const LoansPage = () => {
-    const userID = 2;
 
-    const {data, loading} = useApi(`/loans/user/${userID}`);
+    const {loans} = useLoanContext()
+    console.log(loans);
 
   return (
       <>
-          {!loading && data && (
+          { loans && (
               <BookDataPage
                   title="My loans"
-                  books={data}
+                  books={loans}
                   pageType="loans"
               />
           )}
