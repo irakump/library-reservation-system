@@ -1,4 +1,4 @@
-INSERT INTO WRITES (author_id, isbn)
+INSERT INTO writes (author_id, isbn)
 VALUES
 (1, '9789528083030'),
 (2, '9781118951309'),

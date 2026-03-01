@@ -1,4 +1,4 @@
-INSERT INTO GENRE
+INSERT INTO genre
 VALUES
 ('children'),
 ('nonfiction'),

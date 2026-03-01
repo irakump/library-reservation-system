@@ -1,4 +1,4 @@
-INSERT INTO AUTHOR (first_name, last_name)
+INSERT INTO author (first_name, last_name)
 VALUES
 ('Jere', 'Käpyaho'),
 ('Nikhil', 'Abraham'),

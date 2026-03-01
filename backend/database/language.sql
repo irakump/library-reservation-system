@@ -1,4 +1,4 @@
-INSERT INTO LANGUAGE
+INSERT INTO language
 VALUES
 ('finnish'),
 ('english');
