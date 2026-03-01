@@ -1,5 +1,6 @@
 import LoanButton from "../components/buttons/LoanButton.jsx";
 import ReserveButton from "../components/buttons/ReserveButton.jsx";
+import HistoryText from "../components/buttons/HistoryText.jsx";
 
 function BookButtons({pageType, book}) {
     //let showAvailable;
@@ -25,7 +26,7 @@ function BookButtons({pageType, book}) {
             break;
 
         case "history":
-            returnButton = null; //jos tää ei palauta nappia vaan päivämäärät nii olis easy
+            returnButton = <HistoryText book={book}></HistoryText>
     }
 
     return returnButton;

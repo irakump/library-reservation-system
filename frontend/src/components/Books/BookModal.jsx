@@ -1,10 +1,8 @@
 import Button from "../buttons/Button.jsx";
 import FavoriteButton from "../buttons/FavoriteButton.jsx";
+import BookButtons from "../../utils/BookButtons.jsx";
 
 const BookModal = ({ book, pageType, setOpen }) => {
-
-
-  //
   return (
     <>
       <div
@@ -63,40 +61,19 @@ const BookModal = ({ book, pageType, setOpen }) => {
               <div className="text-sm">
                 <p className="flex items-center gap-2"></p>
 
-                {/*for history page */}
-                {page.showDates && (
-                  <>
-                    <p className="text-sm mb-1 text-left">
-                      Borrowed: {book.borrowedDate}
-                    </p>
-                    <p className="text-sm mb-1 text-left">
-                      Returned: {book.returnedDate}
-                    </p>
-                  </>
-                )}
-
-                <p className="text-sm mb-1 text-left">{page.p} </p>
-
-                {/*queue*/}
-                {//page.BtnText == "Reserve" && (
-
+                {/*queue
+                {page.BtnText == "Reserve" && (
                   <>
                     <p className="mt-1">2 people in queue</p>
                     <p className="text-gray-500">
                       Estimated loan date x.x.2026
                     </p>
                   </>
-                }
-
-                {/* Button for loan/reserve/return jene */}
+                )}
+                */}
               </div>
-
-              {!page.showDates && (
-                <Button onClick={() => page.action(book)}>
-                  {" "}
-                  {page.BtnText}{" "}
-                </Button>
-              )}
+                {/* Button for loan/reserve/return/history data on history page */}
+                <BookButtons pageType={pageType} book={book}></BookButtons>
             </div>
           </div>
         </div>

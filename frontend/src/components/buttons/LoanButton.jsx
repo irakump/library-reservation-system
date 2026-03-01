@@ -5,12 +5,15 @@ function LoanButton({pageType, book, children}) {
 
     //loan
     return pageType === "favourite" ? (
+        <>
+            <p className="text-sm mb-0 text-left">🟢 Available</p>
             <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
                     onClick={e => {
                         e.stopPropagation();
                         addToLoans(book.isbn );
                     }}> {children}
             </button>
+        </>
         ) : //return
         (
             <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
