@@ -76,7 +76,9 @@ public class Book {
 
     public boolean getAvailability() {return available;}
 
-    //public void setIsbn(String book) {this.isbn = isbn;}
+    public void setAvailable(boolean availability) {
+        this.available = availability;
+    }
 
     public List<Author> getAuthors() {
         return authors;

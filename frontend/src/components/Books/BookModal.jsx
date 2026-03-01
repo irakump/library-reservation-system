@@ -1,11 +1,12 @@
-import Button from "./Button";
-import { getPage } from "../../utils/getPage";
-import FavoriteButton from "./FavoriteButton.jsx";
+import Button from "../buttons/Button.jsx";
+import FavoriteButton from "../buttons/FavoriteButton.jsx";
+import BookButtons from "./BookButtons.jsx";
 
-const BookModal = ({ book, pageType, setOpen }) => {
-  const page = getPage(pageType, book);
+const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
+  // const page = getPage(pageType, book, addToLoans);
 
   //
+  //const BookModal = ({ book, pageType, setOpen }) => {
   return (
     <>
       <div
@@ -28,11 +29,14 @@ const BookModal = ({ book, pageType, setOpen }) => {
             </div>
 
             <div className="flex gap-4">
-              <img
-                src={book.image}
-                alt="Book cover"
-                className="w-24 h-36 object-cover"
-              />
+              <div className="w-24 h-auto mt-1 mr-0.5 shrink-0">
+                <img
+                  src={`/books/${book.isbn}.jpg`}
+                  alt={`Book image for ${book.title}`}
+                  className="w-24 h-auto rounded-sm outline-1 outline-gray-200"
+                />
+              </div>
+
               <div className="flex-1">
                 <h1 className="font-bold text-lg">{book.title}</h1>
                 <p className="text-sm mb-1">
@@ -64,21 +68,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
               <div className="text-sm">
                 <p className="flex items-center gap-2"></p>
 
-                {/*for history page */}
-                {page.showDates && (
-                  <>
-                    <p className="text-sm mb-1 text-left">
-                      Borrowed: {book.borrowedDate}
-                    </p>
-                    <p className="text-sm mb-1 text-left">
-                      Returned: {book.returnedDate}
-                    </p>
-                  </>
-                )}
-
-                <p className="text-sm mb-1 text-left">{page.p} </p>
-
-                {/*queue*/}
+                {/*queue
                 {page.BtnText == "Reserve" && (
                   <>
                     <p className="mt-1">2 people in queue</p>
@@ -87,16 +77,10 @@ const BookModal = ({ book, pageType, setOpen }) => {
                     </p>
                   </>
                 )}
-
-                {/* Button for loan/reserve/return jene */}
+                */}
               </div>
-
-              {!page.showDates && (
-                <Button onClick={() => page.action(book)}>
-                  {" "}
-                  {page.BtnText}{" "}
-                </Button>
-              )}
+              {/* Button for loan/reserve/return/history data on history page */}
+              <BookButtons pageType={pageType} book={book}></BookButtons>
             </div>
           </div>
         </div>

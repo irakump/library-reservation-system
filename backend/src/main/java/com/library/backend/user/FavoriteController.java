@@ -19,9 +19,7 @@ public class FavoriteController {
     }
 
     @GetMapping
-    public List<String > getIsbns(@PathVariable int userId) {
-        return service.getFavoriteIsbnsByUserId(userId);
-    }
+    public Set<Book> getFavorites(@PathVariable int userId) {return service.getFavorites(userId);}
 
     @PostMapping("/{isbn}")
     public void addFavorite(@PathVariable int userId, @PathVariable String isbn) {
