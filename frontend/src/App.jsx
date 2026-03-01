@@ -11,7 +11,7 @@ import Footer from "./components/footer/Footer.jsx";
 import { Routes, Route } from "react-router";
 import Notification from "./components/notification/Notification.jsx";
 import { NotificationProvider } from "./contexts/NotificationContext.jsx";
-import {BookProvider} from "./contexts/BookContext.jsx";
+import {BookProvider} from "./contexts/FavoritesContext.jsx";
 import {LoanProvider} from "./contexts/LoanContext.jsx";
 
 function App() {

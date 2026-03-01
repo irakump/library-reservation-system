@@ -1,4 +1,4 @@
-import {useBookContext} from "../../contexts/BookContext.jsx";
+import {useBookContext} from "../../contexts/FavoritesContext.jsx";
 
 const FavoriteButton = ({book}) => {
     const {isFavorite, addToFavorites, removeFromfavorites} = useBookContext()

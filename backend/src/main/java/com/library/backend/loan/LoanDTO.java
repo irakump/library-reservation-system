@@ -18,6 +18,7 @@ public class LoanDTO {
     private String description;
     private int year;
     private String language;
+    private String genre;
 
     public LoanDTO(Loan l) {
         this.loanId = l.getLoanId();
@@ -31,8 +32,13 @@ public class LoanDTO {
         this.description = l.getBook().getDescription();
         this.year = l.getBook().getYear();
         this.language = l.getBook().getLanguage();
+        this.genre = l.getBook().getGenre();
 
     }
+
+    public String getLanguage() {return language;}
+
+    public String getGenre() {return genre;}
 
     public String getTitle() {
         return title;

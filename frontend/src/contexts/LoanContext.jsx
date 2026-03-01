@@ -20,7 +20,7 @@ export const LoanProvider = ({children}) => {
 
     const addToLoans = async (isbn) => {
         const response = await createLoan(userId, isbn)
-        await setLoans(prev => [...prev, response.data])
+        await setLoans(prev => [...prev, response])
 
     }
 
