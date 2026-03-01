@@ -2,15 +2,15 @@ import {createContext, useState, useContext, useEffect} from "react";
 import {addFavorite, getFavorites, removeFavorite} from "../api/favoritesApi.js";
 
 // set defaults so tests wont crash
-const FavoritesContext = createContext({
+const UseFavoritesContext = createContext({
     isFavorite: () => false,
     addToFavorites: async () => {},
     removeFromfavorites: async () => {},
 })
 
-export const useBookContext = () => useContext(FavoritesContext)
+export const useFavoritesContext = () => useContext(UseFavoritesContext)
 
-export const BookProvider = ({children}) => {
+export const FavoritesProvider = ({children}) => {
     const [favorites, setFavorites] = useState([])
     const userId = 2; //for testing
 
@@ -39,9 +39,10 @@ export const BookProvider = ({children}) => {
         isFavorite,
         addToFavorites,
         removeFromfavorites,
+        favorites
     }
 
-    return <FavoritesContext.Provider value={value}>
+    return <UseFavoritesContext.Provider value={value}>
         {children}
-    </FavoritesContext.Provider>
+    </UseFavoritesContext.Provider>
 }

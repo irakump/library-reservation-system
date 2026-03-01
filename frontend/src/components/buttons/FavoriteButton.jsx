@@ -1,7 +1,7 @@
-import {useBookContext} from "../../contexts/FavoritesContext.jsx";
+import {useFavoritesContext} from "../../contexts/UseFavoritesContext.jsx";
 
 const FavoriteButton = ({book}) => {
-    const {isFavorite, addToFavorites, removeFromfavorites} = useBookContext()
+    const {isFavorite, addToFavorites, removeFromfavorites} = useFavoritesContext()
     const favorite = isFavorite(book.isbn)
     //console.log(("Removefav: ", removeFromfavorites))
 
