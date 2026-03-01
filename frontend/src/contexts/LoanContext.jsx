@@ -4,7 +4,6 @@ import {createLoan, getLoans, returnLoan} from "../api/loansApi.jsx";
 
 
 const LoanContext = createContext(({
-
 }))
 
 export const useLoanContext = () => useContext(LoanContext)
@@ -28,7 +27,6 @@ export const LoanProvider = ({children}) => {
         await returnLoan(userId, isbn, loanId)
         await setLoans(prev => prev.filter(f => f.loanId !== loanId));
     }
-
 
     const value = {
         addToLoans,

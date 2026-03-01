@@ -8,9 +8,9 @@ const FavoritesContext = createContext({
     removeFromfavorites: async () => {},
 })
 
-export const useBookContext = () => useContext(FavoritesContext)
+export const useFavoritesContext = () => useContext(FavoritesContext)
 
-export const BookProvider = ({children}) => {
+export const FavoritesProvider = ({children}) => {
     const [favorites, setFavorites] = useState([])
     const userId = 2; //for testing
 
@@ -20,8 +20,8 @@ export const BookProvider = ({children}) => {
     }, []);
 
 
-    const isFavorite = (book) => {
-        return favorites.includes(book)
+    const isFavorite = (isbn) => {
+        return favorites.some(f => f.isbn === isbn)
     }
 
     const addToFavorites = async (book) => {
@@ -30,7 +30,7 @@ export const BookProvider = ({children}) => {
         })
     }
 
-    const removeFromfavorites = async (book) => {
+    const removeFromfavorites = async ({book}) => {
         await removeFavorite(2, book.isbn);
         await setFavorites(prev => prev.filter(f => f !== book));
     }
@@ -39,6 +39,7 @@ export const BookProvider = ({children}) => {
         isFavorite,
         addToFavorites,
         removeFromfavorites,
+        favorites
     }
 
     return <FavoritesContext.Provider value={value}>

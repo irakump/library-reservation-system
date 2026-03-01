@@ -11,14 +11,15 @@ import Footer from "./components/footer/Footer.jsx";
 import { Routes, Route } from "react-router";
 import Notification from "./components/notification/Notification.jsx";
 import { NotificationProvider } from "./contexts/NotificationContext.jsx";
-import {BookProvider} from "./contexts/FavoritesContext.jsx";
 import {LoanProvider} from "./contexts/LoanContext.jsx";
+import {FavoritesProvider} from "./contexts/FavoritesContext.jsx";
+
 
 function App() {
   return (
     <>
       <LoanProvider>
-      <BookProvider>
+      <FavoritesProvider>
         <AuthProvider>
           <MenuProvider>
             <NavBar />
@@ -39,7 +40,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-      </BookProvider>
+      </FavoritesProvider>
       </LoanProvider>
     </>
   );

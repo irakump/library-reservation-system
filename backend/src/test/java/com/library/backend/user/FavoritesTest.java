@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,12 +59,15 @@ public class FavoritesTest {
         entityManager.flush();
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1111", "3333", "4444"})
-    void testAddFavorites(String isbn) {
-        service.addFavorite(userId, isbn);
-        List<String> favs = service.getFavoriteIsbnsByUserId(userId);
-        assertTrue(favs.contains(isbn));
+    @Test
+    void testAddFavorites() {
+        service.addFavorite(userId, "1111");
+        service.addFavorite(userId, "2222");
+        service.addFavorite(userId, "3333");
+        Set<Book> favs = service.getFavorites(userId);
+
+        Set<Book> expected = Set.of(books.get(0), books.get(1), books.get(2));
+        assertEquals(expected, favs);
     }
 
 
@@ -71,7 +77,7 @@ public class FavoritesTest {
             service.addFavorite(userId, book.getIsbn());
         }
         service.removeFavorite(userId, "1111");
-        List<String> favs = service.getFavoriteIsbnsByUserId(userId);
+        Set<Book> favs = service.getFavorites(userId);
         assertFalse(favs.contains("1111"));
     }
 
@@ -86,8 +92,8 @@ public class FavoritesTest {
             service.addFavorite(userId, book.getIsbn()); //adds all books for user1
         }
 
-        List<String> user1favorites = service.getFavoriteIsbnsByUserId(userId);
-        List<String> user2favorites = service.getFavoriteIsbnsByUserId(userId2);
+        Set<Book> user1favorites = service.getFavorites(userId);
+        Set<Book> user2favorites = service.getFavorites(userId2);
 
         assertEquals(6, user1favorites.size());
         assertEquals(1, user2favorites.size());
