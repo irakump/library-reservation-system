@@ -1,6 +1,7 @@
 //functions for buttons
 
-import {createLoan, returnLoan} from "../api/loansApi.js";
+import {createLoan, returnLoan} from "../api/loansApi.jsx";
+
 
 export function ReserveBook(book) {
     console.log(`${book.title} reserved`);
@@ -9,7 +10,8 @@ export function ReserveBook(book) {
 
 export function ReturnBook(book) {
     confirm(`Returning ${book.title}`);
-    returnLoan(2, book.isbn);
+    //removeLoan(book.userId, book.isbn, book.loanId)
+    returnLoan(book.userId, book.isbn, book.loanId);
 }
 
 export function LoanBook(book) {
@@ -35,7 +37,7 @@ export function getPage(pageType, book) {
                 action: (book) => ReserveBook(book), p: "🔴 Not available"}
 
         case "loans":
-        return { 
+        return {
             BtnText: "Return", 
             action: (book) => ReturnBook(book)}
 
