@@ -3,11 +3,14 @@ services:
   mariadb:
     container_name: mariadb
     image: library-reservation-system-database:latest
+    build:
+      context: ./backend/database
+      dockerfile: Dockerfile
     environment:
       MARIADB_DATABASE: metbook
       MARIADB_USER: library_db_user
       MARIADB_PASSWORD: password
-      MARIADB_RANDOM_ROOT_PASSWORD: my-secret-pw
+      MARIADB_RANDOM_ROOT_PASSWORD: "true"
     ports:
       - "13306:3306"
     volumes:
@@ -49,8 +52,6 @@ services:
     stdin_open: true
     ports:
       - "3000:80"
-    env_file:
-      - .env
   
 volumes:
   mariadb-data:
