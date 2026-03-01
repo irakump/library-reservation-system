@@ -10,7 +10,7 @@ services:
       MARIADB_DATABASE: metbook
       MARIADB_USER: library_db_user
       MARIADB_PASSWORD: password
-      MARIADB_RANDOM_ROOT_PASSWORD: "true"
+      MARIADB_ROOT_PASSWORD: password
     ports:
       - "13306:3306"
     volumes:
@@ -22,7 +22,7 @@ services:
       - ./backend/database/book.sql:/docker-entrypoint-initdb.d/05_book.sql
       - ./backend/database/writes.sql:/docker-entrypoint-initdb.d/06_writes.sql
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "library_db_user", "-ppassword"]
       interval: 10s
       timeout: 5s
       retries: 5
