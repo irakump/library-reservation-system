@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerAPICall } from "../../api/AuthApi";
+import { registerAPICall } from "../../api/authApi";
 
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   if (!isOpen) return null;
