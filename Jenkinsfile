@@ -10,6 +10,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'docker_hub' // docker credentials in jenkins settings
         DOCKERHUB_REPO_BACKEND = 'library-reservation-system-backend'
         DOCKERHUB_REPO_FRONTEND = 'library-reservation-system-frontend'
+        DOCKERHUB_REPO_DATABASE = 'library-reservation-system-database'
         DOCKER_IMAGE_TAG = 'latest'
         BACKEND_DIRECTORY = 'backend'
         FRONTEND_DIRECTORY = 'frontend'
@@ -125,6 +126,10 @@ pipeline {
 
                         docker tag ${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG} \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG}
                         docker push \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG}
+
+                        docker tag ${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG} \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG}
+
+                        docker push \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG}
 
                         docker logout
                     """
