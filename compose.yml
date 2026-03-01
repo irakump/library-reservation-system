@@ -1,26 +1,47 @@
 services:
 
   mariadb:
-    image: mariadb:lts-ubi9
+    container_name: mariadb
+    image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_DATABASE: metbook
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_RANDOM_ROOT_PASSWORD: ${MARIADB_RANDOM_ROOT_PASSWORD}
     ports:
-      - "27017:27017"
+      - "13306:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
+      - ./backend/database/database.sql:/docker-entrypoint-initdb.d/database.sql
+      - ./backend/database/genre.sql:/docker-entrypoint-initdb.d/genre.sql
+      - ./backend/database/language.sql:/docker-entrypoint-initdb.d/language.sql
+      - ./backend/database/author.sql:/docker-entrypoint-initdb.d/author.sql
+      - ./backend/database/book.sql:/docker-entrypoint-initdb.d/book.sql
+      - ./backend/database/writes.sql:/docker-entrypoint-initdb.d/writes.sql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   library-reservation-system-backend:
+    container_name: backend
     image: library-reservation-system-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${MARIADB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MARIADB_PASSWORD}
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
   
   library-reservation-system-frontend:
+    container_name: frontend
     image: library-reservation-system-frontend:latest
     build:
       context: ./frontend
@@ -28,6 +49,8 @@ services:
     stdin_open: true
     ports:
       - "3000:80"
+    env_file:
+      - .env
   
 volumes:
   mariadb-data:
