@@ -1,5 +1,6 @@
 package com.library.backend.loan;
 
+import com.library.backend.book.Book;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.PutExchange;
@@ -51,9 +52,9 @@ public class LoanController {
 
 
     @PostMapping("/new")
-    public ResponseEntity<Void> createLoan(@RequestBody CreateLoanDTO request) {
-        loanService.createLoan(request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<LoanDTO> createLoan(@RequestBody CreateLoanDTO request) {
+        LoanDTO created = loanService.createLoan(request);
+        return ResponseEntity.ok(created);
     }
 
     @PutMapping("/return")

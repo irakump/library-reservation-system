@@ -7,13 +7,13 @@ import {
 import { useAuth } from "./AuthContext.jsx";
 
 // set defaults so tests wont crash
-const BookContext = createContext({
+const FavoritesContext = createContext({
   isFavorite: () => false,
   addToFavorites: async () => {},
   removeFromfavorites: async () => {},
 });
 
-export const useBookContext = () => useContext(BookContext);
+export const useBookContext = () => useContext(FavoritesContext);
 
 export const BookProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
@@ -58,5 +58,9 @@ export const BookProvider = ({ children }) => {
     removeFromfavorites,
   };
 
-  return <BookContext.Provider value={value}>{children}</BookContext.Provider>;
+  return (
+    <FavoritesContext.Provider value={value}>
+      {children}
+    </FavoritesContext.Provider>
+  );
 };

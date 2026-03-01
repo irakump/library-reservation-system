@@ -20,14 +20,20 @@ export const LoanProvider = ({ children }) => {
     }
   }, [isLoggedIn, user, trigger]);
 
-  const addToLoans = async (isbn) => {
-    if (!user?.userId) {
-      console.error("User not logged in");
-      return;
-    }
+  export const useLoanContext = () => useContext(LoanContext);
 
-    await createLoan(user.userId, isbn);
-    setTrigger(!trigger);
+  export const LoanProvider = ({ children }) => {
+    const [loans, setLoans] = useState([]);
+    const userId = 2;
+
+    useEffect(() => {
+      getLoans(userId).then((res) => setLoans(res.data));
+    }, []);
+
+    const addToLoans = async (isbn) => {
+      const response = await createLoan(userId, isbn);
+      await setLoans((prev) => [...prev, response]);
+    };
   };
 
   const removeLoans = async (userId, isbn, loanId) => {
@@ -44,5 +50,5 @@ export const LoanProvider = ({ children }) => {
     trigger,
   };
 
-  return <LoanContext value={value}>{children}</LoanContext>;
+  return <LoanContext.Provider value={value}>{children}</LoanContext.Provider>;
 };

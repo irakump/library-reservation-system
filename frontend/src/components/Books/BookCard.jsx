@@ -1,9 +1,10 @@
-import Button from "./Button";
-import { getPage } from "../../utils/getPage";
-import FavoriteButton from "./FavoriteButton.jsx";
+import Button from "../buttons/Button.jsx";
+import FavoriteButton from "../buttons/FavoriteButton.jsx";
+import BookButtons from "./BookButtons.jsx";
 
 const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
-  const page = getPage(pageType, book, addToLoans);
+  //const page = getPage(pageType, book, addToLoans);
+  //const BookCard = ({ book, pageType, setOpen }) => {
 
   return (
     <div
@@ -28,23 +29,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
 
-        {page.showDates && (
-          <>
-            <p className="text-sm mb-1 text-left">
-              Borrowed: {book.borrowedDate}
-            </p>
-            <p className="text-sm mb-1 text-left">
-              Returned: {book.returnedDate}
-            </p>
-          </>
-        )}
-
-        <p className="text-sm mb-0 text-left">{page.p}</p>
-
-        {/* Button for loan/reserve/return jene */}
-        {!page.showDates && (
-          <Button onClick={() => page.action(book)}> {page.BtnText} </Button>
-        )}
+        <BookButtons pageType={pageType} book={book} />
       </div>
     </div>
   );

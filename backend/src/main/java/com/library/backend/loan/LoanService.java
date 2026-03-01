@@ -22,7 +22,7 @@ public class LoanService {
     }
 
     @Transactional
-    public void createLoan(CreateLoanDTO dto) {
+    public LoanDTO createLoan(CreateLoanDTO dto) {
         User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
         Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
 
@@ -32,6 +32,8 @@ public class LoanService {
 
         book.setAvailable(false);
         bookRepo.save(book);
+
+        return new LoanDTO(loan);
     }
 
     @Transactional
