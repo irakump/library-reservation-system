@@ -229,6 +229,8 @@ docker compose down -v
 docker compose logs [image-name]
 ```
 
+Once container is running, open `http://localhost:3000` in the browser.
+
 #### Jenkins Requirements
 
 Configure credentials in Jenkins settings:
