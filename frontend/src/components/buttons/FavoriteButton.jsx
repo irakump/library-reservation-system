@@ -6,11 +6,11 @@ const FavoriteButton = ({ book }) => {
   let favorite = isFavorite(book.isbn);
   //console.log(("Removefav: ", removeFromfavorites))
 
-  function onFavoriteClick(e) {
-    e.stopPropagation();
-    if (favorite) removeFromfavorites(book.isbn);
-    else addToFavorites(book.isbn);
-  }
+    function onFavoriteClick(e) {
+        e.stopPropagation();
+        if (favorite) removeFromfavorites(book.isbn)
+        else addToFavorites(book)
+    }
 
   return (
     <button onClick={(e) => onFavoriteClick(e)}>{favorite ? "♥︎" : "♡"}</button>
