@@ -3,18 +3,16 @@ import ReserveButton from "../components/buttons/ReserveButton.jsx";
 import HistoryText from "../components/buttons/HistoryText.jsx";
 
 function BookButtons({pageType, book}) {
-    //let showAvailable;
     let returnButton;
+
     switch (pageType) {
         case "favourite":
             if (book.availability) {
                 returnButton = <LoanButton pageType={pageType} book={book}> Loan </LoanButton>
-                ///showAvailable = "🟢 Available"
                 break;
             }
             else {
                 returnButton = <ReserveButton pageType={pageType} book={book}> Reserve </ReserveButton>
-                //showAvailable = "🔴 Not available"
                 break;
             }
         case "loans":
@@ -27,6 +25,10 @@ function BookButtons({pageType, book}) {
 
         case "history":
             returnButton = <HistoryText book={book}></HistoryText>
+            break;
+
+        default:
+            returnButton = null;
     }
 
     return returnButton;
