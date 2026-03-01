@@ -20,19 +20,19 @@ export const BookProvider = ({children}) => {
     }, []);
 
 
-    const isFavorite = (isbn) => {
-        return favorites.includes(isbn)
+    const isFavorite = (book) => {
+        return favorites.includes(book)
     }
 
-    const addToFavorites = async (isbn) => {
-        await addFavorite(2, isbn).then(() => {
-            setFavorites(prev => [...prev, isbn]);
+    const addToFavorites = async (book) => {
+        await addFavorite(2, book.isbn).then(() => {
+            setFavorites(prev => [...prev, book]);
         })
     }
 
-    const removeFromfavorites = async (isbn) => {
-        await removeFavorite(2, isbn);
-        await setFavorites(prev => prev.filter(f => f !== isbn));
+    const removeFromfavorites = async (book) => {
+        await removeFavorite(2, book.isbn);
+        await setFavorites(prev => prev.filter(f => f !== book));
     }
 
     const value = {
