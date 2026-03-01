@@ -1,17 +1,16 @@
-import axios from "axios";
+import api from "./axiosConfig";
 
-const URL = "http://localhost:8081/api"
+const URL = "http://localhost:8081/api";
 
 export const getFavorites = async (userId) => {
-    return await axios.get(`${URL}/users/${userId}/favorites`);
-}
-
+  return await api.get(`/users/${userId}/favorites`);
+};
 
 export const addFavorite = async (userId, isbn) => {
-    const response = await axios.post(`${URL}/users/${userId}/favorites/${isbn}`);
-    return response;
-}
+  const response = await api.post(`/users/${userId}/favorites/${isbn}`);
+  return response;
+};
 
 export const removeFavorite = async (userId, isbn) => {
-    return await axios.delete(`${URL}/users/${userId}/favorites/${isbn}`);
-}
+  return await api.delete(`/users/${userId}/favorites/${isbn}`);
+};

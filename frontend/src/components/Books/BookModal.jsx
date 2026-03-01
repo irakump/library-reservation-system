@@ -2,8 +2,8 @@ import Button from "./Button";
 import { getPage } from "../../utils/getPage";
 import FavoriteButton from "./FavoriteButton.jsx";
 
-const BookModal = ({ book, pageType, setOpen }) => {
-  const page = getPage(pageType, book);
+const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
+  const page = getPage(pageType, book, addToLoans);
 
   //
   return (

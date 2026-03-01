@@ -1,47 +1,62 @@
-import {createContext, useState, useContext, useEffect} from "react";
-import {addFavorite, getFavorites, removeFavorite} from "../api/favoritesApi.js";
+import { createContext, useState, useContext, useEffect } from "react";
+import {
+  addFavorite,
+  getFavorites,
+  removeFavorite,
+} from "../api/favoritesApi.js";
+import { useAuth } from "./AuthContext.jsx";
 
 // set defaults so tests wont crash
 const BookContext = createContext({
-    isFavorite: () => false,
-    addToFavorites: async () => {},
-    removeFromfavorites: async () => {},
-})
+  isFavorite: () => false,
+  addToFavorites: async () => {},
+  removeFromfavorites: async () => {},
+});
 
-export const useBookContext = () => useContext(BookContext)
+export const useBookContext = () => useContext(BookContext);
 
-export const BookProvider = ({children}) => {
-    const [favorites, setFavorites] = useState([])
-    const userId = 2; //for testing
+export const BookProvider = ({ children }) => {
+  const [favorites, setFavorites] = useState([]);
+  const { user, isLoggedIn } = useAuth();
+  //const userId = 2; //for testing
 
-    useEffect(() => {
-        getFavorites(userId)
-            .then(res => setFavorites(res.data));
-    }, []);
+  useEffect(() => {
+    if (isLoggedIn && user?.userId) {
+      getFavorites(user.userId)
+        .then((res) => setFavorites(res.data))
+        .catch((error) => console.error("Error fetching favorites: ", error));
+    }
+  }, [isLoggedIn, user]);
 
+  const isFavorite = (isbn) => {
+    return favorites.includes(isbn);
+  };
 
-    const isFavorite = (isbn) => {
-        return favorites.includes(isbn)
+  const addToFavorites = async (isbn) => {
+    if (!user?.userId) {
+      console.error("User not logged in");
+      return;
     }
 
-    const addToFavorites = async (isbn) => {
-        await addFavorite(2, isbn).then(() => {
-            setFavorites(prev => [...prev, isbn]);
-        })
-    }
+    await addFavorite(user.userId, isbn).then(() => {
+      setFavorites((prev) => [...prev, isbn]);
+    });
+  };
 
-    const removeFromfavorites = async (isbn) => {
-        await removeFavorite(2, isbn);
-        await setFavorites(prev => prev.filter(f => f !== isbn));
+  const removeFromfavorites = async (isbn) => {
+    if (!user?.userId) {
+      console.error("User not logged in");
+      return;
     }
+    await removeFavorite(user.userId, isbn);
+    await setFavorites((prev) => prev.filter((f) => f !== isbn));
+  };
 
-    const value = {
-        isFavorite,
-        addToFavorites,
-        removeFromfavorites,
-    }
+  const value = {
+    isFavorite,
+    addToFavorites,
+    removeFromfavorites,
+  };
 
-    return <BookContext.Provider value={value}>
-        {children}
-    </BookContext.Provider>
-}
+  return <BookContext.Provider value={value}>{children}</BookContext.Provider>;
+};

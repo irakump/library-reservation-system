@@ -1,56 +1,64 @@
 //functions for buttons
 
-import {createLoan, returnLoan} from "../api/loansApi.jsx";
-
+import { createLoan, returnLoan } from "../api/loansApi.jsx";
 
 export function ReserveBook(book) {
-    console.log(`${book.title} reserved`);
-    alert(`Reservation for ${book.title} succeed`);
+  console.log(`${book.title} reserved`);
+  alert(`Reservation for ${book.title} succeed`);
 }
 
 export function ReturnBook(book) {
-    confirm(`Returning ${book.title}`);
-    //removeLoan(book.userId, book.isbn, book.loanId)
-    returnLoan(book.userId, book.isbn, book.loanId);
+  confirm(`Returning ${book.title}`);
+  //removeLoan(book.userId, book.isbn, book.loanId)
+  returnLoan(book.userId, book.isbn, book.loanId);
 }
 
-export function LoanBook(book) {
-    //alert(`Loaning ${book.title}`);
-    createLoan(2, book.isbn);
+export function LoanBook(book, addToLoans) {
+  //alert(`Loaning ${book.title}`);
+  //createLoan(2, book.isbn);
+  if (addToLoans) {
+    addToLoans(book.isbn);
+  } else {
+    console.error("addToLoans function not provided");
+  }
 }
 
 export function CancelReservation(book) {
-    confirm(`Canceling recervation for: ${book.title}`);
-  }
+  confirm(`Canceling recervation for: ${book.title}`);
+}
 
-
-export function getPage(pageType, book) {
-    switch (pageType) {
-        case "favourite":
-            if (book.availability) {
-                return { 
-                    BtnText: "Loan", 
-                    action: (book) => LoanBook(book), p: "🟢 Available"}
-            } 
-            else return { 
-                BtnText: "Reserve", 
-                action: (book) => ReserveBook(book), p: "🔴 Not available"}
-
-        case "loans":
+export function getPage(pageType, book, addToLoans) {
+  switch (pageType) {
+    case "favourite":
+      if (book.availability) {
         return {
-            BtnText: "Return", 
-            action: (book) => ReturnBook(book)}
+          BtnText: "Loan",
+          action: (book) => LoanBook(book, addToLoans),
+          p: "🟢 Available",
+        };
+      } else
+        return {
+          BtnText: "Reserve",
+          action: (book) => ReserveBook(book),
+          p: "🔴 Not available",
+        };
 
-        case "reservation":
-        return { 
-            BtnText: "Cancel", 
-            action: (book) => CancelReservation(book) }
+    case "loans":
+      return {
+        BtnText: "Return",
+        action: (book) => ReturnBook(book),
+      };
 
-        case "history":
-        return { BtnText: null, showDates: true }
+    case "reservation":
+      return {
+        BtnText: "Cancel",
+        action: (book) => CancelReservation(book),
+      };
 
-        default:
-        return {};
+    case "history":
+      return { BtnText: null, showDates: true };
 
-        }
+    default:
+      return {};
+  }
 }

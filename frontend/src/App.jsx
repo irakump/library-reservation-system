@@ -11,36 +11,42 @@ import Footer from "./components/footer/Footer.jsx";
 import { Routes, Route } from "react-router";
 import Notification from "./components/notification/Notification.jsx";
 import { NotificationProvider } from "./contexts/NotificationContext.jsx";
-import {BookProvider} from "./contexts/BookContext.jsx";
-import {LoanProvider} from "./contexts/LoanContext.jsx";
+import { BookProvider } from "./contexts/BookContext.jsx";
+import { LoanProvider } from "./contexts/LoanContext.jsx";
 
 function App() {
   return (
     <>
-      <LoanProvider>
-      <BookProvider>
-        <AuthProvider>
-          <MenuProvider>
-            <NavBar />
-          </MenuProvider>
-        </AuthProvider>
+      <AuthProvider>
+        <MenuProvider>
+          <LoanProvider>
+            <BookProvider>
+              <NavBar />
 
-        <NotificationProvider>
-          <Notification />
-        </NotificationProvider>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/profile/loans" element={<LoansPage />} />
-            <Route path="/profile/reservations" element={<ReservationPage />} />
-            <Route path="/profile/history" element={<HistoryPage />} />
-            <Route path="/profile/favorites" element={<FavouritePage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BookProvider>
-      </LoanProvider>
+              <NotificationProvider>
+                <Notification />
+              </NotificationProvider>
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/profile/loans" element={<LoansPage />} />
+                  <Route
+                    path="/profile/reservations"
+                    element={<ReservationPage />}
+                  />
+                  <Route path="/profile/history" element={<HistoryPage />} />
+                  <Route
+                    path="/profile/favorites"
+                    element={<FavouritePage />}
+                  />
+                </Routes>
+              </main>
+              <Footer />
+            </BookProvider>
+          </LoanProvider>
+        </MenuProvider>
+      </AuthProvider>
     </>
   );
 }
