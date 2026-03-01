@@ -29,11 +29,14 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             </div>
 
             <div className="flex gap-4">
-              <img
-                src={book.image}
-                alt="Book cover"
-                className="w-24 h-36 object-cover"
-              />
+              <div className="w-24 h-auto mt-1 mr-0.5 shrink-0">
+                <img
+                  src={`/books/${book.isbn}.jpg`}
+                  alt={`Book image for ${book.title}`}
+                  className="w-24 h-auto rounded-sm outline-1 outline-gray-200"
+                />
+              </div>
+
               <div className="flex-1">
                 <h1 className="font-bold text-lg">{book.title}</h1>
                 <p className="text-sm mb-1">
