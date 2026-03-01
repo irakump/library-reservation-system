@@ -7,7 +7,7 @@ const FavoriteButton = ({book}) => {
 
     function onFavoriteClick(e) {
         e.stopPropagation();
-        if (favorite) removeFromfavorites(book)
+        if (favorite) removeFromfavorites(book.isbn)
         else addToFavorites(book)
     }
 

@@ -1,13 +1,10 @@
 package com.library.backend.loan;
 
-import com.library.backend.book.Book;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.service.annotation.PutExchange;
 
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.stream.StreamSupport;
+
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -24,12 +21,9 @@ public class LoanController {
 
     // Get all loans
     @GetMapping
-    public List<LoanDTO> getAllLoans() {
-        Iterable<Loan> loans = repository.findAll();
-
-        return StreamSupport.stream(loans.spliterator(), false)
-                .map(LoanDTO::new)
-                .toList();
+    public ResponseEntity<List<LoanDTO>> getAllLoans() {
+        List<LoanDTO> loans = loanService.getAllLoans();
+        return ResponseEntity.ok(loans);
     }
 
     // Get loan by id
@@ -42,45 +36,31 @@ public class LoanController {
 
     // Get active loans by user's id
     @GetMapping("/user/{userId}")
-    public List<LoanDTO> getLoansByUserId(@PathVariable Integer userId) {
-        return repository.findByUserUserId(userId)
-                .stream()
-                .filter(loan -> loan.getReturnDate() == null)
-                .map(LoanDTO::new)
-                .toList();
+    public ResponseEntity<List<LoanDTO>> getLoansByUser(@PathVariable int userId) {
+        List<LoanDTO> loans = loanService.getLoansByUser(userId);
+        return ResponseEntity.ok(loans);
     }
 
-
+    //Create new loan
     @PostMapping("/new")
     public ResponseEntity<LoanDTO> createLoan(@RequestBody CreateLoanDTO request) {
         LoanDTO created = loanService.createLoan(request);
         return ResponseEntity.ok(created);
     }
 
+    //Change loan
     @PutMapping("/return")
     public ResponseEntity<Void> returnLoan(@RequestBody ReturnLoanDTO request) {
         loanService.returnLoan(request);
         return ResponseEntity.ok().build();
     }
 
+    //Get loan history
 
-    /*
-    // Get active loans (not returned) by user's id and return date
-    @GetMapping("/user/{userId}/active")
-    public LoanDTO getLoansByUserIdAndReturnDate(@PathVariable Integer userId, Timestamp returnDate) {
-        // findByUserUserIdAndReturnDate
-        // TODO: check returndate = NULL
 
-    }
-
-    // Get returned loans by user's id and return date
-    @GetMapping("/user/{userId}/returned")
-    public LoanDTO getLoansByUserIdAndReturnDate(@PathVariable Integer userId, Timestamp returnDate) {
-        // findByUserUserIdAndReturnDate
-        // TODO: check returndate != NULL
-
-    }
-
-     */
 
 }
+
+
+
+

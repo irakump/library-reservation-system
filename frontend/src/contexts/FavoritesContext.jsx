@@ -30,9 +30,9 @@ export const FavoritesProvider = ({children}) => {
         })
     }
 
-    const removeFromfavorites = async ({book}) => {
-        await removeFavorite(2, book.isbn);
-        await setFavorites(prev => prev.filter(f => f !== book));
+    const removeFromfavorites = async (isbn) => {
+        await removeFavorite(2, isbn);
+        await setFavorites(prev => prev.filter(f => f.isbn !== isbn));
     }
 
     const value = {

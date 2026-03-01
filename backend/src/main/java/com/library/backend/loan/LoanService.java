@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Service
 public class LoanService {
@@ -21,6 +23,26 @@ public class LoanService {
         this.loanRepo = loanRepo;
     }
 
+    //Get all loans
+    public List<LoanDTO> getAllLoans() {
+        Iterable<Loan> loans = loanRepo.findAll();
+
+        return StreamSupport.stream(loans.spliterator(), false)
+                .map(LoanDTO::new)
+                .toList();
+    }
+
+    //Get loans by user
+    public List<LoanDTO> getLoansByUser(int userId) {
+        return loanRepo.findByUserUserId(userId)
+                .stream()
+                .filter(loan -> loan.getReturnDate() == null)
+                .map(LoanDTO::new)
+                .toList();
+    }
+
+
+    //Create new loan
     @Transactional
     public LoanDTO createLoan(CreateLoanDTO dto) {
         User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
@@ -36,6 +58,7 @@ public class LoanService {
         return new LoanDTO(loan);
     }
 
+    //Return a loan
     @Transactional
     public void returnLoan(ReturnLoanDTO dto) {
         Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("book not found"));

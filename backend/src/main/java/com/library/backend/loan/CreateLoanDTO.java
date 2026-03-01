@@ -1,7 +1,5 @@
 package com.library.backend.loan;
 
-import java.time.LocalDateTime;
-
 public class CreateLoanDTO {
     private int userId;
     private String isbn;
