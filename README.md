@@ -182,7 +182,7 @@ Get books by language:
 
 Get books by filters (any combination, max one language and one genre, multiple years allowed):  
 **endpoint:** '/book/filter?genre={genre}&years={year}&language={language}'  
-**example:** '/book/filter?genre=fantasy&years=2024&language=english'  
+**example:** '/book/filter?genre=fantasy&years=2024&language=english'
 
 #### Years
 
@@ -213,12 +213,13 @@ Use this endpoint with login:
 
 #### Run Docker Locally
 
-Copy `.env.sample` as `.env` in root directory and configure it.
-
 The following commands use configurations from `compose.yml` file and are run like this:
 
 ```shell
-# Build and start
+# Build
+docker compose build
+
+# Start
 docker compose up -d
 
 # Stop and remove
@@ -252,3 +253,9 @@ Configure Jenkins pipeline:
 6. Modify branches to build to be `*/main`.
 7. Apply and Save.
 8. Select 'Build Now' from left side menu. View live build progress in Stage View. Click on a build to view more info about it.
+
+Add automatic trigger:
+
+1. Navigate to Triggers in pipeline settings.
+2. Check 'Poll SCM'
+3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.
