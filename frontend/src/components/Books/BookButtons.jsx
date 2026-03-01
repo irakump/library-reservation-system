@@ -1,6 +1,6 @@
-import LoanButton from "../components/buttons/LoanButton.jsx";
-import ReserveButton from "../components/buttons/ReserveButton.jsx";
-import HistoryText from "../components/buttons/HistoryText.jsx";
+import LoanButton from "../buttons/LoanButton.jsx";
+import ReserveButton from "../buttons/ReserveButton.jsx";
+import HistoryText from "../buttons/HistoryText.jsx";
 
 function BookButtons({pageType, book}) {
     let returnButton;

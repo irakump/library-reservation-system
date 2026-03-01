@@ -1,9 +1,10 @@
 import {useLoanContext} from "../../contexts/LoanContext.jsx";
+import {splitDate} from "../../utils/splitDate.js";
 
 function LoanButton({pageType, book, children}) {
     const {addToLoans, removeLoans} = useLoanContext()
 
-    //loan
+    //new loan
     return pageType === "favourite" ? (
         <>
             <p className="text-sm mb-0 text-left">🟢 Available</p>
@@ -14,8 +15,10 @@ function LoanButton({pageType, book, children}) {
                     }}> {children}
             </button>
         </>
-        ) : //return
+        ) : //return loan
         (
+        <>
+            <p className="text-sm mb-0 text-left">Due date:  {splitDate(book.dueDate)}</p>
             <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
                     onClick={e => {
                         e.stopPropagation();
@@ -24,8 +27,7 @@ function LoanButton({pageType, book, children}) {
                     }}>
                 {children}
             </button>
-
+        </>
         )
 }
-
 export default LoanButton;

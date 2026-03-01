@@ -1,6 +1,6 @@
 import Button from "../buttons/Button.jsx";
 import FavoriteButton from "../buttons/FavoriteButton.jsx";
-import BookButtons from "../../utils/BookButtons.jsx";
+import BookButtons from "./BookButtons.jsx";
 
 const BookModal = ({ book, pageType, setOpen }) => {
   return (
