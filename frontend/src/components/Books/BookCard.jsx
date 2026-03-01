@@ -11,8 +11,9 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       className="bg-white rounded-lg p-2 flex gap-6 shadow hover:shadow-lg hover:opacity-90 transition-all "
       onClick={() => setOpen(book)}
     >
-      <div className="w-24 h-32 mt-1.5 ml-1.5 bg-gray-300 rounded shrink-0"></div>
-
+      <div className="w-24 h-auto mt-1.5 ml-1.5 shrink-0">
+        <img src={`/books/${book.isbn}.jpg`} alt={`Book image for ${book.title}`} className="w-24 h-auto rounded-sm outline-1 outline-gray-200"/>
+      </div>
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
