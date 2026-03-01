@@ -5,6 +5,7 @@ import {
   removeFavorite,
 } from "../api/favoritesApi.js";
 import { useAuth } from "./AuthContext.jsx";
+import api from "../api/axiosConfig.js";
 
 // set defaults so tests wont crash
 const FavoritesContext = createContext({
@@ -23,13 +24,16 @@ export const FavoritesProvider = ({ children }) => {
   useEffect(() => {
     if (isLoggedIn && user?.userId) {
       getFavorites(user.userId)
-        .then((res) => setFavorites(res.data))
+        .then((res) => {
+          console.log("Favorite fetched from backend: ", res.data);
+          setFavorites(res.data);
+        })
         .catch((error) => console.error("Error fetching favorites: ", error));
     }
   }, [isLoggedIn, user]);
 
   const isFavorite = (isbn) => {
-    return favorites.includes(isbn);
+    return favorites.some((book) => book.isbn === isbn);
   };
 
   const addToFavorites = async (isbn) => {
@@ -38,9 +42,15 @@ export const FavoritesProvider = ({ children }) => {
       return;
     }
 
-    await addFavorite(user.userId, isbn).then(() => {
-      setFavorites((prev) => [...prev, isbn]);
-    });
+    try {
+      await addFavorite(user.userId, isbn);
+
+      const bookResponse = await api.get(`/book/${isbn}`);
+      setFavorites((prev) => [...prev, bookResponse.data]);
+      console.log("Book added to favourites: ", bookResponse.data);
+    } catch (error) {
+      console.error("Error adding favorite: ", error);
+    }
   };
 
   const removeFromfavorites = async (isbn) => {
@@ -49,8 +59,13 @@ export const FavoritesProvider = ({ children }) => {
       return;
     }
 
-    await removeFavorite(user.userId, isbn);
-    setFavorites((prev) => prev.filter((f) => f !== isbn));
+    try {
+      await removeFavorite(user.userId, isbn);
+
+      setFavorites((prev) => prev.filter((book) => book.isbn !== isbn));
+    } catch (error) {
+      console.error("Error removing favourite:", error);
+    }
   };
 
   const value = {
