@@ -1,9 +1,9 @@
-import Button from "./Button";
-import { getPage } from "../../utils/getPage";
-import FavoriteButton from "./FavoriteButton.jsx";
+import Button from "../buttons/Button.jsx";
+import FavoriteButton from "../buttons/FavoriteButton.jsx";
+import BookButtons from "../../utils/BookButtons.jsx";
 
 const BookCard = ({ book, pageType, setOpen }) => {
-  const page = getPage(pageType, book);
+  //const page = getButton(pageType, book);
 
   return (
     <div
@@ -28,23 +28,31 @@ const BookCard = ({ book, pageType, setOpen }) => {
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
 
-        {page.showDates && (
-          <>
-            <p className="text-sm mb-1 text-left">
-              Borrowed: {book.borrowedDate}
-            </p>
-            <p className="text-sm mb-1 text-left">
-              Returned: {book.returnedDate}
-            </p>
-          </>
-        )}
+      {//page.showDates && (
+      //  <>
+      //    <p className="text-sm mb-1 text-left">
+      //      Borrowed: {book.borrowedDate}
+      //    </p>
+      //    <p className="text-sm mb-1 text-left">
+      //      Returned: {book.returnedDate}
+      //    </p>
+      //  </>
+      ////)}
+      }
 
-        <p className="text-sm mb-0 text-left">{page.p}</p>
+          {/*
 
-        {/* Button for loan/reserve/return jene */}
+
+          <p className="text-sm mb-0 text-left">{page.p}</p>
+
+
         {!page.showDates && (
           <Button onClick={() => page.action(book)}> {page.BtnText} </Button>
         )}
+          */}
+
+          <BookButtons pageType={pageType} book={book} />
+
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ function Button({ onClick, children }) {
     onClick={e => {
       e.stopPropagation();
       onClick();
-      ;
+
     }}>
       {children}
     </button>

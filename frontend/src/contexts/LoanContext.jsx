@@ -11,7 +11,6 @@ export const useLoanContext = () => useContext(LoanContext)
 
 export const LoanProvider = ({children}) => {
     const [loans, setLoans] = useState([])
-    const [trigger, setTrigger] = useState(false);
     const userId = 2;
 
     useEffect(() => {
@@ -20,14 +19,14 @@ export const LoanProvider = ({children}) => {
     }, []);
 
     const addToLoans = async (isbn) => {
-        await createLoan(userId, isbn)
-        //setTrigger(!trigger);
+        const response = await createLoan(userId, isbn)
+        await setLoans(prev => [...prev, response.data])
+
     }
 
     const removeLoans = async (userId, isbn, loanId) => {
         await returnLoan(userId, isbn, loanId)
-        //setLoans(prev => prev.filter(f => f.loanId !== loanId));
-        setTrigger(!trigger);
+        await setLoans(prev => prev.filter(f => f.loanId !== loanId));
     }
 
 
@@ -35,8 +34,6 @@ export const LoanProvider = ({children}) => {
         addToLoans,
         removeLoans,
         loans,
-        setTrigger,
-        trigger
     }
 
     return <LoanContext value={value}>
