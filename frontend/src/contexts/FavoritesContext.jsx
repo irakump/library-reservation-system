@@ -11,14 +11,14 @@ const FavoritesContext = createContext({
   isFavorite: () => false,
   addToFavorites: async () => {},
   removeFromfavorites: async () => {},
+  favourites: [],
 });
 
-export const useBookContext = () => useContext(FavoritesContext);
+export const useFavoritesContext = () => useContext(FavoritesContext);
 
-export const BookProvider = ({ children }) => {
+export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const { user, isLoggedIn } = useAuth();
-  //const userId = 2; //for testing
 
   useEffect(() => {
     if (isLoggedIn && user?.userId) {
@@ -48,14 +48,16 @@ export const BookProvider = ({ children }) => {
       console.error("User not logged in");
       return;
     }
+
     await removeFavorite(user.userId, isbn);
-    await setFavorites((prev) => prev.filter((f) => f !== isbn));
+    setFavorites((prev) => prev.filter((f) => f !== isbn));
   };
 
   const value = {
     isFavorite,
     addToFavorites,
     removeFromfavorites,
+    favorites,
   };
 
   return (

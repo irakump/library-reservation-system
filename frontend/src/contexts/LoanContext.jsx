@@ -20,26 +20,31 @@ export const LoanProvider = ({ children }) => {
     }
   }, [isLoggedIn, user, trigger]);
 
-  export const useLoanContext = () => useContext(LoanContext);
-
-  export const LoanProvider = ({ children }) => {
-    const [loans, setLoans] = useState([]);
-    const userId = 2;
-
-    useEffect(() => {
-      getLoans(userId).then((res) => setLoans(res.data));
-    }, []);
-
-    const addToLoans = async (isbn) => {
-      const response = await createLoan(userId, isbn);
-      await setLoans((prev) => [...prev, response]);
-    };
+  const addToLoans = async (isbn) => {
+    if (!user?.userId) {
+      console.error("User not logged in");
+      return;
+    }
+    try {
+      const response = await createLoan(user.userId, isbn); //Use JWT userId
+      if (response) {
+        setLoans((prev) => [...prev, response]);
+      } else {
+        setTrigger(!trigger);
+      }
+    } catch (error) {
+      console.error("Error creating loan: ", error);
+    }
   };
 
   const removeLoans = async (userId, isbn, loanId) => {
-    await returnLoan(userId, isbn, loanId);
-    //setLoans(prev => prev.filter(f => f.loanId !== loanId));
-    setTrigger(!trigger);
+    try {
+      await returnLoan(userId, isbn, loanId);
+      //setLoans(prev => prev.filter(f => f.loanId !== loanId));
+      setTrigger(!trigger);
+    } catch (error) {
+      console.error("Error returning loan: ", error);
+    }
   };
 
   const value = {
