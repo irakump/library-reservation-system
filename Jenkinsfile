@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Backend: Run Tests') {
+        stage('Backend: Run and Publish Tests') {
             agent {
                 docker {
                     image 'maven:3.9.6-eclipse-temurin-21'
@@ -52,6 +52,11 @@ pipeline {
             steps {
                 dir(BACKEND_DIRECTORY) {
                     sh 'mvn test'
+                }
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
                 }
             }
         }
