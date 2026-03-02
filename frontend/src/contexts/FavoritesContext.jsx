@@ -36,18 +36,18 @@ export const FavoritesProvider = ({ children }) => {
     return favorites.some((book) => book.isbn === isbn);
   };
 
-  const addToFavorites = async (isbn) => {
+  const addToFavorites = async (book) => {
     if (!user?.userId) {
       console.error("User not logged in");
       return;
     }
 
     try {
-      await addFavorite(user.userId, isbn);
+      await addFavorite(user.userId, book.isbn);
 
-      const bookResponse = await api.get(`/book/${isbn}`);
-      setFavorites((prev) => [...prev, bookResponse.data]);
-      console.log("Book added to favourites: ", bookResponse.data);
+      //const bookResponse = await api.get(`/book/${isbn}`);
+      setFavorites((prev) => [...prev, book]);
+      //console.log("Book added to favourites: ", );
     } catch (error) {
       console.error("Error adding favorite: ", error);
     }
