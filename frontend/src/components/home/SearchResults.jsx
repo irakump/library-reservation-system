@@ -39,7 +39,7 @@ export const SearchResults = () => {
       {/* Search result header */}
       {searchResults.length > 0 ? (
         <>
-          <div className="flex flex-row justify-between mb-2">
+          <div className="flex flex-row justify-between mb-2 w-full sm:max-w-4xl mx-auto px-4 sm:px-1">
             <h2 ref={searchResultsStartRef}>Search Results</h2>
             <h2>
               {startIndex + 1} -{' '}
@@ -50,7 +50,7 @@ export const SearchResults = () => {
             </h2>
           </div>
 
-          <div>
+          <div className='sm:max-w-4xl mx-auto'>
             <BookDataPage
               title=" "
               books={searchResults.slice(startIndex, endIndex)}
@@ -59,7 +59,7 @@ export const SearchResults = () => {
           </div>
 
           {/* Search result navigation */}
-          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer">
+          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer sm:max-w-4xl mx-auto">
             <button
               key="previous-page"
               onClick={(e) => {
@@ -123,7 +123,7 @@ export const SearchResults = () => {
           </div>
         </>
       ) : (
-        <div className="flex justify-center mb-18">
+        <div className="flex justify-center mb-18 sm:max-w-4xl mx-auto">
           <h2>No Search Results</h2>
         </div>
       )}

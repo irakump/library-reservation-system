@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <SearchFilterProvider>
         <SearchResultProvider>
-          <div className="p-4 bg-background">
+          <div className="sm:p-4 bg-background pt-10 pb-5">
             <SearchBar />
             <SearchFiltersHider /> {/* Contains SearchFilters */}
             <SearchResults />

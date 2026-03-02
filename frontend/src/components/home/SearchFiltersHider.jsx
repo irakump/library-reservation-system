@@ -9,9 +9,9 @@ const SearchFiltersHider = () => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 sm:max-w-4xl mx-auto">
       {filtersVisible && <SearchFilters />}
-      <div className="flex justify-end mr-1">
+      <div className="flex justify-end mr-2 sm:mr-1">
         <button onClick={toggleFilters} className='cursor-pointer'>
           {filtersVisible ? 'Hide' : 'Show'} Filters
         </button>
