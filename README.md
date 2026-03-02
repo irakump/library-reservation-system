@@ -211,6 +211,39 @@ Use this endpoint with login:
 
 ### Jenkins and Docker
 
+#### Jenkins Requirements
+
+Configure credentials in Jenkins settings:  
+docker_hub (DockerHub), GitHub
+
+Install plugins:
+
+- Docker
+- Docker pipeline
+- JaCoCo
+- Pipeline: Stage View
+
+Ensure that Docker Desktop is installed.
+
+#### Jenkins Pipeline
+
+Configure Jenkins pipeline:
+
+1. Make new pipeline. Name it.
+2. Navigate to pipeline settings.
+3. Select 'Pipeline script from SCM'.
+4. Select 'Git' as SCM.
+5. Under repository paste `https://github.com/Nurha20-24/library-reservation-system.git` to Repository URL, and select your GitHub credentials as this repository is private.
+6. Modify branches to build to be `*/main`.
+7. Apply and Save.
+8. Select 'Build Now' from left side menu. View live build progress in Stage View. Click on a build to view more info about it.
+
+Add automatic trigger:
+
+1. Navigate to Triggers in pipeline settings.
+2. Check 'Poll SCM'
+3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.
+
 #### Run Docker Locally
 
 The following commands use configurations from `compose.yml` file and are run like this:
@@ -230,34 +263,3 @@ docker compose logs [image-name]
 ```
 
 Once container is running, open `http://localhost:3000` in the browser.
-
-#### Jenkins Requirements
-
-Configure credentials in Jenkins settings:
-docker_hub (DockerHub), GitHub-pat (GitHub PAT)
-
-#### Jenkins Pipeline
-
-Install plugins:
-
-- Docker
-- Docker pipeline
-- JaCoCo
-- Pipeline: Stage View
-
-Configure Jenkins pipeline:
-
-1. Make new pipeline. Name it.
-2. Navigate to pipeline settings.
-3. Select 'Pipeline script from SCM'.
-4. Select 'Git' as SCM.
-5. Under repository paste `https://github.com/Nurha20-24/library-reservation-system.git` to Repository URL, and select your GitHub credentials as this repository is private.
-6. Modify branches to build to be `*/main`.
-7. Apply and Save.
-8. Select 'Build Now' from left side menu. View live build progress in Stage View. Click on a build to view more info about it.
-
-Add automatic trigger:
-
-1. Navigate to Triggers in pipeline settings.
-2. Check 'Poll SCM'
-3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.
