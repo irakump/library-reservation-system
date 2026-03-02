@@ -33,7 +33,6 @@ public class LoanDTO {
         this.year = l.getBook().getYear();
         this.language = l.getBook().getLanguage();
         this.genre = l.getBook().getGenre();
-
     }
 
     public String getLanguage() {return language;}

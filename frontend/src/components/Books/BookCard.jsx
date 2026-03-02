@@ -12,7 +12,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       onClick={() => setOpen(book)}
     >
       <div className="w-24 h-auto mt-1.5 ml-1.5 shrink-0">
-        <img src={`/books/${book.isbn}.jpg`} alt={`Book image for ${book.title}`} className="w-24 h-auto rounded-sm outline-1 outline-gray-200"/>
+        <img src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`} alt={`Book image for ${book.title}`} className="w-24 h-auto rounded-sm outline-1 outline-gray-200"/>
       </div>
       <div className="flex-1">
         <div className="flex justify-between items-start">
