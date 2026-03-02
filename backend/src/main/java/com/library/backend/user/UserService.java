@@ -12,20 +12,25 @@ public class UserService {
     }
 
     // Get all users
-    public List<User> getAllUsers() {
-        return (List<User>) userRepo.findAll();
+    public List<UserResponseDTO> getAllUsers() {
+        return ((List<User>) userRepo.findAll())
+                .stream()
+                .map(UserResponseDTO::new)
+                .toList();
     }
 
     // Get user by id
-    public User getUserById(Integer userId) {
-        return userRepo.findById(userId)
+    public UserResponseDTO getUserById(Integer userId) {
+       User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found: " + userId));
+       return new UserResponseDTO(user);
     }
 
     // // Get user by email (used with registration to check if email (unique) already exists)
-    public User getUserByEmail(String email) {
-        return userRepo.findByEmail(email)
+    public UserResponseDTO getUserByEmail(String email) {
+        User user = userRepo.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found: " + email));
+        return new UserResponseDTO(user);
     }
 
 }
