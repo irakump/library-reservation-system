@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createLoan, getLoans, returnLoan } from "../api/loansApi.jsx";
+import {createLoan, getHistory, getLoans, returnLoan} from "../api/loansApi.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
 const LoanContext = createContext({});
@@ -9,6 +9,7 @@ export const useLoanContext = () => useContext(LoanContext);
 export const LoanProvider = ({ children }) => {
   const [loans, setLoans] = useState([]);
   const { user, isLoggedIn } = useAuth();
+  const [history, setHistory] = useState([])
 
   useEffect(() => {
     // Only fetch if user is logged in
@@ -42,10 +43,19 @@ export const LoanProvider = ({ children }) => {
     }
   };
 
+    useEffect(() => {
+        if (isLoggedIn && user?.userId)
+            getHistory(user.userId)
+                .then((res) => setHistory(res.data))
+                .catch((error) => console.error(error))
+    }, [isLoggedIn, user]);
+
+
   const value = {
     addToLoans,
     removeLoans,
     loans,
+      history,
   };
 
   return <LoanContext.Provider value={value}>{children}</LoanContext.Provider>;

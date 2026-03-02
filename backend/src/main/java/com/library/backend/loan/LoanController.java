@@ -56,6 +56,12 @@ public class LoanController {
     }
 
     //Get loan history
+    @GetMapping("/user/{userId}/history")
+    public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable int userId) {
+        List<LoanDTO> loans = loanService.getLoanHistory(userId);
+        return ResponseEntity.ok(loans);
+    }
+
 
 
 

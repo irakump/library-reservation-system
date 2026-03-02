@@ -18,7 +18,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-15 gap-1 items-stretch mt-8 mb-12">
+    <div className="flex flex-col w-full h-15 gap-1 mb-12 p-4 sm:p-0 mx-auto sm:max-w-xl">
       <label className="ml-1" htmlFor="search">
         Search
       </label>

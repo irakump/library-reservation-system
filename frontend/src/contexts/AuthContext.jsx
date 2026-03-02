@@ -22,10 +22,11 @@ export const AuthProvider = ({ children }) => {
     const email = localStorage.getItem("email");
     const nickname = localStorage.getItem("nickname");
     const role = localStorage.getItem("role");
+    const createdAt = localStorage.getItem("createdAt");
 
     if (token && userId) {
       setIsLoggedIn(true);
-      setUser({ userId, email, nickname, role, token });
+      setUser({ userId, email, nickname, role, token, createdAt });
     }
   }, []);
 
@@ -50,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   // Login function - stores token and user info
   const handleLogin = (loginResponse) => {
-    const { token, userId, email, nickname, role } = loginResponse;
+    const { token, userId, email, nickname, role, createdAt } = loginResponse;
 
     // Store in localStorage
     localStorage.setItem("token", token);
@@ -58,10 +59,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("email", email);
     localStorage.setItem("nickname", nickname);
     localStorage.setItem("role", role);
+    localStorage.setItem("createdAt", createdAt);
 
     // Update state
     setIsLoggedIn(true);
-    setUser({ userId, email, nickname, role, token });
+    setUser({ userId, email, nickname, role, token, createdAt });
     closeLogin();
   };
 
@@ -72,6 +74,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("email");
     localStorage.removeItem("nickname");
     localStorage.removeItem("role");
+    localStorage.removeItem("createdAt");
 
     // Update state
     setIsLoggedIn(false);

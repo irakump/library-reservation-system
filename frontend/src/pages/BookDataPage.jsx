@@ -10,11 +10,11 @@ const BookDataPage = ({ title, books, pageType }) => {
   console.log(books);
   return (
     <>
-      <div className="min-h-screen">
-        <h1 className="text-2xl font-bold text-center text-heading p-7">
+      <div>
+        <h1 className="text-2xl font-bold text-center text-heading">
           {title}
         </h1>
-        <div className="grid grid-cols-1 lg:grid-cols-2 md:mx-5 lg:mx-15 xl:mx-30  bg-profileBackground p-15 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 bg-profileBackground p-6 gap-4 sm:rounded-md">
           {books.map((book) => (
             <BookCard
               key={book.isbn}
