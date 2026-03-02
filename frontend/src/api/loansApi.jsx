@@ -36,3 +36,9 @@ export function returnLoan(userId, isbn, loanId) {
 export const getLoans = async (userId) => {
   return await api.get(`/loans/user/${userId}`);
 };
+
+export async function getHistory(userId) {
+    return await api.get(`/loans/user/${userId}/history`);
+}
+
+

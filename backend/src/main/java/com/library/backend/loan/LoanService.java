@@ -41,6 +41,14 @@ public class LoanService {
                 .toList();
     }
 
+    public List<LoanDTO> getLoanHistory(int userId) {
+        return loanRepo.findByUserUserId(userId)
+                .stream()
+                .filter(loan -> loan.getReturnDate() != null)
+                .map(LoanDTO::new)
+                .toList();
+    }
+
 
     //Create new loan
     @Transactional
