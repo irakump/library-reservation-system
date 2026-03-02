@@ -1,11 +1,10 @@
 import api from "./axiosConfig";
 
-export function createReservation(userId, isbn) {
+export function createReservation(isbn) {
   return api
-    .post(`/reservations/new`, {
-      userId,
+    .post(`/reservations/new`, { 
       isbn,
-    })
+     })
     .then((response) => {
       console.log("create res: ", response);
       return response.data;
@@ -16,11 +15,9 @@ export function createReservation(userId, isbn) {
     });
 }
 
-export function cancelReservation(userId, isbn, reservationId) {
+export function cancelReservation(reservationId) {
   return api
     .put(`/reservations/cancel`, {
-      userId,
-      isbn,
       reservationId,
     })
     .then((response) => {

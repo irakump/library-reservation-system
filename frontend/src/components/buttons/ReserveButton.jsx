@@ -20,4 +20,5 @@ function ReserveButton({pageType, book, children}) {
             </button>
         </>
     );
+    
 } export default ReserveButton;

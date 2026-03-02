@@ -61,9 +61,9 @@ public class ReservationService {
 
     // Create new reservation
     @Transactional
-    public ReservationDTO createReservation(CreateReservationDTO dto) {
-        User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
-        Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
+    public ReservationDTO createReservation(int userId, String isbn) {
+        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found: "));
+        Book book = bookRepo.findById(isbn).orElseThrow(() -> new RuntimeException("Isbn not found: "));
 
         Reservation reservation = new Reservation(user, book);
         reservationRepo.save(reservation);
@@ -74,9 +74,12 @@ public class ReservationService {
 
     // Cancel reservation
     @Transactional
-    public void cancelReservation(CancelReservationDTO dto) {
-        Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
-        Reservation reservation  = reservationRepo.findById(dto.getReservationId()).orElseThrow(() -> new RuntimeException("reservation not found: "));
+    public void cancelReservation(int reservationId, int userId) {
+        Reservation reservation  = reservationRepo.findById(reservationId).orElseThrow(() -> new RuntimeException("Reservation not found: "));
+
+        if (reservation.getUser().getUserId() != userId) {
+            throw new RuntimeException("Cannot cancel another user's reservation");
+        }
 
         reservation.setStatus(not_active);
         reservationRepo.save(reservation);

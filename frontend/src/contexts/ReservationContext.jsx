@@ -26,16 +26,16 @@ export const ReservationProvider = ({ children }) => {
     }
 
     try {
-      const response = await createReservation(user.userId, isbn); // Use JWT userId
+      const response = await createReservation(isbn);
         setReservations((prev) => [...prev, response]);
     } catch (error) {
       console.error("Error creating reservation: ", error);
     }
   };
 
-const cancelReservation = async (userId, isbn, reservationId) => {
+const cancelReservation = async (reservationId) => {
     try {
-      await cancelReservation(userId, isbn, reservationId);
+      await cancelReservation(reservationId);
       setReservations(prev => prev.filter(f => f.reservationId !== reservationId));
 
     } catch (error) {

@@ -1,5 +1,6 @@
 package com.library.backend.reservation;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -48,16 +49,21 @@ public class ReservationController {
 
     // Create new reservation
     @PostMapping("/new")
-    public ResponseEntity<ReservationDTO> createReservation(@RequestBody CreateReservationDTO request) {
-        ReservationDTO createdReservation = reservationService.createReservation(request);
+    public ResponseEntity<ReservationDTO> createReservation(HttpServletRequest request, @RequestBody CreateReservationDTO dto) {
+
+        int userIdFromJwt = (int) request.getAttribute("userId");
+
+        ReservationDTO createdReservation = reservationService.createReservation(userIdFromJwt, dto.getIsbn());
         return ResponseEntity.ok(createdReservation);
     }
 
 
     // Change reservation (cancel)
     @PutMapping("/cancel")
-    public ResponseEntity<Void> cancelReservation(@RequestBody CancelReservationDTO request) {
-        reservationService.cancelReservation(request);
+    public ResponseEntity<Void> cancelReservation(HttpServletRequest request, @RequestBody CancelReservationDTO dto) {
+
+        int userIdFromJwt = (int) request.getAttribute("userId");
+        reservationService.cancelReservation(dto.getReservationId(), userIdFromJwt);
         return ResponseEntity.ok().build();
     }
 }
