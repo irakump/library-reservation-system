@@ -8,7 +8,6 @@ export const useLoanContext = () => useContext(LoanContext);
 
 export const LoanProvider = ({ children }) => {
   const [loans, setLoans] = useState([]);
-  const [trigger, setTrigger] = useState(false);
   const { user, isLoggedIn } = useAuth();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export const LoanProvider = ({ children }) => {
         .then((res) => setLoans(res.data))
         .catch((error) => console.error("Error fetching loans: ", error));
     }
-  }, [isLoggedIn, user, trigger]);
+  }, [isLoggedIn, user]);
 
   const addToLoans = async (isbn) => {
     if (!user?.userId) {
@@ -27,11 +26,7 @@ export const LoanProvider = ({ children }) => {
     }
     try {
       const response = await createLoan(user.userId, isbn); //Use JWT userId
-      if (response) {
         setLoans((prev) => [...prev, response]);
-      } else {
-        setTrigger(!trigger);
-      }
     } catch (error) {
       console.error("Error creating loan: ", error);
     }
@@ -40,8 +35,8 @@ export const LoanProvider = ({ children }) => {
   const removeLoans = async (userId, isbn, loanId) => {
     try {
       await returnLoan(userId, isbn, loanId);
-      //setLoans(prev => prev.filter(f => f.loanId !== loanId));
-      setTrigger(!trigger);
+      setLoans(prev => prev.filter(f => f.loanId !== loanId));
+
     } catch (error) {
       console.error("Error returning loan: ", error);
     }
@@ -51,8 +46,6 @@ export const LoanProvider = ({ children }) => {
     addToLoans,
     removeLoans,
     loans,
-    setTrigger,
-    trigger,
   };
 
   return <LoanContext.Provider value={value}>{children}</LoanContext.Provider>;
