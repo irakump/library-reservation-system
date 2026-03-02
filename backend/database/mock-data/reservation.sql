@@ -1,4 +1,4 @@
-INSERT INTO RESERVATION (user_id, isbn)
+INSERT INTO resevation (user_id, isbn)
 VALUES
 (1, '9789513162641'),
 (1, '9781472259059'),
@@ -7,7 +7,7 @@ VALUES
 (2, '9789513111465'),
 (2, '9780241600948');
 
-INSERT INTO RESERVATION (status, user_id, isbn)
+INSERT INTO reservation (status, user_id, isbn)
 VALUES
 ('not_active', 1, '0575039434'),
 ('not_active', 1, '9789513111465'),

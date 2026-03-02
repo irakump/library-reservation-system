@@ -1,4 +1,4 @@
-INSERT INTO BOOK (isbn, book_title, publishing_year, image_name, description, genre, language)
+INSERT INTO book (isbn, book_title, publishing_year, image_name, description, genre, language)
 VALUES
 ('9789528083030', 'Selkeästi Python', 2024, '9789528083030.jpg', 'Selkeästi Python on helposti sulava suomenkielinen opas ohjelmointiin Python-kielellä. Kirja esittelee Python-ohjelmointia helppojen esimerkkien avulla, ja johdattelee kokeilemaan erilaisia tietojenkäsittelyn tehtäviä omalla tietokoneella. Kirja on tarkoitettu kaikille Pythonista kiinnostuneille, ja se soveltuu itseopiskeluun sekä oppilaitosten kurssikirjaksi.', 'nonfiction', 'finnish'),
 ('9781118951309', 'Coding For Dummies', 2015, '9781118951309.jpg', 'Build your Python coding skills step-by-step and have fun doing it! Learn to program simple games, apps, and more. Gradually build knowledge from functions to space treasure game projects. Hints and helpful tips assist with common problems and encourage creative thinking.', 'nonfiction', 'english'),

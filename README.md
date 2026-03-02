@@ -180,9 +180,9 @@ Get books by language:
 **endpoint:** '/book/language/{language}'  
 **example:** '/book/language/english'
 
-Get books by filters (any combination, multiple values allowed):  
-**endpoint:** '/book/filter?g=fantasy&y=2024&l=english&l=finnish'  
-**example:** '/book/filter?g=fantasy&y=2024&l=english&l=finnish'
+Get books by filters (any combination, max one language and one genre, multiple years allowed):  
+**endpoint:** '/book/filter?genre={genre}&years={year}&language={language}'  
+**example:** '/book/filter?genre=fantasy&years=2024&language=english'
 
 #### Years
 
@@ -208,3 +208,56 @@ Register endpoint (register form sends data there and backend uses it):
 
 Use this endpoint with login:
 **endpoint:** '/auth/login'
+
+### Jenkins and Docker
+
+#### Run Docker Locally
+
+The following commands use configurations from `compose.yml` file and are run like this:
+
+```shell
+# Build
+docker compose build
+
+# Start
+docker compose up -d
+
+# Stop and remove
+docker compose down -v
+
+# View logs
+docker compose logs [image-name]
+```
+
+Once container is running, open `http://localhost:3000` in the browser.
+
+#### Jenkins Requirements
+
+Configure credentials in Jenkins settings:
+docker_hub (DockerHub), GitHub-pat (GitHub PAT)
+
+#### Jenkins Pipeline
+
+Install plugins:
+
+- Docker
+- Docker pipeline
+- JaCoCo
+- Pipeline: Stage View
+
+Configure Jenkins pipeline:
+
+1. Make new pipeline. Name it.
+2. Navigate to pipeline settings.
+3. Select 'Pipeline script from SCM'.
+4. Select 'Git' as SCM.
+5. Under repository paste `https://github.com/Nurha20-24/library-reservation-system.git` to Repository URL, and select your GitHub credentials as this repository is private.
+6. Modify branches to build to be `*/main`.
+7. Apply and Save.
+8. Select 'Build Now' from left side menu. View live build progress in Stage View. Click on a build to view more info about it.
+
+Add automatic trigger:
+
+1. Navigate to Triggers in pipeline settings.
+2. Check 'Poll SCM'
+3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.

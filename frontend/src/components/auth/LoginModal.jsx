@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loginAPICall } from "../../api/AuthApi";
+import { loginAPICall } from "../../api/authApi";
 import { useAuth } from "../../contexts/AuthContext";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
