@@ -1,5 +1,6 @@
 package com.library.backend.user;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -8,30 +9,38 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final UserRepository repository;
+    private final UserService userService;
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // Get all users
     @GetMapping
-    public List<User> getAllUsers() {
-        List<User> all = (List<User>) repository.findAll();
-        all.forEach(u -> System.out.println(u.getEmail() + " " + u.getRole()));
-        return all;
-        //return (List<User>) repository.findAll();
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
     // Get user by id
     @GetMapping("/{userId}")
-    public User getUserById(@PathVariable Integer userId) {
-        return repository.findById(userId).orElse(null);
+    public ResponseEntity<User> getUserById(@PathVariable Integer userId) {
+        try {
+            User user = userService.getUserById(userId);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();   // 404 not found
+        }
     }
 
     // Get user by email (used with registration to check if email (unique) already exists)
     @GetMapping("/email/{email}")
-    public User getUserByEmail(@PathVariable String email) {
-        return repository.findByEmail(email).orElse(null);
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        try {
+            User user = userService.getUserByEmail(email);
+            return ResponseEntity.ok(user);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
