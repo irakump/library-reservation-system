@@ -31,7 +31,7 @@ public class ReservationRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Reservation reservation = new Reservation(new Timestamp(System.currentTimeMillis()), Reservation.Status.active, user, book);
+        Reservation reservation = new Reservation(user, book);
 
         Reservation insertedReservation = repository.save(reservation);
         em.flush();
@@ -54,7 +54,7 @@ public class ReservationRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        Reservation reservation = new Reservation(new Timestamp(System.currentTimeMillis()), Reservation.Status.active, user, book);
+        Reservation reservation = new Reservation(user, book);
 
         Reservation insertedReservation = repository.save(reservation);
         em.flush();

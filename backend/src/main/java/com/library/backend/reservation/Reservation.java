@@ -31,9 +31,7 @@ public class Reservation {
 
     public Reservation() {}
 
-    public Reservation(Timestamp createdAt, Status status, User user, Book book) {
-        this.createdAt = createdAt;
-        this.status = status;
+    public Reservation(User user, Book book) {
         this.user = user;
         this.book = book;
     }
