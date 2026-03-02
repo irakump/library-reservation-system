@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class AuthService {
     private final UserRepository userRepo;
@@ -55,13 +57,20 @@ public class AuthService {
                 user.getRole().toString()
         );
 
+        String createdAt = null;
+        if (user.getCreatedAt() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+            createdAt = user.getCreatedAt().toLocalDateTime().format(formatter);
+        }
+
         // Return response with token and user info
         return new LoginResponse(
                 token,
                 user.getEmail(),
                 user.getNickname(),
                 user.getUserId(),
-                user.getRole().toString()
+                user.getRole().toString(),
+                createdAt
         );
     }
 }

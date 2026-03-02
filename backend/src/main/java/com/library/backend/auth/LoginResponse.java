@@ -11,4 +11,5 @@ public class LoginResponse {
     private String nickname;
     private int userId;
     private String role;
+    private String createdAt;
 }

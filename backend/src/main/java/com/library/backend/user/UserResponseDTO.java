@@ -16,7 +16,7 @@ public class UserResponseDTO {
         this.nickname = user.getNickname();
         this.role = user.getRole().toString();
 
-        // Format timestamp for frontend profile page
+        // Format timestamp
         if (user.getCreatedAt() != null) {
             LocalDateTime dateTime = user.getCreatedAt().toLocalDateTime();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
