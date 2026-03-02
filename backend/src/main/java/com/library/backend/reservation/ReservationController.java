@@ -1,55 +1,64 @@
 package com.library.backend.reservation;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationController {
+    private final ReservationService reservationService;
 
-    private final ReservationRepository repository;
-
-    public ReservationController(ReservationRepository repository) {
-        this.repository = repository;
+    public ReservationController(ReservationService service) {
+        this.reservationService = service;
     }
 
     // Get all reservations
     @GetMapping
-    public List<ReservationDTO> getAllReservations() {
-        Iterable<Reservation> reservations = repository.findAll();
+    public ResponseEntity<List<ReservationDTO>> getAllReservations() {
+        List<ReservationDTO> reservations = reservationService.getAllReservations();
 
-        // Convert Iterable (from CrudRepository) to stream to remove unnecessary data (e.g. hibernate lazy initializer)
-        return StreamSupport.stream(reservations.spliterator(), false)
-                .map(ReservationDTO::new)
-                .toList();
+        return ResponseEntity.ok(reservations);
     }
 
     // Get reservation by id
     @GetMapping("/{reservationId}")
-    public ReservationDTO getReservationById(@PathVariable Integer reservationId) {
-        return repository.findById(reservationId)
-                .map(ReservationDTO::new)
-                .orElse(null);
+    public ResponseEntity<ReservationDTO> getReservationById(@PathVariable Integer reservationId) {
+        ReservationDTO reservation = reservationService.getReservationById(reservationId);
+
+        return ResponseEntity.ok(reservation);
     }
 
-    // Get reservations by user's id
+    // Get active reservations by user's id
     @GetMapping("/user/{userId}")
-    public List<ReservationDTO> getReservationsByUserId(@PathVariable Integer userId) {
-        return repository.findByUserUserId(userId)
-                .stream()
-                .map(ReservationDTO::new)
-                .toList();
+    public ResponseEntity<List<ReservationDTO>> getReservationsByUser(@PathVariable Integer userId) {
+        List<ReservationDTO> reservations = reservationService.getReservationsByUser(userId);
+
+        return ResponseEntity.ok(reservations);
     }
 
     // Get reservations by books isbn
     @GetMapping("/book/{isbn}")
-    public List<ReservationDTO> getReservationsByIsbn(@PathVariable String isbn) {
-        return repository.findByBookIsbn(isbn)
-                .stream()
-                .map(ReservationDTO::new)
-                .toList();
+    public ResponseEntity<List<ReservationDTO>> getReservationsByIsbn(@PathVariable String isbn) {
+        List<ReservationDTO> reservations = reservationService.getReservationsByIsbn(isbn);
+
+        return ResponseEntity.ok(reservations);
+    }
+
+    // Create new reservation
+    @PostMapping("/new")
+    public ResponseEntity<ReservationDTO> createReservation(@RequestBody CreateReservationDTO request) {
+        ReservationDTO createdReservation = reservationService.createReservation(request);
+        return ResponseEntity.ok(createdReservation);
+    }
+
+
+    // Change reservation (cancel)
+    @PutMapping("/cancel")
+    public ResponseEntity<Void> cancelReservation(@RequestBody CancelReservationDTO request) {
+        reservationService.cancelReservation(request);
+        return ResponseEntity.ok().build();
     }
 }
 
