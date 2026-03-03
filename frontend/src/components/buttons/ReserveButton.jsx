@@ -4,7 +4,7 @@
 import { useReservationContext } from "../../contexts/ReservationContext";
 
 function ReserveButton({pageType, book, children}) {
-    const {addToReservations, cancelReservation} = useReservationContext();
+    const {addToReservations, updateReservationStatus} = useReservationContext();
 
     // New reservation
     return (
@@ -21,4 +21,6 @@ function ReserveButton({pageType, book, children}) {
         </>
     );
     
-} export default ReserveButton;
+} 
+
+export default ReserveButton;

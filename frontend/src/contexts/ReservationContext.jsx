@@ -35,7 +35,7 @@ export const ReservationProvider = ({ children }) => {
     }
   };
 
-const cancelReservation = async (reservationId) => {
+const updateReservationStatus = async (reservationId) => {
     try {
       await cancelReservation(reservationId);
       setReservations(prev => prev.filter(f => f.reservationId !== reservationId));
@@ -47,7 +47,7 @@ const cancelReservation = async (reservationId) => {
 
   const value = {
     addToReservations,
-    cancelReservation,
+    updateReservationStatus,
     reservations,
   };
 
