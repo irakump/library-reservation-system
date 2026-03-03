@@ -6,7 +6,12 @@ import {
 } from "../api/reservationsApi.js";
 import { useAuth } from "./AuthContext.jsx";
 
-const ReservationContext = createContext({});
+// define defaults to tests pass
+const ReservationContext = createContext({
+  addToReservations: async () => {},
+  updateReservationStatus: async () => {},
+  reservations: [],
+});
 
 export const useReservationContext = () => useContext(ReservationContext);
 
