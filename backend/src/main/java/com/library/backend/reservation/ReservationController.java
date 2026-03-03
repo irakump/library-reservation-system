@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -33,8 +34,8 @@ public class ReservationController {
 
     // Get active reservations by user's id
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ReservationDTO>> getReservationsByUser(@PathVariable Integer userId) {
-        List<ReservationDTO> reservations = reservationService.getReservationsByUser(userId);
+    public ResponseEntity<List<ReservationDTO>> getActiveReservationsByUser(@PathVariable Integer userId) {
+        List<ReservationDTO> reservations = reservationService.getActiveReservationsByUser(userId);
 
         return ResponseEntity.ok(reservations);
     }
@@ -49,12 +50,18 @@ public class ReservationController {
 
     // Create new reservation
     @PostMapping("/new")
-    public ResponseEntity<ReservationDTO> createReservation(HttpServletRequest request, @RequestBody CreateReservationDTO dto) {
-
+    public ResponseEntity<?> createReservation(HttpServletRequest request, @RequestBody CreateReservationDTO dto) {
         int userIdFromJwt = (int) request.getAttribute("userId");
 
-        ReservationDTO createdReservation = reservationService.createReservation(userIdFromJwt, dto.getIsbn());
-        return ResponseEntity.ok(createdReservation);
+        try {
+            ReservationDTO createdReservation = reservationService.createReservation(userIdFromJwt, dto.getIsbn());
+            return ResponseEntity.ok(createdReservation);
+        } catch (RuntimeException e) {
+            // Return error message as JSON for UI
+            return ResponseEntity
+                    .badRequest()
+                    .body(Map.of("message", e.getMessage()));
+        }
     }
 
 
