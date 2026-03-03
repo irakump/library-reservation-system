@@ -7,6 +7,4 @@ import java.util.List;
 public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
     List<Reservation> findByUserUserId(Integer userId);
     List<Reservation> findByBookIsbn(String isbn);
-    List<Reservation> findByBookIsbnAndStatus(String isbn, Reservation.Status status);
-    List<Reservation> findByUserUserIdAndStatus(Integer userId, Reservation.Status status);
 }
