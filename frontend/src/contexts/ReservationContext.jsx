@@ -28,8 +28,10 @@ export const ReservationProvider = ({ children }) => {
     try {
       const response = await createReservation(isbn);
         setReservations((prev) => [...prev, response]);
+        alert(`${response.title} reserved`);
     } catch (error) {
       console.error("Error creating reservation: ", error);
+      alert("Something went wrong. Book not reserved.")
     }
   };
 
