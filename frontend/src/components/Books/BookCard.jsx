@@ -1,10 +1,20 @@
+import { useState, useEffect } from "react";
+import { getQueueLength } from "../../api/reservationsApi.js";
 import Button from "../buttons/Button.jsx";
 import FavoriteButton from "../buttons/FavoriteButton.jsx";
 import BookButtons from "./BookButtons.jsx";
 
 const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
-  //const page = getPage(pageType, book, addToLoans);
-  //const BookCard = ({ book, pageType, setOpen }) => {
+  const [queueLength, setQueueLength] = useState(null);
+  const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
+
+  useEffect(() => {
+    if (book.availability === false) {
+      getQueueLength(isbn)
+        .then((res) => setQueueLength(res.data.queueLength))
+        .catch(() => setQueueLength(null));
+    }
+  }, [isbn, book.availability]);
 
   return (
     <div
@@ -12,7 +22,11 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       onClick={() => setOpen(book)}
     >
       <div className="w-24 h-auto mt-1.5 ml-1.5 shrink-0">
-        <img src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`} alt={`Book image for ${book.title}`} className="w-24 h-auto rounded-sm outline-1 outline-gray-200"/>
+        <img
+          src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
+          alt={`Book image for ${book.title}`}
+          className="w-24 h-auto rounded-sm outline-1 outline-gray-200"
+        />
       </div>
       <div className="flex-1">
         <div className="flex justify-between items-start">
@@ -29,6 +43,10 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
         </p>
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
+
+        {book.availability === false && queueLength !== null && (
+          <p className="text-sm mb-1">Queue length: {queueLength}</p>
+        )}
 
         <BookButtons pageType={pageType} book={book} />
       </div>

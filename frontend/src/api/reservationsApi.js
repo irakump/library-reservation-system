@@ -33,3 +33,7 @@ export function cancelReservation(reservationId) {
 export const getReservations = async (userId) => {
   return await api.get(`/reservations/user/${userId}`);
 };
+
+export const getQueueLength = async (isbn) => {
+  return await api.get(`/reservations/book/${isbn}/queue-length`);
+};
