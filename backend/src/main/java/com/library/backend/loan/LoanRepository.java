@@ -11,5 +11,4 @@ public interface LoanRepository extends CrudRepository<Loan, Integer> {
     // Get user's active or returned loans
     // If returnDate = NULL, loan is active. Otherwise, it's returned.
     List<Loan> findByUserUserIdAndReturnDate(Integer userId, Timestamp returnDate);
-
 }

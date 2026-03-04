@@ -43,7 +43,7 @@ public class ReservationController {
     // Get reservations by books isbn
     @GetMapping("/book/{isbn}")
     public ResponseEntity<List<ReservationDTO>> getReservationsByIsbn(@PathVariable String isbn) {
-        List<ReservationDTO> reservations = reservationService.getReservationsByIsbn(isbn);
+        List<ReservationDTO> reservations = reservationService.getActiveReservationsByIsbn(isbn, Reservation.Status.active);
 
         return ResponseEntity.ok(reservations);
     }
