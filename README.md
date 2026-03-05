@@ -224,7 +224,7 @@ Use this endpoint with login:
 
 #### Jenkins Requirements
 
-Configure credentials in Jenkins settings:  
+Jenkinsfile requires Docker Desktop to be installed. Configure credentials in Jenkins settings:  
 docker_hub (DockerHub), GitHub
 
 Install plugins:
@@ -255,7 +255,7 @@ Add automatic trigger:
 2. Check 'Poll SCM'
 3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.
 
-#### Run Docker Locally
+#### Build and Run Docker Container Locally
 
 The following commands use configurations from `compose.yml` file and are run like this:
 
