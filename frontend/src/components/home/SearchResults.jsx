@@ -8,7 +8,7 @@ export const SearchResults = () => {
   const { searchResults } = useSearchResult();
   //console.log('books: ', searchResults.length, searchResults);
 
-  const resultsPerPage = 4; // !!!
+  const resultsPerPage = 10; // !!!
   const pagesToShow = Math.ceil(searchResults.length / resultsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(

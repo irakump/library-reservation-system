@@ -6,9 +6,11 @@ import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -56,11 +58,42 @@ public class ReservationService {
     }
 
     // Get reservations by books isbn
-    public List<ReservationDTO> getReservationsByIsbn(String isbn) {
-        return reservationRepo.findByBookIsbn(isbn)
+    public List<ReservationDTO> getActiveReservationsByIsbn(String isbn, Reservation.Status status) {
+        return reservationRepo.findByBookIsbnAndStatus(isbn, status)
                 .stream()
                 .map(ReservationDTO::new)
                 .toList();
+    }
+
+    // Process reservation queue
+    @Transactional
+    public void processReservationQueue(Book book) {
+        List<ReservationDTO> activeReservations = getActiveReservationsByIsbn(book.getIsbn(), active);
+
+        if (activeReservations.isEmpty()) {
+            // No reservations, set book available
+            book.setAvailable(true);
+            bookRepo.save(book);
+            return;
+        }
+
+        // Order queue by timestamp, oldest is first
+        ReservationDTO oldestDTO = activeReservations.stream()
+                .min(Comparator.comparing(ReservationDTO::getCreatedAt))
+                .orElseThrow();
+
+        // Get oldest reservation entity
+        Reservation oldest = reservationRepo.findById(oldestDTO.getReservationId()).orElseThrow(() ->
+                new RuntimeException("Reservation not found"));
+
+        oldest.setStatus(not_active);
+        reservationRepo.save(oldest);
+
+        // Create new loan
+        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        Loan loan = new Loan(dueDate, oldest.getUser(), book);
+        loanRepo.save(loan);    // available stays false
+
     }
 
     // Create new reservation

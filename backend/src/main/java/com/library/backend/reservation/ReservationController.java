@@ -43,7 +43,7 @@ public class ReservationController {
     // Get reservations by books isbn
     @GetMapping("/book/{isbn}")
     public ResponseEntity<List<ReservationDTO>> getReservationsByIsbn(@PathVariable String isbn) {
-        List<ReservationDTO> reservations = reservationService.getReservationsByIsbn(isbn);
+        List<ReservationDTO> reservations = reservationService.getActiveReservationsByIsbn(isbn, Reservation.Status.active);
 
         return ResponseEntity.ok(reservations);
     }
@@ -64,7 +64,6 @@ public class ReservationController {
         }
     }
 
-
     // Change reservation (cancel)
     @PutMapping("/cancel")
     public ResponseEntity<Void> cancelReservation(HttpServletRequest request, @RequestBody CancelReservationDTO dto) {
@@ -73,5 +72,13 @@ public class ReservationController {
         reservationService.cancelReservation(dto.getReservationId(), userIdFromJwt);
         return ResponseEntity.ok().build();
     }
+
+    // Get reservation queue length
+    @GetMapping("/book/{isbn}/queue-length")
+    public ResponseEntity<Map<String, Integer>> getQueueLength(@PathVariable String isbn) {
+        int length = reservationService.getActiveReservationsByIsbn(isbn, Reservation.Status.active).size();
+        return ResponseEntity.ok(Map.of("queueLength", length));
+    }
+
 }
 

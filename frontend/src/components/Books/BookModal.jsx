@@ -1,12 +1,22 @@
 import Button from "../buttons/Button.jsx";
 import FavoriteButton from "../buttons/FavoriteButton.jsx";
 import BookButtons from "./BookButtons.jsx";
+import { getQueueLength } from "../../api/reservationsApi.js";
+import { useEffect, useState } from "react";
 
 const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
-  // const page = getPage(pageType, book, addToLoans);
+  const [queueLength, setQueueLength] = useState(null);
+  const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
 
-  //
-  //const BookModal = ({ book, pageType, setOpen }) => {
+  useEffect(() => {
+    if (book.availability === false) {
+      getQueueLength(isbn)
+        .then((res) => setQueueLength(res.data.queueLength))
+        .catch(() => setQueueLength(null));
+    }
+  }, [isbn, book.availability]);
+
+
   return (
     <>
       <div
@@ -64,20 +74,12 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
                 {book.genre}
               </span>
             </div>
-            <div className="mt-6 flex items-end justify-between">
+            <div className="mt-6 flex flex-row items-end justify-between">
               <div className="text-sm">
-                <p className="flex items-center gap-2"></p>
-
-                {/*queue
-                {page.BtnText == "Reserve" && (
-                  <>
-                    <p className="mt-1">2 people in queue</p>
-                    <p className="text-gray-500">
-                      Estimated loan date x.x.2026
-                    </p>
-                  </>
+                {book.availability === false && queueLength !== null && (
+                  <p>Queue length: {queueLength}</p>
                 )}
-                */}
+
               </div>
               {/* Button for loan/reserve/return/history data on history page */}
               <BookButtons pageType={pageType} book={book}></BookButtons>

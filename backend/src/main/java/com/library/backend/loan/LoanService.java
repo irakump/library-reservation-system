@@ -2,8 +2,10 @@ package com.library.backend.loan;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.reservation.ReservationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +18,13 @@ public class LoanService {
     private final UserRepository userRepo;
     private final BookRepository bookRepo;
     private final LoanRepository loanRepo;
+    private final ReservationService reservationService;
 
-    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo) {
+    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
+        this.reservationService = reservationService;
     }
 
     //Get all loans
@@ -76,7 +80,10 @@ public class LoanService {
         loan.setReturnDate(returnDate);
         loanRepo.save(loan);
 
-        book.setAvailable(true);
+        //book.setAvailable(true);  // processReservationQueue is handling availability
         bookRepo.save(book);
+
+        // Update reservation queue
+        reservationService.processReservationQueue(book);
     }
 }

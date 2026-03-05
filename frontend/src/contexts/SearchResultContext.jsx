@@ -2,7 +2,11 @@ import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { useSearchFilters } from './SearchFilterContext';
 
-const SearchResultContext = createContext();
+const SearchResultContext = createContext({
+  searchResults: [],
+  setSearchResults: () => {},
+  fetchSearchResults: async () => {}
+});
 
 export const SearchResultProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
