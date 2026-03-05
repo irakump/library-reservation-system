@@ -1,6 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react';
 
-const SearchFilterContext = createContext();
+const SearchFilterContext = createContext({
+  searchFilters: {
+    genres: [],
+    languages: [],
+    years: [],
+    available: true,
+    search_term: '',
+  },
+  setSearchFilters: () => {},
+});
 
 export const SearchFilterProvider = ({ children }) => {
   const [searchFilters, setSearchFilters] = useState({
@@ -8,7 +17,7 @@ export const SearchFilterProvider = ({ children }) => {
     languages: [],
     years: [],
     available: true,
-    search_term: "",
+    search_term: '',
   });
 
   return (
