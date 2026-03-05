@@ -7,9 +7,10 @@ public class ReturnLoanDTO {
     private int userId;
     private String isbn;
 
-    public ReturnLoanDTO(int loanId, String isbn) {
+    public ReturnLoanDTO(int loanId, int userId, String isbn) {
         this.loanId = loanId;
         this.isbn = isbn;
+        this.userId = userId;
     }
 
     public int getUserId() {
