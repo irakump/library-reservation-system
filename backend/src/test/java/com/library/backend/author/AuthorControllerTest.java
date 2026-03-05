@@ -1,10 +1,14 @@
 package com.library.backend.author;
 
 import com.library.backend.book.Book;
+import com.library.backend.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,10 +19,13 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(AuthorController.class)
-@WithMockUser
+@WebMvcTest(
+        value = AuthorController.class,
+        excludeAutoConfiguration = SecurityAutoConfiguration.class,
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JwtAuthenticationFilter.class))
+@AutoConfigureMockMvc(addFilters = false)
 public class AuthorControllerTest {
-/*
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -75,7 +82,6 @@ public class AuthorControllerTest {
                 .andExpect(jsonPath("$.books.length()").value(2));
     }
 
- */
 }
 
 

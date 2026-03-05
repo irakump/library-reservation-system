@@ -1,8 +1,13 @@
 package com.library.backend.language;
 
+import com.library.backend.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -14,10 +19,13 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(LanguageController.class)
-@WithMockUser
+@WebMvcTest(
+        value = LanguageController.class,
+        excludeAutoConfiguration = SecurityAutoConfiguration.class,
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JwtAuthenticationFilter.class))
+@AutoConfigureMockMvc(addFilters = false)
 public class LanguageControllerTest {
-/*
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -55,7 +63,7 @@ public class LanguageControllerTest {
                 .andExpect(content().string(""));
     }
 
- */
+
 }
 
 
