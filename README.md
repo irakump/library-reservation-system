@@ -115,17 +115,19 @@ Get loan by id:
 **endpoint:** '/loans/{id}'  
 **example:** '/loans/2'
 
-Get loans by user:  
+Get active loans by user:  
 **endpoint:** '/loans/user/{user_id}'  
 **example:** '/loans/user/1'
 
-Get active loans (not returned) by user and return date: **not implemented yet**  
-**endpoint:** '/loans/user/{userId}/active'  
-**example:** '/loans/user/1/active'
+Get returned loans by user: 
+**endpoint:** '/loans/user/{userId}/history'  
+**example:** '/loans/user/1/history'
 
-Get returned loans by user and return date: **not implemented yet**  
-**endpoint:** '/loans/user/{userId}/returned'  
-**example:** '/loans/user/1/returned'
+Post new loans:
+**endpoint** '/loans/new'
+
+Return loans:
+**endpoint** '/loans/return'
 
 #### Reservations
 
@@ -143,6 +145,15 @@ Get reservations by user:
 Get reservations by book:  
 **endpoint:** '/reservations/book/{isbn}'  
 **example:** '/reservations/book/9780241600948'
+
+Post new reservation:
+**endpoint:** '/reservations/new'
+
+Cancel reservation:
+**endpoint** '/reservations/cancel'
+
+Get reservation queue:
+**endpoint** '/book/{isbn}/queue-length'
 
 #### Languages
 
