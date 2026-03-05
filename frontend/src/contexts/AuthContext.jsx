@@ -5,6 +5,7 @@ import {
   useState,
   useEffect,
 } from "react";
+import { useNavigate } from "react-router";
 
 const AuthContext = createContext();
 
@@ -14,6 +15,8 @@ export const AuthProvider = ({ children }) => {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null); // Store user info
+
+  const navigate = useNavigate();
 
   // Check if user is already logged in (on app load)
   useEffect(() => {
@@ -80,6 +83,8 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
     setUser(null);
     closeLogout();
+    
+    navigate("/", { replace : true });  // Navigate user to main page
   };
 
   return (
