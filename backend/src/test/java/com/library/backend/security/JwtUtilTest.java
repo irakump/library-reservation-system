@@ -43,6 +43,65 @@ public class JwtUtilTest {
         assertEquals("admin", extractedRole, "Role should be 'admin");
     }
 
+    // Token validation tests
+    @Test
+    void testValidateToken_ValidToken() {
+        String email = "user@test.com";
+        String token = jwtUtil.generateToken(email, 345, "User");
+
+        boolean isValid = jwtUtil.validateToken(token, email);
+        assertTrue(isValid, "Token should be valid for the correct email");
+    }
+
+    @Test
+    void testValidateToken_WrongEmail() {
+        String email = "user@test.com";
+        String wrongEmail = "wrong@test.com";
+        String token = jwtUtil.generateToken(email, 345, "User");
+
+        boolean isValid = jwtUtil.validateToken(token, wrongEmail);
+
+        assertFalse(isValid, "Token should be invalid for wrong email");
+
+    }
+
+    @Test
+    void testValidateToken_NullToken() {
+        String email = "user@test.com";
+
+        assertThrows(Exception.class, () -> {
+            jwtUtil.validateToken(null, email);
+        }, "Should throw exception for null token");
+    }
 
 
+    // Claim extraction tests
+    @Test
+    void testExtractEmail_Success() {
+        String email = "test@example.com";
+        String token = jwtUtil.generateToken(email, 765, "user");
+
+        String extractedEmail = jwtUtil.extractEmail(token);
+
+        assertEquals(email, extractedEmail, "Extracted email should match original");
+    }
+
+    @Test
+    void testExtractUserId_Success() {
+        String email = "user@test.com";
+        int userId = 999;
+        String token = jwtUtil.generateToken(email, userId, "user");
+
+        Integer extractedUserId = jwtUtil.extractUserId(token);
+
+        assertEquals(userId, extractedUserId, "Extracted user Id should mathch  original");
+    }
+
+    @Test
+    void testExtractRole_UserRole() {
+        String token = jwtUtil.generateToken("user@test.com", 123, "user");
+        String role = jwtUtil.extractRole(token);
+
+        assertEquals("user", role, "Role should be user");
+    }
 }
