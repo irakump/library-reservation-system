@@ -1,5 +1,6 @@
 package com.library.backend.reservation;
 
+import com.library.backend.security.AuthorizationUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,10 @@ public class ReservationController {
         this.reservationService = service;
     }
 
-    // Get all reservations
+    // Get all reservations -Admin only
     @GetMapping
-    public ResponseEntity<List<ReservationDTO>> getAllReservations() {
+    public ResponseEntity<List<ReservationDTO>> getAllReservations(HttpServletRequest request) {
+        AuthorizationUtil.checkAdminAccess(request);
         List<ReservationDTO> reservations = reservationService.getAllReservations();
 
         return ResponseEntity.ok(reservations);
@@ -32,9 +34,10 @@ public class ReservationController {
         return ResponseEntity.ok(reservation);
     }
 
-    // Get active reservations by user's id
+    // Get active reservations by user's id - own data or admin
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ReservationDTO>> getActiveReservationsByUser(@PathVariable Integer userId) {
+    public ResponseEntity<List<ReservationDTO>> getActiveReservationsByUser(@PathVariable Integer userId, HttpServletRequest request) {
+        AuthorizationUtil.checkUserAccess(request, userId);
         List<ReservationDTO> reservations = reservationService.getActiveReservationsByUser(userId);
 
         return ResponseEntity.ok(reservations);
