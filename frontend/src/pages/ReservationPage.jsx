@@ -3,7 +3,7 @@ import BookDataPage from "./BookDataPage";
 
 const ReservationPage = () => {
   const { reservations } = useReservationContext();
-  console.log(reservations);
+  //console.log(reservations);
 
   return (
     <>
