@@ -34,7 +34,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             ✕
           </button>
           <div>
-            <div className="cursor-pointer hover:text-red-700 absolute top-10 right-4 text-4xl">
+            <div className="absolute cursor-pointer hover:text-red-700 top-10 right-4 text-3xl ">
               <FavoriteButton book={book}></FavoriteButton>
             </div>
 
@@ -48,7 +48,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
               </div>
 
               <div className="flex-1">
-                <h1 className="font-bold text-lg">{book.title}</h1>
+                <h1 className="font-bold text-lg pr-2">{book.title}</h1>
                 <p className="text-sm mb-1">
                   {book.authors
                     ?.map((author) => `${author.firstName} ${author.lastName}`)
