@@ -31,7 +31,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
-          <div className="text-2xl cursor-pointer hover:text-red-700">
+          <div className="pl-2 pr-1 text-2xl cursor-pointer hover:text-red-700">
             <FavoriteButton book={book} />
           </div>
         </div>
