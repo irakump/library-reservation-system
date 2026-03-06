@@ -24,7 +24,6 @@ export function returnLoan(userId, isbn, loanId) {
       loanId,
     })
     .then((response) => {
-      console.log("return: ", response);
       return response.data;
     })
     .catch((error) => {
