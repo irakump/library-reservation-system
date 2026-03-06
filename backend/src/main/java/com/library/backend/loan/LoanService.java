@@ -2,6 +2,7 @@ package com.library.backend.loan;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.notifications.MailService;
 import com.library.backend.reservation.ReservationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
@@ -19,12 +20,14 @@ public class LoanService {
     private final BookRepository bookRepo;
     private final LoanRepository loanRepo;
     private final ReservationService reservationService;
+    private final MailService mailService;
 
-    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService) {
+    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService, MailService mailService) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
         this.reservationService = reservationService;
+        this.mailService = mailService;
     }
 
     //Get all loans
@@ -67,6 +70,8 @@ public class LoanService {
         book.setAvailable(false);
         bookRepo.save(book);
 
+        notifyUser(user, book);
+
         return new LoanDTO(loan);
     }
 
@@ -85,5 +90,14 @@ public class LoanService {
 
         // Update reservation queue
         reservationService.processReservationQueue(book);
+    }
+
+    public void notifyUser(User user, Book book) {
+        String subject = "Loaned book";
+
+        String message =
+                "Hello " + user.getNickname() + ", \n" + "loaned book " + book.getTitle() + " jee.";
+
+        mailService.sendMail(user.getEmail(), subject, message);
     }
 }

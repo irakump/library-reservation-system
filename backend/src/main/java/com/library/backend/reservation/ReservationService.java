@@ -94,6 +94,8 @@ public class ReservationService {
         Loan loan = new Loan(dueDate, oldest.getUser(), book);
         loanRepo.save(loan);    // available stays false
 
+        //tähän notificaatio kutsu
+
     }
 
     // Create new reservation
