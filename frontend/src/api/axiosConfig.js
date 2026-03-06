@@ -11,9 +11,6 @@ api.interceptors.request.use(
 
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
-      console.log("JWT token added to request: ", config.url);
-    } else {
-      console.log("No JWT token found for request: ", config.url);
     }
     return config;
   },
