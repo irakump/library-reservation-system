@@ -7,6 +7,7 @@ export function createLoan(userId, isbn) {
       isbn,
     })
     .then((response) => {
+      console.log("create res: ", response);
       return response.data;
     })
     .catch((error) => {
