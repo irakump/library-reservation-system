@@ -113,15 +113,15 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden"
+        className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-navbar p-4 flex justify-between text-center">
+        <div className="bg-navbar p-4 flex justify-between text-center flex-0">
           <h2 className="text-3xl font-bold text-gray-800">Register</h2>
 
           <button
@@ -134,7 +134,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
         </div>
 
         {/* Form */}
-        <div className="p-8">
+        <div className="p-8 overflow-y-auto">
           {/* Nickname */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
