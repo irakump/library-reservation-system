@@ -7,11 +7,11 @@ function LoanButton({pageType, book, children}) {
     //new loan
     return pageType === "favourite" ? (
         <>
-            <p className="text-sm mb-0 text-left">🟢 Available</p>
+            <p className="text-sm mb-1 text-left">🟢 Available</p>
             <button className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
                     onClick={e => {
                         e.stopPropagation();
-                        addToLoans(book.isbn );
+                        addToLoans(book.isbn);
                     }}> {children}
             </button>
         </>
@@ -23,7 +23,6 @@ function LoanButton({pageType, book, children}) {
                     onClick={e => {
                         e.stopPropagation();
                         removeLoans(book.userId, book.isbn, book.loanId);
-                        console.log("returning: ", book.title)
                     }}>
                 {children}
             </button>

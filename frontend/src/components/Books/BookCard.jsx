@@ -28,7 +28,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
           className="w-24 h-auto rounded-sm outline-1 outline-gray-200"
         />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{book.title}</h3>
           <div className="pl-2 pr-1 text-2xl cursor-pointer hover:text-red-700">
@@ -48,7 +48,9 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
           <p className="text-sm mb-1">Queue length: {queueLength}</p>
         )}
 
-        <BookButtons pageType={pageType} book={book} />
+        <div className="mt-auto">
+          <BookButtons pageType={pageType} book={book} />
+        </div>
       </div>
     </div>
   );
