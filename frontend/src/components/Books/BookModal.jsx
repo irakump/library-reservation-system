@@ -19,7 +19,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
   return (
     <>
       <div
-        className="fixed inset-0 flex items-start md:items-center justify-center bg-black/40"
+        className="fixed inset-0 flex items-start md:items-center justify-center bg-black/40 px-2 pt-2"
         onClick={() => setOpen(null)}
       >
         <div
@@ -33,38 +33,44 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             ✕
           </button>
           <div className="flex flex-col">
-            <div className="absolute cursor-pointer hover:text-red-700 sm:top-10 right-4 text-3xl">
+            <div className="absolute cursor-pointer hover:text-red-700 max-sm:pt-2 sm:top-10 right-4 text-3xl">
               <FavoriteButton book={book}></FavoriteButton>
             </div>
 
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4">
               <div className="flex flex-col-reverse sm:flex-row">
-                <div className="w-36 sm:w-24 h-auto mt-1 mr-0.5 shrink-0 max-sm:self-center">
+                <div className="w-36 sm:w-24 max-w-full mt-3 sm:mt-1 mr-0.5 shrink-0 max-sm:self-start max-sm:ml-0">
                   <img
                     src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
                     alt={`Book image for ${book.title}`}
                     className="w-36 sm:w-24 h-auto rounded-sm outline-1 outline-gray-200"
                   />
                 </div>
-                <div className="max-sm:self-center">
-                  <h1 className="font-bold text-lg text-left p-3 pt-0 pr-6 sm:pr-2 sm:ml-3">
-                    {book.title}
-                  </h1>
+                <div className="max-sm:pt-2 min-w-0">
+                  <div className="max-sm:self-center">
+                    <h1 className="font-bold text-lg text-left p-3 max-sm:pl-0 pt-0 pr-6 sm:pr-2 sm:ml-2">
+                      {book.title}
+                    </h1>
+                  </div>
+
+                  <div className="pl-0 sm:pl-5">
+                    <p className="text-sm mb-1">
+                      {book.authors
+                        ?.map(
+                          (author) => `${author.firstName} ${author.lastName}`,
+                        )
+                        .join(", ")}
+                    </p>
+                    <p className="text-sm mb-1">{book.year} </p>
+                  </div>
                 </div>
               </div>
 
               <div className="flex-1">
-                <p className="text-sm mb-1">
-                  {book.authors
-                    ?.map((author) => `${author.firstName} ${author.lastName}`)
-                    .join(", ")}
-                </p>
-                <p className="text-sm mb-1">{book.year} </p>
-                <p className="text-sm mb-1">{book.description}</p>
+                <p className="text-sm mb-1 max-sm:ml-0">{book.description}</p>
               </div>
             </div>
-            <div className="mt-6 text-sm text-gray-700 space-y-1 capitalize"></div>
-            <div className="mt-3 flex items-center gap-2 capitalize">
+            <div className="mt-3 flex flex-col sm:flex-row items-start sm:items-center gap-2 capitalize">
               <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
                 {book.language}
               </span>
@@ -72,14 +78,16 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
                 {book.genre}
               </span>
             </div>
-            <div className="mt-6 flex flex-row items-end justify-between">
-              <div className="text-sm">
+            <div className="mt-6 flex flex-col max-sm:gap-2">
+              <div className="text-sm items-start">
                 {book.availability === false && queueLength !== null && (
                   <p>Queue length: {queueLength}</p>
                 )}
               </div>
-              {/* Button for loan/reserve/return/history data on history page */}
-              <BookButtons pageType={pageType} book={book}></BookButtons>
+              <div className="flex flex-col items-start sm:flex-row sm:items-end justify-between max-sm:gap-2">
+                {/* Button for loan/reserve/return/history data on history page */}
+                <BookButtons pageType={pageType} book={book}></BookButtons>
+              </div>
             </div>
           </div>
         </div>
