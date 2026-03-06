@@ -7,13 +7,10 @@ const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
   const { addToLoans } = useLoanContext();
 
-  console.log(books);
   return (
     <>
       <div>
-        <h1 className="text-2xl font-bold text-center text-heading">
-          {title}
-        </h1>
+        <h1 className="text-2xl font-bold text-center text-heading">{title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 bg-profileBackground p-6 gap-4 sm:rounded-md">
           {books.map((book) => (
             <BookCard
