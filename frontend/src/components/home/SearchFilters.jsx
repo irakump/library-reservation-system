@@ -1,8 +1,8 @@
-import ActiveFilters from './ActiveFilters';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
-import { useSearchFilters } from '../../contexts/SearchFilterContext.jsx';
+import ActiveFilters from "./ActiveFilters";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useSearchResult } from "../../contexts/SearchResultContext.jsx";
+import { useSearchFilters } from "../../contexts/SearchFilterContext.jsx";
 
 const SearchFilters = () => {
   // context
@@ -16,25 +16,25 @@ const SearchFilters = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/genre')
+      .get("http://localhost:8081/api/genre")
       .then((response) => setGenres(response.data))
       .catch((error) => console.error(error));
 
     axios
-      .get('http://localhost:8081/api/language')
+      .get("http://localhost:8081/api/language")
       .then((response) => setLanguages(response.data))
       .catch((error) => console.error(error));
 
     axios
-      .get('http://localhost:8081/api/book/years')
+      .get("http://localhost:8081/api/book/years")
       .then((response) => setYears(response.data))
       .catch((error) => console.error(error));
   }, []);
 
   const filterTypes = {
-    genre: 'genre',
-    language: 'language',
-    years: 'years',
+    genre: "genre",
+    language: "language",
+    years: "years",
   };
 
   // option to limit genre and language filters for one per category
@@ -57,7 +57,6 @@ const SearchFilters = () => {
         years: selectedYears,
         available: available,
       });
-      console.log('Search Filters:', searchFilters);
     };
     handleFilterChange();
   }, [selectedGenres, selectedLanguages, selectedYears, available]);
@@ -78,11 +77,21 @@ const SearchFilters = () => {
   const addFilter = (filter, filterType) => {
     switch (filterType) {
       case filterTypes.genre:
-        addNewFilter(setSelectedGenres, selectedGenres, filter, allowMultipleGenresSearch);
+        addNewFilter(
+          setSelectedGenres,
+          selectedGenres,
+          filter,
+          allowMultipleGenresSearch,
+        );
         break;
 
       case filterTypes.language:
-        addNewFilter(setSelectedLanguages, selectedLanguages, filter, allowMultipleLanguagesSearch);
+        addNewFilter(
+          setSelectedLanguages,
+          selectedLanguages,
+          filter,
+          allowMultipleLanguagesSearch,
+        );
         break;
 
       case filterTypes.years:
@@ -126,11 +135,11 @@ const SearchFilters = () => {
     }
   };
 
-  const [categoryValue, setCategoryValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState("");
 
   const handleValueSelect = (e) => {
     addFilter(e.target.value, e.target.name);
-    setCategoryValue('');
+    setCategoryValue("");
   };
 
   return (
@@ -159,7 +168,7 @@ const SearchFilters = () => {
               <label htmlFor="language">
                 Language
                 <select
-                  className={'capitalize'}
+                  className={"capitalize"}
                   id="language"
                   name="language"
                   value={categoryValue}
@@ -170,7 +179,7 @@ const SearchFilters = () => {
                   </option>
                   {languages.map((item) => (
                     <option
-                      className={'capitalize'}
+                      className={"capitalize"}
                       key={item.language}
                       value={item.language}
                       disabled={selectedLanguages.includes(item.language)}
@@ -187,7 +196,7 @@ const SearchFilters = () => {
               <label htmlFor="genre">
                 Genre
                 <select
-                  className={'capitalize'}
+                  className={"capitalize"}
                   id="genre"
                   name="genre"
                   value={categoryValue}
@@ -198,7 +207,7 @@ const SearchFilters = () => {
                   </option>
                   {genres.map((item) => (
                     <option
-                      className={'capitalize'}
+                      className={"capitalize"}
                       key={item.genre}
                       value={item.genre}
                       disabled={selectedGenres.includes(item.genre)}
@@ -223,15 +232,17 @@ const SearchFilters = () => {
                   <option value="" disabled>
                     Select Year
                   </option>
-                  {years.sort((a, b) => b - a).map((item) => (
-                    <option
-                      key={item}
-                      value={item}
-                      disabled={selectedYears.includes(item)}
-                    >
-                      {item}
-                    </option>
-                  ))}
+                  {years
+                    .sort((a, b) => b - a)
+                    .map((item) => (
+                      <option
+                        key={item}
+                        value={item}
+                        disabled={selectedYears.includes(item)}
+                      >
+                        {item}
+                      </option>
+                    ))}
                 </select>
               </label>
             </div>
