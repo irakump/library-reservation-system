@@ -1,20 +1,15 @@
 import BookDataPage from "./BookDataPage";
-import {useLoanContext} from "../contexts/LoanContext.jsx";
+import { useLoanContext } from "../contexts/LoanContext.jsx";
 
 const LoansPage = () => {
-    const {loans} = useLoanContext()
-    console.log(loans);
+  const { loans } = useLoanContext();
 
   return (
-      <>
-          { loans && (
-              <BookDataPage
-                  title="My loans"
-                  books={loans}
-                  pageType="loans"
-              />
-          )}
-      </>
+    <>
+      {loans && (
+        <BookDataPage title="My loans" books={loans} pageType="loans" />
+      )}
+    </>
   );
 };
 
