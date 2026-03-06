@@ -7,7 +7,6 @@ export function createLoan(userId, isbn) {
       isbn,
     })
     .then((response) => {
-      console.log("create res: ", response);
       return response.data;
     })
     .catch((error) => {
@@ -38,7 +37,5 @@ export const getLoans = async (userId) => {
 };
 
 export async function getHistory(userId) {
-    return await api.get(`/loans/user/${userId}/history`);
+  return await api.get(`/loans/user/${userId}/history`);
 }
-
-
