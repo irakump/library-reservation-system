@@ -33,13 +33,9 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
     const login = { email, password };
 
-    console.log("Attempting login with: ", { email });
-
     // call login API
     loginAPICall(login)
       .then((response) => {
-        console.log("Login successful: ", response.data);
-
         // Use AuthContext's handlelogin to store token and update state
         handleLogin(response.data);
 
