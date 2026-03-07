@@ -16,7 +16,7 @@ const ProfileMenu = () => {
   };
 
   return (
-    <div className="absolute max-sm:w-full sm:right-32 text-center">
+    <div className="absolute max-sm:w-full sm:right-32 text-center z-50">
       <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
         <a href="/profile" className="w-full">
           <li>My Page</li>
@@ -38,10 +38,7 @@ const ProfileMenu = () => {
           <li>Favorites</li>
         </a>
 
-        {/* <a href="/logout" className="w-full sm:hidden">
-          <li>Log out →</li> 
-        </a>*/}
-        <button onClick={handleAuthClick} className="w-full sm:hidden">
+        <button onClick={handleAuthClick} className="w-full sm:hidden hover:cursor-pointer">
           {isLoggedIn ? "Log out" : "Login"}
         </button>
       </ul>
