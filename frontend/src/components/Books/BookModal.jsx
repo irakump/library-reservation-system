@@ -80,8 +80,8 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             </div>
             <div className="mt-6 flex flex-col max-sm:gap-2">
               <div className="text-sm items-start">
-                {book.availability === false && queueLength !== null && (
-                  <p>Queue length: {queueLength}</p>
+                {book.availability === false && (
+                  <p>Queue length: {queueLength ?? "..."}</p>
                 )}
               </div>
               <div className="flex flex-col items-start sm:flex-row sm:items-end justify-between max-sm:gap-2">

@@ -30,12 +30,12 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       </div>
       <div className="flex-1 flex flex-col">
         <div className="flex max-[270px]:flex-col-reverse justify-between items-start min-w-0">
-            <h3 className="font-bold max-[250px]:text-base max-[200px]:text-sm text-lg flex-1 min-w-0">
-              {book.title}
-            </h3>
-            <div className="sm:pl-2 sm:pr-1 text-2xl">
-              <FavoriteButton book={book} />
-            </div>
+          <h3 className="font-bold max-[250px]:text-base max-[200px]:text-sm text-lg flex-1 min-w-0">
+            {book.title}
+          </h3>
+          <div className="sm:pl-2 sm:pr-1 text-2xl">
+            <FavoriteButton book={book} />
+          </div>
         </div>
 
         <p className="text-sm mb-1 text-left">
@@ -46,8 +46,8 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
 
-        {book.availability === false && queueLength !== null && (
-          <p className="text-sm mb-1">Queue length: {queueLength}</p>
+        {book.availability === false && (
+          <p className="text-sm mb-1">Queue length: {queueLength ?? "..."}</p>
         )}
 
         <div className="mt-auto">
