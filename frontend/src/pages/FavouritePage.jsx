@@ -3,6 +3,7 @@ import { useFavoritesContext } from "../contexts/FavoritesContext.jsx";
 
 const FavouritePage = () => {
   const { favorites } = useFavoritesContext();
+  const length = favorites.length;
 
   if (!favorites || favorites.length === 0) {
     return <div className="text-center p-10">No favorites yet!</div>;
@@ -11,7 +12,7 @@ const FavouritePage = () => {
   return (
     favorites && (
       <BookDataPage
-        title="My Favourites (4)"
+        title={`My Favorites (${length})`}
         books={favorites}
         pageType="favourite"
       />

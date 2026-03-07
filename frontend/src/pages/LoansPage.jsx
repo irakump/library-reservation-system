@@ -7,7 +7,7 @@ const LoansPage = () => {
   return (
     <>
       {loans && (
-        <BookDataPage title="My loans" books={loans} pageType="loans" />
+        <BookDataPage title={`My Loans (${loans.length})`} books={loans} pageType="loans" />
       )}
     </>
   );

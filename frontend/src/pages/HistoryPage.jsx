@@ -11,7 +11,7 @@ const HistoryPage = () => {
 
   return history &&(
     <BookDataPage 
-    title="My History" 
+    title={`My History (${history.length})`}
     books={history}
     pageType="history" 
     />

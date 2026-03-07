@@ -9,7 +9,7 @@ const ReservationPage = () => {
     <>
       {reservations && (
         <BookDataPage
-          title="My Reservations"
+          title={`My Reservations (${reservations.length})`}
           books={reservations}
           pageType="reservation"
         />
