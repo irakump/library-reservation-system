@@ -21,7 +21,7 @@ const UserInformation = () => {
     { id: "email", label: "Email:", value: user.email },
     {
       id: "created",
-      label: "User Created:",
+      label: "User created:",
       value: user.createdAt,
     },
   ];
