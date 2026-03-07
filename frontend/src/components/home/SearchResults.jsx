@@ -54,7 +54,7 @@ export const SearchResults = () => {
             <BookDataPage
               title=" "
               books={searchResults.slice(startIndex, endIndex)}
-              pageType="search"
+              pageType="favourite"
             />
           </div>
 
