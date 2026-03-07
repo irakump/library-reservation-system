@@ -4,7 +4,7 @@ const SocialMedia = () => {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl">Social Media</h2>
-      <div className="flex flex-row items-center bg-navbar gap-5 pt-5">
+      <div className="flex flex-row max-[250px]:flex-col items-center bg-navbar gap-5 max-[250px]:gap-3 pt-5">
         <a href="https://www.instagram.com/" target="_blank">
           <img
             src="/social-media/instagram.png"
