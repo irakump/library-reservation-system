@@ -18,7 +18,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
 
   return (
     <div
-      className="bg-white rounded-lg p-2 gap-6 shadow hover:shadow-lg hover:opacity-90 transition-all flex max-[350px]:flex-col min-w-[120px]"
+      className="bg-white rounded-lg p-2 gap-6 shadow hover:shadow-lg hover:opacity-90 hover:scale-[1.02] hover:cursor-pointer transition-all flex max-[350px]:flex-col min-w-[120px]"
       onClick={() => setOpen(book)}
     >
       <div className="w-24 max-w-full h-auto mt-1.5 ml-1.5 shrink-0 pr-2 sm:pr-0">
