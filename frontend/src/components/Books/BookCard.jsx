@@ -28,7 +28,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
           className="w-24 min-w-16 h-auto rounded-sm outline-1 outline-gray-200"
         />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <div className="flex max-[270px]:flex-col-reverse justify-between items-start min-w-0">
             <h3 className="font-bold max-[250px]:text-base max-[200px]:text-sm text-lg flex-1 min-w-0">
               {book.title}
