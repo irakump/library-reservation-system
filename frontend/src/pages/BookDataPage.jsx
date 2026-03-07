@@ -9,7 +9,7 @@ const BookDataPage = ({ title, books, pageType }) => {
 
   return (
     <>
-      <div>
+      <div className="sm:max-w-4xl mx-auto w-full">
         <h1 className={`text-2xl font-bold text-center text-heading ${pageType === "favourite" ? "py-0" : "py-6"}`}>{title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 bg-profileBackground p-6 gap-4 sm:rounded-md">
           {books.map((book) => (
