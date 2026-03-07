@@ -3,10 +3,12 @@ import FavoriteButton from "../buttons/FavoriteButton.jsx";
 import BookButtons from "./BookButtons.jsx";
 import { getQueueLength } from "../../api/reservationsApi.js";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
 const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
   const [queueLength, setQueueLength] = useState(null);
   const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
+  const { user, isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (book.availability === false) {
@@ -80,7 +82,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             </div>
             <div className="mt-6 flex flex-col max-sm:gap-2">
               <div className="text-sm items-start">
-                {book.availability === false && (
+                {book.availability === false && user && isLoggedIn &&  (
                   <p>Queue length: {queueLength ?? "..."}</p>
                 )}
               </div>

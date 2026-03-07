@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { getQueueLength } from "../../api/reservationsApi.js";
-import Button from "../buttons/Button.jsx";
 import FavoriteButton from "../buttons/FavoriteButton.jsx";
 import BookButtons from "./BookButtons.jsx";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
 const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
   const [queueLength, setQueueLength] = useState(null);
   const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
+  const { user, isLoggedIn } = useAuth();
+  
 
   useEffect(() => {
     if (book.availability === false) {
@@ -46,7 +48,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
         <p className="text-sm mb-1 text-left ">{book.year}</p>
         <p className="text-sm mb-1 text-left capitalize">{book.genre}</p>
 
-        {book.availability === false && (
+        {book.availability === false && user && isLoggedIn && (
           <p className="text-sm mb-1">Queue length: {queueLength ?? "..."}</p>
         )}
 
