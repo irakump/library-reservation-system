@@ -18,8 +18,9 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
 
   return (
     <div
-      className="bg-white rounded-lg p-2 gap-6 shadow hover:shadow-lg hover:opacity-90 transition-all flex max-[350px]:flex-col"
-      onClick={() => setOpen(book)}>
+      className="bg-white rounded-lg p-2 gap-6 shadow hover:shadow-lg hover:opacity-90 transition-all flex max-[350px]:flex-col min-w-[120px]"
+      onClick={() => setOpen(book)}
+    >
       <div className="w-24 max-w-full h-auto mt-1.5 ml-1.5 shrink-0 pr-2 sm:pr-0">
         <img
           src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
@@ -28,11 +29,13 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
         />
       </div>
       <div className="flex-1">
-        <div className="flex justify-between items-start">
-          <h3 className="font-bold text-lg">{book.title}</h3>
-          <div className="pl-2 pr-1 text-2xl cursor-pointer hover:text-red-700">
-            <FavoriteButton book={book} />
-          </div>
+        <div className="flex max-[270px]:flex-col-reverse justify-between items-start min-w-0">
+            <h3 className="font-bold max-[200px]:text-base text-lg flex-1 min-w-0">
+              {book.title}
+            </h3>
+            <div className="sm:pl-2 sm:pr-1 text-2xl cursor-pointer hover:text-red-700">
+              <FavoriteButton book={book} />
+            </div>
         </div>
 
         <p className="text-sm mb-1 text-left">
