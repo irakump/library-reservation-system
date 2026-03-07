@@ -32,13 +32,13 @@ const UserInformation = () => {
         <h3 className="text-lg sm:text-xl font-semibold mb-4 text-left">
           User Information
         </h3>
-        <div className="space-y-3 ">
+        <div className="space-y-3 px-4">
           {userInfo.map((info) => (
             <div key={info.id} className="flex">
-              <span className="w-32 sm:w-40 text-sm sm:text-base font-semibold  text-left ml-2">
+              <span className="w-32 sm:w-40 text-sm sm:text-base font-semibold text-left">
                 {info.label}
               </span>
-              <span className="text-sm sm:text-base font-medium">
+              <span className="text-sm sm:text-base font-medium ml-4 ">
                 {info.value}
               </span>
             </div>
