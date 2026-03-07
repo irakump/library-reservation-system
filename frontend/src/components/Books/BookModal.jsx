@@ -43,7 +43,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
                   <img
                     src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
                     alt={`Book image for ${book.title}`}
-                    className="w-36 sm:w-24 h-auto rounded-sm outline-1 outline-gray-200"
+                    className="w-36 min-w-20 sm:w-24 h-auto rounded-sm outline-1 outline-gray-200"
                   />
                 </div>
                 <div className="max-sm:pt-2 min-w-0">
