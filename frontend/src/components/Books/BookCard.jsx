@@ -33,7 +33,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
             <h3 className="font-bold max-[250px]:text-base max-[200px]:text-sm text-lg flex-1 min-w-0">
               {book.title}
             </h3>
-            <div className="sm:pl-2 sm:pr-1 text-2xl cursor-pointer hover:text-red-700">
+            <div className="sm:pl-2 sm:pr-1 text-2xl">
               <FavoriteButton book={book} />
             </div>
         </div>

@@ -23,9 +23,9 @@ const FavoriteButton = ({ book }) => {
   return (
     <button onClick={(e) => onFavoriteClick(e)} className="text-xl">
       {favorite ? (
-        <HeartSolid className="h-6 w-6 text-red-600" />
+        <HeartSolid className="h-6 w-6 text-favourite hover:cursor-pointer" />
       ) : (
-        <HeartOutline className="h-6 w-6 text-gray-800 hover:text-red-600" />
+        <HeartOutline className="h-6 w-6 text-gray-800 hover:text-favourite hover:cursor-pointer" />
       )}
     </button>
   );
