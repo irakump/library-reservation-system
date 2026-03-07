@@ -9,8 +9,6 @@ import LogoutModal from "../auth/LogoutModal";
 const NavBar = () => {
   const { isProfileMenuOpen, toggleMenu } = useMenu();
 
-  //const toggleMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
-
   const {
     isLoginOpen,
     isRegisterOpen,
@@ -34,7 +32,7 @@ const NavBar = () => {
               className="h-7 pr-2 pt-1"
             />
           </a>
-          <a href="/" className="font-bold text-2xl">
+          <a href="/" className="font-bold text-2xl max-[260px]:hidden">
             MetBook
           </a>
         </div>
