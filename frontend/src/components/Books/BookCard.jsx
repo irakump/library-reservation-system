@@ -30,7 +30,7 @@ const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
       </div>
       <div className="flex-1">
         <div className="flex max-[270px]:flex-col-reverse justify-between items-start min-w-0">
-            <h3 className="font-bold max-[200px]:text-base text-lg flex-1 min-w-0">
+            <h3 className="font-bold max-[250px]:text-base max-[200px]:text-sm text-lg flex-1 min-w-0">
               {book.title}
             </h3>
             <div className="sm:pl-2 sm:pr-1 text-2xl cursor-pointer hover:text-red-700">
