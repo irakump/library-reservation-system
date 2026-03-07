@@ -1,12 +1,25 @@
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
+import { useLoanContext } from "../../contexts/LoanContext";
+import { useReservationContext } from "../../contexts/ReservationContext";
+
 const ProfileStats = () => {
+  const { loans } = useLoanContext();
+  const { reservations } = useReservationContext();
+  const { favorites } = useFavoritesContext();
+
   const stats = [
-    { id: "loans", label: "Current loans:", value: "4" },
+    { id: "loans", 
+      label: "Current loans:", 
+      value: loans.length },
     {
       id: "reservations",
       label: "Reservations:",
-      value: "11",
+      value: reservations.length,
     },
-    { id: "favourites", label: "Favourites:", value: "22" },
+    { id: "favorites", 
+      label: "Favorites:", 
+      value: favorites.length 
+    },
   ];
 
   return (
