@@ -10,7 +10,7 @@ const BookDataPage = ({ title, books, pageType }) => {
   return (
     <>
       <div>
-        <h1 className="text-2xl py-6 font-bold text-center text-heading">{title}</h1>
+        <h1 className={`text-2xl font-bold text-center text-heading ${pageType === "search" ? "py-0" : "py-6"}`}>{title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 bg-profileBackground p-6 gap-4 sm:rounded-md">
           {books.map((book) => (
             <BookCard
