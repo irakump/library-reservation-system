@@ -5,6 +5,7 @@ import com.library.backend.user.User;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +21,7 @@ public class Loan {
     private LocalDateTime createdAt;
 
     @Column(name = "due_date", nullable = false)
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @Column(name = "return_date")
     private LocalDateTime returnDate;
@@ -35,7 +36,7 @@ public class Loan {
 
     protected Loan() {}
 
-    public Loan(LocalDateTime dueDate, User user, Book book) {
+    public Loan(LocalDate dueDate, User user, Book book) {
         this.dueDate = dueDate;
         this.user = user;
         this.book = book;
@@ -50,11 +51,11 @@ public class Loan {
     }
 
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

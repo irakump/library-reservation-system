@@ -4,12 +4,13 @@ import com.library.backend.book.Book;
 import com.library.backend.user.User;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LoanDTO {
     private int loanId;
     private LocalDateTime createdAt;
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
     private LocalDateTime returnDate;
     private String isbn;
     private int userId;
@@ -63,7 +64,7 @@ public class LoanDTO {
         return createdAt;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 

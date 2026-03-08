@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +45,7 @@ class LoanUniTest {
         book = new Book("88281201228", "joku", 2005, "jshdahdhad", "children", "finnish", true);
         book.setAvailable(true);
 
-        loan = new Loan(LocalDateTime.now().plusWeeks(2), user, book);
+        loan = new Loan(LocalDate.now().plusWeeks(2), user, book);
     }
 
 

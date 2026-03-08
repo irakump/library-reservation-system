@@ -4,11 +4,14 @@ import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
 import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
+import com.library.backend.notifications.MailService;
+import com.library.backend.notifications.NotificationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -23,12 +26,14 @@ public class ReservationService {
     private final BookRepository bookRepo;
     private final ReservationRepository reservationRepo;
     private final LoanRepository loanRepo;
+    private final NotificationService notificationService;
 
-    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo) {
+    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo, NotificationService notificationService) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.reservationRepo = reservationRepo;
         this.loanRepo = loanRepo;
+        this.notificationService = notificationService;
     }
 
     // Get all reservations
@@ -90,11 +95,12 @@ public class ReservationService {
         reservationRepo.save(oldest);
 
         // Create new loan
-        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        LocalDate dueDate = LocalDate.now().plusWeeks(2);
         Loan loan = new Loan(dueDate, oldest.getUser(), book);
         loanRepo.save(loan);    // available stays false
 
-        //tähän notificaatio kutsu
+        //Send mail
+        notificationService.notifyOfNewLoan(oldest.getUser(), book);
 
     }
 

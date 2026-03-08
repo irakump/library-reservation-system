@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
@@ -31,7 +32,7 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        LocalDate dueDate = LocalDate.now().plusWeeks(2);
 
         Loan loan = new Loan( dueDate, user, book); // Due date 2 weeks
 
@@ -58,7 +59,7 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        LocalDate dueDate = LocalDate.now().plusWeeks(2);
 
         Loan loan = new Loan(dueDate, user, book); // Due date 2 weeks
 
@@ -87,7 +88,7 @@ public class LoanRepositoryTest {
         em.persist(user);
         em.persist(book);
 
-        LocalDateTime dueDate = LocalDateTime.now().plusWeeks(2);
+        LocalDate dueDate = LocalDate.now().plusWeeks(2);
         Loan loan = new Loan(dueDate, user, book); // Due date 2 weeks
 
         repository.save(loan);
