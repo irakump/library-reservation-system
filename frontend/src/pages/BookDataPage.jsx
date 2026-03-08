@@ -9,7 +9,7 @@ const BookDataPage = ({ title, books, pageType }) => {
 
   return (
     <>
-      <div className="sm:max-w-4xl mx-auto w-full">
+      <div className="w-full">
         <h1
           className={`text-2xl font-bold text-center text-heading ${pageType === "favourite" ? "py-0" : "py-6"}`}
         >
