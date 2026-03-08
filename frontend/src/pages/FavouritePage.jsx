@@ -10,13 +10,15 @@ const FavouritePage = () => {
   }
 
   return (
-    favorites && (
-      <BookDataPage
-        title={`My Favorites (${length})`}
-        books={favorites}
-        pageType="favourite"
-      />
-    )
+    <div className="mx-auto px-4 ">
+      {favorites && (
+        <BookDataPage
+          title={`My Favorites (${length})`}
+          books={favorites}
+          pageType="favourite"
+        />
+      )}
+    </div>
   );
 };
 
