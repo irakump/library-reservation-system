@@ -2,13 +2,16 @@ import BookDataPage from '../../pages/BookDataPage';
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 import { useState, useEffect, useRef } from 'react';
 
+import ChevronLeft from '@heroicons/react/24/solid/ChevronLeftIcon';
+import ChevronRight from '@heroicons/react/24/solid/ChevronRightIcon';
+
 export const SearchResults = () => {
   const searchResultsStartRef = useRef(null);
 
   const { searchResults } = useSearchResult();
   //console.log('books: ', searchResults.length, searchResults);
 
-  const resultsPerPage = 10; // !!!
+  const resultsPerPage = 8; // !!!
   const pagesToShow = Math.ceil(searchResults.length / resultsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
   const [startIndex, setStartIndex] = useState(
@@ -35,11 +38,11 @@ export const SearchResults = () => {
   let lastDotsRendered = false;
 
   return (
-    <>
+    <div>
       {/* Search result header */}
       {searchResults.length > 0 ? (
         <>
-          <div className="flex flex-row justify-between mb-2 w-full sm:max-w-4xl mx-auto px-4 sm:px-1">
+          <div className="flex flex-row justify-between mb-2 px-4 sm:px-1">
             <h2 ref={searchResultsStartRef}>Search Results</h2>
             <h2>
               {startIndex + 1} -{' '}
@@ -50,7 +53,7 @@ export const SearchResults = () => {
             </h2>
           </div>
 
-          <div className='sm:max-w-4xl mx-auto'>
+          <div className="sm:max-w-4xl mx-auto">
             <BookDataPage
               title=" "
               books={searchResults.slice(startIndex, endIndex)}
@@ -59,7 +62,7 @@ export const SearchResults = () => {
           </div>
 
           {/* Search result navigation */}
-          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer sm:max-w-4xl mx-auto">
+          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer [&>button]:hover:bg-sky-500 sm:max-w-4xl mx-auto">
             <button
               key="previous-page"
               onClick={(e) => {
@@ -67,7 +70,7 @@ export const SearchResults = () => {
                 setCurrentPage((previous) => Math.max(1, previous - 1));
               }}
             >
-              {'<'}
+              <ChevronLeft className="h-full size-5" />
             </button>
 
             {/* Links to search result pages */}
@@ -118,7 +121,7 @@ export const SearchResults = () => {
                 );
               }}
             >
-              {'>'}
+              <ChevronRight className="h-full size-5" />
             </button>
           </div>
         </>
@@ -127,7 +130,7 @@ export const SearchResults = () => {
           <h2>No Search Results</h2>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
