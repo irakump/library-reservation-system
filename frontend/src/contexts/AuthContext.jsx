@@ -7,7 +7,24 @@ import {
 } from "react";
 import { useNavigate } from "react-router";
 
-const AuthContext = createContext();
+// default values so tests pass
+const AuthContext = createContext({
+  isLoginOpen: false,
+  isRegisterOpen: false,
+  isLogoutOpen: false,
+  isLoggedIn: false,
+  user: null,
+  openLogin: () => {},
+  closeLogin: () => {},
+  openRegister: () => {},
+  closeRegister: () => {},
+  openLogout: () => {},
+  closeLogout: () => {},
+  handleSwitchToRegister: () => {},
+  handleSwitchToLogin: () => {},
+  handleLogin: () => {},
+  handleLogout: () => {},
+});
 
 export const AuthProvider = ({ children }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
