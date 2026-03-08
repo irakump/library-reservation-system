@@ -25,7 +25,6 @@ export const FavoritesProvider = ({ children }) => {
     if (isLoggedIn && user?.userId) {
       getFavorites(user.userId)
         .then((res) => {
-          console.log("Favorite fetched from backend: ", res.data);
           setFavorites(res.data);
         })
         .catch((error) => console.error("Error fetching favorites: ", error));

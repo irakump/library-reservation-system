@@ -10,13 +10,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.Import;
 
 
 @DataJpaTest
+@Import(BookService.class)
 class BookFilterTest {
 
     @Autowired
     BookRepository repository;
+
+    @Autowired
+    BookService service;
 
     @Autowired
     TestEntityManager entityManager;
@@ -51,12 +56,6 @@ class BookFilterTest {
         entityManager.persist(book6);
     }
 
-    /*@ParameterizedTest
-    @ValueSource(genres = {"history", "fantasy"})
-    void givenNewBooks_whenDBFilteredByGenre_withGenre__returnBooks() {
-
-    }*/
-
     @Test
     void givenNewBooks_whenDBFilteredByGenre_withGenreHistory_returnBooks() {
         List<Book> filteredBooks = (List<Book>) repository.findByGenre("history");
@@ -83,7 +82,7 @@ class BookFilterTest {
         Boolean availability = true;
         String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
+        List<Book> filteredBooks = service.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).containsExactly(book3);
     }
 
@@ -95,7 +94,7 @@ class BookFilterTest {
         Boolean availability = true;
         String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
+        List<Book> filteredBooks = service.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).containsExactly(book2, book5, book6);
     }
 
@@ -107,7 +106,7 @@ class BookFilterTest {
         Boolean availability = true;
         String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
+        List<Book> filteredBooks = service.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).containsExactly(book1);
     }
 
@@ -119,7 +118,7 @@ class BookFilterTest {
         Boolean availability = false;
         String search_term = null;
 
-        List<Book> filteredBooks = (List<Book>) repository.findByFilters(genre, years, language, availability, search_term);
+        List<Book> filteredBooks = service.findByFilters(genre, years, language, availability, search_term);
         assertThat(filteredBooks).isEmpty();
     }
 }

@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSearchResult } from '../../contexts/SearchResultContext';
 import { useSearchFilters } from '../../contexts/SearchFilterContext';
 
 import MagnifyingGlass from '@heroicons/react/16/solid/MagnifyingGlassIcon';
+import XMark from '@heroicons/react/24/solid/XMarkIcon';
 
 const SearchBar = () => {
   const { fetchSearchResults } = useSearchResult(); // context
   const { searchFilters, setSearchFilters } = useSearchFilters();
 
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
     setSearchFilters({ ...searchFilters, search_term: searchTerm });
@@ -17,8 +18,12 @@ const SearchBar = () => {
     fetchSearchResults();
   };
 
+  const emptySearchBar = () => {
+    setSearchTerm('');
+  };
+
   return (
-    <div className="flex flex-col w-full h-15 gap-1 mb-12 p-4 sm:p-0 mx-auto sm:max-w-xl">
+    <div className="flex flex-col w-full h-16 sm:h-20 gap-1 px-6 sm:px-12">
       <label className="ml-1" htmlFor="search">
         Search
       </label>
@@ -28,21 +33,33 @@ const SearchBar = () => {
           e.preventDefault();
           handleSearch();
         }}
-        className="flex flex-row flex-1 w-full h-full rounded-sm border border-black divide-x-2 divide-black"
+        className="flex w-full h-10 rounded border border-black divide-x-2 divide-black overflow-hidden"
       >
-        <input
-          type="text"
-          id="search"
-          onChange={(e) => e.target.value !== "" ? setSearchTerm(e.target.value) : null}
-          className="flex-1 h-full bg-white px-1"
-        />
+        <div className="relative flex-1">
+          <input
+            type="text"
+            id="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full h-full px-3 py-2 bg-white outline-none"
+            placeholder="Search for books"
+          />
+          {searchTerm && (
+            <button
+              type="button"
+              onClick={emptySearchBar}
+              className="absolute inset-y-0 right-2 flex items-center cursor-pointer"
+            >
+              <XMark className="h-full size-6 text-gray-500 hover:text-black" />
+            </button>
+          )}
+        </div>
 
         <button
           type="submit"
-          onClick={handleSearch}
-          className="flex flex-row h-full px-4 bg-filter gap-1 cursor-pointer items-center"
+          className="flex items-center px-4 gap-2 bg-filter text-black hover:bg-sky-500 cursor-pointer"
         >
-          <MagnifyingGlass className="h-full size-4" />
+          <MagnifyingGlass className="h-full size-5" />
           Search
         </button>
       </form>

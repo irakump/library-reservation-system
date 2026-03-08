@@ -16,7 +16,7 @@ function ReserveButton({ pageType, book, children }) {
     if (pageType === "reservation" && activeReservation) {
       updateReservationStatus(activeReservation.reservationId);
     } else {
-        const isbn = book.isbn ?? book.bookIsbn;    // If book.isbn is null, use book.bookIsbn
+      const isbn = book.isbn ?? book.bookIsbn; // If book.isbn is null, use book.bookIsbn
       addToReservations(isbn);
     }
   };
@@ -24,13 +24,16 @@ function ReserveButton({ pageType, book, children }) {
   // New reservation
   return (
     <>
-      <p className="text-sm mb-0 text-left"> 🔴 Not available</p>
-      <button
-        className="bg-filter font-semibold rounded-xl px-6 py-2 hover:bg-sky-500 float-right cursor-pointer"
-        onClick={handleClick}
-      >
-        {children}
-      </button>
+      <p className="text-sm mb-1 text-left"> 🔴 Not available</p>
+      <div>
+        <button
+          className="bg-filter font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-sky-500 float-right cursor-pointer"
+          onClick={handleClick}
+        >
+          {children}
+        </button>
+      </div>
+      
     </>
   );
 }

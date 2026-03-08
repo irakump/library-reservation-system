@@ -33,13 +33,9 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
     const login = { email, password };
 
-    console.log("Attempting login with: ", { email });
-
     // call login API
     loginAPICall(login)
       .then((response) => {
-        console.log("Login successful: ", response.data);
-
         // Use AuthContext's handlelogin to store token and update state
         handleLogin(response.data);
 
@@ -61,15 +57,16 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
   return (
     <div
-      className="fixed inset-0  bg-black/40 flex items-center justify-center z-50"
-      onClick={onClose}
+      className="fixed inset-0  bg-black/40 flex items-center justify-center z-50 p-4"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
     >
-      <div
-        className="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="bg-navbar p-4 flex justify-between text-center">
+        <div className="bg-navbar p-4 flex justify-between text-center flex-0">
           <h2 className="text-3xl font-bold text-gray-800">Login</h2>
 
           <button
@@ -82,7 +79,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
         </div>
 
         {/* Form */}
-        <div className="p-8">
+        <div className="p-8 overflow-y-auto">
           {/* Error message */}
           {error && (
             <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">

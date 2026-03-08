@@ -57,7 +57,6 @@ const SearchFilters = () => {
         years: selectedYears,
         available: available,
       });
-      console.log('Search Filters:', searchFilters);
     };
     handleFilterChange();
   }, [selectedGenres, selectedLanguages, selectedYears, available]);
@@ -78,11 +77,21 @@ const SearchFilters = () => {
   const addFilter = (filter, filterType) => {
     switch (filterType) {
       case filterTypes.genre:
-        addNewFilter(setSelectedGenres, selectedGenres, filter, allowMultipleGenresSearch);
+        addNewFilter(
+          setSelectedGenres,
+          selectedGenres,
+          filter,
+          allowMultipleGenresSearch,
+        );
         break;
 
       case filterTypes.language:
-        addNewFilter(setSelectedLanguages, selectedLanguages, filter, allowMultipleLanguagesSearch);
+        addNewFilter(
+          setSelectedLanguages,
+          selectedLanguages,
+          filter,
+          allowMultipleLanguagesSearch,
+        );
         break;
 
       case filterTypes.years:
@@ -134,96 +143,97 @@ const SearchFilters = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col items-start [&>div]:w-full">
-        <p className="ml-4 sm:ml-1">Search Filters</p>
+    <div className="flex flex-col items-start [&>div]:w-full">
+      <p className="ml-4 sm:ml-1 mb-2">Search Filters</p>
 
-        <div className="flex flex-col gap-5 bg-profileBackground p-4 sm:rounded-md mb-1">
-          <div className="flex items-start">
-            {/* Availability filter */}
-            <div className="flex items-center gap-2 *:cursor-pointer">
-              <label htmlFor="availability">Available:</label>
-              <input
-                type="checkbox"
-                id="availability"
-                name="availability"
-                checked={available}
-                onChange={(e) => setAvailable(e.target.checked)}
-              />
-            </div>
+      <div className="flex flex-col gap-5 bg-profileBackground p-4 sm:rounded-md mb-1">
+        <div className="flex items-start">
+          {/* Availability filter */}
+          <div className="flex items-center gap-2 *:cursor-pointer">
+            <label htmlFor="availability">Available:</label>
+            <input
+              type="checkbox"
+              id="availability"
+              name="availability"
+              checked={available}
+              onChange={(e) => setAvailable(e.target.checked)}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full">
+          {/* Language filter */}
+          <div>
+            <label htmlFor="language">
+              Language
+              <select
+                className={'capitalize'}
+                id="language"
+                name="language"
+                value={categoryValue}
+                onChange={handleValueSelect}
+              >
+                <option value="" disabled>
+                  Select Language
+                </option>
+                {languages.map((item) => (
+                  <option
+                    className={'capitalize'}
+                    key={item.language}
+                    value={item.language}
+                    disabled={selectedLanguages.includes(item.language)}
+                  >
+                    {item.language}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full">
-            {/* Language filter */}
-            <div>
-              <label htmlFor="language">
-                Language
-                <select
-                  className={'capitalize'}
-                  id="language"
-                  name="language"
-                  value={categoryValue}
-                  onChange={handleValueSelect}
-                >
-                  <option value="" disabled>
-                    Select Language
+          {/* Genre filter */}
+          <div>
+            <label htmlFor="genre">
+              Genre
+              <select
+                className={'capitalize'}
+                id="genre"
+                name="genre"
+                value={categoryValue}
+                onChange={handleValueSelect}
+              >
+                <option value="" disabled>
+                  Select Genre
+                </option>
+                {genres.map((item) => (
+                  <option
+                    className={'capitalize'}
+                    key={item.genre}
+                    value={item.genre}
+                    disabled={selectedGenres.includes(item.genre)}
+                  >
+                    {item.genre}
                   </option>
-                  {languages.map((item) => (
-                    <option
-                      className={'capitalize'}
-                      key={item.language}
-                      value={item.language}
-                      disabled={selectedLanguages.includes(item.language)}
-                    >
-                      {item.language}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+                ))}
+              </select>
+            </label>
+          </div>
 
-            {/* Genre filter */}
-            <div>
-              <label htmlFor="genre">
-                Genre
-                <select
-                  className={'capitalize'}
-                  id="genre"
-                  name="genre"
-                  value={categoryValue}
-                  onChange={handleValueSelect}
-                >
-                  <option value="" disabled>
-                    Select Genre
-                  </option>
-                  {genres.map((item) => (
-                    <option
-                      className={'capitalize'}
-                      key={item.genre}
-                      value={item.genre}
-                      disabled={selectedGenres.includes(item.genre)}
-                    >
-                      {item.genre}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
-            {/* Year filter */}
-            <div>
-              <label htmlFor="year">
-                Year
-                <select
-                  id="year"
-                  name="years"
-                  value={categoryValue}
-                  onChange={handleValueSelect}
-                >
-                  <option value="" disabled>
-                    Select Year
-                  </option>
-                  {years.sort((a, b) => b - a).map((item) => (
+          {/* Year filter */}
+          <div>
+            <label htmlFor="year">
+              Year
+              <select
+                id="year"
+                name="years"
+                value={categoryValue}
+                onChange={handleValueSelect}
+              >
+                <option value="" disabled>
+                  Select Year
+                </option>
+                {years
+                  .sort((a, b) => b - a)
+                  .map((item) => (
                     <option
                       key={item}
                       value={item}
@@ -232,22 +242,21 @@ const SearchFilters = () => {
                       {item}
                     </option>
                   ))}
-                </select>
-              </label>
-            </div>
+              </select>
+            </label>
           </div>
-
-          <ActiveFilters
-            filters={{
-              [filterTypes.genre]: selectedGenres,
-              [filterTypes.language]: selectedLanguages,
-              [filterTypes.years]: selectedYears,
-            }}
-            onRemove={removeFilter}
-          />
         </div>
+
+        <ActiveFilters
+          filters={{
+            [filterTypes.genre]: selectedGenres,
+            [filterTypes.language]: selectedLanguages,
+            [filterTypes.years]: selectedYears,
+          }}
+          onRemove={removeFilter}
+        />
       </div>
-    </>
+    </div>
   );
 };
 
