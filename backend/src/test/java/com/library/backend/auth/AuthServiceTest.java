@@ -1,9 +1,6 @@
-package com.library.backend.security;
+package com.library.backend.auth;
 
-import com.library.backend.auth.AuthService;
-import com.library.backend.auth.LoginDto;
-import com.library.backend.auth.LoginResponse;
-import com.library.backend.auth.RegisterDto;
+import com.library.backend.security.JwtUtil;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
