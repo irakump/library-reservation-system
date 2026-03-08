@@ -34,11 +34,11 @@ describe('SearchResults', () => {
       await act(async () => {
         // simulate user interaction
         for (let i = 0; i < pageForwardClicks; i++) {
-          await screen.getByRole('button', { name: '>' }).click();
+          await screen.getByTestId('next-page').click();
         }
 
         for (let i = 0; i < pageBackwardClicks; i++) {
-          await screen.getByRole('button', { name: '<' }).click();
+          await screen.getByTestId('previous-page').click();
         }
       });
 
