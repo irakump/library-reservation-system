@@ -37,6 +37,15 @@ export const SearchResults = () => {
   let firstDotsRendered = false;
   let lastDotsRendered = false;
 
+  const scrollToSearchResultsHeader = () => {
+    try {
+      searchResultsStartRef.current.scrollIntoView();
+    } catch (error) {
+      // handle error, which is triggered during testing
+      //console.error('Error with scrolling to search result header:', error);
+    }
+  };
+
   return (
     <div>
       {/* Search result header */}
@@ -69,6 +78,7 @@ export const SearchResults = () => {
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentPage((previous) => Math.max(1, previous - 1));
+                scrollToSearchResultsHeader();
               }}
             >
               <ChevronLeft className="h-full size-5" />
@@ -121,6 +131,7 @@ export const SearchResults = () => {
                 setCurrentPage((previous) =>
                   Math.min(previous + 1, pagesToShow),
                 );
+                scrollToSearchResultsHeader();
               }}
             >
               <ChevronRight className="h-full size-5" />
