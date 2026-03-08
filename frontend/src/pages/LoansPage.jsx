@@ -5,11 +5,15 @@ const LoansPage = () => {
   const { loans } = useLoanContext();
 
   return (
-    <>
+    <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12">
       {loans && (
-        <BookDataPage title={`My Loans (${loans.length})`} books={loans} pageType="loans" />
+        <BookDataPage
+          title={`My Loans (${loans.length})`}
+          books={loans}
+          pageType="loans"
+        />
       )}
-    </>
+    </div>
   );
 };
 
