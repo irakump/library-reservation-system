@@ -7,10 +7,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/book")
 public class BookController {
+    private final BookService bookService;
 
     private final BookRepository repository;
 
-    public BookController(BookRepository repository) {this.repository = repository;}
+    public BookController(BookRepository repository, BookService bookService) {
+        this.repository = repository;
+        this.bookService = bookService;
+    }
 
     //all books
     @GetMapping
@@ -60,6 +64,6 @@ public class BookController {
             @RequestParam(required = false) Boolean available,
             @RequestParam(required = false) String search_term
     ) {
-        return repository.findByFilters(genre, years, language, available, search_term);
+        return bookService.findByFilters(genre, years, language, available, search_term);
     }
 }
