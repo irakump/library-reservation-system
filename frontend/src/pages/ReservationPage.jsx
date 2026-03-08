@@ -6,7 +6,7 @@ const ReservationPage = () => {
   //console.log(reservations);
 
   return (
-    <>
+    <div className="mx-auto px-4">
       {reservations && (
         <BookDataPage
           title={`My Reservations (${reservations.length})`}
@@ -14,7 +14,7 @@ const ReservationPage = () => {
           pageType="reservation"
         />
       )}
-    </>
+    </div>
   );
 };
 
