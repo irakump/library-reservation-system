@@ -11,7 +11,7 @@ vi.mock('../../contexts/SearchResultContext.jsx', () => ({
 import SearchResults from './SearchResults.jsx';
 
 describe('SearchResults', () => {
-  const resultsPerPage = 10;  // !! update to match actual value in SearchResults.jsx
+  const resultsPerPage = 8;  // !! update to match actual value in SearchResults.jsx
 
   it.each([
     { pageForwardClicks: 0, pageBackwardClicks: 0 },
