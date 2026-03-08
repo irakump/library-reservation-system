@@ -14,7 +14,7 @@ const BookDataPage = ({ title, books, pageType }) => {
       >
         {title}
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 bg-profileBackground p-4 sm:p-6 gap-4 sm:gap-6 rounded-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-profileBackground p-4 sm:p-6 gap-4 sm:gap-6 sm:rounded-md">
         {books.map((book) => (
           <BookCard
             key={book.isbn}
