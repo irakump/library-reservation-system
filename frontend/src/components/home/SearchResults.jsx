@@ -65,6 +65,7 @@ export const SearchResults = () => {
           <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer [&>button]:hover:bg-sky-500 sm:max-w-4xl mx-auto">
             <button
               key="previous-page"
+              data-testid="previous-page"
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentPage((previous) => Math.max(1, previous - 1));
@@ -114,6 +115,7 @@ export const SearchResults = () => {
 
             <button
               key="next-page"
+              data-testid="next-page"
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentPage((previous) =>
