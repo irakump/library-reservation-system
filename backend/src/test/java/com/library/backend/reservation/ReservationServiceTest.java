@@ -2,6 +2,7 @@ package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.notifications.NotificationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
 import jakarta.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -31,6 +33,9 @@ public class ReservationServiceTest {
 
     @Autowired
     private ReservationService service;
+
+    @MockitoBean
+    private NotificationService notificationService;
 
     private User user;
     private Book book;
