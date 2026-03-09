@@ -6,11 +6,11 @@ const LoginButton = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <button className="w-30 text-xl" onClick={openLogout}>
+        <button className="w-30 text-xl hover:cursor-pointer" onClick={openLogout}>
           Log out
         </button>
       ) : (
-        <button className="w-30 text-xl" onClick={openLogin}>
+        <button className="w-30 text-xl hover:cursor-pointer" onClick={openLogin}>
           Login
         </button>
       )}

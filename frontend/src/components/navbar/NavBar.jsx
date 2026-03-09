@@ -52,12 +52,12 @@ const NavBar = () => {
             {isProfileMenuOpen ? (
               <button
                 onClick={toggleMenu}
-                className="text-6xl font-light pb-3 mr-2 w-8"
+                className="text-6xl font-light pb-3 mr-2 w-8 hover:cursor-pointer"
               >
                 &times;
               </button>
             ) : (
-              <button className="h-10 mt-2" onClick={toggleMenu}>
+              <button className="h-10 mt-2 hover:cursor-pointer" onClick={toggleMenu}>
                 <img src="/hamburger-menu.png" alt="Menu" className="h-10" />
               </button>
             )}
