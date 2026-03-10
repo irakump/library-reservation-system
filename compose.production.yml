@@ -1,0 +1,57 @@
+services:
+
+  mariadb:
+    container_name: mariadb
+    image: sandrajuu/library-reservation-system-database:latest
+    build:
+      context: ./backend/database
+      dockerfile: Dockerfile
+    environment:
+      MARIADB_DATABASE: metbook
+      MARIADB_USER: library_db_user
+      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: password
+    ports:
+      - "13306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./backend/database/database.sql:/docker-entrypoint-initdb.d/01_database.sql
+      - ./backend/database/genre.sql:/docker-entrypoint-initdb.d/02_genre.sql
+      - ./backend/database/language.sql:/docker-entrypoint-initdb.d/03_language.sql
+      - ./backend/database/author.sql:/docker-entrypoint-initdb.d/04_author.sql
+      - ./backend/database/book.sql:/docker-entrypoint-initdb.d/05_book.sql
+      - ./backend/database/writes.sql:/docker-entrypoint-initdb.d/06_writes.sql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "library_db_user", "-ppassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    container_name: backend
+    image: sandrajuu/library-reservation-system-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/metbook
+      SPRING_DATASOURCE_USERNAME: library_db_user
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      mariadb:
+        condition: service_healthy
+  
+  frontend:
+    container_name: frontend
+    image: sandrajuu/library-reservation-system-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    stdin_open: true
+    ports:
+      - "3000:80"
+  
+volumes:
+  mariadb-data:
