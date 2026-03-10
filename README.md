@@ -255,29 +255,29 @@ Add automatic trigger:
 2. Check 'Poll SCM'
 3. Paste `H/5 * * * *` into 'Schedule' text field to poll for repository changes every 5 minutes.
 
-#### Build and Run Docker Images Locally
+#### Build and Run Docker Images Locally as a Container
 
 The following commands use configurations from `compose.yml` file and are run like this:
 
 ```shell
 # Build
-docker compose build
+docker compose -f compose.yml build
 
 # Start
-docker compose up -d
+docker compose -f compose.yml up -d
 
 # Stop and remove
-docker compose down -v
+docker compose -f compose.yml down -v
 
 # View logs
-docker compose logs [image-name]
+docker compose -f compose.yml logs [image-name]
 ```
 
 Once container is running, open `http://localhost:3000` in the browser.
 
 #### Run Published Docker Images
 
-Build docker containers with
+Run docker containers with
 
 ```shell
 docker compose -f compose.production.yml up -d
