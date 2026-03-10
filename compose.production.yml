@@ -3,9 +3,6 @@ services:
   mariadb:
     container_name: mariadb
     image: sandrajuu/library-reservation-system-database:latest
-    build:
-      context: ./backend/database
-      dockerfile: Dockerfile
     environment:
       MARIADB_DATABASE: metbook
       MARIADB_USER: library_db_user
@@ -24,9 +21,6 @@ services:
   backend:
     container_name: backend
     image: sandrajuu/library-reservation-system-backend:latest
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     ports:
       - "8081:8081"
     environment:
@@ -40,9 +34,6 @@ services:
   frontend:
     container_name: frontend
     image: sandrajuu/library-reservation-system-frontend:latest
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     stdin_open: true
     ports:
       - "3000:80"
