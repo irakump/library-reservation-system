@@ -161,7 +161,7 @@ const SearchFilters = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full">
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-actionButton [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full">
           {/* Language filter */}
           <div>
             <label htmlFor="language">

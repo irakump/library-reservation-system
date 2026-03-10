@@ -27,7 +27,7 @@ function ReserveButton({ pageType, book, children }) {
       <p className="text-sm mb-1 text-left"> 🔴 Not available</p>
       <div>
         <button
-          className="bg-filter font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-sky-500 float-right cursor-pointer"
+          className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right cursor-pointer"
           onClick={handleClick}
         >
           {children}
