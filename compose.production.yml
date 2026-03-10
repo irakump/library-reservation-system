@@ -15,12 +15,6 @@ services:
       - "13306:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
-      - ./backend/database/database.sql:/docker-entrypoint-initdb.d/01_database.sql
-      - ./backend/database/genre.sql:/docker-entrypoint-initdb.d/02_genre.sql
-      - ./backend/database/language.sql:/docker-entrypoint-initdb.d/03_language.sql
-      - ./backend/database/author.sql:/docker-entrypoint-initdb.d/04_author.sql
-      - ./backend/database/book.sql:/docker-entrypoint-initdb.d/05_book.sql
-      - ./backend/database/writes.sql:/docker-entrypoint-initdb.d/06_writes.sql
     healthcheck:
       test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "library_db_user", "-ppassword"]
       interval: 10s
