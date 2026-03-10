@@ -38,13 +38,13 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
           <div className="flex justify-center gap-8">
             <button
               onClick={onClose}
-              className="bg-filter hover:bg-blue-300 font-medium text-lg px-6 py-2 rounded-lg"
+              className="bg-actionButton hover:bg-actionButtonHover font-medium text-lg px-6 py-2 rounded-lg"
             >
               Cancel
             </button>
             <button
               onClick={handleLogoutClick}
-              className="bg-filter hover:bg-blue-300 font-medium text-lg px-6 py-2 rounded-lg"
+              className="bg-actionButton hover:bg-actionButtonHover font-medium text-lg px-6 py-2 rounded-lg"
             >
               Log out
             </button>
