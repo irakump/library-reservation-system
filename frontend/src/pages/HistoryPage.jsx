@@ -5,7 +5,7 @@ const HistoryPage = () => {
   const { history } = useLoanContext();
 
   if (history.length === 0) {
-    return <div className="text-center p-10">No history yet!</div>;
+    return <div className="min-h-screen text-center p-10">No history yet!</div>;
   }
 
   return (
