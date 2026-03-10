@@ -30,10 +30,6 @@ export const SearchResults = () => {
     setCurrentPage(1);
   }, [searchResults]);
 
-  useEffect(() => {
-    //searchResultsStartRef.current.focus();
-  }, [currentPage]);
-
   let firstDotsRendered = false;
   let lastDotsRendered = false;
 
@@ -111,6 +107,7 @@ export const SearchResults = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         setCurrentPage(page);
+                        scrollToSearchResultsHeader();
                       }}
                       className={
                         currentPage === page ? 'font-bold ' : undefined
