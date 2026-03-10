@@ -5,7 +5,7 @@ const LoansPage = () => {
   const { loans } = useLoanContext();
 
   if (loans.length === 0 ) {
-      return <div className="min-h-screen text-center p-10 bg-profileBackground">No loans yet!</div>
+      return <div className="min-h-screen text-center p-10 bg-background">No loans yet!</div>
   }
 
   return (

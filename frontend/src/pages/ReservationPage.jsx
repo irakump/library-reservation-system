@@ -6,7 +6,7 @@ const ReservationPage = () => {
   //console.log(reservations);
 
     if (reservations.length === 0) {
-        return <div className="min-h-screen text-center p-10 bg-profileBackground">No reservations yet!</div>
+        return <div className="min-h-screen text-center p-10 bg-background">No reservations yet!</div>
     }
 
   return (

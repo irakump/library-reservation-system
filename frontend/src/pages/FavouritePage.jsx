@@ -5,7 +5,7 @@ const FavouritePage = () => {
   const { favorites } = useFavoritesContext();
 
   if (favorites.length === 0) {
-    return <div className="min-h-screen text-center p-10 bg-profileBackground">No favorites yet!</div>;
+    return <div className="min-h-screen text-center p-10 bg-background">No favorites yet!</div>;
   }
 
   return (
