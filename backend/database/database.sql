@@ -43,7 +43,7 @@ CREATE TABLE author(
 CREATE TABLE loan(
     loan_id INT AUTO_INCREMENT PRIMARY KEY,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    due_date DATETIME NOT NULL,
+    due_date DATE NOT NULL,
     return_date DATETIME NULL,
     user_id INT NOT NULL,
     isbn VARCHAR(20) NOT NULL,
