@@ -10,15 +10,18 @@ const ReservationPage = () => {
     }
 
   return (
-    <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12">
-      {reservations && (
-        <BookDataPage
-          title={`My Reservations (${reservations.length})`}
-          books={reservations}
-          pageType="reservation"
-        />
-      )}
+    <div className="bg-background py-10 sm:py-20">
+      <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
+        {reservations && (
+          <BookDataPage
+            title={`My Reservations (${reservations.length})`}
+            books={reservations}
+            pageType="reservation"
+          />
+        )}
+      </div>
     </div>
+    
   );
 };
 

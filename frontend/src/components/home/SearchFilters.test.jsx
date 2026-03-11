@@ -69,8 +69,4 @@ describe('SearchFilters', () => {
       });
     },
   );
-
-  // todo
-  // search results include only books with selected search filters
-
 });

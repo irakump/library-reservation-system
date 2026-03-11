@@ -15,6 +15,8 @@
   --color-logo: #0a4976;
   --color-favourite: #e40909;
   --color-favouriteBorder: #7e0505;
+  --color-actionButton: #83c7ef;
+  --color-actionButtonHover: #54b2e9;
 }
 
 html * {

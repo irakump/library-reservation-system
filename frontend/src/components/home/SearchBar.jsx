@@ -57,7 +57,7 @@ const SearchBar = () => {
 
         <button
           type="submit"
-          className="flex items-center px-4 gap-2 bg-filter text-black hover:bg-sky-500 cursor-pointer"
+          className="flex items-center px-4 gap-2 bg-actionButton text-black hover:bg-actionButtonHover cursor-pointer"
         >
           <MagnifyingGlass className="h-full size-5" />
           Search

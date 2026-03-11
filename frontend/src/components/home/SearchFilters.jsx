@@ -149,7 +149,7 @@ const SearchFilters = () => {
       <div className="flex flex-col gap-5 bg-profileBackground p-4 sm:rounded-md mb-1">
         <div className="flex items-start">
           {/* Availability filter */}
-          <div className="flex items-center gap-2 *:cursor-pointer">
+          <div className="flex items-center gap-2 *:cursor-pointer max-w-full">
             <label htmlFor="availability">Available:</label>
             <input
               type="checkbox"
@@ -161,7 +161,7 @@ const SearchFilters = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-filter [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full">
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-14 [&>div]:sm:flex-1 [&>div>label]:mb-3 [&>div>label]:flex [&>div>label]:flex-col [&>div>label]:gap-1 [&>div>label]:items-start [&>div>label>select]:bg-actionButton [&>div>label>select]:rounded-sm [&>div>label>select]:border [&>div>label>select]:border-filterBorder [&>div>label>select]:cursor-pointer [&>div>label>select]:w-60 sm:[&>div>label>select]:w-full [&>div>label>select]:max-w-full">
           {/* Language filter */}
           <div>
             <label htmlFor="language">

@@ -30,10 +30,6 @@ export const SearchResults = () => {
     setCurrentPage(1);
   }, [searchResults]);
 
-  useEffect(() => {
-    //searchResultsStartRef.current.focus();
-  }, [currentPage]);
-
   let firstDotsRendered = false;
   let lastDotsRendered = false;
 
@@ -71,7 +67,7 @@ export const SearchResults = () => {
           </div>
 
           {/* Search result navigation */}
-          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-filter [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer [&>button]:hover:bg-sky-500 sm:max-w-4xl mx-auto">
+          <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-actionButton [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer [&>button]:hover:bg-actionButtonHover sm:max-w-4xl mx-auto">
             <button
               key="previous-page"
               data-testid="previous-page"
@@ -111,6 +107,7 @@ export const SearchResults = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         setCurrentPage(page);
+                        scrollToSearchResultsHeader();
                       }}
                       className={
                         currentPage === page ? 'font-bold ' : undefined

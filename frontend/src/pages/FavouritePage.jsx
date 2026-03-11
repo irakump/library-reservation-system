@@ -9,9 +9,9 @@ const FavouritePage = () => {
   }
 
   return (
-     <>
-       <h1 className="text-2xl font-bold text-center text-heading py-6 sm:py-8">My Favorites ({favorites.length})</h1>
-        <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12">
+    <div className="bg-background py-10 sm:py-20">
+      <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
+        <h1 className="text-2xl font-bold text-center text-heading py-6 sm:py-8">My Favorites ({favorites.length})</h1>
           {favorites && (
             <BookDataPage
               title=""
@@ -19,8 +19,8 @@ const FavouritePage = () => {
               pageType="favourite"
             />
           )}
-        </div>
-     </>
+      </div>
+    </div>
   );
 };
 
