@@ -90,7 +90,8 @@ public class LoanService {
         bookRepo.save(book);
 
         // Update reservation queue
-        reservationService.processReservationQueue(book);
+        reservationService.processReservationQueue(book, loan);
+        notificationService.notifyDueDate(loan.getUser(), book);
     }
 
 
