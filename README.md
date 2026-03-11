@@ -159,7 +159,7 @@ docker compose -f compose.yml logs [image-name]
 Once container is running, open `http://localhost:3000` in the browser.
 
 ### Run Published Docker Images
-Images are published in Docker Hub:
+Images are published in Docker Hub:  
 Database: https://hub.docker.com/r/sandrajuu/library-reservation-system-database   
 Frontend: https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend   
 Backend: https://hub.docker.com/r/sandrajuu/library-reservation-system-backend   
