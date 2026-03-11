@@ -160,17 +160,29 @@ docker compose -f compose.yml logs [image-name]
 Once container is running, open `http://localhost:3000` in the browser.
 
 ### Run Published Docker Images
-
-Run docker containers with
-
-```shell
-docker compose -f compose.production.yml up -d
-```
-
-### Published Docker images   
+Images are published in Docker Hub:
 Database: https://hub.docker.com/r/sandrajuu/library-reservation-system-database   
 Frontend: https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend   
 Backend: https://hub.docker.com/r/sandrajuu/library-reservation-system-backend   
+
+Copy the contents of `compose.production.yml` and then run:
+
+Pull changes:
+```shell
+# Pull changes
+docker compose -f compose.yml pull
+
+# Start
+docker compose -f compose.yml up -d
+
+# Stop
+docker compose -f compose.yml down -v
+```
+
+Once container is running, open `http://localhost:3000` in the browser.
+
+> [!IMPORTANT]
+> Remember to pull changes every now and then if you want images to stay up to date.
 
 ---
 
