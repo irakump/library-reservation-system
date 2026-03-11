@@ -1,4 +1,4 @@
-# MetBook – Library Reservation System
+# MetBook – A Library Reservation System
 
 MetBook is a library reservation system prototype designed for managing loans and reservations. Users can register and log in to browse, search, and filter the catalog of e-books by genre, language, and publication year. The system allows users to track their loan history, mark favourites, and receive notifications when loans are due or when reserved books become available.
 
