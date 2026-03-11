@@ -1,20 +1,23 @@
-# MetBook – Library Book Reservation System
+# MetBook – Library Reservation System
 
-### Description:
+MetBook is a library reservation system prototype, where users can reserve and "loan" e-books. Instead of real e-books, loaned books appear as cards in the user’s profile. User's can check availability, favorite books, and receive notifications when loans are due.
 
-A system where students and teachers can reserve books from the campus library, check availability, and get notifications when books are due.
+### Features
 
-### Features:
+- Browse, search and filter the library catalog by genre, language and year.  
+- Check availability, reserve and loan books.  
+- Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
+- Login, favorite books and check history of loaned books.   
 
-Browse, search and filter the library catalog.  
-Check availability, reserve and loan e-books.  
-Get reminders for due dates.
-
-### Technologies:
+### Technologies
 
 Backend: Java, Spring Boot  
 Frontend: React, Tailwind CSS  
-MariaDB, Docker, Jenkins
+Database & tools: MariaDB, Docker, Jenkins
+
+
+### Documents
+[Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains ER-diagrams and Sprint reports.   
 
 ---
 
@@ -133,6 +136,11 @@ Run docker containers with
 ```shell
 docker compose -f compose.production.yml up -d
 ```
+
+### Published Docker images   
+Database: https://hub.docker.com/r/sandrajuu/library-reservation-system-database   
+Frontend: https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend   
+Backend: https://hub.docker.com/r/sandrajuu/library-reservation-system-backend   
 
 ---
 
