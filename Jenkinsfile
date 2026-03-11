@@ -129,9 +129,9 @@ pipeline {
                         docker buildx create --name mybuilder || true
                         docker buildx use mybuilder
                         
-                        docker buildx build --push --platform linux/arm64,linux/amd64 --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_BACKEND}:${DOCKER_IMAGE_TAG} ./${BACKEND_DIRECTORY}
-                        docker buildx build --push --platform linux/arm64,linux/amd64 --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG} ./${FRONTEND_DIRECTORY}
-                        docker buildx build --push --platform linux/arm64,linux/amd64 --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG} ./${DATABASE_DIRECTORY}
+                        docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_BACKEND}:${DOCKER_IMAGE_TAG} ./${BACKEND_DIRECTORY}
+                        docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG} ./${FRONTEND_DIRECTORY}
+                        docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG} ./${DATABASE_DIRECTORY}
                         
                         docker logout
                     """
