@@ -9,14 +9,17 @@ const LoansPage = () => {
   }
 
   return (
-    <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12">
-      {loans && (
-        <BookDataPage
-          title={`My Loans (${loans.length})`}
-          books={loans}
-          pageType="favourite"
-        />
-      )}
+    <div className="bg-background">
+      <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12 py-6 sm:py-8">
+        {loans && (
+          <BookDataPage
+            title={`My Loans (${loans.length})`}
+            books={loans}
+            pageType="favourite"
+          />
+        )}
+      </div>
+      
     </div>
   );
 };
