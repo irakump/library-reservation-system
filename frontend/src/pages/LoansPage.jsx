@@ -15,7 +15,7 @@ const LoansPage = () => {
           <BookDataPage
             title={`My Loans (${loans.length})`}
             books={loans}
-            pageType="favourite"
+            pageType="loans"
           />
         )}
       </div>

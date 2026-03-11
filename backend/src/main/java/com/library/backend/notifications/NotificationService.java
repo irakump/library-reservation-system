@@ -27,11 +27,11 @@ public class NotificationService {
     public void notifyOfNewLoan(User user, Book book) {
         String subject = "New book loaned: " + book.getTitle();
         String message =
-                "Hello " + user.getNickname() + ", \n\n You loaned book " + book.getTitle() + ". Lisää duedate";
+                "Hello " + user.getNickname() + ", \n\n You loaned book " + book.getTitle() + ".";
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
-    @Scheduled(cron = "0 0 19 * * *")
+    @Scheduled(cron = "0 0 20 * * *")
     public void notifyAllDueDates() {
         LocalDate today = LocalDate.now();
         List<Loan> dueLoans = loanRepository.findByDueDate(today);
@@ -47,7 +47,7 @@ public class NotificationService {
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
-    @Scheduled(cron = "0 0 19 * * *")
+    @Scheduled(cron = "0 0 20 * * *")
     public void notifyBeforeDueDate() {
         LocalDate notifyDay = LocalDate.now().minusDays(2);
         List<Loan> loans = loanRepository.findByDueDate(notifyDay);

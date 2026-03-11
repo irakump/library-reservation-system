@@ -72,7 +72,7 @@ public class ReservationService {
 
     // Process reservation queue
     @Transactional
-    public void processReservationQueue(Book book) {
+    public void processReservationQueue(Book book, Loan oldLoan) {
         List<ReservationDTO> activeReservations = getActiveReservationsByIsbn(book.getIsbn(), active);
 
         if (activeReservations.isEmpty()) {
@@ -101,6 +101,7 @@ public class ReservationService {
 
         //Send mail
         notificationService.notifyOfNewLoan(oldest.getUser(), book);
+
 
     }
 
