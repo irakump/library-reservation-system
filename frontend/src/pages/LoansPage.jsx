@@ -9,8 +9,8 @@ const LoansPage = () => {
   }
 
   return (
-    <div className="bg-background">
-      <div className="mx-auto px-4 max-w-md sm:max-w-4xl lg:max-w-6xl pb-12 py-6 sm:py-8">
+    <div className="bg-background py-10 sm:py-20">
+      <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
         {loans && (
           <BookDataPage
             title={`My Loans (${loans.length})`}
