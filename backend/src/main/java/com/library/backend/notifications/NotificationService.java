@@ -31,7 +31,7 @@ public class NotificationService {
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
-    @Scheduled(cron = "0 0 17 * * *")
+    @Scheduled(cron = "0 0 20 * * *")
     public void notifyAllDueDates() {
         LocalDate today = LocalDate.now();
         List<Loan> dueLoans = loanRepository.findByDueDate(today);
@@ -47,7 +47,7 @@ public class NotificationService {
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
-    @Scheduled(cron = "0 0 17 * * *")
+    @Scheduled(cron = "0 0 20 * * *")
     public void notifyBeforeDueDate() {
         LocalDate notifyDay = LocalDate.now().minusDays(2);
         List<Loan> loans = loanRepository.findByDueDate(notifyDay);
