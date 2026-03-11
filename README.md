@@ -1,6 +1,10 @@
 # MetBook – Library Reservation System
 
-MetBook is a library reservation system prototype, where users can reserve and loan e-books. User's can check availability, favorite books, and receive notifications when loans are due.
+MetBook is a library reservation system prototype designed for managing loans and reservations. Users can register and log in to browse, search, and filter the catalog of e-books by genre, language, and publication year. The system allows users to track their loan history, mark favourites, and receive notifications when loans are due or when reserved books become available.
+
+>[!NOTE]
+>This is a prototype that mocks a real library. Instead of real e-books, loaned books appear as cards in the user’s profile.
+
 
 ## Table of Contents
 1. [Features](#features)
@@ -33,10 +37,7 @@ MetBook is a library reservation system prototype, where users can reserve and l
 - Browse, search and filter the library catalog by genre, language and year.  
 - Check availability, reserve and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
-- Login, favorite books and check history of loaned books. 
-
->[!NOTE]
->This is a library reservation system prototype that mocks a real library. Instead of real e-books, loaned books appear as cards in the user’s profile.
+- Register, login, favorite books and check history of loaned books. 
 
 ### Technologies
 
@@ -197,7 +198,7 @@ Get user by id:
 
 Get user by email:  
 **endpoint:** '/users/email/{email}'  
-**example:** '/users/email/hello@fakemail.com'
+**example:** '/users/email/fakeuser@example.com'
 
 ## Loans
 
@@ -212,14 +213,14 @@ Get active loans by user:
 **endpoint:** '/loans/user/{user_id}'  
 **example:** '/loans/user/1'
 
-Get returned loans by user: 
+Get returned loans by user:  
 **endpoint:** '/loans/user/{userId}/history'  
 **example:** '/loans/user/1/history'
 
-Post new loans:
+Post new loans:  
 **endpoint** '/loans/new'
 
-Return loans:
+Return loans:  
 **endpoint** '/loans/return'
 
 ## Reservations
@@ -237,16 +238,16 @@ Get reservations by user:
 
 Get reservations by book:  
 **endpoint:** '/reservations/book/{isbn}'  
-**example:** '/reservations/book/9780241600948'
+**example:** '/reservations/book/9780241600948'  
 
-Post new reservation:
-**endpoint:** '/reservations/new'
+Post new reservation:  
+**endpoint:** '/reservations/new'  
 
-Cancel reservation:
-**endpoint** '/reservations/cancel'
+Cancel reservation:  
+**endpoint** '/reservations/cancel'  
 
-Get reservation queue:
-**endpoint** '/book/{isbn}/queue-length'
+Get reservation queue:  
+**endpoint** '/book/{isbn}/queue-length'  
 
 ## Languages
 
@@ -280,7 +281,7 @@ Get books by year:
 **endpoint:** '/book/year/{year}'  
 **example:** '/book/year/2024'
 
-Get books by language:  
+Get books by language:    
 **endpoint:** '/book/language/{language}'  
 **example:** '/book/language/english'
 
