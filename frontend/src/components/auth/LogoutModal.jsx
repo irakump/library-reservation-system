@@ -19,32 +19,31 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
         }
       }}
     >
-      <div className="bg-tag rounded-lg p-6 max-w-sm w-full mx-4">
-        <div className="flex justify-end mb-2">
-          <button
-            onClick={onClose}
-            className="text-2xl font-bold text-gray-800 hover:text-black"
-          >
-            ✕
-          </button>
-        </div>
+      <div className="relative bg-tag rounded-xl p-6 max-w-sm w-full mx-4 shadow-lg">
+        <button
+          onClick={onClose}
+          className="absolute top-1 right-2 w-8 h-8 flex items-center justify-center text-xl font-bold text-gray-700 hover:text-gray-900 "
+          aria-label="Close modal"
+        >
+          ✕
+        </button>
 
-        <div className="bg-white rounded-lg p-4">
-          <h2 className="text-xl font-bold text-center mb-6">
+        <div className="bg-white rounded-lg p-6 mt-2">
+          <h2 className="text-xl font-medium text-center mb-6">
             Are you sure you
             <br /> want to log out?
           </h2>
 
-          <div className="flex justify-center gap-8">
+          <div className="flex justify-center gap-10">
             <button
               onClick={onClose}
-              className="bg-actionButton hover:bg-actionButtonHover font-medium text-lg px-6 py-2 rounded-lg"
+              className="bg-actionButton hover:bg-actionButtonHover font-medium text-base px-5 py-2 rounded-lg"
             >
               Cancel
             </button>
             <button
               onClick={handleLogoutClick}
-              className="bg-actionButton hover:bg-actionButtonHover font-medium text-lg px-6 py-2 rounded-lg"
+              className="bg-actionButton hover:bg-actionButtonHover font-medium text-base px-5 py-2 rounded-lg"
             >
               Log out
             </button>
