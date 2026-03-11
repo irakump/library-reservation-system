@@ -1,13 +1,42 @@
 # MetBook – Library Reservation System
 
-MetBook is a library reservation system prototype, where users can reserve and "loan" e-books. Instead of real e-books, loaned books appear as cards in the user’s profile. User's can check availability, favorite books, and receive notifications when loans are due.
+MetBook is a library reservation system prototype, where users can reserve and loan e-books. User's can check availability, favorite books, and receive notifications when loans are due.
+
+## Table of Contents
+1. [Features](#features)
+2. [Technologies](#technologies)
+3. [Documents](#documents)
+4. [Development](#development)
+   - [Database](#database)
+   - [Frontend](#frontend)
+   - [Backend](#backend)
+   - [Jenkins and Docker](#jenkins-and-docker)
+     - [Jenkins Requirements](#jenkins-requirements)
+     - [Jenkins Pipeline](#jenkins-pipeline)
+     - [Build and Run Docker Images Locally as a Container](#build-and-run-docker-images-locally-as-a-container)
+     - [Run Published Docker Images](#run-published-docker-images)
+     - [Published Docker images](#published-docker-images)
+5. [API endpoints](#api-endpoints)
+   - [Genres](#genres)
+   - [Users](#users)
+   - [Loans](#loans)
+   - [Reservations](#reservations)
+   - [Languages](#languages)
+   - [Authors](#authors)
+   - [Books](#books)
+   - [Years](#years)
+   - [Favorites](#favorites)
+   - [Authorization](#authorization)
 
 ### Features
 
 - Browse, search and filter the library catalog by genre, language and year.  
 - Check availability, reserve and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
-- Login, favorite books and check history of loaned books.   
+- Login, favorite books and check history of loaned books. 
+
+>[!NOTE]
+>This is a library reservation system prototype that mocks a real library. Instead of real e-books, loaned books appear as cards in the user’s profile.
 
 ### Technologies
 
@@ -31,22 +60,22 @@ Password: password
 
 - CREATE USER 'library_db_user'@'localhost' IDENTIFIED BY 'password';
 
-Create database and add data in the following order (.sql files):
+Create database:  
+Use **database.sql** file.   
 
-1. database   
+> [!IMPORTANT]
+> After creating the database, give permissions to user:  
+>GRANT ALL PRIVILEGES ON metbook.\* TO 'library_db_user'@'localhost';  
+>FLUSH PRIVILEGES;  
 
-Then, give permissions to user:
-- GRANT ALL PRIVILEGES ON metbook.\* TO 'library_db_user'@'localhost';
-- FLUSH PRIVILEGES;
+Next, add the data in the following order of .sql files:  
+1. genre
+2. language  
+3. author  
+4. book  
+5. writes  
 
-2. genre
-3. language
-4. author
-5. book
-6. writes
-
-Add mock user data (only for development):
-
+Optional: add mock user data (only for development):
 1. mock-users
 2. loan
 3. reservation
@@ -276,7 +305,7 @@ Post favorites by isbn:
 Remove favorites by isbn:   
 **endpoint:** '/users/{userId}/favorites/{isbn}'
 
-## Authorization (register, login)
+## Authorization
 
 Register endpoint (register form sends data there and backend uses it):   
 **endpoint:** '/auth/register'
