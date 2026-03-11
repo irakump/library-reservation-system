@@ -165,21 +165,20 @@ Database: https://hub.docker.com/r/sandrajuu/library-reservation-system-database
 Frontend: https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend   
 Backend: https://hub.docker.com/r/sandrajuu/library-reservation-system-backend   
 
-Copy the contents of `compose.production.yml` and then run:
+File `compose.production.yml` in root directory contains everything needed to get published images up and running together as a container. Navigate to the directory `compose.production.yml` file is in and then run the following through terminal:
 
-Pull changes:
 ```shell
 # Pull changes
-docker compose -f compose.yml pull
+docker compose -f compose.production.yml pull
 
 # Start
-docker compose -f compose.yml up -d
+docker compose -f compose.production.yml up -d
 
 # Stop
-docker compose -f compose.yml down -v
+docker compose -f compose.production.yml down -v
 ```
 
-Once container is running, open `http://localhost:3000` in the browser.
+Once the container is running, open `http://localhost:3000` in the browser.
 
 > [!IMPORTANT]
 > Remember to pull changes every now and then if you want images to stay up to date.
