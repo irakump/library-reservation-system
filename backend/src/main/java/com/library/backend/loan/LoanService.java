@@ -66,7 +66,7 @@ public class LoanService {
         User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
         Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
 
-        LocalDate dueDate = LocalDate.now(); //.plusWeeks(2);
+        LocalDate dueDate = LocalDate.now().plusWeeks(2);
         Loan loan = new Loan(dueDate, user, book);
         loanRepo.save(loan);
 
