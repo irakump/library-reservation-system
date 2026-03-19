@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { loginAPICall } from "../../api/authApi";
 import { useAuth } from "../../contexts/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
+  const { t } = useTranslation("auth");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +28,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
     // Validates inputs
     if (!email || !password) {
-      setError("Please enter both email and password");
+      setError(t("error.empty_email_password"));
       return;
     }
 
@@ -49,7 +52,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
           // Backend returned an error
           setError(error.response.data);
         } else {
-          setError("Login failed. Please try again.");
+          setError(t("error.login_fail"));
         }
         console.error("Login error: ", error);
       });
@@ -67,7 +70,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
       <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="bg-navbar p-4 flex justify-between text-center flex-0">
-          <h2 className="text-3xl font-bold text-gray-800">Login</h2>
+          <h2 className="text-3xl font-bold text-gray-800">{t("login.title")}</h2>
 
           <button
             onClick={onClose}
@@ -89,10 +92,10 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
           {/* Email */}
           <div className="mb-6 mt-4">
-            <label className="block text-gray-600 mb-2 text-sm">Email</label>
+            <label className="block text-gray-600 mb-2 text-sm">{t("common.email")}</label>
             <input
               type="email"
-              placeholder="example@gmail.com"
+              placeholder={t("common.email_placeholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
@@ -102,10 +105,10 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
           {/* Password */}
           <div className="mb-12">
-            <label className="block text-gray-600 mb-2 text-sm">Password</label>
+            <label className="block text-gray-600 mb-2 text-sm">{t("common.password")}</label>
             <input
               type="password"
-              placeholder="Enter your Password"
+              placeholder={t("common.password_placeholder")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
@@ -118,7 +121,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
             onClick={handleLoginForm}
             className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8"
           >
-            Login
+            {t("common.login_button")}
           </button>
 
           {/* Register link */}
@@ -127,7 +130,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
               onClick={onSwitchToRegister}
               className="text-center font-semibold text-gray-800 hover:text-blue-600 text-lg"
             >
-              Register
+              {t("common.register_button")}
             </button>
           </div>
         </div>

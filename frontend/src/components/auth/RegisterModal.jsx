@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { registerAPICall } from "../../api/authApi";
+import { useTranslation } from "react-i18next";
 
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   if (!isOpen) return null;
+
+  const { t } = useTranslation("auth");
 
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +29,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     registerAPICall(register)
       .then((response) => {
         console.log("Success:", response.data);
-        alert("Successful registration. Please log in."); // Feedback to user after successful registration
+        alert(t("success.register_success")); // Feedback to user after successful registration
         onSwitchToLogin(); // Close registration, open login
       })
       .catch((error) => {
@@ -36,7 +39,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
         } else {
           // Other errors
           console.error("Error: ", error.message);
-          alert("Error occurred. Please try again.");
+          alert(t("error.general"));
         }
       });
   };
@@ -50,34 +53,34 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
     // Nickname
     if (!register.nickname.trim()) {
-      newErrors.nickname = "Nickname is required";
+      newErrors.nickname = t("error.nickname_required");
     }
 
     // Email
     if (!register.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("error.email_required");
     } else if (!isValidEmail(register.email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = t("error.email_format");
     }
 
     // Password
     if (!register.password.trim()) {
-      newErrors.password.push("Password is required");
+      newErrors.password.push(t("error.password_required"));
     } else {
       if (register.password.length < 8) {
-        newErrors.password.push("At least 8 characters");
+        newErrors.password.push(t("error.password.length"));
       }
       if (!/[a-z]/.test(register.password)) {
-        newErrors.password.push("Lowercase letter required");
+        newErrors.password.push(t("error.password.lowercase_letter"));
       }
       if (!/[A-Z]/.test(register.password)) {
-        newErrors.password.push("Uppercase letter required");
+        newErrors.password.push(t("error.password.uppercase_letter"));
       }
       if (!hasNumber(register.password)) {
-        newErrors.password.push("Number required");
+        newErrors.password.push(t("error.password.number"));
       }
       if (!hasSpecialCharacter(register.password)) {
-        newErrors.password.push("Special character required");
+        newErrors.password.push(t("error.password.special_character"));
       }
     }
 
@@ -123,7 +126,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="bg-navbar p-4 flex justify-between text-center flex-0">
-          <h2 className="text-3xl font-bold text-gray-800">Register</h2>
+          <h2 className="text-3xl font-bold text-gray-800">{t("register.title")}</h2>
 
           <button
             onClick={onClose}
@@ -139,14 +142,14 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Nickname */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              Nickname*
+              {t("register.nickname")}*
               {errors.nickname && (
                 <p className="text-red-600 font-semibold">{errors.nickname}</p>
               )}
             </label>
             <input
               type="text"
-              placeholder="Enter your nickname"
+              placeholder={t("register.nickname_placeholder")}
               onChange={(e) => setNickname(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
@@ -155,14 +158,14 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Email */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              Email*
+              {t("common.email")}*
               {errors.email && (
                 <p className="text-red-600 font-semibold">{errors.email}</p>
               )}
             </label>
             <input
               type="email"
-              placeholder="example@gmail.com"
+              placeholder={t("common.email_placeholder")}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
@@ -171,21 +174,19 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Password */}
           <div className="mb-12">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              Password*
+              {t("common.password")}*
               {errors.password && (
                 <p className="text-red-600 font-semibold">{errors.password}</p>
               )}
             </label>
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder={t("common.password_placeholder")}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
             <p className="text-gray-600 mt-1 text-sm">
-              Password must be at least 8 characters long and include:
-              <br />
-              uppercase, lowercase, number, and special character
+              {t("register.password_guide")}
             </p>
           </div>
 
@@ -194,7 +195,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
             className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8"
             onClick={(e) => handleRegisterForm(e)}
           >
-            Register
+            {t("common.register_button")}
           </button>
 
           {/* Login link */}
@@ -203,7 +204,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
               onClick={onSwitchToLogin}
               className="text-center font-semibold text-gray-800 hover:text-blue-600 text-lg"
             >
-              Login
+              {t("common.login_button")}
             </button>
           </div>
         </div>

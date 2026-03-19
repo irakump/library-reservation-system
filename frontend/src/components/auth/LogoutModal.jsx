@@ -1,7 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
+
 
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
+
+  const {t} = useTranslation("auth");
 
   const { handleLogout } = useAuth();
 
@@ -30,8 +34,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
 
         <div className="bg-white rounded-lg p-6 mt-2">
           <h2 className="text-xl font-medium text-center mb-6">
-            Are you sure you
-            <br /> want to log out?
+            {t("logout.confirm_logout")}
           </h2>
 
           <div className="flex justify-center gap-10">
@@ -39,13 +42,13 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
               onClick={onClose}
               className="bg-actionButton hover:bg-actionButtonHover font-medium text-base px-5 py-2 rounded-lg"
             >
-              Cancel
+              {t("logout.cancel")}
             </button>
             <button
               onClick={handleLogoutClick}
               className="bg-actionButton hover:bg-actionButtonHover font-medium text-base px-5 py-2 rounded-lg"
             >
-              Log out
+              {t("logout.logout_button")}
             </button>
           </div>
         </div>
