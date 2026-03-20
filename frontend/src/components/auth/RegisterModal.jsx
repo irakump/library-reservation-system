@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   if (!isOpen) return null;
 
-  const { t } = useTranslation("auth");
+  const { t } = useTranslation(["auth", "button", "book_card"]);
 
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     registerAPICall(register)
       .then((response) => {
         console.log("Success:", response.data);
-        alert(t("success.register_success")); // Feedback to user after successful registration
+        alert(t("success.register_success", { ns: "auth" })); // Feedback to user after successful registration
         onSwitchToLogin(); // Close registration, open login
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
         } else {
           // Other errors
           console.error("Error: ", error.message);
-          alert(t("error.general"));
+          alert(t("error.general", { ns: "auth" }));
         }
       });
   };
@@ -53,34 +53,34 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
     // Nickname
     if (!register.nickname.trim()) {
-      newErrors.nickname = t("error.nickname_required");
+      newErrors.nickname = t("error.nickname_required", { ns: "auth" });
     }
 
     // Email
     if (!register.email.trim()) {
-      newErrors.email = t("error.email_required");
+      newErrors.email = t("error.email_required", { ns: "auth" });
     } else if (!isValidEmail(register.email)) {
-      newErrors.email = t("error.email_format");
+      newErrors.email = t("error.email_format", { ns: "auth" });
     }
 
     // Password
     if (!register.password.trim()) {
-      newErrors.password.push(t("error.password_required"));
+      newErrors.password.push(t("error.password_required", { ns: "auth" }));
     } else {
       if (register.password.length < 8) {
-        newErrors.password.push(t("error.password.length"));
+        newErrors.password.push(t("error.password.length", { ns: "auth" }));
       }
       if (!/[a-z]/.test(register.password)) {
-        newErrors.password.push(t("error.password.lowercase_letter"));
+        newErrors.password.push(t("error.password.lowercase_letter", { ns: "auth" }));
       }
       if (!/[A-Z]/.test(register.password)) {
-        newErrors.password.push(t("error.password.uppercase_letter"));
+        newErrors.password.push(t("error.password.uppercase_letter", { ns: "auth" }));
       }
       if (!hasNumber(register.password)) {
-        newErrors.password.push(t("error.password.number"));
+        newErrors.password.push(t("error.password.number", { ns: "auth" }));
       }
       if (!hasSpecialCharacter(register.password)) {
-        newErrors.password.push(t("error.password.special_character"));
+        newErrors.password.push(t("error.password.special_character", { ns: "auth" }));
       }
     }
 
@@ -126,12 +126,12 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="bg-navbar p-4 flex justify-between text-center flex-0">
-          <h2 className="text-3xl font-bold text-gray-800">{t("register.title")}</h2>
+          <h2 className="text-3xl font-bold text-gray-800">{t("register.title", { ns: "auth" })}</h2>
 
           <button
             onClick={onClose}
             className="text-2xl font-bold text-gray-800 hover:text-black"
-            aria-label="Close modal"
+            aria-label={t("close_modal_label", { ns: "book_card" })}
           >
             ✕
           </button>
@@ -142,14 +142,14 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Nickname */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              {t("register.nickname")}*
+              {t("register.nickname", { ns: "auth" })}*
               {errors.nickname && (
                 <p className="text-red-600 font-semibold">{errors.nickname}</p>
               )}
             </label>
             <input
               type="text"
-              placeholder={t("register.nickname_placeholder")}
+              placeholder={t("register.nickname_placeholder", { ns: "auth" })}
               onChange={(e) => setNickname(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
@@ -158,14 +158,14 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Email */}
           <div className="mb-6 mt-4">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              {t("common.email")}*
+              {t("common.email", { ns: "auth" })}*
               {errors.email && (
                 <p className="text-red-600 font-semibold">{errors.email}</p>
               )}
             </label>
             <input
               type="email"
-              placeholder={t("common.email_placeholder")}
+              placeholder={t("common.email_placeholder", { ns: "auth" })}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
@@ -174,19 +174,19 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           {/* Password */}
           <div className="mb-12">
             <label className="flex flex-row gap-3 text-gray-600 mb-2 text-sm">
-              {t("common.password")}*
+              {t("common.password", { ns: "auth" })}*
               {errors.password && (
                 <p className="text-red-600 font-semibold">{errors.password}</p>
               )}
             </label>
             <input
               type="password"
-              placeholder={t("common.password_placeholder")}
+              placeholder={t("common.password_placeholder", { ns: "auth" })}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-400"
             />
             <p className="text-gray-600 mt-1 text-sm">
-              {t("register.password_guide")}
+              {t("register.password_guide", { ns: "auth" })}
             </p>
           </div>
 
@@ -195,7 +195,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
             className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8"
             onClick={(e) => handleRegisterForm(e)}
           >
-            {t("common.register_button")}
+            {t("register", { ns: "button" })}
           </button>
 
           {/* Login link */}
@@ -204,7 +204,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
               onClick={onSwitchToLogin}
               className="text-center font-semibold text-gray-800 hover:text-blue-600 text-lg"
             >
-              {t("common.login_button")}
+              {t("login", { ns: "button" })}
             </button>
           </div>
         </div>

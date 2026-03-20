@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 
 import ChevronLeft from '@heroicons/react/24/solid/ChevronLeftIcon';
 import ChevronRight from '@heroicons/react/24/solid/ChevronRightIcon';
+import { useTranslation } from 'react-i18next';
 
 export const SearchResults = () => {
+  const { t } = useTranslation("search");
   const searchResultsStartRef = useRef(null);
 
   const { searchResults } = useSearchResult();
@@ -48,7 +50,7 @@ export const SearchResults = () => {
       {searchResults.length > 0 ? (
         <>
           <div className="flex flex-row justify-between mb-2 px-4 sm:px-1">
-            <h2 ref={searchResultsStartRef}>Search Results</h2>
+            <h2 ref={searchResultsStartRef}>{t("search_results_header")}</h2>
             <h2>
               {startIndex + 1} -{' '}
               {endIndex < searchResults.length
@@ -137,7 +139,7 @@ export const SearchResults = () => {
         </>
       ) : (
         <div className="flex justify-center mb-18 sm:max-w-4xl mx-auto">
-          <h2>No Search Results</h2>
+          <h2>{t("search_results_header_none")}</h2>
         </div>
       )}
     </div>

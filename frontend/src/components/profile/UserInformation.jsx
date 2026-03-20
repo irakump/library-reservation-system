@@ -1,27 +1,29 @@
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 
 const UserInformation = () => {
   const { user, isLoggedIn } = useAuth();
+  const { t } = useTranslation("profile");
 
   if (!isLoggedIn || !user) {
     return (
       <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
         <h3 className="text-lg sm:text-xl font-semibold mb-4 text-left">
-          User Information
+          {t("my_page.user_information")}
         </h3>
         <p className="text-sm sm:text-base text-gray-500">
-          You are not logged in.
+          {t("my_page.not_logged_in_info")}
         </p>
       </div>
     );
   }
 
   const userInfo = [
-    { id: "nickname", label: "Nickname:", value: user.nickname },
-    { id: "email", label: "Email:", value: user.email },
+    { id: "nickname", label: t("my_page.nickname"), value: user.nickname },
+    { id: "email", label: t("my_page.email"), value: user.email },
     {
       id: "created",
-      label: "User created:",
+      label: t("my_page.user_creation"),
       value: user.createdAt,
     },
   ];
@@ -29,7 +31,7 @@ const UserInformation = () => {
   return (
     <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm h-fit">
       <h3 className="text-lg sm:text-xl font-semibold mb-4 text-left">
-        User Information
+        {t("my_page.user_information")}
       </h3>
       <div className="space-y-3 px-4">
         {userInfo.map((info) => (

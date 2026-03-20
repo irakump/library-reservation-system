@@ -1,15 +1,17 @@
 //not a button but goes to BookButtons
+import { useTranslation } from "react-i18next";
 import {splitDate} from "../../utils/splitDate.js";
 
 function HistoryText({book}) {
+    const { t } = useTranslation("book_card")
 
     return (
           <>
             <p className="text-sm mb-1 text-left">
-              Borrowed: {splitDate(book.createdAt)}
+              {t("history_borrowed", { date: splitDate(book.createdAt)})}
             </p>
             <p className="text-sm mb-1 text-left">
-              Returned: {splitDate(book.returnDate)}
+              {t("history_returned", { date: splitDate(book.returnDate)})}
             </p>
           </>
     )

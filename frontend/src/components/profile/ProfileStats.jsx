@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
 import { useLoanContext } from "../../contexts/LoanContext";
 import { useReservationContext } from "../../contexts/ReservationContext";
@@ -6,18 +7,19 @@ const ProfileStats = () => {
   const { loans } = useLoanContext();
   const { reservations } = useReservationContext();
   const { favorites } = useFavoritesContext();
+  const { t } = useTranslation("profile");
 
   const stats = [
     { id: "loans", 
-      label: "Current loans:", 
+      label: t("my_page.current_loans"), 
       value: loans.length },
     {
       id: "reservations",
-      label: "Reservations:",
+      label: t("my_page.current_reservations"),
       value: reservations.length,
     },
     { id: "favorites", 
-      label: "Favorites:", 
+      label: t("my_page.current_favorites"), 
       value: favorites.length 
     },
   ];

@@ -4,8 +4,11 @@ import BookButtons from "./BookButtons.jsx";
 import { getQueueLength } from "../../api/reservationsApi.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext.jsx";
+import { useTranslation } from "react-i18next";
 
 const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
+  const { t } = useTranslation("book_card");
+
   const [queueLength, setQueueLength] = useState(null);
   const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
   const { user, isLoggedIn } = useAuth();
@@ -83,7 +86,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             <div className="mt-6 flex flex-col max-sm:gap-2">
               <div className="text-sm items-start">
                 {book.availability === false && user && isLoggedIn &&  (
-                  <p>Queue length: {queueLength ?? "..."}</p>
+                  <p>{t("queue_length")}: {queueLength ?? "..."}</p>
                 )}
               </div>
               <div className="flex flex-col items-start sm:flex-row sm:items-end justify-between max-sm:gap-2">

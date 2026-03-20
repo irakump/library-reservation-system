@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 import { useSearchFilters } from '../../contexts/SearchFilterContext.jsx';
+import { useTranslation } from 'react-i18next';
 
 const SearchFilters = () => {
   // context
   const { fetchSearchResults } = useSearchResult();
   const { searchFilters, setSearchFilters } = useSearchFilters();
+  const { t } = useTranslation('search');
 
   // data from database
   const [genres, setGenres] = useState([]);
@@ -144,13 +146,13 @@ const SearchFilters = () => {
 
   return (
     <div className="flex flex-col items-start [&>div]:w-full">
-      <p className="ml-4 sm:ml-1 mb-2">Search Filters</p>
+      <p className="ml-4 sm:ml-1 mb-2">{t("filters.title")}</p>
 
       <div className="flex flex-col gap-5 bg-profileBackground p-4 sm:rounded-md mb-1">
         <div className="flex items-start">
           {/* Availability filter */}
           <div className="flex items-center gap-2 *:cursor-pointer max-w-full">
-            <label htmlFor="availability">Available:</label>
+            <label htmlFor="availability">{t("filters.availability")}</label>
             <input
               type="checkbox"
               id="availability"
@@ -165,7 +167,7 @@ const SearchFilters = () => {
           {/* Language filter */}
           <div>
             <label htmlFor="language">
-              Language
+              {t("filters.language")}
               <select
                 className={'capitalize'}
                 id="language"
@@ -174,7 +176,7 @@ const SearchFilters = () => {
                 onChange={handleValueSelect}
               >
                 <option value="" disabled>
-                  Select Language
+                  {t("filters.language_placeholder")}
                 </option>
                 {languages.map((item) => (
                   <option
@@ -193,7 +195,7 @@ const SearchFilters = () => {
           {/* Genre filter */}
           <div>
             <label htmlFor="genre">
-              Genre
+              {t("filters.genre")}
               <select
                 className={'capitalize'}
                 id="genre"
@@ -202,7 +204,7 @@ const SearchFilters = () => {
                 onChange={handleValueSelect}
               >
                 <option value="" disabled>
-                  Select Genre
+                  {t("filters.genre_placeholder")}
                 </option>
                 {genres.map((item) => (
                   <option
@@ -221,7 +223,7 @@ const SearchFilters = () => {
           {/* Year filter */}
           <div>
             <label htmlFor="year">
-              Year
+              {t("filters.year")}
               <select
                 id="year"
                 name="years"
@@ -229,7 +231,7 @@ const SearchFilters = () => {
                 onChange={handleValueSelect}
               >
                 <option value="" disabled>
-                  Select Year
+                  {t("filters.year_placeholder")}
                 </option>
                 {years
                   .sort((a, b) => b - a)

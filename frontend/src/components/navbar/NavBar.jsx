@@ -5,9 +5,11 @@ import { useAuth } from "../../contexts/AuthContext";
 import LoginModal from "../auth/LoginModal.jsx";
 import RegisterModal from "../auth/RegisterModal.jsx";
 import LogoutModal from "../auth/LogoutModal";
+import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
   const { isProfileMenuOpen, toggleMenu } = useMenu();
+  const { t } = useTranslation("navigation");
 
   const {
     isLoginOpen,
@@ -28,18 +30,18 @@ const NavBar = () => {
           <a href="/">
             <img
               src="/book-logo.png"
-              alt="Stack of books"
+              alt={t("navbar.dropdown.book_logo_alt")}
               className="h-7 pr-2 pt-1"
             />
           </a>
           <a href="/" className="font-bold text-2xl max-[260px]:hidden">
-            MetBook
+            {t("navbar.site_title")}
           </a>
         </div>
         <div className="flex flex-row gap-3 items-center h-10">
           <img
             src="/language-icon.png"
-            alt="Language"
+            alt={t("navbar.dropdown.language_icon_alt")}
             className="h-7 mt-1"
             tabIndex={0}
           />
@@ -58,7 +60,7 @@ const NavBar = () => {
               </button>
             ) : (
               <button className="h-10 mt-2 hover:cursor-pointer" onClick={toggleMenu}>
-                <img src="/hamburger-menu.png" alt="Menu" className="h-10" />
+                <img src="/hamburger-menu.png" alt={t("navbar.dropdown.hamburger_menu_icon_alt")} className="h-10" />
               </button>
             )}
           </div>

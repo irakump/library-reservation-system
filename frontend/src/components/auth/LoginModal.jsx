@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useTranslation } from "react-i18next";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
-  const { t } = useTranslation("auth");
+  const { t } = useTranslation(["auth", "button", "book_card"]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
     // Validates inputs
     if (!email || !password) {
-      setError(t("error.empty_email_password"));
+      setError(t("error.empty_email_password", { ns: "auth" }));
       return;
     }
 
@@ -52,7 +52,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
           // Backend returned an error
           setError(error.response.data);
         } else {
-          setError(t("error.login_fail"));
+          setError(t("error.login_fail", { ns: "auth" }));
         }
         console.error("Login error: ", error);
       });
@@ -70,12 +70,12 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
       <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="bg-navbar p-4 flex justify-between text-center flex-0">
-          <h2 className="text-3xl font-bold text-gray-800">{t("login.title")}</h2>
+          <h2 className="text-3xl font-bold text-gray-800">{t("login.title", { ns: "auth" })}</h2>
 
           <button
             onClick={onClose}
             className="text-2xl font-bold text-gray-800 hover:text-black"
-            aria-label="Close modal"
+            aria-label={t("close_modal_label", { ns: "book_card" })}
           >
             ✕
           </button>
@@ -92,10 +92,10 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
           {/* Email */}
           <div className="mb-6 mt-4">
-            <label className="block text-gray-600 mb-2 text-sm">{t("common.email")}</label>
+            <label className="block text-gray-600 mb-2 text-sm">{t("common.email", { ns: "auth" })}</label>
             <input
               type="email"
-              placeholder={t("common.email_placeholder")}
+              placeholder={t("common.email_placeholder", { ns: "auth" })}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
@@ -105,10 +105,10 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
           {/* Password */}
           <div className="mb-12">
-            <label className="block text-gray-600 mb-2 text-sm">{t("common.password")}</label>
+            <label className="block text-gray-600 mb-2 text-sm">{t("common.password", { ns: "auth" })}</label>
             <input
               type="password"
-              placeholder={t("common.password_placeholder")}
+              placeholder={t("common.password_placeholder", { ns: "auth" })}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 font-medium text-lg border-2 border-gray-300 
@@ -121,7 +121,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
             onClick={handleLoginForm}
             className="w-full text-center bg-loginButton hover:bg-blue-500 font-semibold text-white py-3 rounded-xl mb-8"
           >
-            {t("common.login_button")}
+            {t("login", { ns: "button" })}
           </button>
 
           {/* Register link */}
@@ -130,7 +130,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
               onClick={onSwitchToRegister}
               className="text-center font-semibold text-gray-800 hover:text-blue-600 text-lg"
             >
-              {t("common.register_button")}
+              {t("register", { ns: "button" })}
             </button>
           </div>
         </div>

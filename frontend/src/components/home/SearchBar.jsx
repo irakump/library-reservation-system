@@ -4,10 +4,12 @@ import { useSearchFilters } from '../../contexts/SearchFilterContext';
 
 import MagnifyingGlass from '@heroicons/react/16/solid/MagnifyingGlassIcon';
 import XMark from '@heroicons/react/24/solid/XMarkIcon';
+import { useTranslation } from 'react-i18next';
 
 const SearchBar = () => {
   const { fetchSearchResults } = useSearchResult(); // context
   const { searchFilters, setSearchFilters } = useSearchFilters();
+  const { t } = useTranslation("search");
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -25,7 +27,7 @@ const SearchBar = () => {
   return (
     <div className="flex flex-col w-full h-16 sm:h-20 gap-1 px-6 sm:px-12">
       <label className="ml-1" htmlFor="search">
-        Search
+        {t("search_title")}
       </label>
 
       <form
@@ -60,7 +62,7 @@ const SearchBar = () => {
           className="flex items-center px-4 gap-2 bg-actionButton text-black hover:bg-actionButtonHover cursor-pointer"
         >
           <MagnifyingGlass className="h-full size-5" />
-          Search
+          {t("search_button")}
         </button>
       </form>
     </div>
