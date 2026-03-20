@@ -14,7 +14,7 @@ const ProfileButton = () => {
         <button onClick={toggleMenu}
          className="flex flex-row gap-2 items-center w-50 justify-center text-xl mt-1 hover:cursor-pointer"
          >{t("navbar.dropdown.profile")}
-            <img src="/down.png" alt={t("navbar.dropdown.arrow_down_icon_alt")} className="h-4 mt-1" />
+            <img src="/down.png" alt={t("navbar.arrow_down_icon_alt")} className="h-4 mt-1" />
         </button>
       
     </div>

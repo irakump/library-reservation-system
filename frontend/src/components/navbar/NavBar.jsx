@@ -30,7 +30,7 @@ const NavBar = () => {
           <a href="/">
             <img
               src="/book-logo.png"
-              alt={t("navbar.dropdown.book_logo_alt")}
+              alt={t("navbar.book_logo_alt")}
               className="h-7 pr-2 pt-1"
             />
           </a>
@@ -41,7 +41,7 @@ const NavBar = () => {
         <div className="flex flex-row gap-3 items-center h-10">
           <img
             src="/language-icon.png"
-            alt={t("navbar.dropdown.language_icon_alt")}
+            alt={t("navbar.language_icon_alt")}
             className="h-7 mt-1"
             tabIndex={0}
           />
@@ -60,7 +60,7 @@ const NavBar = () => {
               </button>
             ) : (
               <button className="h-10 mt-2 hover:cursor-pointer" onClick={toggleMenu}>
-                <img src="/hamburger-menu.png" alt={t("navbar.dropdown.hamburger_menu_icon_alt")} className="h-10" />
+                <img src="/hamburger-menu.png" alt={t("navbar.hamburger_menu_icon_alt")} className="h-10" />
               </button>
             )}
           </div>
