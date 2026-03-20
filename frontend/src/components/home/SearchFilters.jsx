@@ -172,6 +172,7 @@ const SearchFilters = () => {
                 className={'capitalize'}
                 id="language"
                 name="language"
+                data-testid="language-select"
                 value={categoryValue}
                 onChange={handleValueSelect}
               >
@@ -200,6 +201,7 @@ const SearchFilters = () => {
                 className={'capitalize'}
                 id="genre"
                 name="genre"
+                data-testid="genre-select"
                 value={categoryValue}
                 onChange={handleValueSelect}
               >
@@ -227,6 +229,7 @@ const SearchFilters = () => {
               <select
                 id="year"
                 name="years"
+                data-testid="year-select"
                 value={categoryValue}
                 onChange={handleValueSelect}
               >

@@ -42,14 +42,14 @@ describe('SearchFilters', () => {
 
       // simulate user interaction (select item from dropdown menu)
       [
-        [languages, 'Language', 'language'],
-        [genres, 'Genre', 'genre'],
-        [years, 'Year', 'years'],
-      ].forEach(([items, label, name]) => {
+        [languages, "language-select"],
+        [genres, "genre-select"],
+        [years, "year-select"],
+      ].forEach(([items, testId]) => {
         for (const item of items) {
-          const select = screen.getByRole('combobox', { name: label });
+          const select = screen.getByTestId(testId);
           fireEvent.change(select, {
-            target: { value: String(item), name },
+            target: { value: String(item) },
           });
         }
       });
