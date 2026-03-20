@@ -1,10 +1,10 @@
 import BookDataPage from "./BookDataPage";
 import { useFavoritesContext } from "../contexts/FavoritesContext.jsx";
-import { useTransition } from "react";
+import { useTranslation } from "react-i18next";
 
 const FavouritePage = () => {
   const { favorites } = useFavoritesContext();
-  const { t } = useTransition("profile");
+  const { t } = useTranslation("profile");
 
   if (favorites.length === 0) {
     return <div className="min-h-screen text-center p-10 bg-background">{t("favorites.title_none")}</div>;
