@@ -14,6 +14,8 @@ import { NotificationProvider } from "./contexts/NotificationContext.jsx";
 import { LoanProvider } from "./contexts/LoanContext.jsx";
 import { FavoritesProvider } from "./contexts/FavoritesContext.jsx";
 import { ReservationProvider } from "./contexts/ReservationContext.jsx";
+import { Suspense } from "react";
+import Loading from "./pages/Loading.jsx";
 
 function App() {
   return (
@@ -23,26 +25,33 @@ function App() {
           <ReservationProvider>
             <LoanProvider>
               <FavoritesProvider>
-                <NavBar />
+                <Suspense fallback={<Loading />}>
+                  <NavBar />
+                </Suspense>
 
                 <NotificationProvider>
                   <Notification />
                 </NotificationProvider>
                 <main>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/profile/loans" element={<LoansPage />} />
-                    <Route
-                      path="/profile/reservations"
-                      element={<ReservationPage />}
-                    />
-                    <Route path="/profile/history" element={<HistoryPage />} />
-                    <Route
-                      path="/profile/favorites"
-                      element={<FavouritePage />}
-                    />
-                  </Routes>
+                  <Suspense fallback={<Loading />}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/profile" element={<ProfilePage />} />
+                      <Route path="/profile/loans" element={<LoansPage />} />
+                      <Route
+                        path="/profile/reservations"
+                        element={<ReservationPage />}
+                      />
+                      <Route
+                        path="/profile/history"
+                        element={<HistoryPage />}
+                      />
+                      <Route
+                        path="/profile/favorites"
+                        element={<FavouritePage />}
+                      />
+                    </Routes>
+                  </Suspense>
                 </main>
                 <Footer />
               </FavoritesProvider>
