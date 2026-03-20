@@ -1,0 +1,18 @@
+{
+  "search_results_header": "Search Results",
+  "search_results_header_none": "Search Results",
+  "filters_show": "Show Filters",
+  "filters_hide": "Hide Filters",
+  "filters": {
+    "title": "Search Filters",
+    "availability": "Available:",
+    "language": "Language",
+    "language_placeholder": "Select Language",
+    "genre": "Genre",
+    "genre_placeholder": "Select Genre",
+    "year": "Year",
+    "year_placeholder": "Select Year"
+  },
+  "search_title": "Search",
+  "search_button": "Search"
+}

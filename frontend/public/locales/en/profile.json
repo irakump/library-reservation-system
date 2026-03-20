@@ -1,0 +1,30 @@
+{
+  "my_page": {
+    "greeting_user": "Hello, {{name}}!",
+    "greeting_guest": "Hello, Guest!",
+    "current_loans": "Current loans:",
+    "current_reservations": "Reservations:",
+    "current_favorites": "Favorites:",
+    "user_information": "User Information",
+    "not_logged_in_info": "You are not logged in.",
+    "nickname": "Nickname:",
+    "email": "Email:",
+    "user_creation": "User created:"
+  },
+  "loans": {
+    "title": "My Loans",
+    "title_none": "No loans yet!"
+  },
+  "reservations": {
+    "title": "My Reservations",
+    "title_none": "No reservations yet!"
+  },
+  "history": {
+    "title": "My History",
+    "title_none": "No history yet!"
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "title_none": "No favorites yet!"
+  }
+}

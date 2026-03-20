@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "site_title": "Metbook",
+    "dropdown": {
+      "profile": "Profile",
+      "my_page": "My Page",
+      "loans": "Loans",
+      "reservations": "Reservations",
+      "history": "History",
+      "favorites": "Favorites",
+      "arrow_down_icon_alt": "dropdown icon",
+      "book_logo_alt": "Stack of books",
+      "language_icon_alt": "Language",
+      "hamburger_menu_icon_alt": "Menu"
+    }
+  },
+  "footer": {
+    "language_header": "Language",
+    "language": {
+      "english": "English",
+      "finnish": "Finnish",
+      "arabic": "Arabic",
+      "japanese": "Japanese"
+    },
+    "logo_img_alt": "MetBook logo",
+    "social_media_header": "Social Media",
+    "instagram_logo_alt": "Instagram",
+    "facebook_logo_alt": "Facebook",
+    "linkedin_logo_alt": "LinkedIn"
+  }
+}

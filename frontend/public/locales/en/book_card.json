@@ -1,0 +1,8 @@
+{
+  "queue_length": "Queue length: {{queue_length}}",
+  "available": "🟢 Available",
+  "unavailable": "🔴 Not available",
+  "due_date": "Due date: {{date}}",
+  "history_borrowed": "Borrowed: {{date}}",
+  "history_returned": "Returned: {{date}}"
+}
