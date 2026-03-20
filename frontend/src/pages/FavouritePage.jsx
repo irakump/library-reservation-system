@@ -13,7 +13,7 @@ const FavouritePage = () => {
   return (
     <div className="bg-background py-10 sm:py-20">
       <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
-        <h1 className="text-2xl font-bold text-center text-heading py-6 sm:py-8">${t("favorites.title")} ({favorites.length})</h1>
+        <h1 className="text-2xl font-bold text-center text-heading py-6 sm:py-8">{t("favorites.title", { count: favorites.length })}</h1>
           {favorites && (
             <BookDataPage
               title=""

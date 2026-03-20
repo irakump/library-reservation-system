@@ -24,7 +24,7 @@
     "title_none": "No history yet!"
   },
   "favorites": {
-    "title": "My Favorites",
+    "title": "My Favorites ({{count}})",
     "title_none": "No favorites yet!"
   }
 }
