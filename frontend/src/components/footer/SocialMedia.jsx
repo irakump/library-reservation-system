@@ -5,7 +5,7 @@ const SocialMedia = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl">{t("footer.social_media_header")}</h2>
+      <h2 className="text-2xl" data-testid="social-media-links-header">{t("footer.social_media_header")}</h2>
       <div className="flex flex-row max-[250px]:flex-col items-center bg-navbar gap-5 max-[250px]:gap-3 pt-5">
         <a href="https://www.instagram.com/" target="_blank">
           <img

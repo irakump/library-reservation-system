@@ -20,7 +20,7 @@ describe("NavBar", () => {
 
     //screen.debug();
 
-    expect(screen.getByText("MetBook")).toBeInTheDocument();
-    expect(screen.getByAltText("Stack of books")).toBeInTheDocument();
+    expect(screen.getByTestId("site-title")).toBeInTheDocument();
+    expect(screen.getByTestId("book-logo")).toBeInTheDocument();
   });
 });

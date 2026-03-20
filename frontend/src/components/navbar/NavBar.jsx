@@ -32,9 +32,10 @@ const NavBar = () => {
               src="/book-logo.png"
               alt={t("navbar.book_logo_alt")}
               className="h-7 pr-2 pt-1"
+              data-testid="book-logo"
             />
           </a>
-          <a href="/" className="font-bold text-2xl max-[260px]:hidden">
+          <a href="/" className="font-bold text-2xl max-[260px]:hidden" data-testid="site-title">
             {t("navbar.site_title")}
           </a>
         </div>

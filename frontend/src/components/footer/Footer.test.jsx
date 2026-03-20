@@ -10,8 +10,8 @@ describe("Footer", () => {
 
     //screen.debug();
 
-    expect(screen.getByAltText("MetBook logo")).toBeInTheDocument();
-    expect(screen.getByText("Social Media")).toBeInTheDocument();
-    expect(screen.getByText("Language")).toBeInTheDocument();
+    expect(screen.getByTestId("footer-logo-img")).toBeInTheDocument();
+    expect(screen.getByTestId("social-media-links-header")).toBeInTheDocument();
+    expect(screen.getByTestId("footer-languages-header")).toBeInTheDocument();
   });
 });
