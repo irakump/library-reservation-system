@@ -1,0 +1,18 @@
+{
+  "search_results_header": "検索結果",
+  "search_results_header_none": "検索結果",
+  "filters_show": "フィルターを表示",
+  "filters_hide": "フィルターを非表示",
+  "filters": {
+    "title": "検索フィルター",
+    "availability": "利用可能:",
+    "language": "言語",
+    "language_placeholder": "言語を選択",
+    "genre": "ジャンル",
+    "genre_placeholder": "ジャンルを選択",
+    "year": "年",
+    "year_placeholder": "年を選択"
+  },
+  "search_title": "検索",
+  "search_button": "検索"
+}

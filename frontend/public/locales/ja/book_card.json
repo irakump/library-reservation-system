@@ -1,0 +1,8 @@
+{
+  "queue_length": "キューの長さ: {{queue_length}}}",
+  "available": "🟢 利用可能",
+  "unavailable": "🔴 利用不可",
+  "due_date": "締め切り日：{{date}}",
+  "history_borrowed": "貸出日: {{date}}",
+  "history_returned": "返却日: {{date}}"
+}

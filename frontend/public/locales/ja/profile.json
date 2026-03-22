@@ -1,0 +1,30 @@
+{
+  "my_page": {
+    "greeting_user": "こんにちは、{{name}}さん！",
+    "greeting_guest": "こんにちは、ゲストさん！",
+    "current_loans": "現在の貸出:",
+    "current_reservations": "予約:",
+    "current_favorites": "お気に入り:",
+    "user_information": "ユーザー情報",
+    "not_logged_in_info": "ログインしていません。",
+    "nickname": "ニックネーム:",
+    "email": "メールアドレス:",
+    "user_creation": "アカウント作成日:"
+  },
+  "loans": {
+    "title": "私のローン",
+    "title_none": "貸出はまだありません！"
+  },
+  "reservations": {
+    "title": "私の予約",
+    "title_none": "予約はまだありません！"
+  },
+  "history": {
+    "title": "履歴",
+    "title_none": "履歴はまだありません！"
+  },
+  "favorites": {
+    "title": "お気に入り（{{count}})",
+    "title_none": "お気に入りはまだありません！"
+  }
+}

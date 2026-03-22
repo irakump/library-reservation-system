@@ -1,0 +1,9 @@
+{
+  "login": "ログイン",
+  "register": "登録する",
+  "logout": "ログアウト",
+  "cancel": "キャンセル",
+  "loan": "ローン",
+  "return": "返却",
+  "reserve": "予約する"
+}

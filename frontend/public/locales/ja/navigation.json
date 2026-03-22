@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "site_title": "メットブック",
+    "dropdown": {
+      "profile": "プロフィール",
+      "my_page": "マイページ",
+      "loans": "貸出中",
+      "reservations": "現在予約中です",
+      "history": "履歴",
+      "favorites": "お気に入り"
+    },
+    "arrow_down_icon_alt": "ドロップダウンアイコン",
+    "book_logo_alt": "本の積み重ね",
+    "language_icon_alt": "言語",
+    "hamburger_menu_icon_alt": "メニュー"
+  },
+  "footer": {
+    "language_header": "言語",
+    "language": {
+      "english": "英語",
+      "finnish": "フィンランド語",
+      "arabic": "アラビア語",
+      "japanese": "日本語"
+    },
+    "logo_img_alt": "メットブックロゴ",
+    "social_media_header": "ソーシャルメディア",
+    "instagram_logo_alt": "インスタグラム",
+    "facebook_logo_alt": "フェイスブック",
+    "linkedin_logo_alt": "リンクトイン"
+  }
+}
