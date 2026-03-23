@@ -1,0 +1,18 @@
+{
+  "search_results_header": "نتائج البحث",
+  "search_results_header_none": "نتائج البحث",
+  "filters_show": "إظهار الفلاتر",
+  "filters_hide": "إخفاء الفلاتر",
+  "filters": {
+    "title": "فلاتر البحث",
+    "availability": "متاح:",
+    "language": "اللغة",
+    "language_placeholder": "اختر اللغة",
+    "genre": "التصنيف",
+    "genre_placeholder": "اختر التصنيف",
+    "year": "السنة",
+    "year_placeholder": "اختر السنة"
+  },
+  "search_title": "بحث",
+  "search_button": "بحث"
+}

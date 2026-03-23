@@ -1,0 +1,30 @@
+{
+  "my_page": {
+    "greeting_user": "مرحباً، {{name}}!",
+    "greeting_guest": "مرحباً، زائر!",
+    "current_loans": "الاستعارات الحالية:",
+    "current_reservations": "الحجوزات:",
+    "current_favorites": "المفضلة:",
+    "user_information": "معلومات المستخدم",
+    "not_logged_in_info": "لم تقم بتسجيل الدخول.",
+    "nickname": "الاسم المستعار:",
+    "email": "البريد الإلكتروني:",
+    "user_creation": "تاريخ إنشاء الحساب:"
+  },
+  "loans": {
+    "title": "استعاراتي",
+    "title_none": "لا توجد استعارات بعد!"
+  },
+  "reservations": {
+    "title": "حجوزاتي",
+    "title_none": "لا توجد حجوزات بعد!"
+  },
+  "history": {
+    "title": "سجلّي",
+    "title_none": "لا يوجد سجل بعد!"
+  },
+  "favorites": {
+    "title": "مفضلتي ({{count}})",
+    "title_none": "لا توجد مفضلات بعد!"
+  }
+}

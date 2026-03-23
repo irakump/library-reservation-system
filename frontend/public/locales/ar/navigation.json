@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "site_title": "Metbook",
+    "dropdown": {
+      "profile": "الملف الشخصي",
+      "my_page": "صفحتي",
+      "loans": "الاستعارات",
+      "reservations": "الحجوزات",
+      "history": "السجل",
+      "favorites": "المفضلة"
+    },
+    "arrow_down_icon_alt": "أيقونة القائمة المنسدلة",
+    "book_logo_alt": "كومة كتب",
+    "language_icon_alt": "اللغة",
+    "hamburger_menu_icon_alt": "القائمة"
+  },
+  "footer": {
+    "language_header": "اللغة",
+    "language": {
+      "english": "الإنجليزية",
+      "finnish": "الفنلندية",
+      "arabic": "العربية",
+      "japanese": "اليابانية"
+    },
+    "logo_img_alt": "شعار MetBook",
+    "social_media_header": "وسائل التواصل الاجتماعي",
+    "instagram_logo_alt": "إنستغرام",
+    "facebook_logo_alt": "فيسبوك",
+    "linkedin_logo_alt": "لينكد إن"
+  }
+}

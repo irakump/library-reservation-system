@@ -1,0 +1,8 @@
+{
+  "queue_length": "طول قائمة الانتظار: {{queue_length}}",
+  "available": "🟢 متاح",
+  "unavailable": "🔴 غير متاح",
+  "due_date": "تاريخ الاستحقاق: {{date}}",
+  "history_borrowed": "تاريخ الاستعارة: {{date}}",
+  "history_returned": "تاريخ الإرجاع: {{date}}"
+}
