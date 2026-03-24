@@ -26,7 +26,7 @@ function App() {
             <LoanProvider>
               <FavoritesProvider>
                 <Suspense fallback={<Loading />}>
-                  <NavBar />
+                  <NavBar/>
                 </Suspense>
 
                 <NotificationProvider>
@@ -35,7 +35,7 @@ function App() {
                 <main>
                   <Suspense fallback={<Loading />}>
                     <Routes>
-                      <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home />} />
                       <Route path="/profile" element={<ProfilePage />} />
                       <Route path="/profile/loans" element={<LoansPage />} />
                       <Route
@@ -53,7 +53,8 @@ function App() {
                     </Routes>
                   </Suspense>
                 </main>
-                <Footer />
+                <Footer>
+                </Footer>
               </FavoritesProvider>
             </LoanProvider>
           </ReservationProvider>
