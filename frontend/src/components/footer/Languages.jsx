@@ -5,8 +5,8 @@ const Languages = () => {
 
   const lngs = {
         en: {nativeName: 'English'},
-        ja: {nativeName: 'Japanese'},
-        ar: {nativeName: 'Arabia'},
+        ja: {nativeName: '日本語'},
+        ar: {nativeName: 'العربية'},
     };
 
   return (
