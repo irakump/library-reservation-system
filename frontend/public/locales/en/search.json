@@ -11,8 +11,10 @@
     "genre": "Genre",
     "genre_placeholder": "Select Genre",
     "year": "Year",
-    "year_placeholder": "Select Year"
+    "year_placeholder": "Select Year",
+    "clear_filters_btn": "Clear Filters"
   },
   "search_title": "Search",
-  "search_button": "Search"
+  "search_button": "Search",
+  "search_placeholder": "Search for books"
 }

@@ -11,8 +11,10 @@
     "genre": "ジャンル",
     "genre_placeholder": "ジャンルを選択",
     "year": "年",
-    "year_placeholder": "年を選択"
+    "year_placeholder": "年を選択",
+    "clear_filters_btn": "フィルターをクリアする"
   },
   "search_title": "検索",
-  "search_button": "検索"
+  "search_button": "検索",
+  "search_placeholder": "本を探す"
 }
