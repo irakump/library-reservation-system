@@ -12,11 +12,7 @@ const LanguageMenu = () => {
         <button>
             <li>{t("footer.language.english")}</li>
         </button>
-
-        <button>
-            <li>{t("footer.language.finnish")}</li>
-        </button>
-
+        
         <button>
             <li>{t("footer.language.arabic")}</li>
         </button>
