@@ -62,18 +62,19 @@ const NavBar = () => {
             >
               &times;
             </button>
-
           ) : (
-            <img
-              src="/language-icon.png"
-              alt={t("navbar.language_icon_alt")}
-              className="h-7 mt-1 hover:cursor-pointer"
-              tabIndex={0}
-              onClick={() => {
-                toggleLanguageMenu();
-                setIsProfileMenuOpen(false);
-              }}
-            />
+            <div className="sm:w-40 flex justify-end">
+              <img
+                src="/language-icon.png"
+                alt={t("navbar.language_icon_alt")}
+                className="h-7 mt-1 hover:cursor-pointer"
+                tabIndex={0}
+                onClick={() => {
+                  toggleLanguageMenu();
+                  setIsProfileMenuOpen(false);
+                }}
+              />
+            </div>
           )}
 
           <div className="max-sm:hidden">
@@ -92,9 +93,9 @@ const NavBar = () => {
               <button
                 className="h-10 mt-2 hover:cursor-pointer"
                 onClick={() => {
-                toggleMenu();
-                setIsLanguageMenuOpen(false);
-              }}
+                  toggleMenu();
+                  setIsLanguageMenuOpen(false);
+                }}
               >
                 <img
                   src="/hamburger-menu.png"

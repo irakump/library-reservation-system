@@ -15,7 +15,7 @@ const ProfileButton = () => {
             toggleMenu();
             setIsLanguageMenuOpen(false);
         }}
-         className="flex flex-row gap-2 items-center w-50 justify-center text-xl mt-1 hover:cursor-pointer"
+         className="flex flex-row gap-2 items-center w-45 justify-center text-xl mt-1 hover:cursor-pointer"
          >{t("navbar.dropdown.profile")}
             <img src="/down.png" alt={t("navbar.arrow_down_icon_alt")} className="h-4 mt-1" />
         </button>

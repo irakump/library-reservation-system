@@ -19,9 +19,9 @@ const ProfileMenu = () => {
 
   return (
     
-    <div className="absolute max-sm:w-full sm:right-32 text-center z-50">
+    <div className="absolute max-sm:w-full sm:right-30 text-center z-50">
       {isLoggedIn ? (
-      <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
+      <ul className="flex flex-col w-full sm:w-45 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
         <a href="/profile" className="w-full">
           <li>{t("navbar.dropdown.my_page", { ns: "navigation" })}</li>
         </a>
@@ -46,7 +46,7 @@ const ProfileMenu = () => {
           {isLoggedIn ? t("logout", { ns: "button" }) : t("login", { ns: "button" })}
         </button>
       </ul>) : (
-        <ul className="flex flex-col w-full sm:w-50 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
+        <ul className="flex flex-col w-full sm:w-45 bg-red-200 border-t-0 *:border-t *:p-2 text-xl font-bold">
           <button onClick={handleAuthClick} className="w-full sm:hidden hover:cursor-pointer">
           {isLoggedIn ? t("logout", { ns: "button" }) : t("login", { ns: "button" })}
         </button>
