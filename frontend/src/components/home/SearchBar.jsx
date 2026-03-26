@@ -44,7 +44,7 @@ const SearchBar = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full h-full px-3 py-2 bg-white outline-none"
-            placeholder="Search for books"
+            placeholder={t("search_placeholder")}
           />
           {searchTerm && (
             <button
