@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 email = jwtUtil.extractEmail(token);
             } catch (ExpiredJwtException e) {
-                logger.error("Jwt token ha expired");
+                logger.error("Jwt token has expired");
             } catch (MalformedJwtException e) {
                 logger.error("Invalid JWT Token");
             } catch (Exception e) {
