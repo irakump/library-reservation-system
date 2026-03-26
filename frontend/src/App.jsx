@@ -16,49 +16,51 @@ import { FavoritesProvider } from "./contexts/FavoritesContext.jsx";
 import { ReservationProvider } from "./contexts/ReservationContext.jsx";
 import { Suspense } from "react";
 import Loading from "./pages/Loading.jsx";
+import { LayoutDirectionProvider } from "./contexts/LayoutDirectionContext.jsx";
 
 function App() {
   return (
     <>
       <AuthProvider>
-        <MenuProvider>
-          <ReservationProvider>
-            <LoanProvider>
-              <FavoritesProvider>
-                <Suspense fallback={<Loading />}>
-                  <NavBar/>
-                </Suspense>
-
-                <NotificationProvider>
-                  <Notification />
-                </NotificationProvider>
-                <main>
+        <LayoutDirectionProvider>
+          <MenuProvider>
+            <ReservationProvider>
+              <LoanProvider>
+                <FavoritesProvider>
                   <Suspense fallback={<Loading />}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                      <Route path="/profile" element={<ProfilePage />} />
-                      <Route path="/profile/loans" element={<LoansPage />} />
-                      <Route
-                        path="/profile/reservations"
-                        element={<ReservationPage />}
-                      />
-                      <Route
-                        path="/profile/history"
-                        element={<HistoryPage />}
-                      />
-                      <Route
-                        path="/profile/favorites"
-                        element={<FavouritePage />}
-                      />
-                    </Routes>
+                    <NavBar />
                   </Suspense>
-                </main>
-                <Footer>
-                </Footer>
-              </FavoritesProvider>
-            </LoanProvider>
-          </ReservationProvider>
-        </MenuProvider>
+
+                  <NotificationProvider>
+                    <Notification />
+                  </NotificationProvider>
+                  <main>
+                    <Suspense fallback={<Loading />}>
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/profile/loans" element={<LoansPage />} />
+                        <Route
+                          path="/profile/reservations"
+                          element={<ReservationPage />}
+                        />
+                        <Route
+                          path="/profile/history"
+                          element={<HistoryPage />}
+                        />
+                        <Route
+                          path="/profile/favorites"
+                          element={<FavouritePage />}
+                        />
+                      </Routes>
+                    </Suspense>
+                  </main>
+                  <Footer></Footer>
+                </FavoritesProvider>
+              </LoanProvider>
+            </ReservationProvider>
+          </MenuProvider>
+        </LayoutDirectionProvider>
       </AuthProvider>
     </>
   );
