@@ -6,9 +6,18 @@ import LoginModal from "../auth/LoginModal.jsx";
 import RegisterModal from "../auth/RegisterModal.jsx";
 import LogoutModal from "../auth/LogoutModal";
 import { useTranslation } from "react-i18next";
+import LanguageMenu from "./LanguageMenu.jsx";
+import { useIsMobile } from "../../hooks/useIsMobile.js";
 
 const NavBar = () => {
-  const { isProfileMenuOpen, toggleMenu } = useMenu();
+  const {
+    isProfileMenuOpen,
+    setIsProfileMenuOpen,
+    toggleMenu,
+    isLanguageMenuOpen,
+    setIsLanguageMenuOpen,
+    toggleLanguageMenu,
+  } = useMenu();
   const { t } = useTranslation("navigation");
 
   const {
@@ -23,6 +32,8 @@ const NavBar = () => {
     handleLogout,
   } = useAuth();
 
+  const isMobile = useIsMobile();
+
   return (
     <div>
       <div className="flex flex-row justify-between items-center bg-navbar p-2">
@@ -35,17 +46,35 @@ const NavBar = () => {
               data-testid="book-logo"
             />
           </a>
-          <a href="/" className="font-bold text-2xl max-[260px]:hidden" data-testid="site-title">
+          <a
+            href="/"
+            className="font-bold text-2xl max-[260px]:hidden"
+            data-testid="site-title"
+          >
             {t("navbar.site_title")}
           </a>
         </div>
         <div className="flex flex-row gap-3 items-center h-10">
-          <img
-            src="/language-icon.png"
-            alt={t("navbar.language_icon_alt")}
-            className="h-7 mt-1"
-            tabIndex={0}
-          />
+          {isMobile && isLanguageMenuOpen ? (
+            <button
+              onClick={toggleLanguageMenu}
+              className="text-6xl font-light pb-3 mr-0 w-8 hover:cursor-pointer"
+            >
+              &times;
+            </button>
+
+          ) : (
+            <img
+              src="/language-icon.png"
+              alt={t("navbar.language_icon_alt")}
+              className="h-7 mt-1 hover:cursor-pointer"
+              tabIndex={0}
+              onClick={() => {
+                toggleLanguageMenu();
+                setIsProfileMenuOpen(false);
+              }}
+            />
+          )}
 
           <div className="max-sm:hidden">
             <DesktopMenu />
@@ -60,13 +89,24 @@ const NavBar = () => {
                 &times;
               </button>
             ) : (
-              <button className="h-10 mt-2 hover:cursor-pointer" onClick={toggleMenu}>
-                <img src="/hamburger-menu.png" alt={t("navbar.hamburger_menu_icon_alt")} className="h-10" />
+              <button
+                className="h-10 mt-2 hover:cursor-pointer"
+                onClick={() => {
+                toggleMenu();
+                setIsLanguageMenuOpen(false);
+              }}
+              >
+                <img
+                  src="/hamburger-menu.png"
+                  alt={t("navbar.hamburger_menu_icon_alt")}
+                  className="h-10"
+                />
               </button>
             )}
           </div>
         </div>
       </div>
+      {isLanguageMenuOpen && <LanguageMenu />}
       {isProfileMenuOpen && <ProfileMenu />}
 
       <LoginModal
