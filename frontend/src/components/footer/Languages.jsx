@@ -12,7 +12,7 @@ const Languages = () => {
   return (
     <div className="flex flex-col">
       <h2 className="text-2xl py-5 md:pt-0" data-testid="footer-languages-header">{t('footer.language_header')}</h2>
-      <div className="flex flex-col gap-2 items-start">
+      <div className="flex flex-col gap-2 items-start *:hover:cursor-pointer">
           {Object.keys(lngs).map((lng) => (
               <button
                   type="submit"
