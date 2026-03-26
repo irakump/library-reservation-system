@@ -13,6 +13,8 @@ MetBook is a library reservation system prototype designed for managing loans an
    - [Use Case Diagram](#use-case-diagram)
    - [ER Diagram](#er-diagram)
    - [Relational Schema](#relational-schema)
+   - [Activity Diagram](#activity-diagram)
+   - [Class Diagram](#class-diagram)
 5. [Development](#development)
    - [Database](#database)
    - [Frontend](#frontend)
@@ -60,6 +62,11 @@ Database & tools: MariaDB, Docker, Jenkins
 #### Relational Schema
 <img width="2000" height="998" alt="image" src="https://github.com/user-attachments/assets/5ccbc4d4-9889-4741-ba28-773f853450c5" />
 
+#### Activity Diagram
+<img width="542" height="675" alt="Image" src="https://github.com/user-attachments/assets/e884941b-b39c-4334-ba4e-ffd2f811e2ef" />
+
+#### Class Diagram
+<img width="1434" height="808" alt="Image" src="https://github.com/user-attachments/assets/462dee04-6065-4e86-84e9-57f246ac8bbc" />
 
 ---
 
