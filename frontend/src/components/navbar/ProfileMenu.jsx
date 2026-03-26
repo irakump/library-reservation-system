@@ -46,7 +46,7 @@ const ProfileMenu = () => {
           {isLoggedIn ? t("logout", { ns: "button" }) : t("login", { ns: "button" })}
         </button>
       </ul>) : (
-        <ul className="flex flex-col w-full sm:w-45 bg-red-200 border-t-0 *:border-t *:p-2 text-xl font-bold">
+        <ul className="flex flex-col w-full sm:w-45 border-t-0 *:border-t *:p-2 text-xl font-bold">
           <button onClick={handleAuthClick} className="w-full sm:hidden hover:cursor-pointer">
           {isLoggedIn ? t("logout", { ns: "button" }) : t("login", { ns: "button" })}
         </button>
