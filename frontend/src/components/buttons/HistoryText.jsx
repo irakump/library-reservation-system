@@ -7,10 +7,10 @@ function HistoryText({book}) {
 
     return (
           <>
-            <p className="text-sm mb-1 text-left">
+            <p className="text-sm mb-1 text-left rtl:text-right">
               {t("history_borrowed", { date: splitDate(book.createdAt)})}
             </p>
-            <p className="text-sm mb-1 text-left">
+            <p className="text-sm mb-1 text-left rtl:text-right">
               {t("history_returned", { date: splitDate(book.returnDate)})}
             </p>
           </>
