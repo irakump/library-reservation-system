@@ -31,11 +31,11 @@ export const LoanProvider = ({ children }) => {
       alert("Please log in to loan or reserve books");
       return;
     }
-
     try {
       const response = await createLoan(user.userId, isbn); //Use JWT userId
       setLoans((prev) => [...prev, response]);
       alert(`${response.title} loaned`);
+      return response;
     } catch (error) {
       console.error("Error creating loan: ", error);
     }
