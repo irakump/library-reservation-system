@@ -8,7 +8,7 @@ const UserInformation = () => {
   if (!isLoggedIn || !user) {
     return (
       <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
-        <h3 className="text-lg sm:text-xl font-semibold mb-4 text-left">
+        <h3 className="text-lg sm:text-xl font-semibold mb-4 text-start">
           {t("my_page.user_information")}
         </h3>
         <p className="text-sm sm:text-base text-gray-500">
@@ -30,7 +30,7 @@ const UserInformation = () => {
 
   return (
     <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm h-fit">
-      <h3 className="text-lg sm:text-xl font-semibold mb-4 text-left">
+      <h3 className="text-lg sm:text-xl font-semibold mb-4 text-start">
         {t("my_page.user_information")}
       </h3>
       <div className="space-y-3 px-4">
