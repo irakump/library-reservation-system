@@ -53,7 +53,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
                 </div>
                 <div className="max-sm:pt-2 min-w-0">
                   <div className="max-sm:self-center">
-                    <h1 className="font-bold text-lg text-left p-3 max-sm:pl-0 pt-0 pr-6 sm:pr-2 sm:ml-2">
+                    <h1 className="font-bold text-lg text-left rtl:text-right p-3 max-sm:pl-0 pt-0 ltr:pr-6 ltr:sm:pr-2 sm:ml-2">
                       {book.title}
                     </h1>
                   </div>
