@@ -18,7 +18,7 @@ public class MailService {
 
     public void sendMail(String to, String subject, String text) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom("metbook11@outlook.com");
+        msg.setFrom("metbook1@outlook.com");
         msg.setTo(to);
         msg.setSubject(subject);
         msg.setText(text);

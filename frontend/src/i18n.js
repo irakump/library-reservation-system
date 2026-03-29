@@ -9,7 +9,8 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    preload: ['en'],
+    preload: ['en', 'ar', 'ja'],
+    initImmediate: false,
 
     detection: {
         order: ['localStorage', 'navigator'],
@@ -30,9 +31,6 @@ i18n
 
     interpolation: {
       escapeValue: false,
-    },
-    react: {
-      useSuspense: false,
     },
   });
 

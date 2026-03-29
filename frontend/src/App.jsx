@@ -27,9 +27,7 @@ function App() {
             <ReservationProvider>
               <LoanProvider>
                 <FavoritesProvider>
-                  <Suspense fallback={<Loading />}>
                     <NavBar />
-                  </Suspense>
 
                   <NotificationProvider>
                     <Notification />

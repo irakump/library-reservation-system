@@ -51,7 +51,7 @@ const NavBar = () => {
             className="font-bold text-2xl max-[260px]:hidden"
             data-testid="site-title"
           >
-            {t("navbar.site_title")}
+              MetBook
           </a>
         </div>
         <div className="flex flex-row gap-3 items-center h-10">
