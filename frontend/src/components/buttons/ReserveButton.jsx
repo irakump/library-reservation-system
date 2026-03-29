@@ -26,10 +26,10 @@ function ReserveButton({ pageType, book, children }) {
   // New reservation
   return (
     <>
-      <p className="text-sm mb-1 text-left">{t("unavailable")}</p>
+      <p className="text-sm mb-1 text-left rtl:text-right">{t("unavailable")}</p>
       <div>
         <button
-          className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right cursor-pointer"
+          className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right rtl:float-left cursor-pointer"
           onClick={handleClick}
         >
           {children}
