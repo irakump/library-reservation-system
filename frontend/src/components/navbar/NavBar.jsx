@@ -42,7 +42,7 @@ const NavBar = () => {
             <img
               src="/book-logo.png"
               alt={t("navbar.book_logo_alt")}
-              className="h-7 pr-2 pt-1"
+              className="h-7 pr-2 pt-1 rtl:pr-0 rtl:pl-2"
               data-testid="book-logo"
             />
           </a>

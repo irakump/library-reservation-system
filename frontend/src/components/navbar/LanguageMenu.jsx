@@ -7,7 +7,7 @@ const LanguageMenu = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <div className={`absolute max-sm:w-full ${isLoggedIn ? "sm:right-75" : "sm:right-30"} text-center z-50`}>
+    <div className={`absolute max-sm:w-full ${isLoggedIn ? "ltr:sm:right-75 rtl:sm:left-78" : "ltr:sm:right-30 rtl:sm:left-33"} text-center z-50`}>
       <ul className="flex flex-col w-full sm:w-40 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold *:hover:cursor-pointer">
 
         <button>

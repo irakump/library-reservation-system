@@ -19,7 +19,7 @@ const ProfileMenu = () => {
 
   return (
     
-    <div className="absolute max-sm:w-full sm:right-30 text-center z-50">
+    <div className="absolute max-sm:w-full ltr:sm:right-30 rtl:sm:left-33 text-center z-50">
       {isLoggedIn ? (
       <ul className="flex flex-col w-full sm:w-45 bg-navbar border border-t-0 *:border-t *:p-2 text-xl font-bold">
         <a href="/profile" className="w-full">
