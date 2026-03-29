@@ -146,7 +146,7 @@ const SearchFilters = () => {
 
   return (
     <div className="flex flex-col items-start [&>div]:w-full">
-      <p className="ml-4 sm:ml-1 mb-2">{t("filters.title")}</p>
+      <p className="px-4 sm:px-1 mb-2">{t("filters.title")}</p>
 
       <div className="flex flex-col gap-5 bg-profileBackground p-4 sm:rounded-md mb-1">
         <div className="flex items-start">
