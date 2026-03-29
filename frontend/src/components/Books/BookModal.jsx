@@ -38,7 +38,7 @@ const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
             ✕
           </button>
           <div className="flex flex-col">
-            <div className="absolute cursor-pointer hover:text-red-700 max-sm:pt-2 sm:top-10 right-4 text-3xl">
+            <div className="absolute cursor-pointer hover:text-red-700 max-sm:pt-2 sm:top-10 ltr:right-4 rtl:left-4 text-3xl">
               <FavoriteButton book={book}></FavoriteButton>
             </div>
 
