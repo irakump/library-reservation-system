@@ -6,12 +6,16 @@ import bookData from '../../book-data.json';
 vi.mock('../../contexts/SearchResultContext.jsx', () => ({
   useSearchResult: () => ({ searchResults: bookData.books }),
 }));
+// mock LTR website direction
+vi.mock('../../contexts/LayoutDirectionContext.jsx', () => ({
+  useLayoutDirection: () => ({ isRTL: false }),
+}));
 
 // import component after mocking
 import SearchResults from './SearchResults.jsx';
 
 describe('SearchResults', () => {
-  const resultsPerPage = 8;  // !! update to match actual value in SearchResults.jsx
+  const resultsPerPage = 8; // !! update to match actual value in SearchResults.jsx
 
   it.each([
     { pageForwardClicks: 0, pageBackwardClicks: 0 },
