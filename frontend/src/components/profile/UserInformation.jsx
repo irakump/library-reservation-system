@@ -36,10 +36,10 @@ const UserInformation = () => {
       <div className="space-y-3 px-4">
         {userInfo.map((info) => (
           <div key={info.id} className="flex">
-            <span className="w-32 sm:w-40 text-sm sm:text-base font-semibold text-left">
+            <span className="w-32 sm:w-40 text-sm sm:text-base font-semibold text-start">
               {info.label}
             </span>
-            <span className="text-sm sm:text-base font-medium ml-4 ">
+            <span className="text-sm sm:text-base font-medium ms-4 ">
               {info.value}
             </span>
           </div>
