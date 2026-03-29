@@ -2,12 +2,12 @@ import BookDataPage from '../../pages/BookDataPage';
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 import { useState, useEffect, useRef } from 'react';
 
-import ChevronLeft from '@heroicons/react/24/solid/ChevronLeftIcon';
-import ChevronRight from '@heroicons/react/24/solid/ChevronRightIcon';
 import { useTranslation } from 'react-i18next';
+import PaginationNext from '../buttons/PaginationNext.jsx';
+import PaginationPrevious from '../buttons/PaginationPrevious.jsx';
 
 export const SearchResults = () => {
-  const { t } = useTranslation("search");
+  const { t } = useTranslation('search');
   const searchResultsStartRef = useRef(null);
 
   const { searchResults } = useSearchResult();
@@ -50,7 +50,7 @@ export const SearchResults = () => {
       {searchResults.length > 0 ? (
         <>
           <div className="flex flex-row justify-between mb-2 px-4 sm:px-1">
-            <h2 ref={searchResultsStartRef}>{t("search_results_header")}</h2>
+            <h2 ref={searchResultsStartRef}>{t('search_results_header')}</h2>
             <h2>
               {startIndex + 1} -{' '}
               {endIndex < searchResults.length
@@ -70,17 +70,10 @@ export const SearchResults = () => {
 
           {/* Search result navigation */}
           <div className="flex flex-row justify-center items-center mt-4 mb-18 [&>button]:bg-actionButton [&>button]:p-1.5 [&>button]:rounded-md [&>button]:cursor-pointer [&>button]:hover:bg-actionButtonHover sm:max-w-4xl mx-auto">
-            <button
-              key="previous-page"
-              data-testid="previous-page"
-              onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage((previous) => Math.max(1, previous - 1));
-                scrollToSearchResultsHeader();
-              }}
-            >
-              <ChevronLeft className="h-full size-5" />
-            </button>
+            <PaginationPrevious
+              setCurrentPage={setCurrentPage}
+              scrollToSearchResultsHeader={scrollToSearchResultsHeader}
+            />
 
             {/* Links to search result pages */}
             <div className="flex flex-row mx-4 [&>a]:mx-1 gap-1">
@@ -122,24 +115,16 @@ export const SearchResults = () => {
               })}
             </div>
 
-            <button
-              key="next-page"
-              data-testid="next-page"
-              onClick={(e) => {
-                e.preventDefault();
-                setCurrentPage((previous) =>
-                  Math.min(previous + 1, pagesToShow),
-                );
-                scrollToSearchResultsHeader();
-              }}
-            >
-              <ChevronRight className="h-full size-5" />
-            </button>
+            <PaginationNext
+              setCurrentPage={setCurrentPage}
+              scrollToSearchResultsHeader={scrollToSearchResultsHeader}
+              pagesToShow={pagesToShow}
+            />
           </div>
         </>
       ) : (
         <div className="flex justify-center mb-18 sm:max-w-4xl mx-auto">
-          <h2>{t("search_results_header_none")}</h2>
+          <h2>{t('search_results_header_none')}</h2>
         </div>
       )}
     </div>
