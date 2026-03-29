@@ -7,10 +7,12 @@ export const LayoutDirectionProvider = ({ children }) => {
   const [isRTL, setIsRTL] = useState(() => {
     return i18n.language === "ar";
   });
+  const [language, setLanguage] = useState(() => i18n.language)
 
   useEffect(() => {
     const handleLanguageChange = (lng) => {
       setIsRTL(lng === "ar");
+      setLanguage(lng)
     };
 
     i18n.on("languageChanged", handleLanguageChange);
@@ -25,8 +27,19 @@ export const LayoutDirectionProvider = ({ children }) => {
     document.documentElement.setAttribute("lang", i18n.language);
   }, [isRTL]);
 
+  const formatDate = (date) => {
+      const locales = {
+          ar: "ar-u-nu-arab",
+          ja: "ja-JP",
+          en: "en-US",
+      }
+      return new Intl.DateTimeFormat(locales[language], {
+          dateStyle: "long"
+      }).format(new Date(date));
+  }
+
   return (
-    <LayoutDirectionContext.Provider value={{ isRTL }}>
+    <LayoutDirectionContext.Provider value={{ isRTL, formatDate }}>
       {children}
     </LayoutDirectionContext.Provider>
   );
