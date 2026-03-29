@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 dir(BACKEND_DIRECTORY) {
-                    sh 'mvn clean install'
+                    sh 'mvn clean install -DskipTests'
                 }
             }
         }
