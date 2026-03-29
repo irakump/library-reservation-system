@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
 
 const LanguageMenu = () => {
-  const { t, i18n } = useTranslation(["navigation"]);
+  const { i18n } = useTranslation(["navigation"]);
   const { isLoggedIn } = useAuth();
 
     const lngs = {
