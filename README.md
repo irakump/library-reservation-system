@@ -24,6 +24,7 @@ MetBook is a library reservation system prototype designed for managing loans an
      - [Jenkins Pipeline](#jenkins-pipeline)
      - [Build and Run Docker Images Locally as a Container](#build-and-run-docker-images-locally-as-a-container)
      - [Run Published Docker Images](#run-published-docker-images)
+   - [Localization](#localization)
 6. [API endpoints](#api-endpoints)
    - [Genres](#genres)
    - [Users](#users)
