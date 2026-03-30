@@ -7,7 +7,13 @@ import {
 } from "../api/loansApi.jsx";
 import { useAuth } from "./AuthContext.jsx";
 
-const LoanContext = createContext({});
+// set defaults so tests wont crash
+const LoanContext = createContext({
+  addToLoans: async () => {},
+  removeLoans: async () => {},
+  loans: [],
+  history: [],
+});
 
 export const useLoanContext = () => useContext(LoanContext);
 
