@@ -28,6 +28,9 @@ export const LayoutDirectionProvider = ({ children }) => {
   }, [isRTL]);
 
   const formatDate = (date) => {
+      if (!date) {
+          return null;
+      }
       const locales = {
           ar: "ar-u-nu-arab",
           ja: "ja-JP",

@@ -10,14 +10,14 @@ function LoanButton({pageType, book, children}) {
     const {fetchSearchResults} = useSearchResult();
 
     //new loan
-    return pageType === "favourite" ? (
+    return pageType === "home" && book.availability ? (
         <>
             <p className="text-sm mb-1 text-left rtl:text-right">{t("available")}</p>
             <button className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-3 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right rtl:float-left cursor-pointer"
                     onClick={async (e) => {
                         e.stopPropagation();
                         await addToLoans(book.isbn);
-                        await fetchSearchResults();
+                        await fetchSearchResults(); //fetches search results again after loaning
                     }}> {children}
             </button>
         </>
@@ -26,9 +26,10 @@ function LoanButton({pageType, book, children}) {
         <>
             <p className="text-sm mb-2 text-left rtl:text-right">{t("due_date", { date: formatDate(book.dueDate)})}</p>
             <button className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right rtl:float-left cursor-pointer"
-                    onClick={e => {
+                    onClick={async (e) => {
                         e.stopPropagation();
-                        removeLoans(book.userId, book.isbn, book.loanId);
+                        await removeLoans(book.userId, book.isbn, book.loanId);
+                        await fetchSearchResults()
                     }}>
                 {children}
             </button>

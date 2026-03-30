@@ -5,7 +5,7 @@ import BookButtons from "./BookButtons.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 
-const BookCard = ({ book, pageType, setOpen, addToLoans }) => {
+const BookCard = ({ book, pageType, setOpen}) => {
   const [queueLength, setQueueLength] = useState(null);
   const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
   const { user, isLoggedIn } = useAuth();

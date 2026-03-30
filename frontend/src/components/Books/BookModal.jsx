@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 
-const BookModal = ({ book, pageType, setOpen, addToLoans }) => {
+const BookModal = ({ book, pageType, setOpen }) => {
   const { t } = useTranslation("book_card");
 
   const [queueLength, setQueueLength] = useState(null);

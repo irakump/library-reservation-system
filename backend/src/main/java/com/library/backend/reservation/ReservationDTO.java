@@ -9,7 +9,7 @@ public class ReservationDTO {
     private int reservationId;
     private Timestamp createdAt;
     private String status;
-    private String bookIsbn;
+    private String isbn;
     private int userId;
 
     // Book details
@@ -24,7 +24,7 @@ public class ReservationDTO {
         this.reservationId = r.getReservationId();
         this.createdAt = r.getCreatedAt();
         this.status = r.getStatus().name();
-        this.bookIsbn = r.getBook().getIsbn();
+        this.isbn = r.getBook().getIsbn();
         this.userId = r.getUser().getUserId();
 
         Book book = r.getBook();
@@ -49,7 +49,7 @@ public class ReservationDTO {
     }
 
     public String getBookIsbn() {
-        return bookIsbn;
+        return isbn;
     }
 
     public int getUserId() {

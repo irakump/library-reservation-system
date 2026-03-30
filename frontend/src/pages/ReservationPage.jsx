@@ -10,6 +10,9 @@ const ReservationPage = () => {
     if (reservations.length === 0) {
         return <div className="min-h-screen text-center p-10 bg-background">{t("reservations.title_none")}</div>
     }
+    if (reservations.length > 0) {
+        console.log(reservations);
+    }
 
   return (
     <div className="bg-background py-10 sm:py-20">

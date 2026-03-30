@@ -1,16 +1,27 @@
 import BookCard from "../components/Books/BookCard.jsx";
 import { useState } from "react";
 import BookModal from "../components/Books/BookModal.jsx";
-import { useLoanContext } from "../contexts/LoanContext.jsx";
+import {useSearchResult} from "../contexts/SearchResultContext.jsx";
+import {useLoanContext} from "../contexts/LoanContext.jsx";
+import {useReservationContext} from "../contexts/ReservationContext.jsx";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
-  const { addToLoans } = useLoanContext();
+    const {searchResults} = useSearchResult();
+    const {loans} = useLoanContext();
+    const {reservations} = useReservationContext();
+    let openBook;
+
+    if (pageType === "home") {
+        openBook = open ? searchResults.find((b) => b.isbn === open) ?? loans.find((b) => b.isbn === open) : null;
+    } else {
+        openBook = open ? books.find((bk) => bk.isbn === open) : null;
+    }
 
   return (
     <div className="w-full min-h-screen">
       <h1
-        className={`text-2xl font-bold text-center text-heading ${pageType === "favourite" ? "py-0" : "py-6 sm:py-8"}`}
+        className={`text-2xl font-bold text-center text-heading ${pageType === "favourite" || pageType === "home" ? "py-0" : "py-6 sm:py-8"}`}
       >
         {title}
       </h1>
@@ -20,17 +31,15 @@ const BookDataPage = ({ title, books, pageType }) => {
             key={book.isbn}
             book={book}
             pageType={pageType}
-            setOpen={setOpen}
-            addToLoans={addToLoans}
+            setOpen={(book) => setOpen(book.isbn)}
           />
         ))}
       </div>
       {open && (
         <BookModal
-          book={open}
+          book={openBook}
           pageType={pageType}
           setOpen={setOpen}
-          addToLoans={addToLoans}
         ></BookModal>
       )}
     </div>
