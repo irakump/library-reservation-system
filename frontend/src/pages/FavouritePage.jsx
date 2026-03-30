@@ -18,7 +18,7 @@ const FavouritePage = () => {
             <BookDataPage
               title=""
               books={favorites}
-              pageType="favourite"
+              pageType="home"
             />
           )}
       </div>

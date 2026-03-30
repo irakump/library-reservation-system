@@ -3,15 +3,17 @@ import { useState } from "react";
 import BookModal from "../components/Books/BookModal.jsx";
 import {useSearchResult} from "../contexts/SearchResultContext.jsx";
 import {useLoanContext} from "../contexts/LoanContext.jsx";
+import {useFavoritesContext} from "../contexts/FavoritesContext.jsx";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
     const {searchResults} = useSearchResult();
     const {loans, history} = useLoanContext();
+    const {favorites} = useFavoritesContext()
     let openBook;
 
     if (pageType === "home") {
-        openBook = open ? searchResults.find((b) => b.isbn === open) ?? loans.find((b) => b.isbn === open) ?? history.find((b) => b.isbn === open): null;
+        openBook = open ? searchResults.find((b) => b.isbn === open) ?? loans.find((b) => b.isbn === open) ?? favorites.find((b) => b.isbn === open): null;
     } else {
         openBook = open ? books.find((bk) => bk.isbn === open) : null;
     }
