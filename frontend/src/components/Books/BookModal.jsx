@@ -35,7 +35,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
         >
           <button
             onClick={() => setOpen(null)}
-            className="absolute top-0 right-4 text-xl"
+            className="absolute top-0 right-4 rtl:right-auto rtl:left-4 text-xl"
           >
             ✕
           </button>
@@ -60,7 +60,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
                     </h1>
                   </div>
 
-                  <div className="pl-0 sm:pl-5">
+                  <div className="pl-0 sm:pl-5 rtl:sm:pr-5">
                     <p className="text-sm mb-1">
                       {book.authors
                         ?.map(
