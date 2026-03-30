@@ -3,17 +3,15 @@ import { useState } from "react";
 import BookModal from "../components/Books/BookModal.jsx";
 import {useSearchResult} from "../contexts/SearchResultContext.jsx";
 import {useLoanContext} from "../contexts/LoanContext.jsx";
-import {useReservationContext} from "../contexts/ReservationContext.jsx";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
     const {searchResults} = useSearchResult();
-    const {loans} = useLoanContext();
-    const {reservations} = useReservationContext();
+    const {loans, history} = useLoanContext();
     let openBook;
 
     if (pageType === "home") {
-        openBook = open ? searchResults.find((b) => b.isbn === open) ?? loans.find((b) => b.isbn === open) : null;
+        openBook = open ? searchResults.find((b) => b.isbn === open) ?? loans.find((b) => b.isbn === open) ?? history.find((b) => b.isbn === open): null;
     } else {
         openBook = open ? books.find((bk) => bk.isbn === open) : null;
     }

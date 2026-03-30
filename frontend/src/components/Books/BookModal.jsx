@@ -8,18 +8,20 @@ import { useTranslation } from "react-i18next";
 
 const BookModal = ({ book, pageType, setOpen }) => {
   const { t } = useTranslation("book_card");
-
   const [queueLength, setQueueLength] = useState(null);
-  const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
+  //const isbn = book.isbn;
   const { user, isLoggedIn } = useAuth();
 
+  console.log(book);
   useEffect(() => {
     if (book.availability === false) {
-      getQueueLength(isbn)
+      getQueueLength(book.isbn)
         .then((res) => setQueueLength(res.data.queueLength))
         .catch(() => setQueueLength(null));
     }
-  }, [isbn, book.availability]);
+  }, [book]);
+
+    if (!book) return;
 
   return (
     <>
