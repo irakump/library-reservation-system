@@ -168,9 +168,13 @@ The following commands use configurations from `compose.yml` file and are run li
 docker compose -f compose.yml build
 
 # Start
+docker compose -f compose.yml start
+# or
 docker compose -f compose.yml up -d
 
-# Stop and remove
+# Stop
+docker compose -f compose.yml stop
+# or stop and remove all data
 docker compose -f compose.yml down -v
 
 # View logs
@@ -192,9 +196,13 @@ File `compose.production.yml` in root directory contains everything needed to ge
 docker compose -f compose.production.yml pull
 
 # Start
+docker compose -f compose.production.yml start
+# or
 docker compose -f compose.production.yml up -d
 
 # Stop
+docker compose -f compose.production.yml stop
+# or stop and remove all data
 docker compose -f compose.production.yml down -v
 ```
 
