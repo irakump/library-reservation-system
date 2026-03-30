@@ -202,6 +202,28 @@ Once the container is running, open `http://localhost:3000` in the browser.
 > [!IMPORTANT]
 > Remember to pull changes every now and then if you want images to stay up to date.
 
+## Localization
+
+### Localized Languages
+
+The application has been localized into three languages: English, Japanese, and Arabic.
+
+### Frontend
+
+`react-i18next` is used for localization in the application. The original language of the app is English. Translations into other languages were created by translating externalized English strings using AI.
+
+To add a new language:
+
+1. Copy all files from `frontend/public/locales/en/`.
+2. Create a new folder for the target language inside `frontend/public/locales/`.
+3. Paste the copied files into the new folder.
+4. Translate the strings either:
+   - manually, one by one, or
+   - in bulk using AI.
+
+### Backend
+to be continued
+
 ---
 
 # API endpoints
