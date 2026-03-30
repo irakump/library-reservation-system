@@ -114,7 +114,7 @@ public class ReservationService {
         // Check existing active reservation
         List<ReservationDTO> reservations = getActiveReservationsByUser(userId);
         for (ReservationDTO r : reservations) {
-            if (r.getBookIsbn().equals(isbn)) {
+            if (r.getIsbn().equals(isbn)) {
                 throw new RuntimeException("Book is currently reserved by this user");
             }
         }

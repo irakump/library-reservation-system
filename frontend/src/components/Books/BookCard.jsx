@@ -26,7 +26,7 @@ const BookCard = ({ book, pageType, setOpen}) => {
     >
       <div className="w-24 max-w-full h-auto mt-1.5 ltr:ml-1.5 shrink-0 pr-2 rtl:mr-1.5 sm:pr-0">
         <img
-          src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
+          src={`/books/${book.isbn}.jpg`}
           alt={`Book image for ${book.title}`}
           className="w-24 min-w-16 h-auto rounded-sm outline-1 outline-gray-200"
         />

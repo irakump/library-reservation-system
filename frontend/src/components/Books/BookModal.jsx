@@ -46,7 +46,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
               <div className="flex flex-col-reverse sm:flex-row">
                 <div className="w-36 sm:w-24 max-w-full mt-3 sm:mt-1 mr-0.5 shrink-0 max-sm:self-start max-sm:ml-0">
                   <img
-                    src={`/books/${pageType === "reservation" ? book.bookIsbn : book.isbn}.jpg`}
+                    src={`/books/${book.isbn}.jpg`}
                     alt={`Book image for ${book.title}`}
                     className="w-36 min-w-20 sm:w-24 h-auto rounded-sm outline-1 outline-gray-200"
                   />

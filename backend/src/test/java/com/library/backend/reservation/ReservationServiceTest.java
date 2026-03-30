@@ -54,7 +54,7 @@ public class ReservationServiceTest {
 
         assertThat(dto).isNotNull();
         assertThat(dto.getUserId()).isEqualTo(user.getUserId());
-        assertThat(dto.getBookIsbn()).isEqualTo(book.getIsbn());
+        assertThat(dto.getIsbn()).isEqualTo(book.getIsbn());
 
         // Convert iterable to stream and list
         List<Reservation> all = StreamSupport.stream(reservationRepo.findAll().spliterator(), false)

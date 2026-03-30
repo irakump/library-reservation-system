@@ -48,7 +48,7 @@ public class ReservationDTO {
         return status;
     }
 
-    public String getBookIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
