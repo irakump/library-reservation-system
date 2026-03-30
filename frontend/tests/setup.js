@@ -1,4 +1,4 @@
-import { expect, beforeAll, afterAll, afterEach } from 'vitest';
+import { expect, beforeAll, afterAll, afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import { setupServer } from 'msw/node';
@@ -31,6 +31,18 @@ export const restHandlers = [
     return HttpResponse.json([2020, 2021, 2022, 2023, 2024, 2025, 2026]);
   }),
 ];
+
+vi.mock('react-i18next', () => ({
+  // this mock makes sure any components using the translate hook can use it without a warning being shown
+  useTranslation: () => {
+    return {
+      t: (i18nKey) => i18nKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
 
 const server = setupServer(...restHandlers);
 // Start server before all tests
