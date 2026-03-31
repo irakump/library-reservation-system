@@ -18,8 +18,10 @@ public class Language {
 
     public Language() {}
 
-    public Language(String language) {
+    public Language(String language, String languageJa, String languageAr) {
         this.language = language;
+        this.languageJa = languageJa;
+        this.languageAr = languageAr;
     }
 
     public String getLanguage() {
