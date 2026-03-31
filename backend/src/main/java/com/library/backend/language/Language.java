@@ -10,6 +10,12 @@ public class Language {
     @Column(name = "language", length= 50)
     private String language;
 
+    @Column(name = "language_ja", length=50)
+    private String languageJa;
+
+    @Column(name = "language_ar", length= 50)
+    private String languageAr;
+
     public Language() {}
 
     public Language(String language) {
@@ -22,5 +28,21 @@ public class Language {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getLanguageJa() {
+        return languageJa;
+    }
+
+    public void setLanguageJa(String languageJa) {
+        this.languageJa = languageJa;
+    }
+
+    public String getLanguageAr() {
+        return languageAr;
+    }
+
+    public void setLanguageAr(String languageAr) {
+        this.languageAr = languageAr;
     }
 }
