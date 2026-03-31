@@ -15,27 +15,19 @@ public class LanguageRepositoryTest {
     @Autowired
     private LanguageRepository repository;
 
-    private Language createLanguage(String name, String ja, String ar) {
-        Language lang = new Language(name);
-        lang.setLanguageJa(ja);
-        lang.setLanguageAr(ar);
-        return lang;
-    }
-
     @Test
     public void testSaveLanguage() {
-        Language language = createLanguage("english", "英語","الفنلندية");
-        Language saved = repository.save(language);
+        Language saved = repository.save(new Language("english", "英語","الإنجليزية"));
 
         assertThat(saved).isNotNull();
         assertThat(saved.getLanguage()).isEqualTo("english");
         assertThat(saved.getLanguageJa()).isEqualTo("英語");
-        assertThat(saved.getLanguageAr()).isEqualTo("الفنلندية");
+        assertThat(saved.getLanguageAr()).isEqualTo("الإنجليزية");
     }
 
     @Test
     public void testFindById() {
-        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
+        repository.save(new Language("finnish", "フィンランド語", "الفنلندية"));
 
         Optional<Language> found = repository.findById("finnish");
 
@@ -53,8 +45,8 @@ public class LanguageRepositoryTest {
 
     @Test
     public void testFindAll() {
-        repository.save( createLanguage("english", "英語","الفنلندية"));
-        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
+        repository.save(new Language("english", "英語","الإنجليزية"));
+        repository.save(new Language("finnish", "フィンランド語", "الفنلندية"));
 
 
         List<Language> languages = (List<Language>) repository.findAll();
@@ -67,13 +59,13 @@ public class LanguageRepositoryTest {
                 .containsExactlyInAnyOrder("英語", "フィンランド語");
 
         assertThat(languages).extracting(Language::getLanguageAr)
-                .containsExactlyInAnyOrder("الفنلندية", "الفنلندية");
+                .containsExactlyInAnyOrder("الإنجليزية", "الفنلندية");
     }
 
     @Test
     public void testDeleteLanguage() {
 
-        repository.save(createLanguage("german","ドイツ語", "الألمانية" ));
+        repository.save(new Language("german","ドイツ語", "الألمانية" ));
 
         repository.deleteById("german");
         Optional<Language> found = repository.findById("german");
@@ -83,8 +75,8 @@ public class LanguageRepositoryTest {
 
     @Test
     public void testCount() {
-        repository.save(createLanguage("english", "英語","الفنلندية"));
-        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
+        repository.save(new Language("english", "英語","الإنجليزية"));
+        repository.save(new Language("finnish", "フィンランド語", "الفنلندية"));
 
         long count = repository.count();
         assertThat(count).isEqualTo(2);
