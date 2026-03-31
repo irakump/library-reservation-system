@@ -88,7 +88,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
             <div className="mt-6 flex flex-col max-sm:gap-2">
               <div className="text-sm items-start">
                 {book.availability === false && user && isLoggedIn &&  (
-                  <p>{t("queue_length")}: {queueLength ?? "..."}</p>
+                  <p>{t("queue_length", {queue_length: queueLength ?? "..."})}</p>
                 )}
               </div>
               <div className="flex flex-col items-start sm:flex-row sm:items-end justify-between max-sm:gap-2">

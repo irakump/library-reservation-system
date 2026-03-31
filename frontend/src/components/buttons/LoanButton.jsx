@@ -26,7 +26,7 @@ function LoanButton({pageType, book, children}) {
         ) : //return loan
         (
         <>
-            <p className="text-sm mb-2 text-left rtl:text-right">{t("due_date", { date: formatDate(book.dueDate)})}</p>
+            <p className="text-sm mb-2 text-left rtl:text-right text-red-600">{t("due_date", { date: formatDate(book.dueDate)})}</p>
             <button className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right rtl:float-left cursor-pointer"
                     onClick={async (e) => {
                         e.stopPropagation();
