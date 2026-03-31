@@ -7,7 +7,7 @@ import PaginationNext from '../buttons/PaginationNext.jsx';
 import PaginationPrevious from '../buttons/PaginationPrevious.jsx';
 
 export const SearchResults = () => {
-  const { t } = useTranslation('search');
+  const { t, i18n } = useTranslation('search');
   const searchResultsStartRef = useRef(null);
 
   const { searchResults } = useSearchResult();
@@ -52,11 +52,11 @@ export const SearchResults = () => {
           <div className="flex flex-row justify-between mb-2 px-4 sm:px-1">
             <h2 ref={searchResultsStartRef}>{t('search_results_header')}</h2>
             <h2>
-              {startIndex + 1} -{' '}
-              {endIndex < searchResults.length
-                ? endIndex
-                : searchResults.length}{' '}
-              / {searchResults.length}
+              {new Intl.NumberFormat(i18n.language).format(startIndex + 1)} -{' '}
+              {new Intl.NumberFormat(i18n.language).format(endIndex < searchResults.length)
+                ? new Intl.NumberFormat(i18n.language).format(endIndex)
+                : new Intl.NumberFormat(i18n.language).format(searchResults.length)}{' '}
+              / {new Intl.NumberFormat(i18n.language).format(searchResults.length)}
             </h2>
           </div>
 
@@ -108,7 +108,7 @@ export const SearchResults = () => {
                         currentPage === page ? 'font-bold ' : undefined
                       }
                     >
-                      {i + 1}
+                      {new Intl.NumberFormat(i18n.language).format(i + 1)}
                     </a>
                   );
                 }

@@ -19,7 +19,7 @@ const ReservationPage = () => {
       <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
         {reservations && (
           <BookDataPage
-            title={`${t("reservations.title")} (${reservations.length})`}
+            title={`${t("reservations.title", { count: reservations.length })}`}
             books={reservations}
             pageType="reservation"
           />

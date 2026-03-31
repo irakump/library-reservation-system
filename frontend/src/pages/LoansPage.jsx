@@ -15,7 +15,7 @@ const LoansPage = () => {
       <div className="gap-16 sm:gap-20 mx-auto sm:max-w-4xl sm:px-3">
         {loans && (
           <BookDataPage
-            title={`${t("loans.title")} (${loans.length})`}
+            title={`${t("loans.title", { count: loans.length })}`}
             books={loans}
             pageType="loans"
           />
