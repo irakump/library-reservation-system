@@ -1,4 +1,5 @@
-INSERT INTO language
+INSERT INTO language (language, laguage_ja, language_ar)
 VALUES
-('finnish'),
-('english');
+('finnish', 'フィンランド語', 'الفنلندية'),
+('english', '英語', 'الإنجليزية');
+
