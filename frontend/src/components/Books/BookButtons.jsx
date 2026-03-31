@@ -18,7 +18,7 @@ function BookButtons({pageType, book}) {
 
     switch (pageType) {
         case "home":
-            if (loans.length > 0 && book.availability) {
+            if (book.availability) {
                 returnButton = <LoanButton pageType={pageType} book={book}>{t("loan")}</LoanButton>
                 break;
             }
