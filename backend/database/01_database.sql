@@ -13,6 +13,8 @@ CREATE TABLE users(
 
 CREATE TABLE genre(
     genre VARCHAR(50) NOT NULL,
+    genre_ja VARCHAR(50) NOT NULL,
+    genre_ar VARCHAR(50) NOT NULL,
     PRIMARY KEY (genre)
 );
 
