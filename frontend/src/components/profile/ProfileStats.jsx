@@ -7,19 +7,23 @@ const ProfileStats = () => {
   const { loans } = useLoanContext();
   const { reservations } = useReservationContext();
   const { favorites } = useFavoritesContext();
-  const { t } = useTranslation("profile");
+  const { t, i18n } = useTranslation("profile");
 
   const stats = [
-    { id: "loans", label: t("my_page.current_loans"), value: loans.length },
+    { 
+      id: "loans", 
+      label: t("my_page.current_loans"), 
+      value: new Intl.NumberFormat(i18n.language).format(loans.length) 
+    },
     {
       id: "reservations",
       label: t("my_page.current_reservations"),
-      value: reservations.length,
+      value: new Intl.NumberFormat(i18n.language).format(reservations.length),
     },
     {
       id: "favorites",
       label: t("my_page.current_favorites"),
-      value: favorites.length,
+      value: new Intl.NumberFormat(i18n.language).format(favorites.length),
     },
   ];
 
