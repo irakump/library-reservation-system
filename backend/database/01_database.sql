@@ -20,6 +20,8 @@ CREATE TABLE genre(
 
 CREATE TABLE language(
     language VARCHAR(100) NOT NULL,
+    language_ja VARCHAR(100) NOT NULL,
+    language_ar VARCHAR(100) NOT NULL,
     PRIMARY KEY (language)
 );
 
