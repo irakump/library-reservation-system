@@ -15,69 +15,90 @@ public class LanguageRepositoryTest {
     @Autowired
     private LanguageRepository repository;
 
+    private Language createLanguage(String name, String ja, String ar) {
+        Language lang = new Language(name);
+        lang.setLanguageJa(ja);
+        lang.setLanguageAr(ar);
+        return lang;
+    }
+
     @Test
     public void testSaveLanguage() {
-
-        Language language = new Language("English");
+        Language language = createLanguage("english", "英語","الفنلندية");
         Language saved = repository.save(language);
+
         assertThat(saved).isNotNull();
-        assertThat(saved.getLanguage()).isEqualTo("English");
+        assertThat(saved.getLanguage()).isEqualTo("english");
+        assertThat(saved.getLanguageJa()).isEqualTo("英語");
+        assertThat(saved.getLanguageAr()).isEqualTo("الفنلندية");
     }
 
     @Test
     public void testFindById() {
-        Language language = new Language("Finnish");
-        repository.save(language);
+        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
 
-        Optional<Language> found = repository.findById("Finnish");
+        Optional<Language> found = repository.findById("finnish");
+
         assertThat(found).isPresent();
-        assertThat(found.get().getLanguage()).isEqualTo("Finnish");
+        assertThat(found.get().getLanguage()).isEqualTo("finnish");
+        assertThat(found.get().getLanguageJa()).isEqualTo("フィンランド語");
+        assertThat(found.get().getLanguageAr()).isEqualTo("الفنلندية");
     }
 
     @Test
     public void testFindById_NotFound() {
-        Optional<Language> found = repository.findById("Swedish");
+        Optional<Language> found = repository.findById("swedish");
         assertThat(found).isEmpty();
     }
 
     @Test
     public void testFindAll() {
-        repository.save(new Language("English"));
-        repository.save(new Language("Finnish"));
-        repository.save(new Language("Swedish"));
+        repository.save( createLanguage("english", "英語","الفنلندية"));
+        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
+
 
         List<Language> languages = (List<Language>) repository.findAll();
 
-        assertThat(languages).hasSize(3);
+        assertThat(languages).hasSize(2);
         assertThat(languages).extracting(Language::getLanguage)
-                .containsExactlyInAnyOrder("English", "Finnish", "Swedish");
+                .containsExactlyInAnyOrder("english", "finnish");
+
+        assertThat(languages).extracting(Language::getLanguageJa)
+                .containsExactlyInAnyOrder("英語", "フィンランド語");
+
+        assertThat(languages).extracting(Language::getLanguageAr)
+                .containsExactlyInAnyOrder("الفنلندية", "الفنلندية");
     }
 
     @Test
     public void testDeleteLanguage() {
-        Language language = new Language("German");
-        repository.save(language);
 
-        repository.deleteById("German");
-        Optional<Language> found = repository.findById("German");
+        repository.save(createLanguage("german","ドイツ語", "الألمانية" ));
+
+        repository.deleteById("german");
+        Optional<Language> found = repository.findById("german");
 
         assertThat(found).isEmpty();
     }
 
     @Test
     public void testCount() {
-        repository.save(new Language("English"));
-        repository.save(new Language("Finnish"));
+        repository.save(createLanguage("english", "英語","الفنلندية"));
+        repository.save(createLanguage("finnish", "フィンランド語", "الفنلندية"));
 
         long count = repository.count();
-
         assertThat(count).isEqualTo(2);
     }
 
     @Test
     public void testSetLanguage() {
         Language language = new Language();
-        language.setLanguage("Spanish");
-        assertThat(language.getLanguage()).isEqualTo("Spanish");
+        language.setLanguage("spanish");
+        language.setLanguageJa("スペイン語");
+        language.setLanguageAr("الإسبانية");
+
+        assertThat(language.getLanguage()).isEqualTo("spanish");
+        assertThat(language.getLanguageJa()).isEqualTo("スペイン語");
+        assertThat(language.getLanguageAr()).isEqualTo("الإسبانية");
     }
 }
