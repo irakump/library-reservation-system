@@ -8,8 +8,8 @@ i18n
     .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
-    preload: ['en', 'ar', 'ja'],
+    fallbackLng: 'en-US',
+    preload: ['en-US', 'ar-u-nu-arab', 'ja-JP'],
     initImmediate: false,
 
     detection: {

@@ -7,9 +7,9 @@ const LanguageMenu = () => {
   const { isLoggedIn } = useAuth();
 
     const lngs = {
-        en: {nativeName: 'English'},
-        ja: {nativeName: '日本語'},
-        ar: {nativeName: 'العربية'},
+        'en-US': {nativeName: 'English'},
+        'ja-JP': {nativeName: '日本語'},
+        'ar-u-nu-arab': {nativeName: 'العربية'},
     };
 
   return (

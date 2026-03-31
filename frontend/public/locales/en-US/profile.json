@@ -12,19 +12,19 @@
     "user_creation": "User created:"
   },
   "loans": {
-    "title": "My Loans",
+    "title": "My Loans ({{count, number}})",
     "title_none": "No loans yet!"
   },
   "reservations": {
-    "title": "My Reservations",
+    "title": "My Reservations ({{count, number}})",
     "title_none": "No reservations yet!"
   },
   "history": {
-    "title": "My History",
+    "title": "My History ({{count, number}})",
     "title_none": "No history yet!"
   },
   "favorites": {
-    "title": "My Favorites ({{count}})",
+    "title": "My Favorites ({{count, number}})",
     "title_none": "No favorites yet!"
   }
 }

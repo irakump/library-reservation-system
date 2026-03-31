@@ -12,19 +12,19 @@
     "user_creation": "アカウント作成日:"
   },
   "loans": {
-    "title": "私のローン",
+    "title": "私のローン ({{count, number}})",
     "title_none": "貸出はまだありません！"
   },
   "reservations": {
-    "title": "私の予約",
+    "title": "私の予約 ({{count, number}})",
     "title_none": "予約はまだありません！"
   },
   "history": {
-    "title": "履歴",
+    "title": "履歴 ({{count, number}})",
     "title_none": "履歴はまだありません！"
   },
   "favorites": {
-    "title": "お気に入り（{{count}})",
+    "title": "お気に入り（{{count, number}})",
     "title_none": "お気に入りはまだありません！"
   }
 }

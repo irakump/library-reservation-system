@@ -4,9 +4,9 @@ const Languages = () => {
   const { t, i18n } = useTranslation('navigation');
 
   const lngs = {
-        en: {nativeName: 'English'},
-        ja: {nativeName: '日本語'},
-        ar: {nativeName: 'العربية'},
+        'en-US': {nativeName: 'English'},
+        'ja-JP': {nativeName: '日本語'},
+        'ar-u-nu-arab': {nativeName: 'العربية'},
     };
 
   return (

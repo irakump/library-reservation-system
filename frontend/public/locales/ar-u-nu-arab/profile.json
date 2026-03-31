@@ -12,19 +12,19 @@
     "user_creation": "تاريخ إنشاء الحساب:"
   },
   "loans": {
-    "title": "استعاراتي",
+    "title": "استعاراتي ({{count, number}})",
     "title_none": "لا توجد استعارات بعد!"
   },
   "reservations": {
-    "title": "حجوزاتي",
+    "title": "حجوزاتي ({{count, number}})",
     "title_none": "لا توجد حجوزات بعد!"
   },
   "history": {
-    "title": "سجلّي",
+    "title": "سجلّي ({{count, number}})",
     "title_none": "لا يوجد سجل بعد!"
   },
   "favorites": {
-    "title": "مفضلتي ({{count}})",
+    "title": "مفضلتي ({{count, number}})",
     "title_none": "لا توجد مفضلات بعد!"
   }
 }
