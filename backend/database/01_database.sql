@@ -47,7 +47,11 @@ CREATE TABLE book(
 CREATE TABLE author(
     author_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL
+    last_name VARCHAR(100) NOT NULL,
+    first_name_ja VARCHAR(100) NOT NULL,
+    last_name_ja VARCHAR(100) NOT NULL,
+    first_name_ar VARCHAR(100) NOT NULL,
+    last_name_ar VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE loan(
