@@ -35,8 +35,8 @@ class BookFilterTest {
 
     @BeforeEach
     void setUp() {
-        Author author1 = new Author("Author1", "SomeLastName");
-        Author author2 = new Author("Author2", "OtherLastName");
+        Author author1 = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
+        Author author2 = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
 
         entityManager.persist(author1);
         entityManager.persist(author2);

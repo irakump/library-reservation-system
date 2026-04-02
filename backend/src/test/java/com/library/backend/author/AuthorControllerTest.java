@@ -34,9 +34,9 @@ public class AuthorControllerTest {
 
     @Test
     public void testGetAllAuthors() throws Exception {
-        Author author1 = new Author("J.K.", "Rowling");
+        Author author1 = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
         author1.setAuthorId(1);
-        Author author2 = new Author("Tove", "Jansson");
+        Author author2 = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
         author2.setAuthorId(2);
 
         when(repository.findAll()).thenReturn(Arrays.asList(author1, author2));
@@ -51,7 +51,7 @@ public class AuthorControllerTest {
 
     @Test
     public void testGetAuthorById() throws Exception {
-        Author author = new Author("Tove", "Jansson");
+        Author author = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
         author.setAuthorId(1);
         when(repository.findById(1)).thenReturn(Optional.of(author));
 
@@ -64,7 +64,7 @@ public class AuthorControllerTest {
 
     @Test
     public void testGetAuthorById_WithBooks() throws Exception {
-        Author author = new Author("J.K.", "Rowling");
+        Author author = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
         author.setAuthorId(1);
 
         Book book1 = new Book("123", "Book 1", "Book 1", "Book 1", 2000, "Desc", "Desc", "Desc", "Fantasy", "English", true);

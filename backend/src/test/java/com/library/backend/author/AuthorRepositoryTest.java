@@ -17,7 +17,7 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testSaveAuthor() {
-        Author author = new Author("Tove", "Jansson");
+        Author author = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
         Author saved = repository.save(author);
 
         assertThat(saved).isNotNull();
@@ -28,7 +28,7 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testFindAuthorById() {
-        Author author = new Author("George", "Orwell");
+        Author author = new Author("George", "Orwell", "ジョージ", "オーウェル", "جورج", "أورويل");
         Author saved = repository.save(author);
 
         Optional<Author> found = repository.findById(saved.getAuthorId());
@@ -46,9 +46,9 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testFindAllAuthors() {
-        repository.save(new Author("Tove", "Jansson"));
-        repository.save(new Author("J.K.", "Rowling"));
-        repository.save(new Author("Jane", "Austen"));
+        repository.save(new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون"));
+        repository.save(new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ"));
+        repository.save(new Author("Jane", "Austen", "ジェーン", "オースティン", "جين", "أوستن"));
 
         List<Author> authors = (List<Author>) repository.findAll();
 
@@ -59,7 +59,7 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testUpdateAuthor() {
-        Author author = new Author("J.K.", "Rowling");
+        Author author = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
         Author saved = repository.save(author);
 
         saved.setFirstName("William");
@@ -73,7 +73,7 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testDeleteAuthor() {
-        Author author = new Author("Test", "Author");
+        Author author = new Author("Test", "Author", "Test", "Author", "Test", "Author");
         Author saved = repository.save(author);
 
         repository.deleteById(saved.getAuthorId());
@@ -83,8 +83,8 @@ public class AuthorRepositoryTest {
 
     @Test
     public void testCount() {
-        repository.save(new Author("Author", "One"));
-        repository.save(new Author("Author", "Two"));
+        repository.save(new Author("Author", "One", "Author", "One", "Author", "One"));
+        repository.save(new Author("Author", "Two", "Author", "Two", "Author", "Two"));
         long count = repository.count();
         assertThat(count).isEqualTo(2);
     }
