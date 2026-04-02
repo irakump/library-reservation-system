@@ -29,12 +29,12 @@ public class BookRepositoryTest {
     void testShouldFindBooks() {
 
         books = (List.of(
-        new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true),
-        new Book("2222", "Test book2", 2010, "Test book", "fantasy", "english", true),
-        new Book("3333", "Test book3", 2004, "Test book", "history", "english", true),
-        new Book("4444", "Test book4", 2024, "Test book", "history", "finnish", true),
-        new Book("5555", "Test book5", 2024, "Test book", "fantasy", "english", true),
-        new Book("6666", "Test book6", 2010, "Test book", "fantasy", "english", true)));
+        new Book("1111", "Test book1", "Test book1", "Test book1", 2021, "Test book", "Test book", "Test book", "biography", "english", true),
+        new Book("2222", "Test book2", "Test book2", "Test book2", 2010, "Test book", "Test book", "Test book", "fantasy", "english", true),
+        new Book("3333", "Test book3", "Test book3", "Test book3", 2004, "Test book", "Test book", "Test book", "history", "english", true),
+        new Book("4444", "Test book4", "Test book4", "Test book4", 2024, "Test book", "Test book", "Test book", "history", "finnish", true),
+        new Book("5555", "Test book5", "Test book5", "Test book5", 2024, "Test book", "Test book", "Test book", "fantasy", "english", true),
+        new Book("6666", "Test book6", "Test book6", "Test book6",2010, "Test book", "Test book", "Test book", "fantasy", "english", true)));
 
         for (Book book : books) {
             testEntityManager.persist(book);
@@ -53,7 +53,7 @@ public class BookRepositoryTest {
 
     @Test
     void TestShouldFindByIsbn() {
-        Book book = new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true);
+        Book book = new Book("1111", "Test book1", "Test book1", "Test book1", 2021, "Test book", "Test book", "Test book", "biography", "english", true);
         testEntityManager.persist(book);
 
         Optional<Book> result = repository.findById(book.getIsbn());

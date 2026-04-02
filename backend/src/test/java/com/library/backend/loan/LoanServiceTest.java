@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class LoanUniTest {
+class LoanServiceTest {
 
     @Mock
     private UserRepository userRepo;
@@ -42,7 +42,7 @@ class LoanUniTest {
     void setUp() {
         user = new User("joku@gmail.com", "joju", "LKJKJS9987dakkcvdQl");
 
-        book = new Book("88281201228", "joku", 2005, "jshdahdhad", "children", "finnish", true);
+        book = new Book("88281201228", "joku", "joku in japan", "joku", 2005, "jshdahdhad", "jsjdd", "shddd", "children", "finnish", true);
         book.setAvailable(true);
 
         loan = new Loan(LocalDate.now().plusWeeks(2), user, book);
@@ -113,21 +113,21 @@ class LoanUniTest {
 
     //return loans
     //@Test
-  // void testReturnLoan() {
-  //     ReturnLoanDTO dto = new ReturnLoanDTO(1, 1, "123");
+    // void testReturnLoan() {
+    //     ReturnLoanDTO dto = new ReturnLoanDTO(1, 1, "123");
 
-  //     when(bookRepo.findById("123")).thenReturn(Optional.of(book));
-  //     when(loanRepo.findById(1)).thenReturn(Optional.of(loan));
-  //     when(userRepo.findById(1)).thenReturn(Optional.of(user));
+    //     when(bookRepo.findById("123")).thenReturn(Optional.of(book));
+    //     when(loanRepo.findById(1)).thenReturn(Optional.of(loan));
+    //     when(userRepo.findById(1)).thenReturn(Optional.of(user));
 
-  //     loanService.returnLoan(dto);
+    //     loanService.returnLoan(dto);
 
-  //     assertNotNull(loan.getReturnDate());
-  //     assertTrue(book.getAvailability());//
+    //     assertNotNull(loan.getReturnDate());
+    //     assertTrue(book.getAvailability());//
 
-  //     verify(loanRepo).save(loan);
-  //     verify(bookRepo).save(book);
-  // }
+    //     verify(loanRepo).save(loan);
+    //     verify(bookRepo).save(book);
+    // }
 
     @Test
     void testReturnNotFound() {

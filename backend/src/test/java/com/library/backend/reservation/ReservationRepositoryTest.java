@@ -26,7 +26,7 @@ public class ReservationRepositoryTest {
     @Test
     void shouldCreateNewReservation() {
         User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
-        Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
+        Book book = new Book("12345670", "Test book", "Test book", "Test book", 2026, "This is test book", "This is test book", "This is test book", "Children", "english", true);
 
         em.persist(user);
         em.persist(book);
@@ -49,7 +49,7 @@ public class ReservationRepositoryTest {
     @Test
     void shouldFindReservationById() {
         User user = new User("test@email.com", "TestUser", "h8d6s6Gj!230Kh");
-        Book book = new Book("12345670", "Test book", 2026, "This is test book", "Children", "english", true);
+        Book book = new Book("12345670", "Test book", "Test book", "Test book", 2026, "This is test book", "Test book", "Test book", "Children", "english", true);
 
         em.persist(user);
         em.persist(book);

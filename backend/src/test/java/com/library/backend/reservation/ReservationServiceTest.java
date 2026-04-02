@@ -43,7 +43,7 @@ public class ReservationServiceTest {
     @BeforeEach
     void setUp() {
         user = userRepo.save(new User("user@user.com", "User #3", "S0meHash3dP4$$.1831!Dds"));
-        book = bookRepo.save(new Book("12345670", "Test book", 2026, "This is test book", "fantasy", "english", true));
+        book = bookRepo.save(new Book("12345670", "Test book", "Test book", "Test book", 2026, "This is test book", "This is test book", "This is test book","fantasy", "english", true));
     }
 
     // New reservation

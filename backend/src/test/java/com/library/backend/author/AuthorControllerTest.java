@@ -67,8 +67,8 @@ public class AuthorControllerTest {
         Author author = new Author("J.K.", "Rowling");
         author.setAuthorId(1);
 
-        Book book1 = new Book("123", "Book 1", 2000, "Desc", "Fantasy", "English", true);
-        Book book2 = new Book("456", "Book 2", 2001, "desc", "fantasy", "English", true);
+        Book book1 = new Book("123", "Book 1", "Book 1", "Book 1", 2000, "Desc", "Desc", "Desc", "Fantasy", "English", true);
+        Book book2 = new Book("456", "Book 2", "Book 2", "Book 2", 2001, "desc", "Desc", "Desc", "fantasy", "English", true);
 
         author.setBooks(Arrays.asList(book1, book2));
 

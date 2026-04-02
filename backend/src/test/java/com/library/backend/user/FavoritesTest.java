@@ -43,12 +43,12 @@ public class FavoritesTest {
         this.userId = user.getUserId();
 
         books = List.of(
-                new Book("1111", "book1", 2021, "Test book", "biography", "english", true),
-                new Book("2222", "book2", 2010, "Test book", "fantasy", "english", true),
-                new Book("3333", "book3", 2004, "Test book", "history", "english", true),
-                new Book("4444", "book4", 2024, "Test book", "history", "finnish", true),
-                new Book("5555", "book5", 2024, "Test book", "fantasy", "english", true),
-                new Book("6666", "book6", 2010, "Test book", "fantasy", "english", true));
+                new Book("1111", "Test book1", "Test book1", "Test book1", 2021, "Test book", "Test book", "Test book", "biography", "english", true),
+                new Book("2222", "Test book2", "Test book2", "Test book2", 2010, "Test book", "Test book", "Test book", "fantasy", "english", true),
+                new Book("3333", "Test book3", "Test book3", "Test book3", 2004, "Test book", "Test book", "Test book", "history", "english", true),
+                new Book("4444", "Test book4", "Test book4", "Test book4", 2024, "Test book", "Test book", "Test book", "history", "finnish", true),
+                new Book("5555", "Test book5", "Test book5", "Test book5", 2024, "Test book", "Test book", "Test book", "fantasy", "english", true),
+                new Book("6666", "Test book6", "Test book6", "Test book6",2010, "Test book", "Test book", "Test book", "fantasy", "english", true));
 
         for (Book book : books) {
             entityManager.persist(book);

@@ -41,12 +41,13 @@ class BookFilterTest {
         entityManager.persist(author1);
         entityManager.persist(author2);
 
-        book1 = new Book("1111", "Test book1", 2021, "Test book", "biography", "english", true);
-        book2 = new Book("2222", "Test book2", 2010, "Test book", "fantasy", "english", true);
-        book3 = new Book("3333", "Test book3", 2004, "Test book", "history", "english", true);
-        book4 = new Book("4444", "Test book4", 2024, "Test book", "history", "finnish", true);
-        book5 = new Book("5555", "Test book5", 2024, "Test book", "fantasy", "english", true);
-        book6 = new Book("6666", "Test book6", 2010, "Test book", "fantasy", "english", true);
+                book1 = new Book("1111", "Test book1", "Test book1", "Test book1", 2021, "Test book", "Test book", "Test book", "biography", "english", true);
+                book2 = new Book("2222", "Test book2", "Test book2", "Test book2", 2010, "Test book", "Test book", "Test book", "fantasy", "english", true);
+                book3 = new Book("3333", "Test book3", "Test book3", "Test book3", 2004, "Test book", "Test book", "Test book", "history", "english", true);
+                book4 = new Book("4444", "Test book4", "Test book4", "Test book4", 2024, "Test book", "Test book", "Test book", "history", "finnish", true);
+                book5 = new Book("5555", "Test book5", "Test book5", "Test book5", 2024, "Test book", "Test book", "Test book", "fantasy", "english", true);
+                book6 = new Book("6666", "Test book6", "Test book6", "Test book6",2010, "Test book", "Test book", "Test book", "fantasy", "english", true);
+
 
         entityManager.persist(book1);
         entityManager.persist(book2);
