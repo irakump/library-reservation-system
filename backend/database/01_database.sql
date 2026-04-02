@@ -1,5 +1,7 @@
 DROP DATABASE IF EXISTS metbook;
-CREATE DATABASE metbook;
+CREATE DATABASE metbook
+       CHARACTER SET utf8mb4
+       COLLATE utf8mb4_unicode_ci;
 USE metbook;
 
 CREATE TABLE users(
@@ -28,9 +30,13 @@ CREATE TABLE language(
 CREATE TABLE book(
     isbn VARCHAR(20) PRIMARY KEY,
     book_title VARCHAR(100) NOT NULL,
+    book_title_ja VARCHAR(100) NOT NULL,
+    book_title_ar VARCHAR(100) NOT NULL,
     publishing_year INT NOT NULL,
     image_name VARCHAR(100),
     description VARCHAR(5000) NOT NULL,
+    description_ja VARCHAR(5000) NOT NULL,
+    description_ar VARCHAR(5000) NOT NULL,
     genre VARCHAR(50) NOT NULL,
     language VARCHAR(100) NOT NULL,
     available BOOLEAN NOT NULL DEFAULT TRUE,
