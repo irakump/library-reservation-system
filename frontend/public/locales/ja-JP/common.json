@@ -5,5 +5,9 @@
   "loaned": "貸出済み",
   "returned": "返却済み",
   "returning_error": "返却処理中にエラーが発生しました。もう一度お試しください。",
-  "book": "本"
+  "book": "本",
+  "reserved": "予約語",
+  "book_already_reserved": "この本はすでに予約済みです。予約できません。",
+  "book_already_loaned": "この本はすでに貸出中です。予約できません。",
+  "book_reservation_failed": "問題が発生しました。本は予約されませんでした。"
 }

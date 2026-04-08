@@ -21,6 +21,7 @@ export const ReservationProvider = ({ children }) => {
   const [reservations, setReservations] = useState([]);
   const { user, isLoggedIn } = useAuth();
   const {i18n} = useTranslation();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     // Only fetch if user is logged in
@@ -43,17 +44,17 @@ export const ReservationProvider = ({ children }) => {
     try {
       const response = await createReservation(isbn);
       setReservations((prev) => [...prev, response]);
-      alert(`${response.title} reserved`);
+      alert(`${response.title} ${t("reserved")}`);
     } catch (error) {
 
       const message = error.response?.data?.message || error.message;
 
       if (message.includes("currently reserved")) {
-        alert("You already have a reservation for this book. Cannot reserve it.");
+        alert(t("book_already_reserved"));
       } else if (message.includes("currently loaned")) {
-        alert("You already have this book loaned. Cannot reserve it.");
+        alert(t("book_already_loaned"));
       } else {
-        alert("Something went wrong. Book not reserved.");
+        alert(t("book_reservation_failed"));
       }
 
       console.error("Error creating reservation: ", error);

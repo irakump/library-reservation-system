@@ -5,5 +5,9 @@
   "loaned": "loaned",
   "returned": "returned",
   "returning_error": "Error while returning loan. Please try again.",
-  "book": "Book"
+  "book": "Book",
+  "reserved": "reserved",
+  "book_already_reserved": "You already have a reservation for this book. Cannot reserve it.",
+  "book_already_loaned": "You already have this book loaned. Cannot reserve it.",
+  "book_reservation_failed": "Something went wrong. Book not reserved."
 }
