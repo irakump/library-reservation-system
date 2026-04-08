@@ -5,7 +5,6 @@ import {useSearchResult} from "../contexts/SearchResultContext.jsx";
 import {useLoanContext} from "../contexts/LoanContext.jsx";
 import {useFavoritesContext} from "../contexts/FavoritesContext.jsx";
 import {useReservationContext} from "../contexts/ReservationContext.jsx";
-import i18n from "i18next";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
@@ -21,7 +20,6 @@ const BookDataPage = ({ title, books, pageType }) => {
         openBook = open ? books.find((bk) => bk.isbn === open) : null;
     }
 
-    console.log(i18n.language);
 
   return (
     <div className="w-full min-h-screen">

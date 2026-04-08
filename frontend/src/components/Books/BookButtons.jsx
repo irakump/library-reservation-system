@@ -16,7 +16,6 @@ function BookButtons({pageType, book}) {
         loan = loans.find(b => b.isbn === book.isbn) || null;
     }
 
-    console.log(book);
 
     switch (pageType) {
         case "home":
