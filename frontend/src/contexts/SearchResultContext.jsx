@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import {createContext, useContext, useState} from 'react';
 import axios from 'axios';
 import { useSearchFilters } from './SearchFilterContext';
+import i18n from "i18next";
 
 const SearchResultContext = createContext({
   searchResults: [],
@@ -12,12 +13,14 @@ export const SearchResultProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const { searchFilters } = useSearchFilters();
 
+
   const fetchSearchResults = async () => {
     axios
-      .get('http://localhost:8081/api/book/filter', { params: searchFilters })
+      .get(`http://localhost:8081/api/book/filter/${i18n.language}`, { params: searchFilters })
       .then((response) => setSearchResults(response.data))
       .catch((error) => console.error(error));
   };
+
 
   return (
     <SearchResultContext.Provider

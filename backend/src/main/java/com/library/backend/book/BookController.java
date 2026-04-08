@@ -1,4 +1,5 @@
 package com.library.backend.book;
+import com.library.backend.util.LocalizationUtil;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,19 +19,26 @@ public class BookController {
 
     //all books
     @GetMapping
-    public List<Book> getAllBooks() {
-        return  (List<Book>) repository.findAll();
+    public List<BookDTO> getAllBooks(@PathVariable String lang) {
+        List<Book> books =  repository.findAll();
+
+        return books.stream().map(book -> {
+            BookDTO dto = new BookDTO(book);
+            dto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
+            dto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
+            return dto;
+        }).toList();
     }
 
     //books by isbn
-    @GetMapping("/{isbn}")
+    @GetMapping("/{isbn}/")
     public Book getBookByIsbn(@PathVariable String isbn) {
         return repository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));}
 
     // years used by books
     @GetMapping("/years")
     public List<Integer> getAllBookYears() {
-        List<Book> books = (List<Book>) repository.findAll();
+        List<Book> books = repository.findAll();
         return books.stream()
             .map(Book::getYear)
             .distinct()
@@ -56,14 +64,16 @@ public class BookController {
     }
 
     // books by filters (any combination)
-    @GetMapping("/filter")
-    public List<Book> getBooksByFilters(
+    @GetMapping("/filter/{lang}")
+    public List<BookDTO> getBooksByFilters(
             @RequestParam(required = false) String genre,
             @RequestParam(required = false) List<Integer> years,
             @RequestParam(required = false) String language,
             @RequestParam(required = false) Boolean available,
-            @RequestParam(required = false) String search_term
+            @RequestParam(required = false) String search_term,
+            @PathVariable String lang
     ) {
-        return bookService.findByFilters(genre, years, language, available, search_term);
+        List<Book> b = bookService.findByFilters(genre, years, language, available, search_term);
+        return bookService.localizeBooks(b, lang);
     }
 }

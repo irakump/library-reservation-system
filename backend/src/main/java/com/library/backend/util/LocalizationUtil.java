@@ -1,24 +1,34 @@
 package com.library.backend.util;
 
 import com.library.backend.book.Book;
+import com.library.backend.genre.Genre;
+import com.library.backend.language.Language;
 
 public class LocalizationUtil {
 
     public static String resolve(String en, String ja, String ar, String lang) {
         return switch (lang) {
-            case "ja" -> ja != null ? ja : en;
-            case "ar" -> ar != null ? ar : en;
+            case "ja-JP" -> ja != null ? ja : en;
+            case "ar-u-nu-arab" -> ar != null ? ar : en;
             default -> en;
         };
     }
 
     // Book specific helpers, so DTO's don't need to know the internal field names
-    public static String getTitle(Book book, String lang) {
+    public static String getLocalizedTitle(Book book, String lang) {
         return resolve(book.getTitle(), book.getTitle_ja(), book.getTitle_ar(), lang);
     }
 
-    public static String getDescription(Book book, String lang) {
+    public static String getLocalizedDescription(Book book, String lang) {
         return resolve(book.getDescription(), book.getDescription_ja(), book.getDescription_ar(), lang);
+    }
+
+    public static String getLocalizedGenre(Genre genre, String lang) {
+        return resolve(genre.getGenre(), genre.getGenreJa(), genre.getGenreAr(), lang);
+    }
+
+    public static String getLocalizedLanguage(Language language, String lang) {
+        return resolve(language.getLanguage(), language.getLanguageJa(), language.getLanguageAr(), lang);
     }
 
 }

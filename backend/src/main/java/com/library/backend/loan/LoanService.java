@@ -30,7 +30,6 @@ public class LoanService {
         this.loanRepo = loanRepo;
         this.reservationService = reservationService;
         this.notificationService = notificationService;
-
     }
 
     //Get all loans
@@ -58,7 +57,6 @@ public class LoanService {
                 .map(LoanDTO::new)
                 .toList();
     }
-
 
     //Create new loan
     @Transactional
@@ -93,6 +91,4 @@ public class LoanService {
         reservationService.processReservationQueue(book, loan);
         notificationService.notifyDueDate(loan.getUser(), book);
     }
-
-
 }

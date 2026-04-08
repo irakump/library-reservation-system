@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
 import { useSearchFilters } from '../../contexts/SearchFilterContext.jsx';
 import { useTranslation } from 'react-i18next';
+import i18n from "../../i18n.js";
 
 const SearchFilters = () => {
   // context
@@ -65,7 +66,7 @@ const SearchFilters = () => {
 
   useEffect(() => {
     fetchSearchResults();
-  }, [searchFilters]);
+  }, [searchFilters, i18n.language]);
 
   const addNewFilter = (filterSetter, filters, newFilter, multipleFilters) => {
     if (filters.includes(newFilter)) return;
