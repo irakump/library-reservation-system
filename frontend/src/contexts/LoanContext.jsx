@@ -6,6 +6,7 @@ import {
   returnLoan,
 } from "../api/loansApi.jsx";
 import { useAuth } from "./AuthContext.jsx";
+import { useTranslation } from "react-i18next";
 
 // set defaults so tests wont crash
 const LoanContext = createContext({
@@ -21,6 +22,7 @@ export const LoanProvider = ({ children }) => {
   const [loans, setLoans] = useState([]);
   const { user, isLoggedIn } = useAuth();
   const [history, setHistory] = useState([]);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     // Only fetch if user is logged in
@@ -34,13 +36,13 @@ export const LoanProvider = ({ children }) => {
   const addToLoans = async (isbn) => {
     if (!user?.userId) {
       console.error("User not logged in");
-      alert("Please log in to loan or reserve books");
+      alert(t("common:log_in_alert"));
       return;
     }
     try {
       const response = await createLoan(user.userId, isbn); //Use JWT userId
       setLoans((prev) => [...prev, response]);
-      alert(`${response.title} loaned`);
+      alert(`${response.title} ${t("loaned")}`);
       return response;
     } catch (error) {
       console.error("Error creating loan: ", error);
@@ -50,14 +52,14 @@ export const LoanProvider = ({ children }) => {
   const removeLoans = async (userId, isbn, loanId) => {
     try {
       const loan = loans.find((l) => l.loanId === loanId); // Find loan to get book title
-      const title = loan.title || "Book"; // Fallback title is Book
+      const title = loan.title || t("book"); // Fallback title is Book
 
       await returnLoan(userId, isbn, loanId);
       setLoans((prev) => prev.filter((f) => f.loanId !== loanId));
-      alert(`${title} returned`);
+      alert(`${title} ${t("returned")}`);
     } catch (error) {
       console.error("Error returning loan: ", error);
-      alert("Error while returning loan. Please try again.")
+      alert(t("common:returning_error"))
     }
   };
 
