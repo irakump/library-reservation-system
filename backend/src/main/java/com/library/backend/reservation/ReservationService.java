@@ -2,12 +2,17 @@ package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.genre.Genre;
+import com.library.backend.genre.GenreRepository;
+import com.library.backend.language.Language;
+import com.library.backend.language.LanguageRepository;
 import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
 import com.library.backend.notifications.MailService;
 import com.library.backend.notifications.NotificationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
+import com.library.backend.util.LocalizationUtil;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +32,17 @@ public class ReservationService {
     private final ReservationRepository reservationRepo;
     private final LoanRepository loanRepo;
     private final NotificationService notificationService;
+    private final GenreRepository genreRepo;
+    private final LanguageRepository languageRepo;
 
-    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo, NotificationService notificationService) {
+    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo, NotificationService notificationService, GenreRepository genreRepo, LanguageRepository languageRepo) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.reservationRepo = reservationRepo;
         this.loanRepo = loanRepo;
         this.notificationService = notificationService;
+        this.genreRepo = genreRepo;
+        this.languageRepo = languageRepo;
     }
 
     // Get all reservations
@@ -54,11 +63,10 @@ public class ReservationService {
     }
 
     // Get active reservations by user
-    public List<ReservationDTO> getActiveReservationsByUser(Integer userId) {
+    public List<Reservation> getActiveReservationsByUser(Integer userId) {
         return reservationRepo.findByUserUserId(userId)
                 .stream()
                 .filter(reservation -> reservation.getStatus() == active)
-                .map(ReservationDTO::new)
                 .toList();
     }
 
@@ -102,7 +110,6 @@ public class ReservationService {
         //Send mail
         notificationService.notifyOfNewLoan(oldest.getUser(), book);
 
-
     }
 
     // Create new reservation
@@ -112,9 +119,11 @@ public class ReservationService {
         Book book = bookRepo.findById(isbn).orElseThrow(() -> new RuntimeException("Book not found: "));
 
         // Check existing active reservation
-        List<ReservationDTO> reservations = getActiveReservationsByUser(userId);
-        for (ReservationDTO r : reservations) {
-            if (r.getIsbn().equals(isbn)) {
+        List<Reservation> reservations = getActiveReservationsByUser(userId);
+
+
+        for (Reservation r : reservations) {
+            if (r.getBook().getIsbn().equals(isbn)) {
                 throw new RuntimeException("Book is currently reserved by this user");
             }
         }
@@ -147,5 +156,19 @@ public class ReservationService {
 
         reservation.setStatus(not_active);
         reservationRepo.save(reservation);
+    }
+
+    public List<ReservationDTO> localizeReservations(List<Reservation> reservations, String lang) {
+        return reservations.stream().map(r -> {
+            Genre genre = genreRepo.findById(r.getBook().getGenre()).orElseThrow(() -> new IllegalStateException("Genre not found"));
+            Language language = languageRepo.findById(r.getBook().getLanguage()).orElseThrow(() -> new IllegalStateException("Language not found"));
+
+            ReservationDTO dto = new ReservationDTO(r);
+            dto.setTitle(LocalizationUtil.getLocalizedTitle(r.getBook(), lang));
+            dto.setDescription(LocalizationUtil.getLocalizedDescription(r.getBook(), lang));
+            dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
+            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
+            return dto;
+        }).toList();
     }
 }

@@ -1,4 +1,5 @@
 import api from "./axiosConfig";
+import i18n from "../i18n.js";
 
 export function createReservation(isbn) {
   return api
@@ -31,7 +32,7 @@ export function cancelReservation(reservationId) {
 }
 
 export const getReservations = async (userId) => {
-  return await api.get(`/reservations/user/${userId}`);
+  return await api.get(`/reservations/user/${userId}/${i18n.language}`);
 };
 
 export const getQueueLength = async (isbn) => {

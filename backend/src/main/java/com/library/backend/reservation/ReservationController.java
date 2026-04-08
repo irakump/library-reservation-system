@@ -35,12 +35,13 @@ public class ReservationController {
     }
 
     // Get active reservations by user's id - own data or admin
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ReservationDTO>> getActiveReservationsByUser(@PathVariable Integer userId, HttpServletRequest request) {
+    @GetMapping("/user/{userId}/{lang}")
+    public ResponseEntity<List<ReservationDTO>> getActiveReservationsByUser(@PathVariable Integer userId, @PathVariable String lang, HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        List<ReservationDTO> reservations = reservationService.getActiveReservationsByUser(userId);
+        List<Reservation> reservations = reservationService.getActiveReservationsByUser(userId);
+        List<ReservationDTO> dtos = reservationService.localizeReservations(reservations, lang);
 
-        return ResponseEntity.ok(reservations);
+        return ResponseEntity.ok(dtos);
     }
 
     // Get reservations by books isbn
