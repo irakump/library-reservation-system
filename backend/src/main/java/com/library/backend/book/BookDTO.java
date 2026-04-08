@@ -15,7 +15,7 @@ public class BookDTO {
     private int year;
     private String language;
     private String genre;
-    private boolean available;
+    private boolean availability;
 
     public BookDTO(Book b) {
         this.isbn = b.getIsbn();
@@ -25,8 +25,6 @@ public class BookDTO {
         this.year = b.getYear();
         this.language = b.getLanguage();
         this.genre = b.getGenre();
-        this.available = b.getAvailability();
+        this.availability = b.getAvailability();
     }
-
-
 }
