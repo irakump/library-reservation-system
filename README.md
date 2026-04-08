@@ -242,11 +242,11 @@ Base URL: http://localhost:8081/api
 ## Genres
 
 Get all genres:  
-**endpoint:** '/genre'
+**endpoint:** '/genre/all/{lang}'
 
 Get one genre:  
-**endpoint:** '/genre/{name}'  
-**example:** '/genre/fantasy'
+**endpoint:** '/genre/{englishName}/{lang}'  
+**example:** '/genre/fantasy/en-US' or '/genre/fantasy/ja-JP'
 
 ## Users
 
