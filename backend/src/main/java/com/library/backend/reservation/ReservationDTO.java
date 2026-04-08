@@ -1,10 +1,14 @@
 package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 // Reservation Data Transfer Object
+@Getter
+@Setter
 public class ReservationDTO {
     private int reservationId;
     private Timestamp createdAt;
@@ -36,47 +40,4 @@ public class ReservationDTO {
         this.genre = book.getGenre();
     }
 
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
 }

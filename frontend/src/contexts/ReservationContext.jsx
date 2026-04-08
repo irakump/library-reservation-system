@@ -5,6 +5,8 @@ import {
   getReservations,
 } from "../api/reservationsApi.js";
 import { useAuth } from "./AuthContext.jsx";
+import {useTranslation} from "react-i18next";
+
 
 // define defaults to tests pass
 const ReservationContext = createContext({
@@ -18,9 +20,11 @@ export const useReservationContext = () => useContext(ReservationContext);
 export const ReservationProvider = ({ children }) => {
   const [reservations, setReservations] = useState([]);
   const { user, isLoggedIn } = useAuth();
+  const {i18n} = useTranslation();
 
   useEffect(() => {
     // Only fetch if user is logged in
+      console.log(i18n.language);
     if (isLoggedIn && user?.userId) {
       getReservations(user.userId)
         .then((res) => setReservations(res.data))
@@ -28,7 +32,7 @@ export const ReservationProvider = ({ children }) => {
           console.error("Error fetching reservations: ", error),
         );
     }
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, user, i18n.language]);
 
   const addToReservations = async (isbn) => {
     if (!user?.userId) {
