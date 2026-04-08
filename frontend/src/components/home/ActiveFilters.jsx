@@ -1,8 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import FilterTag from './FilterTag';
 
-const ActiveFilters = ({ filters, onRemove }) => {
+const ActiveFilters = ({ filters, genres, onRemove }) => {
   const { t } = useTranslation("search");
+
+  const getDisplayName = (filterType, filter) => {
+    if (filterType === 'genre') {
+      const found = genres.find((g) => g.genreKey === filter);
+      return found ? found.genre : filter;
+    }
+    return filter;
+  };
+
   return (
     <>
       <div className="flex flex-wrap gap-2">
@@ -18,7 +27,7 @@ const ActiveFilters = ({ filters, onRemove }) => {
           filters.map((filter) => (
             <FilterTag
               key={filter}
-              filterName={filter}
+              filterName={getDisplayName(filterType, filter)}
               filterType={filterType}
               onRemove={() => onRemove(filter, filterType)}
             />

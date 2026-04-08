@@ -19,7 +19,7 @@ const SearchFilters = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8081/api/genre')
+      .get(`http://localhost:8081/api/genre/all/${i18n.language}`)
       .then((response) => setGenres(response.data))
       .catch((error) => console.error(error));
 
@@ -32,7 +32,7 @@ const SearchFilters = () => {
       .get('http://localhost:8081/api/book/years')
       .then((response) => setYears(response.data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [i18n.language]);
 
   const filterTypes = {
     genre: 'genre',
@@ -212,9 +212,9 @@ const SearchFilters = () => {
                 {genres.map((item) => (
                   <option
                     className={'capitalize'}
-                    key={item.genre}
-                    value={item.genre}
-                    disabled={selectedGenres.includes(item.genre)}
+                    key={item.genreKey}
+                    value={item.genreKey}
+                    disabled={selectedGenres.includes(item.genreKey)}
                   >
                     {item.genre}
                   </option>
@@ -259,6 +259,7 @@ const SearchFilters = () => {
             [filterTypes.language]: selectedLanguages,
             [filterTypes.years]: selectedYears,
           }}
+          genres={genres}
           onRemove={removeFilter}
         />
       </div>

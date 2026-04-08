@@ -1,5 +1,6 @@
 package com.library.backend.genre;
 
+import com.library.backend.util.LocalizationUtil;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -15,14 +16,25 @@ public class GenreController {
     }
 
     // Get all genres
-    @GetMapping
-    public List<Genre> getAllGenres() {
-        return (List<Genre>) repository.findAll();
+    @GetMapping("/all/{lang}")
+    public List<GenreDTO> getAllGenres(@PathVariable String lang) {
+        List<Genre> genres = repository.findAll();
+        return genres.stream().map(genre -> {
+            GenreDTO dto = new GenreDTO(genre);
+            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
+            return dto;
+        }).toList();
     }
 
-    // Get genre by name
-    @GetMapping("/{genre}")
-    public Genre getGenreByName(@PathVariable String genre) {
-        return repository.findById(genre).orElse(null);
+    // Get genre by name, localized. {genre} is English name
+    @GetMapping("/{genre}/{lang}")
+    public GenreDTO getGenreByName(@PathVariable String genre, @PathVariable String lang) {
+        return repository.findById(genre)
+                .map(g -> {
+                    GenreDTO dto = new GenreDTO(g);
+                    dto.setGenre(LocalizationUtil.getLocalizedGenre(g, lang));
+                    return dto;
+                })
+                .orElse(null);
     }
 }
