@@ -17,7 +17,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    //all books
+    //NOT used for search results
     @GetMapping
     public List<BookDTO> getAllBooks(@PathVariable String lang) {
         List<Book> books =  repository.findAll();
@@ -63,7 +63,9 @@ public class BookController {
         return (List<Book>) repository.findByLanguage(language);
     }
 
-    // books by filters (any combination)
+    // books by filters (any combination) USED FOR FETCHING ALL SEARCH RESULTS
+    // first finds books that matches filters (or all books if zero filters)
+    // then returns list of BookDTOs containing localized book data based on path variable lang
     @GetMapping("/filter/{lang}")
     public List<BookDTO> getBooksByFilters(
             @RequestParam(required = false) String genre,
