@@ -53,10 +53,15 @@ export const SearchResults = () => {
             <h2 ref={searchResultsStartRef}>{t('search_results_header')}</h2>
             <h2>
               {new Intl.NumberFormat(i18n.language).format(startIndex + 1)} -{' '}
-              {new Intl.NumberFormat(i18n.language).format(endIndex < searchResults.length)
-                ? new Intl.NumberFormat(i18n.language).format(endIndex)
-                : new Intl.NumberFormat(i18n.language).format(searchResults.length)}{' '}
-              / {new Intl.NumberFormat(i18n.language).format(searchResults.length)}
+              {new Intl.NumberFormat(i18n.language).format(
+                endIndex < searchResults.length
+                  ? endIndex
+                  : searchResults.length,
+              )}{' '}
+              /{' '}
+              {new Intl.NumberFormat(i18n.language).format(
+                searchResults.length,
+              )}
             </h2>
           </div>
 
