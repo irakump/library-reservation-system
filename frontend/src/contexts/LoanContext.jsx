@@ -22,16 +22,18 @@ export const LoanProvider = ({ children }) => {
   const [loans, setLoans] = useState([]);
   const { user, isLoggedIn } = useAuth();
   const [history, setHistory] = useState([]);
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     // Only fetch if user is logged in
+    console.log(i18n.language);
     if (isLoggedIn && user?.userId) {
       getLoans(user.userId)
         .then((res) => setLoans(res.data))
         .catch((error) => console.error("Error fetching loans: ", error));
     }
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, user, i18n.language]);
 
   const addToLoans = async (isbn) => {
     if (!user?.userId) {
@@ -59,7 +61,7 @@ export const LoanProvider = ({ children }) => {
       alert(`${title} ${t("returned")}`);
     } catch (error) {
       console.error("Error returning loan: ", error);
-      alert(t("common:returning_error"))
+      alert(t("common:returning_error"));
     }
   };
 
@@ -68,7 +70,7 @@ export const LoanProvider = ({ children }) => {
       getHistory(user.userId)
         .then((res) => setHistory(res.data))
         .catch((error) => console.error(error));
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, user, i18n.language]);
 
   const value = {
     addToLoans,
