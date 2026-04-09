@@ -1,4 +1,5 @@
 import api from "./axiosConfig";
+import i18n from "../i18n.js";
 
 export function createLoan(userId, isbn) {
   return api
@@ -33,9 +34,9 @@ export function returnLoan(userId, isbn, loanId) {
 }
 
 export const getLoans = async (userId) => {
-  return await api.get(`/loans/user/${userId}`);
+  return await api.get(`/loans/user/${userId}/${i18n.language}`);
 };
 
 export async function getHistory(userId) {
-  return await api.get(`/loans/user/${userId}/history`);
+  return await api.get(`/loans/user/${userId}/history/${i18n.language}`);
 }
