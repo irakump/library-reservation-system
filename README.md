@@ -219,7 +219,7 @@ The application has been localized into three languages: English, Japanese, and 
 
 ### Frontend
 
-`react-i18next` is used for localization in the application. The original language of the app is English. Translations into other languages were created by translating externalized English strings using AI.
+`react-i18next` is used for localization in the application frontend. The original language of the app is English. Translations into other languages were created by translating externalized English strings using AI.
 
 To add a new language:
 
@@ -230,8 +230,29 @@ To add a new language:
    - manually, one by one, or
    - in bulk using AI.
 
+todo:
+add info about what else to change, like navbar menus and footer menu, i18n.js, i18next.config.js
+
+### Database
+
+Database localization is done by translating all necessary attributes, and adding a new column for each containing the localized string. See below for list of all attributes in the database requiring localization.
+
+Add the following fields in these tables when adding a new language:
+- `first_name_{lang}` and `last_name_{lang}` in `Author` table
+- `genre_{lang}` in `Genre` table
+- `language_{lang}` in `Language` table
+- `book_title_{lang}` and `description_{lang}` in `Book` table
+
+Replace `{lang}` with locale code, e.g. `fr` for French.
+
 ### Backend
-to be continued
+
+Backend localization is handled by `LocalizationUtil` helper class. It simplifies localization by centralizing all database localization methods.
+
+To add a new language:
+
+1. Add all necessary fields to Entity class(es) according to the database structure.
+2. Update `LocalizationUtil` in `backend/src/main/java/com/library/backend/util/LocalizationUtil.java` to support the new language code and fields.
 
 ---
 
