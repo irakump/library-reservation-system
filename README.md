@@ -271,12 +271,12 @@ Get loan by id:
 **example:** '/loans/2'
 
 Get active loans by user:  
-**endpoint:** '/loans/user/{user_id}'  
-**example:** '/loans/user/1'
+**endpoint:** '/loans/user/{user_id}/{lang}'  
+**example:** '/loans/user/1/en-US' or '/loans/user/1/ja-JP'
 
 Get returned loans by user:  
-**endpoint:** '/loans/user/{userId}/history'  
-**example:** '/loans/user/1/history'
+**endpoint:** '/loans/user/{userId}/history/{lang}'  
+**example:** '/loans/user/1/history/en-US' or '/loans/user/1/history/ja-JP'
 
 Post new loans:  
 **endpoint** '/loans/new'
@@ -313,11 +313,12 @@ Get reservation queue:
 ## Languages
 
 Get all languages:  
-**endpoint:** '/language'
+**endpoint:** '/language/all/{lang}'
+**example:** '/language/all/en-US' or '/language/all/ja-JP'
 
 Get language by name:  
-**endpoint:** '/language/{name}'  
-**example:** '/language/english'
+**endpoint:** '/language/{name}/{lang}'  
+**example:** '/language/english/en-US' or '/language/english/ja-JP'
 
 ## Authors
 
