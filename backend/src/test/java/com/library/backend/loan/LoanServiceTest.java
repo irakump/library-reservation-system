@@ -1,6 +1,10 @@
 package com.library.backend.loan;
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.genre.Genre;
+import com.library.backend.genre.GenreRepository;
+import com.library.backend.language.Language;
+import com.library.backend.language.LanguageRepository;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,12 +34,20 @@ class LoanServiceTest {
     @Mock
     private LoanRepository loanRepo;
 
+    @Mock
+    private GenreRepository genreRepo;
+
+    @Mock
+    private LanguageRepository languageRepo;
+
     @InjectMocks
     private LoanService loanService;
 
     private User user;
     private Book book;
     private Loan loan;
+    private Genre genre;
+    private Language language;
 
     @BeforeEach
     void setUp() {
@@ -45,6 +57,9 @@ class LoanServiceTest {
         book.setAvailable(true);
 
         loan = new Loan(LocalDate.now().plusWeeks(2), user, book);
+
+        genre = new Genre("children", "子供たち", "أطفال");
+        language = new Language("finnish", "フィンランド語", "الفنلندية");
     }
 
 
@@ -81,6 +96,49 @@ class LoanServiceTest {
         assertEquals(1, result.size());
         verify(loanRepo).findByUserUserId(1);
     }
+
+    @Test
+    void testLocalizeLoansEnglish() {
+        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
+        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+
+        List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "en");
+
+        assertEquals(1, result.size());
+        assertEquals("joku", result.get(0).getTitle());
+        assertEquals("jshdahdhad", result.get(0).getDescription());
+        assertEquals("children", result.get(0).getGenre());
+        assertEquals("finnish", result.get(0).getLanguage());
+    }
+
+    @Test
+    void testLocalizeLoansJapanese() {
+        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
+        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+
+        List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "ja-JP");
+
+        assertEquals(1, result.size());
+        assertEquals("joku in japan", result.get(0).getTitle());
+        assertEquals("jsjdd", result.get(0).getDescription());
+        assertEquals("子供たち", result.get(0).getGenre());
+        assertEquals("フィンランド語", result.get(0).getLanguage());
+    }
+
+    @Test
+    void testLocalizeLoansArabic() {
+        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
+        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+
+        List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "ar-u-nu-arab");
+
+        assertEquals(1, result.size());
+        assertEquals("joku", result.get(0).getTitle());
+        assertEquals("shddd", result.get(0).getDescription());
+        assertEquals("أطفال", result.get(0).getGenre());
+        assertEquals("الفنلندية", result.get(0).getLanguage());
+    }
+
 
     //craete loan
     @Test
