@@ -1,13 +1,18 @@
-import { useTranslation } from 'react-i18next';
-import FilterTag from './FilterTag';
+import { useTranslation } from "react-i18next";
+import FilterTag from "./FilterTag";
 
-const ActiveFilters = ({ filters, genres, onRemove }) => {
+const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
   const { t } = useTranslation("search");
 
   const getDisplayName = (filterType, filter) => {
-    if (filterType === 'genre') {
+    if (filterType === "genre") {
       const found = genres.find((g) => g.genreKey === filter);
       return found ? found.genre : filter;
+    }
+
+    if (filterType === "language") {
+      const found = languages.find((l) => l.languageKey === filter);
+      return found ? found.language : filter;
     }
     return filter;
   };

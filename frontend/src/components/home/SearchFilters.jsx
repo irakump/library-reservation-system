@@ -1,16 +1,16 @@
-import ActiveFilters from './ActiveFilters';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSearchResult } from '../../contexts/SearchResultContext.jsx';
-import { useSearchFilters } from '../../contexts/SearchFilterContext.jsx';
-import { useTranslation } from 'react-i18next';
+import ActiveFilters from "./ActiveFilters";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useSearchResult } from "../../contexts/SearchResultContext.jsx";
+import { useSearchFilters } from "../../contexts/SearchFilterContext.jsx";
+import { useTranslation } from "react-i18next";
 import i18n from "../../i18n.js";
 
 const SearchFilters = () => {
   // context
   const { fetchSearchResults } = useSearchResult();
   const { searchFilters, setSearchFilters } = useSearchFilters();
-  const { t } = useTranslation('search');
+  const { t } = useTranslation("search");
 
   // data from database
   const [genres, setGenres] = useState([]);
@@ -24,20 +24,20 @@ const SearchFilters = () => {
       .catch((error) => console.error(error));
 
     axios
-      .get('http://localhost:8081/api/language')
+      .get(`http://localhost:8081/api/language/all/${i18n.language}`)
       .then((response) => setLanguages(response.data))
       .catch((error) => console.error(error));
 
     axios
-      .get('http://localhost:8081/api/book/years')
+      .get("http://localhost:8081/api/book/years")
       .then((response) => setYears(response.data))
       .catch((error) => console.error(error));
   }, [i18n.language]);
 
   const filterTypes = {
-    genre: 'genre',
-    language: 'language',
-    years: 'years',
+    genre: "genre",
+    language: "language",
+    years: "years",
   };
 
   // option to limit genre and language filters for one per category
@@ -138,11 +138,11 @@ const SearchFilters = () => {
     }
   };
 
-  const [categoryValue, setCategoryValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState("");
 
   const handleValueSelect = (e) => {
     addFilter(e.target.value, e.target.name);
-    setCategoryValue('');
+    setCategoryValue("");
   };
 
   return (
@@ -170,7 +170,7 @@ const SearchFilters = () => {
             <label htmlFor="language">
               {t("filters.language")}
               <select
-                className={'capitalize'}
+                className={"capitalize"}
                 id="language"
                 name="language"
                 data-testid="language-select"
@@ -182,10 +182,10 @@ const SearchFilters = () => {
                 </option>
                 {languages.map((item) => (
                   <option
-                    className={'capitalize'}
-                    key={item.language}
-                    value={item.language}
-                    disabled={selectedLanguages.includes(item.language)}
+                    className={"capitalize"}
+                    key={item.languageKey}
+                    value={item.languageKey}
+                    disabled={selectedLanguages.includes(item.languageKey)}
                   >
                     {item.language}
                   </option>
@@ -199,7 +199,7 @@ const SearchFilters = () => {
             <label htmlFor="genre">
               {t("filters.genre")}
               <select
-                className={'capitalize'}
+                className={"capitalize"}
                 id="genre"
                 name="genre"
                 data-testid="genre-select"
@@ -211,7 +211,7 @@ const SearchFilters = () => {
                 </option>
                 {genres.map((item) => (
                   <option
-                    className={'capitalize'}
+                    className={"capitalize"}
                     key={item.genreKey}
                     value={item.genreKey}
                     disabled={selectedGenres.includes(item.genreKey)}
@@ -260,6 +260,7 @@ const SearchFilters = () => {
             [filterTypes.years]: selectedYears,
           }}
           genres={genres}
+          languages={languages}
           onRemove={removeFilter}
         />
       </div>
