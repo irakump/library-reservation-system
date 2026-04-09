@@ -2,11 +2,18 @@ package com.library.backend.loan;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.genre.Genre;
+import com.library.backend.genre.GenreRepository;
+import com.library.backend.language.Language;
+import com.library.backend.language.LanguageRepository;
 import com.library.backend.notifications.MailService;
 import com.library.backend.notifications.NotificationService;
+import com.library.backend.reservation.Reservation;
+import com.library.backend.reservation.ReservationDTO;
 import com.library.backend.reservation.ReservationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
+import com.library.backend.util.LocalizationUtil;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +30,34 @@ public class LoanService {
     private final LoanRepository loanRepo;
     private final ReservationService reservationService;
     private final NotificationService notificationService;
+    private final GenreRepository genreRepo;
+    private final LanguageRepository languageRepo;
 
-    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService, NotificationService notificationService) {
+    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService, NotificationService notificationService,GenreRepository genreRepo, LanguageRepository languageRepo) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
         this.reservationService = reservationService;
         this.notificationService = notificationService;
+        this.genreRepo = genreRepo;
+        this.languageRepo = languageRepo;
+    }
+
+    // Localize loans
+    public List<LoanDTO> localizeLoans(List<Loan> loans, String lang) {
+        return loans.stream().map(l -> {
+            Genre genre = genreRepo.findById(l.getBook().getGenre())
+                    .orElseThrow(() -> new IllegalStateException("Genre not found"));
+            Language language = languageRepo.findById(l.getBook().getLanguage())
+                    .orElseThrow(() -> new IllegalStateException("Language not found"));
+
+            LoanDTO dto = new LoanDTO(l);
+            dto.setTitle(LocalizationUtil.getLocalizedTitle(l.getBook(), lang));
+            dto.setDescription(LocalizationUtil.getLocalizedDescription(l.getBook(), lang));
+            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
+            dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
+            return dto;
+        }).toList();
     }
 
     //Get all loans
@@ -42,19 +70,17 @@ public class LoanService {
     }
 
     //Get loans by user
-    public List<LoanDTO> getLoansByUser(int userId) {
+    public List<Loan> getActiveLoansByUser(int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
                 .filter(loan -> loan.getReturnDate() == null)
-                .map(LoanDTO::new)
                 .toList();
     }
 
-    public List<LoanDTO> getLoanHistory(int userId) {
+    public List<Loan> getLoanHistoryByUser(int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
                 .filter(loan -> loan.getReturnDate() != null)
-                .map(LoanDTO::new)
                 .toList();
     }
 
