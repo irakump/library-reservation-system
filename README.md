@@ -313,7 +313,7 @@ Get reservation queue:
 ## Languages
 
 Get all languages:  
-**endpoint:** '/language/all/{lang}'
+**endpoint:** '/language/all/{lang}'  
 **example:** '/language/all/en-US' or '/language/all/ja-JP'
 
 Get language by name:  
@@ -323,11 +323,12 @@ Get language by name:
 ## Authors
 
 Get all authors and their books:  
-**endpoint:** '/author'
+**endpoint:** '/author/all/{lang}'  
+**example:** '/author/all/en-US'  
 
 Get authors and their books by id:  
-**endpoint:** '/author/{id}'  
-**example:** '/author/1'
+**endpoint:** '/author/{id}/{lang}'  
+**example:** '/author/1/en-US'  
 
 ## Books
 
