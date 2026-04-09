@@ -2,11 +2,15 @@ package com.library.backend.loan;
 
 import com.library.backend.book.Book;
 import com.library.backend.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class LoanDTO {
     private int loanId;
     private LocalDateTime createdAt;
@@ -28,55 +32,13 @@ public class LoanDTO {
         this.returnDate = l.getReturnDate();
         this.userId = l.getUser().getUserId();
         this.isbn = l.getBook().getIsbn();
+
+        Book book = l.getBook();
         this.title = l.getBook().getTitle();
         this.image = l.getBook().getTitle();
         this.description = l.getBook().getDescription();
         this.year = l.getBook().getYear();
         this.language = l.getBook().getLanguage();
         this.genre = l.getBook().getGenre();
-    }
-
-    public String getLanguage() {return language;}
-
-    public String getGenre() {return genre;}
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getLoanId() {
-        return loanId;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public LocalDateTime getReturnDate() {
-        return returnDate;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getIsbn() {
-        return isbn;
     }
 }
