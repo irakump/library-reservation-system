@@ -18,7 +18,7 @@ public class BookController {
     }
 
     //NOT used for search results
-    @GetMapping
+    @GetMapping("/{lang}")
     public List<BookDTO> getAllBooks(@PathVariable String lang) {
         List<Book> books =  repository.findAll();
 
