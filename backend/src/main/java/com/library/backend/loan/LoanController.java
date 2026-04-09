@@ -38,11 +38,15 @@ public class LoanController {
     }
 
     // Get active loans by user's id
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<LoanDTO>> getLoansByUser(@PathVariable int userId, HttpServletRequest request) {
+    @GetMapping("/user/{userId}/{lang}")
+    public ResponseEntity<List<LoanDTO>> getLoansByUser(
+            @PathVariable int userId,
+            @PathVariable String lang,
+            HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        List<LoanDTO> loans = loanService.getLoansByUser(userId);
-        return ResponseEntity.ok(loans);
+        List<Loan> loans = loanService.getActiveLoansByUser(userId);
+        List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
+        return ResponseEntity.ok(dtos);
     }
 
     //Create new loan
@@ -62,14 +66,13 @@ public class LoanController {
     }
 
     //Get loan history
-    @GetMapping("/user/{userId}/history")
-    public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable int userId, HttpServletRequest request) {
+    @GetMapping("/user/{userId}/history/{lang}")
+    public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable int userId, @PathVariable String lang, HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        List<LoanDTO> loans = loanService.getLoanHistory(userId);
-        return ResponseEntity.ok(loans);
+        List<Loan> loans = loanService.getLoanHistoryByUser(userId);
+        List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
+        return ResponseEntity.ok(dtos);
     }
-
-
 }
 
 
