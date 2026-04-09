@@ -1,5 +1,6 @@
 package com.library.backend.util;
 
+import com.library.backend.author.Author;
 import com.library.backend.book.Book;
 import com.library.backend.genre.Genre;
 import com.library.backend.language.Language;
@@ -29,6 +30,14 @@ public class LocalizationUtil {
 
     public static String getLocalizedLanguage(Language language, String lang) {
         return resolve(language.getLanguage(), language.getLanguageJa(), language.getLanguageAr(), lang);
+    }
+
+    public static String getLocalizedAuthorFirstName(Author author, String lang) {
+        return resolve(author.getFirstName(), author.getFirstNameJa(), author.getFirstNameAr(), lang);
+    }
+
+    public static String getLocalizedAuthorLastName(Author author, String lang) {
+        return resolve(author.getLastName(), author.getLastNameJa(), author.getLastNameAr(), lang);
     }
 
 }

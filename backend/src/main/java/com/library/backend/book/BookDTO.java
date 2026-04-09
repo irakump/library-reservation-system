@@ -1,9 +1,10 @@
 package com.library.backend.book;
 
-import com.library.backend.loan.Loan;
+import com.library.backend.author.AuthorDTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,6 +17,7 @@ public class BookDTO {
     private String language;
     private String genre;
     private boolean availability;
+    private List<AuthorDTO> authors;
 
     public BookDTO(Book b) {
         this.isbn = b.getIsbn();
@@ -26,5 +28,11 @@ public class BookDTO {
         this.language = b.getLanguage();
         this.genre = b.getGenre();
         this.availability = b.getAvailability();
+
+        this.authors = b.getAuthors() != null ?
+                b.getAuthors().stream()
+                        .map(AuthorDTO::new)
+                        .toList()
+                : List.of();
     }
 }

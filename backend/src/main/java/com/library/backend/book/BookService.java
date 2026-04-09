@@ -3,6 +3,7 @@ package com.library.backend.book;
 import java.util.List;
 import java.util.Optional;
 
+import com.library.backend.author.AuthorDTO;
 import com.library.backend.genre.Genre;
 import com.library.backend.genre.GenreRepository;
 import com.library.backend.language.Language;
@@ -56,6 +57,16 @@ public class BookService {
             dto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
             dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
             dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
+
+            dto.setAuthors(book.getAuthors().stream()
+                    .map(author -> {
+                        AuthorDTO authorDto = new AuthorDTO(author);
+                        authorDto.setFirstName(LocalizationUtil.getLocalizedAuthorFirstName(author, lang));
+                        authorDto.setLastName(LocalizationUtil.getLocalizedAuthorLastName(author, lang));
+                        return authorDto;
+                    })
+                    .toList());
+
             return dto;
         }).toList();
     }

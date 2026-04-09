@@ -1,5 +1,6 @@
 package com.library.backend.author;
 
+import com.library.backend.util.LocalizationUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,14 +17,30 @@ public class AuthorController {
     }
 
     // Get all authors
-    @GetMapping
-    public List<Author> getAllAuthors() {
-        return (List<Author>) repository.findAll();
+    @GetMapping("/all/{lang}")
+    public List<AuthorDTO> getAllAuthors(@PathVariable String lang) {
+        List<Author> authors = repository.findAll();
+
+        return authors.stream()
+                .map(author -> {
+                    AuthorDTO dto = new AuthorDTO(author);
+                    dto.setFirstName(LocalizationUtil.getLocalizedAuthorFirstName(author, lang));
+                    dto.setLastName(LocalizationUtil.getLocalizedAuthorLastName(author, lang));
+                    return dto;
+                })
+                .toList();
     }
 
     // Get author by ID
-    @GetMapping("/{id}")
-    public Author getAuthorById(@PathVariable Integer id) {
-        return repository.findById(id).orElse(null);
+    @GetMapping("/{id}/{lang}")
+    public AuthorDTO getAuthorById(@PathVariable Integer id, @PathVariable String lang) {
+        return repository.findById(id)
+                .map(author -> {
+                    AuthorDTO dto = new AuthorDTO(author);
+                    dto.setFirstName(LocalizationUtil.getLocalizedAuthorFirstName(author, lang));
+                    dto.setLastName(LocalizationUtil.getLocalizedAuthorLastName(author, lang));
+                    return dto;
+                })
+                .orElse(null);
     }
 }
