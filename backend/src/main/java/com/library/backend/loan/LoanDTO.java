@@ -32,11 +32,11 @@ public class LoanDTO {
         this.isbn = l.getBook().getIsbn();
 
         Book book = l.getBook();
-        this.title = l.getBook().getTitle();
-        this.image = l.getBook().getTitle();
-        this.description = l.getBook().getDescription();
-        this.year = l.getBook().getYear();
-        this.language = l.getBook().getLanguage();
-        this.genre = l.getBook().getGenre();
+        this.title = book.getTitle();
+        this.image = book.getImage();
+        this.description = book.getDescription();
+        this.year = book.getYear();
+        this.language = book.getLanguage();
+        this.genre = book.getGenre();
     }
 }
