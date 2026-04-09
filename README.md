@@ -58,14 +58,11 @@ Database & tools: MariaDB, Docker, Jenkins
 <img width="1217" height="1015" alt="use case diagram" src="https://github.com/user-attachments/assets/a0aba006-d85d-4600-a692-db70f193df0c" />
 
 #### ER Diagram
-![Image of Database ER Diagram](/Documents/Diagrams/library_database_er_diagram.pdf)
-
-<img src="/Documents/Diagrams/library_database_er_diagram.pdf" width="800">
+![Image of Database ER Diagram](/Documents/Diagrams/library_database_er_diagram.png)
 <img width="2000" height="1189" alt="image" src="https://github.com/user-attachments/assets/c8c87454-cb68-42ce-a179-79b6f8ceb8b8" />
 
 #### Relational Schema
-![Image of Database Relational Schema](/Documents/Diagrams/library_database_relational_schema.pdf)
-<img src="/Documents/Diagrams/library_database_relational_schema.pdf" width="800">
+![Image of Database Relational Schema](/Documents/Diagrams/library_database_relational_schema.png)
 <img width="2000" height="998" alt="image" src="https://github.com/user-attachments/assets/5ccbc4d4-9889-4741-ba28-773f853450c5" />
 
 #### Activity Diagram
