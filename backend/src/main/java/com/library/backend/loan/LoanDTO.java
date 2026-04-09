@@ -1,11 +1,9 @@
 package com.library.backend.loan;
 
 import com.library.backend.book.Book;
-import com.library.backend.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
