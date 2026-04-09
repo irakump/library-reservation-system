@@ -1,5 +1,4 @@
 package com.library.backend.loan;
-/*
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
 import com.library.backend.user.User;
@@ -61,10 +60,10 @@ class LoanServiceTest {
 
     //getLoansByUser()
     @Test
-    void getLoansByUser() {
+    void getActiveLoansByUser() {
         when(loanRepo.findByUserUserId(1)).thenReturn(List.of(loan));
 
-        List<LoanDTO> result = loanService.getLoansByUser(1);
+        List<Loan> result = loanService.getActiveLoansByUser(1);
 
         assertEquals(1, result.size());
         verify(loanRepo).findByUserUserId(1);
@@ -73,11 +72,11 @@ class LoanServiceTest {
 
     //getLoanHistory()
     @Test
-    void testLoanHistory() {
+    void testLoanHistoryByUser() {
         loan.setReturnDate(LocalDateTime.now());
         when(loanRepo.findByUserUserId(1)).thenReturn(List.of(loan));
 
-        List<LoanDTO> result = loanService.getLoanHistory(1);
+        List<Loan> result = loanService.getLoanHistoryByUser(1);
 
         assertEquals(1, result.size());
         verify(loanRepo).findByUserUserId(1);
@@ -140,5 +139,3 @@ class LoanServiceTest {
 
     }
 }
-
- */
