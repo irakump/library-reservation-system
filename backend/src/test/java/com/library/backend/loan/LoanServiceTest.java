@@ -51,7 +51,7 @@ class LoanServiceTest {
 
     @BeforeEach
     void setUp() {
-        user = new User("joku@gmail.com", "joju", "LKJKJS9987dakkcvdQl");
+        user = new User("joku@gmail.com", "joku", "LKJKJS9987dakkcvdQl");
 
         book = new Book("88281201228", "joku", "joku in japan", "joku", 2005, "jshdahdhad", "jsjdd", "shddd", "children", "finnish", true);
         book.setAvailable(true);
@@ -140,7 +140,7 @@ class LoanServiceTest {
     }
 
 
-    //craete loan
+    // create loan
     @Test
     void testCreateLoanSetUnavailable() {
         CreateLoanDTO dto = new CreateLoanDTO(1, "123");
@@ -149,7 +149,7 @@ class LoanServiceTest {
         when(bookRepo.findById("123")).thenReturn(Optional.of(book));
         when(loanRepo.save(any(Loan.class))).thenReturn(loan);
 
-        LoanDTO result = loanService.createLoan(dto);
+        LoanDTO result = loanService.createLoan(dto, "en-US");
 
         assertNotNull(result);
         assertFalse(book.getAvailability());
@@ -165,7 +165,7 @@ class LoanServiceTest {
         when(userRepo.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class,
-                () -> loanService.createLoan(dto));
+                () -> loanService.createLoan(dto, "en-US"));
     }
 
     //return loans
