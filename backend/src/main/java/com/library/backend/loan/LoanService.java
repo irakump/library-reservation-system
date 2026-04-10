@@ -81,9 +81,9 @@ public class LoanService {
                 .toList();
     }
 
-    //Create new loan
+    // Create new loan
     @Transactional
-    public LoanDTO createLoan(CreateLoanDTO dto) {
+    public LoanDTO createLoan(CreateLoanDTO dto, String lang) {
         User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
         Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
 
@@ -94,10 +94,14 @@ public class LoanService {
         book.setAvailable(false);
         bookRepo.save(book);
 
-        return new LoanDTO(loan);
+        LoanDTO newDto = new LoanDTO(loan);
+        newDto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
+        newDto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
+
+        return newDto;
     }
 
-    //Return a loan
+    // Return a loan
     @Transactional
     public void returnLoan(ReturnLoanDTO dto) {
         Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("book not found"));
@@ -107,10 +111,9 @@ public class LoanService {
         loan.setReturnDate(returnDate);
         loanRepo.save(loan);
 
-        //book.setAvailable(true);  // processReservationQueue is handling availability
         bookRepo.save(book);
 
-        // Update reservation queue
+        // Update reservation queue and book availability
         reservationService.processReservationQueue(book, loan);
         notificationService.notifyDueDate(loan.getUser(), book);
     }

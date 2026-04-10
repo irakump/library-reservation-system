@@ -49,23 +49,23 @@ public class LoanController {
         return ResponseEntity.ok(dtos);
     }
 
-    //Create new loan
-    @PostMapping("/new")
-    public ResponseEntity<LoanDTO> createLoan(@RequestBody CreateLoanDTO request, HttpServletRequest httpRequest) {
+    // Create new loan
+    @PostMapping("/new/{lang}")
+    public ResponseEntity<LoanDTO> createLoan(@RequestBody CreateLoanDTO request, HttpServletRequest httpRequest, @PathVariable String lang) {
         AuthorizationUtil.checkUserAccess(httpRequest, request.getUserId());
-        LoanDTO created = loanService.createLoan(request);
+        LoanDTO created = loanService.createLoan(request, lang);
         return ResponseEntity.ok(created);
     }
 
-    //Change loan
-    @PutMapping("/return")
-    public ResponseEntity<Void> returnLoan(@RequestBody ReturnLoanDTO request, HttpServletRequest httpRequest) {
+    // Change loan
+    @PutMapping("/return/{lang}")
+    public ResponseEntity<Void> returnLoan(@RequestBody ReturnLoanDTO request, HttpServletRequest httpRequest, @PathVariable String lang) {
         AuthorizationUtil.checkUserAccess(httpRequest, request.getUserId());
         loanService.returnLoan(request);
         return ResponseEntity.ok().build();
     }
 
-    //Get loan history
+    // Get loan history
     @GetMapping("/user/{userId}/history/{lang}")
     public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable int userId, @PathVariable String lang, HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);

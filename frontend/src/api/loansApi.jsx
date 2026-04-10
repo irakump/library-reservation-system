@@ -1,9 +1,9 @@
 import api from "./axiosConfig";
 import i18n from "../i18n.js";
 
-export function createLoan(userId, isbn) {
+export function createLoan(userId, isbn, lang) {
   return api
-    .post(`/loans/new`, {
+    .post(`/loans/new/${lang}`, {
       userId,
       isbn,
     })
@@ -17,9 +17,9 @@ export function createLoan(userId, isbn) {
     });
 }
 
-export function returnLoan(userId, isbn, loanId) {
+export function returnLoan(userId, isbn, loanId, lang) {
   return api
-    .put(`/loans/return`, {
+    .put(`/loans/return/${lang}`, {
       userId,
       isbn,
       loanId,

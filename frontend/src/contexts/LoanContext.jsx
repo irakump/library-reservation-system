@@ -41,8 +41,9 @@ export const LoanProvider = ({ children }) => {
       alert(t("common:log_in_alert"));
       return;
     }
+    
     try {
-      const response = await createLoan(user.userId, isbn); //Use JWT userId
+      const response = await createLoan(user.userId, isbn, i18n.language); //Use JWT userId
       setLoans((prev) => [...prev, response]);
       alert(`${response.title} ${t("loaned")}`);
       return response;

@@ -44,7 +44,7 @@ export const ReservationProvider = ({ children }) => {
     try {
       const response = await createReservation(isbn);
       setReservations((prev) => [...prev, response]);
-      alert(`${response.title} ${t("reserved")}`);
+      alert(`${t("book")} ${t("reserved")}`);
     } catch (error) {
 
       const message = error.response?.data?.message || error.message;
