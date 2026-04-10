@@ -300,11 +300,11 @@ Get returned loans by user:
 **example:** '/loans/user/1/history/en-US' or '/loans/user/1/history/ja-JP'
 
 Post new loans:  
-**endpoint** '/loans/new/{lang}'
+**endpoint** '/loans/new/{lang}'  
 **example:** '/loans/new/en-US'
 
 Return loans:  
-**endpoint** '/loans/return{lang}'
+**endpoint** '/loans/return{lang}'  
 **example:** '/loans/return/ja-JP'
 
 ## Reservations
