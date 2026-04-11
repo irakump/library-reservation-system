@@ -1,6 +1,7 @@
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { useFavoritesContext } from "../../contexts/FavoritesContext.jsx";
+import PropTypes from "prop-types";
 
 const FavoriteButton = ({ book }) => {
   const { isFavorite, addToFavorites, removeFromfavorites } =
@@ -29,6 +30,13 @@ const FavoriteButton = ({ book }) => {
       )}
     </button>
   );
+};
+
+FavoriteButton.propTypes = {
+  book: PropTypes.shape({
+    isbn: PropTypes.string,
+    bookIsbn: PropTypes.string,
+  }).isRequired,
 };
 
 export default FavoriteButton;

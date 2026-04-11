@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
-
+import PropTypes from "prop-types";
 
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
@@ -55,6 +55,12 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
       </div>
     </div>
   );
+};
+
+LogoutModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 };
 
 export default LogoutModal;

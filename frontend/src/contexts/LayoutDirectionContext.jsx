@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import i18n from "../i18n";
+import PropTypes from "prop-types";
 
 const LayoutDirectionContext = createContext();
 
@@ -48,4 +49,9 @@ export const LayoutDirectionProvider = ({ children }) => {
   );
 };
 
+
 export const useLayoutDirection = () => useContext(LayoutDirectionContext);
+
+LayoutDirectionProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};

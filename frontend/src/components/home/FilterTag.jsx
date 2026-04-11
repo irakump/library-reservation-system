@@ -1,4 +1,5 @@
 import XMark from '@heroicons/react/24/solid/XMarkIcon';
+import PropTypes from "prop-types";
 
 const FilterTag = ({ filterName, onRemove, closeButton = true }) => {
   return (
@@ -10,6 +11,12 @@ const FilterTag = ({ filterName, onRemove, closeButton = true }) => {
       {closeButton && <XMark className="ml-1 size-4" />}
     </button>
   );
+};
+
+FilterTag.propTypes = {
+  filterName: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  closeButton: PropTypes.bool,
 };
 
 export default FilterTag;

@@ -1,6 +1,7 @@
 //not a button but goes to BookButtons
 import { useTranslation } from "react-i18next";
 import {useLayoutDirection} from "../../contexts/LayoutDirectionContext.jsx";
+import PropTypes from "prop-types";
 
 function HistoryText({book}) {
     const {formatDate} = useLayoutDirection();
@@ -17,4 +18,12 @@ function HistoryText({book}) {
           </>
     )
 }
+
+HistoryText.propTypes = {
+    book: PropTypes.shape({
+        createdAt: PropTypes.string,
+        returnDate: PropTypes.string,
+    }).isRequired,
+};
+
 export default HistoryText;

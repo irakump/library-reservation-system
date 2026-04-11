@@ -3,6 +3,7 @@ import {useLoanContext} from "../../contexts/LoanContext.jsx";
 import {useLayoutDirection} from "../../contexts/LayoutDirectionContext.jsx";
 import {useSearchResult} from "../../contexts/SearchResultContext.jsx";
 import {useSearchFilters} from "../../contexts/SearchFilterContext.jsx";
+import PropTypes from "prop-types";
 
 function LoanButton({pageType, book, children}) {
     const {addToLoans, removeLoans} = useLoanContext()
@@ -39,4 +40,17 @@ function LoanButton({pageType, book, children}) {
         </>
         )
 }
+
+LoanButton.propTypes = {
+    pageType: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    book: PropTypes.shape({
+        isbn: PropTypes.string,
+        availability: PropTypes.bool,
+        dueDate: PropTypes.string,
+        userId: PropTypes.string,
+        loanId: PropTypes.string,
+    }).isRequired,
+};
+
 export default LoanButton;

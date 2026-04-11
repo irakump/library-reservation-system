@@ -5,7 +5,7 @@ import {
   removeFavorite,
 } from "../api/favoritesApi.js";
 import { useAuth } from "./AuthContext.jsx";
-import api from "../api/axiosConfig.js";
+import PropTypes from "prop-types";
 
 // set defaults so tests wont crash
 const FavoritesContext = createContext({
@@ -44,9 +44,7 @@ export const FavoritesProvider = ({ children }) => {
     try {
       await addFavorite(user.userId, book.isbn);
 
-      //const bookResponse = await api.get(`/book/${isbn}`);
       setFavorites((prev) => [...prev, book]);
-      //console.log("Book added to favourites: ", );
     } catch (error) {
       console.error("Error adding favorite: ", error);
     }
@@ -79,4 +77,8 @@ export const FavoritesProvider = ({ children }) => {
       {children}
     </FavoritesContext.Provider>
   );
+};
+
+FavoritesProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

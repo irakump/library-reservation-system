@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { loginAPICall } from "../../api/authApi";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   const { t } = useTranslation(["auth", "button", "book_card"]);
@@ -137,6 +138,12 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
       </div>
     </div>
   );
+};
+
+LoginModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSwitchToRegister: PropTypes.func.isRequired,
 };
 
 export default LoginModal;
