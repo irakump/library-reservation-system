@@ -152,7 +152,7 @@ class LoanServiceTest {
         LoanDTO result = loanService.createLoan(dto, "en-US");
 
         assertNotNull(result);
-        assertFalse(book.getAvailability());
+        assertFalse(book.isAvailable());
 
         verify(loanRepo).save(any(Loan.class));
         verify(bookRepo).save(book);
