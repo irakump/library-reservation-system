@@ -2,3 +2,6 @@
 target/*
 .idea/*
 .vscode/*
+
+# SonarScanner and SonarQube
+.scannerwork

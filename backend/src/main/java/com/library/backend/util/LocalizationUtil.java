@@ -17,11 +17,11 @@ public class LocalizationUtil {
 
     // Book specific helpers, so DTO's don't need to know the internal field names
     public static String getLocalizedTitle(Book book, String lang) {
-        return resolve(book.getTitle(), book.getTitle_ja(), book.getTitle_ar(), lang);
+        return resolve(book.getTitle(), book.getTitleJa(), book.getTitleAr(), lang);
     }
 
     public static String getLocalizedDescription(Book book, String lang) {
-        return resolve(book.getDescription(), book.getDescription_ja(), book.getDescription_ar(), lang);
+        return resolve(book.getDescription(), book.getDescriptionJa(), book.getDescriptionAr(), lang);
     }
 
     public static String getLocalizedGenre(Genre genre, String lang) {

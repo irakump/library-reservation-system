@@ -3,15 +3,32 @@ package com.library.backend.genre;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data transfer object (DTO) for Genre entity class.
+ * Used to expose selected genre data to other classes.
+ */
 @Getter
 @Setter
 public class GenreDTO {
-    private String genre;       // Localized name for user
-    private String genreKey;    // English name
+    /**
+     * Localized genre.
+     */
+    private String genre;
 
-    public GenreDTO(Genre g) {
-        // Set both to English genre. this.genre will be changed to localized genre in GenreController
-        this.genre = g.getGenre();
-        this.genreKey = g.getGenre();
+    /**
+     * English name of genre.
+     */
+    private String genreKey;
+
+    /**
+     * Creates GenreDTO class from Genre entity class.
+     * Sets class variables to English locale.
+     * GenreController will update this.genre to localized version.
+     *
+     * @param genre source genre entity
+     */
+    public GenreDTO(final Genre genre) {
+        this.genre = genre.getGenre();
+        this.genreKey = genre.getGenre();
     }
 }
