@@ -5,6 +5,7 @@ import {useSearchResult} from "../contexts/SearchResultContext.jsx";
 import {useLoanContext} from "../contexts/LoanContext.jsx";
 import {useFavoritesContext} from "../contexts/FavoritesContext.jsx";
 import {useReservationContext} from "../contexts/ReservationContext.jsx";
+import PropTypes from "prop-types";
 
 const BookDataPage = ({ title, books, pageType }) => {
   const [open, setOpen] = useState(null); //passes bookobject
@@ -48,4 +49,12 @@ const BookDataPage = ({ title, books, pageType }) => {
     </div>
   );
 };
+
+BookDataPage.propTypes = {
+    title: PropTypes.string.isRequired,
+    books: PropTypes.array.isRequired,
+    pageType: PropTypes.string.isRequired,
+};
+
 export default BookDataPage;
+
