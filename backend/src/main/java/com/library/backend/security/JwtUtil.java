@@ -19,12 +19,12 @@ public class JwtUtil {
     /**
      * Secret key used for signing JWT tokens. (Change this to more secure)
      */
-    private final String SECRET_KEY = "metbook-library-secret-key-123456789012345";
+    private static final String SECRET_KEY = "metbook-library-secret-key-123456789012345";
 
     /**
      * Token expiration time in milliseconds.
      */
-    private final long EXPIRATION_TIME = 86400000; // 24 hours in milliseconds
+    private static final long EXPIRATION_TIME = 86400000; // 24 hours in milliseconds
 
     /**
      * Get signing key for JWT.

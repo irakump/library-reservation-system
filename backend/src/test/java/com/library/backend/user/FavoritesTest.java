@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
 @SpringBootTest
-public class FavoritesTest {
+class FavoritesTest {
     int userId;
     List<Book> books;
 

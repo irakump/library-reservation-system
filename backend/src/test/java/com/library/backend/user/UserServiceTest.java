@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 // tests for CRUD operations with mocked repository
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
 
     @Mock
     private UserRepository userRepo;

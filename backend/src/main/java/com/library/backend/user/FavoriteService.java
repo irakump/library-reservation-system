@@ -21,6 +21,9 @@ public class FavoriteService {
      */
     private final BookRepository bookRepo;
 
+    private static final String USER_NOT_FOUND = "User not found: ";
+    private static final String BOOK_NOT_FOUND = "Book not found: ";
+
     /**
      * Constructor.
      *
@@ -43,10 +46,10 @@ public class FavoriteService {
     public void addFavorite(final int userId, final String isbn) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException(
-                        "User not found: " + userId));
+                        USER_NOT_FOUND + userId));
         Book book = bookRepo.findById(isbn)
                 .orElseThrow(() -> new RuntimeException(
-                        "Book not found: " + isbn));
+                        BOOK_NOT_FOUND + isbn));
         user.addFavorites(book);
         userRepo.save(user);
     }
@@ -61,10 +64,10 @@ public class FavoriteService {
     public void removeFavorite(final int userId, final String isbn) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException(
-                        "User not found: " + userId));
+                        USER_NOT_FOUND + userId));
         Book book = bookRepo.findById(isbn)
                 .orElseThrow(() -> new RuntimeException(
-                        "Book not found: " + isbn));
+                        BOOK_NOT_FOUND + isbn));
         user.removeFavorites(book);
         userRepo.save(user);
     }
@@ -79,7 +82,7 @@ public class FavoriteService {
     public Set<Book> getFavorites(final int userId) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException(
-                        "User not found: " + userId));
+                        USER_NOT_FOUND + userId));
         return user.getFavorites();
     }
 
