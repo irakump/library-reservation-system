@@ -7,8 +7,9 @@ import {
 } from "../api/loansApi.jsx";
 import { useAuth } from "./AuthContext.jsx";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
-// set defaults so tests wont crash
+// set defaults so tests won't crash
 const LoanContext = createContext({
   addToLoans: async () => {},
   removeLoans: async () => {},
@@ -81,4 +82,8 @@ export const LoanProvider = ({ children }) => {
   };
 
   return <LoanContext.Provider value={value}>{children}</LoanContext.Provider>;
+};
+
+LoanProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
