@@ -19,19 +19,36 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * JWT authentication filter for processing incoming requests.
+ */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    /**
+     * JWT utility for token parsing and validation.
+     */
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * User repository for loading user data.
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Processes each request and sets authentication if JWT is valid.
+     *
+     * @param request HTTP request
+     * @param response HTTP response
+     * @param filterChain filter chain
+     */
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(final HttpServletRequest request,
+                                    final HttpServletResponse response,
+                                    final FilterChain filterChain)
+                                    throws ServletException, IOException {
 
         // Get Authorization header
         String authHeader = request.getHeader("Authorization");
@@ -56,7 +73,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
         // If we have email and no authentication set yet
-        if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (email != null && SecurityContextHolder.getContext()
+                .getAuthentication() == null) {
 
             // Load user from database
             User user = userRepository.findByEmail(email).orElse(null);
@@ -66,15 +84,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // Create authentication token
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         email, null,
-                        Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().toString().toUpperCase()))
+                        Collections.singletonList(new SimpleGrantedAuthority(
+                                "ROLE_" + user.getRole()
+                                        .toString()
+                                        .toUpperCase()))
                 );
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                authToken.setDetails(new WebAuthenticationDetailsSource()
+                        .buildDetails(request));
 
                 // Set authentication in Spring Security context
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authToken);
 
-                // Store userId in request attribute for easy access i controllers
+                // Store userId in request attribute
+                // for easy access i controllers
                 request.setAttribute("userId", user.getUserId());
                 request.setAttribute("userRole", user.getRole().toString());
             }

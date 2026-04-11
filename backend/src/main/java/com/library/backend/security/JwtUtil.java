@@ -10,20 +10,41 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utility class for generating and validating JWT tokens.
+ */
 @Component
 public class JwtUtil {
 
-    // Secret key for signing JWT tokens (Change this to more secure)
+    /**
+     * Secret key used for signing JWT tokens. (Change this to more secure)
+     */
     private final String SECRET_KEY = "metbook-library-secret-key-123456789012345";
+
+    /**
+     * Token expiration time in milliseconds.
+     */
     private final long EXPIRATION_TIME = 86400000; // 24 hours in milliseconds
 
-    // Get signing Key
+    /**
+     * Get signing key for JWT.
+     *
+     * @return SecretKey used for signing
+     */
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
-    // Generate JWT token for a user
-    public String generateToken(String email, int userId, String role) {
+    /**
+     * Generates JWT token for a user.
+     *
+     * @param email user email
+     * @param userId user id
+     * @param role user role
+     * @return generated JWT token
+     */
+    public String generateToken(
+            final String email, final int userId, final String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
         claims.put("role", role);
@@ -32,28 +53,49 @@ public class JwtUtil {
                 .claims(claims)
                 .subject(email)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .expiration(new Date(
+                        System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(getSigningKey())
                 .compact();
     }
 
-    // Extract email from token
-    public String extractEmail(String token) {
+    /**
+     * Extracts email from JWT token.
+     *
+     * @param token JWT token
+     * @return email
+     */
+    public String extractEmail(final String token) {
         return extractAllClaims(token).getSubject();
     }
 
-    // Extract userId from token
-    public Integer extractUserId(String token) {
+    /**
+     * Extracts user id from JWT token.
+     *
+     * @param token JWT token
+     * @return user id
+     */
+    public Integer extractUserId(final String token) {
         return extractAllClaims(token).get("userId", Integer.class);
     }
 
-    // Extract role from token
-    public String extractRole(String token) {
+    /**
+     * Extracts role from JWT token.
+     *
+     * @param token JWT token
+     * @return role
+     */
+    public String extractRole(final String token) {
         return extractAllClaims(token).get("role", String.class);
     }
 
-    // extract all claims
-    private Claims extractAllClaims(String token) {
+    /**
+     * Extracts all claims from token.
+     *
+     * @param token JWT token
+     * @return claims
+     */
+    private Claims extractAllClaims(final String token) {
         return Jwts.parser()
                 .verifyWith(getSigningKey())
                 .build()
@@ -61,13 +103,24 @@ public class JwtUtil {
                 .getPayload();
     }
 
-    // Check if token is expired
-    public boolean isTokenExpired(String token) {
+    /**
+     * Checks if token is expired.
+     *
+     * @param token JWT token
+     * @return true if expired
+     */
+    public boolean isTokenExpired(final String token) {
         return extractAllClaims(token).getExpiration().before(new Date());
     }
 
-    // Validate token
-    public boolean validateToken(String token, String email) {
+    /**
+     * Validates token against email and expiration.
+     *
+     * @param token JWT token
+     * @param email expected email
+     * @return true if valid
+     */
+    public boolean validateToken(final String token, final String email) {
         return extractEmail(token).equals(email) && !isTokenExpired(token);
     }
 }
