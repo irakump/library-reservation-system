@@ -1,8 +1,10 @@
 package com.library.backend.genre;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
+/**
+ * Repository for accessing Genre entities through API calls.
+ */
 public interface GenreRepository extends JpaRepository<Genre, String> {
 
 }
