@@ -2,7 +2,13 @@ package com.library.backend.author;
 
 import com.library.backend.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,60 +16,72 @@ import java.util.List;
 
 @Entity
 @Table(name = "author")
+@Getter
+@Setter
 public class Author {
 
+    /** Max length for name fields. */
+    private static final int LANG_MAX_LENGTH = 100;
+
+    /** Unique identifier for the author. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    @Column(name ="author_id")
+    @Column(name = "author_id")
     private Integer authorId;
 
-    @Getter
-    @Setter
-    @Column(name = "first_name", length = 100, nullable = false)
+    /** Author's first name in English. */
+    @Column(name = "first_name", length = LANG_MAX_LENGTH, nullable = false)
     private String firstName;
 
-    @Getter
-    @Setter
-    @Column(name = "last_name", length = 100, nullable = false)
+    /** Author's last name in English. */
+    @Column(name = "last_name", length = LANG_MAX_LENGTH, nullable = false)
     private String lastName;
 
-    @Getter
-    @Setter
-    @Column(name = "first_name_ja", length = 100, nullable = false)
+    /** Author's first name in Japanese. */
+    @Column(name = "first_name_ja", length = LANG_MAX_LENGTH, nullable = false)
     private String firstNameJa;
 
-    @Getter
-    @Setter
-    @Column(name = "last_name_ja", length = 100, nullable = false)
+    /** Author's last name in Japanese. */
+    @Column(name = "last_name_ja", length = LANG_MAX_LENGTH, nullable = false)
     private String lastNameJa;
 
-    @Getter
-    @Setter
-    @Column(name = "first_name_ar", length = 100, nullable = false)
+    /** Author's first name in Arabic. */
+    @Column(name = "first_name_ar", length = LANG_MAX_LENGTH, nullable = false)
     private String firstNameAr;
 
-    @Getter
-    @Setter
-    @Column(name = "last_name_ar", length = 100, nullable = false)
+    /** Author's last name in Arabic. */
+    @Column(name = "last_name_ar", length = LANG_MAX_LENGTH, nullable = false)
     private String lastNameAr;
 
-    @Getter
-    @Setter
-    // Many-to-Many relationship (inverse side)
+    /** List of books written by the author.*/
     @ManyToMany(mappedBy = "authors")
-    @JsonIgnoreProperties("authors") // Prevent infinite recursion during JSON serialization
+    @JsonIgnoreProperties("authors") // Prevent infinite recursion
     private List<Book> books;
 
-    public Author() {}
+    /** Default constructor required by JPA. */
+    public Author() { }
 
-    public Author(String firstName, String lastName, String firstNameJa, String lastNameJa, String firstNameAr, String lastNameAr) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.firstNameJa = firstNameJa;
-        this.lastNameJa = lastNameJa;
-        this.firstNameAr = firstNameAr;
-        this.lastNameAr = lastNameAr;
+    /**
+     * Constructor with all name fields.
+     * @param first first name in English.
+     * @param last last name in English.
+     * @param firstJa first name in Japanese.
+     * @param lastJa  last name in Japanese.
+     * @param firstAr first name in Arabic.
+     * @param lastAr last name in Arabic.
+     */
+    public Author(
+            final String first,
+            final String last,
+            final String firstJa,
+            final String lastJa,
+            final String firstAr,
+            final String lastAr) {
+        this.firstName = first;
+        this.lastName = last;
+        this.firstNameJa = firstJa;
+        this.lastNameJa = lastJa;
+        this.firstNameAr = firstAr;
+        this.lastNameAr = lastAr;
     }
 }
