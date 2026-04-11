@@ -4,6 +4,7 @@ import FavoriteButton from "../buttons/FavoriteButton.jsx";
 import BookButtons from "./BookButtons.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 const BookCard = ({ book, pageType, setOpen}) => {
   const [queueLength, setQueueLength] = useState(null);
@@ -27,7 +28,7 @@ const BookCard = ({ book, pageType, setOpen}) => {
       <div className="w-24 max-w-full h-auto mt-1.5 ltr:ml-1.5 shrink-0 pr-2 rtl:mr-1.5 sm:pr-0">
         <img
           src={`/books/${book.isbn}.jpg`}
-          alt={`Book image for ${book.title}`}
+          alt={`Book: ${book.title}`}
           className="w-24 min-w-16 h-auto rounded-sm outline-1 outline-gray-200"
         />
       </div>
@@ -59,6 +60,26 @@ const BookCard = ({ book, pageType, setOpen}) => {
       </div>
     </div>
   );
+};
+
+BookCard.propTypes = {
+  book: PropTypes.shape({
+    isbn: PropTypes.string,
+    bookIsbn: PropTypes.string,
+    title: PropTypes.string,
+    year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    genre: PropTypes.string,
+    authors: PropTypes.arrayOf(
+        PropTypes.shape({
+          firstName: PropTypes.string,
+          lastName: PropTypes.string,
+        })
+    ),
+    availability: PropTypes.bool,
+  }).isRequired,
+
+  pageType: PropTypes.string.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default BookCard;
