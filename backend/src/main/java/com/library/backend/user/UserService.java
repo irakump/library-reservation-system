@@ -5,13 +5,25 @@ import java.util.List;
 
 @Service
 public class UserService {
+    /**
+     * UserRepository for database access.
+     */
     private final UserRepository userRepo;
 
-    public UserService(UserRepository userRepo) {
-        this.userRepo = userRepo;
+    /**
+     * Constructor.
+     *
+     * @param userRepository user repository
+     */
+    public UserService(final UserRepository userRepository) {
+        this.userRepo = userRepository;
     }
 
-    // Get all users
+    /**
+     * Gets all users.
+     *
+     * @return list of users as DTOs
+     */
     public List<UserResponseDTO> getAllUsers() {
         return ((List<User>) userRepo.findAll())
                 .stream()
@@ -19,17 +31,30 @@ public class UserService {
                 .toList();
     }
 
-    // Get user by id
-    public UserResponseDTO getUserById(Integer userId) {
+    /**
+     * Gets user by id.
+     *
+     * @param userId user id
+     * @return user DTO
+     */
+    public UserResponseDTO getUserById(final Integer userId) {
        User user = userRepo.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found: " + userId));
+                .orElseThrow(() -> new RuntimeException(
+                        "User not found: " + userId));
        return new UserResponseDTO(user);
     }
 
-    // // Get user by email (used with registration to check if email (unique) already exists)
-    public UserResponseDTO getUserByEmail(String email) {
+    /**
+     * Gets user by email.
+     * Used with registration to check if email already exists
+     *
+     * @param email user email
+     * @return user DTO
+     */
+    public UserResponseDTO getUserByEmail(final String email) {
         User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found: " + email));
+                .orElseThrow(() -> new RuntimeException(
+                        "User not found: " + email));
         return new UserResponseDTO(user);
     }
 

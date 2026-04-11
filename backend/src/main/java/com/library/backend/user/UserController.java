@@ -6,28 +6,56 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/**
+ * REST controller for user-related operations.
+ * Provides endpoints for retrieving users and enforcing access control.
+ */
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
+    /**
+     * Service layer for user operations.
+     */
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    /**
+     * Creates controller with injected UserService.
+     *
+     * @param service user service layer
+     */
+    public UserController(final UserService service) {
+        this.userService = service;
     }
 
-    // Get all users - Admin only
+    /**
+     * Returns all users.
+     * Access restricted to admin users only.
+     *
+     * @param request HTTP request containing authentication data
+     * @return list of all users
+     */
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> getAllUsers(HttpServletRequest request) {
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers(
+            final HttpServletRequest request) {
         AuthorizationUtil.checkAdminAccess(request);
         List<UserResponseDTO> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    // Get user by id - own data or admin
+    /**
+     * Returns a user by ID.
+     * Access allowed for the user themselves or admin.
+     *
+     * @param userId user ID
+     * @param request HTTP request containing authentication data
+     * @return user data or 404 if not found
+     */
     @GetMapping("/{userId}")
-    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Integer userId, HttpServletRequest request) {
+    public ResponseEntity<UserResponseDTO> getUserById(
+            @PathVariable final Integer userId,
+            final HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
         try {
             UserResponseDTO user = userService.getUserById(userId);
@@ -37,9 +65,18 @@ public class UserController {
         }
     }
 
-    // Get user by email - Admin only (used with registration to check if email (unique) already exists)
+    /**
+     * Returns a user by email address.
+     * Access restricted to admin users only.
+     *
+     * @param email user email
+     * @param request HTTP request containing authentication data
+     * @return user data or 404 if not found
+     */
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserResponseDTO> getUserByEmail(@PathVariable String email, HttpServletRequest request) {
+    public ResponseEntity<UserResponseDTO> getUserByEmail(
+            @PathVariable final String email,
+            final HttpServletRequest request) {
         AuthorizationUtil.checkAdminAccess(request);
         try {
             UserResponseDTO user = userService.getUserByEmail(email);
