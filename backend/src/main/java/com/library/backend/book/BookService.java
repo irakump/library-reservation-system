@@ -39,7 +39,11 @@ public class BookService {
      * @param genreRepo repository for genres
      * @param languageRepo repository for languages
      */
-    public BookService(final BookRepository bookRepo, final GenreRepository genreRepo, final LanguageRepository languageRepo) {
+    public BookService(
+            final BookRepository bookRepo,
+            final GenreRepository genreRepo,
+            final LanguageRepository languageRepo
+    ) {
         this.bookRepo = bookRepo;
         this.genreRepo = genreRepo;
         this.languageRepo = languageRepo;
@@ -56,7 +60,13 @@ public class BookService {
      * @param searchTerm optional search term (for book title, author, and description)
      * @return list of books matching all provided filters
      */
-    public List<Book> findByFilters(final String genre, final List<Integer> years, final String language, final Boolean available, final String searchTerm) {
+    public List<Book> findByFilters(
+            final String genre,
+            final List<Integer> years,
+            final String language,
+            final Boolean available,
+            final String searchTerm
+    ) {
         return bookRepo.findAll().stream()
                 .filter(book -> genre == null || (book.getGenre() != null && book.getGenre().equalsIgnoreCase(genre)))
                 .filter(book -> years == null || years.isEmpty() || years.contains(book.getYear()))
@@ -87,8 +97,14 @@ public class BookService {
      */
     public List<BookDTO> localizeBooks(final List<Book> books, final String lang) {
         return books.stream().map(book -> {
-            final Genre genre = genreRepo.findById(book.getGenre()).orElseThrow(() -> new IllegalStateException("Genre not found: " + book.getGenre() + "for" + book.getIsbn()));
-            final Language language = languageRepo.findById(book.getLanguage()).orElseThrow(() -> new IllegalStateException("Langauge not found"));
+            final Genre genre = genreRepo
+                    .findById(book.getGenre())
+                    .orElseThrow(() ->
+                            new IllegalStateException("Genre not found: " + book.getGenre() + "for" + book.getIsbn()));
+
+            final Language language = languageRepo
+                    .findById(book.getLanguage())
+                    .orElseThrow(() -> new IllegalStateException("Langauge not found"));
 
             final BookDTO dto = new BookDTO(book);
             dto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));

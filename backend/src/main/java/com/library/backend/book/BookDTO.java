@@ -73,8 +73,8 @@ public class BookDTO {
         this.genre = book.getGenre();
         this.availability = book.isAvailable();
 
-        this.authors = book.getAuthors() != null ?
-                book.getAuthors().stream()
+        this.authors = book.getAuthors() != null
+                ? book.getAuthors().stream()
                         .map(AuthorDTO::new)
                         .toList()
                 : List.of();

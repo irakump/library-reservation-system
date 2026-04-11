@@ -59,7 +59,9 @@ public class BookController {
      */
     @GetMapping("/{isbn}/")
     public Book getBookByIsbn(@PathVariable final String isbn) {
-        return repository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found: " + isbn));}
+        return repository.findById(isbn).orElseThrow(() ->
+                new IllegalArgumentException("Book not found: " + isbn));
+    }
 
     /**
      * Returns all years used by all books in the library.
