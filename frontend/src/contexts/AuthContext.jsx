@@ -1,11 +1,11 @@
 import {
-  Children,
   createContext,
   useContext,
   useState,
   useEffect,
 } from "react";
 import { useNavigate } from "react-router";
+import PropTypes from "prop-types";
 
 // default values so tests pass
 const AuthContext = createContext({
@@ -138,3 +138,7 @@ const useAuth = () => {
 };
 
 export { useAuth, AuthContext };
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

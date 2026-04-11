@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import FilterTag from "./FilterTag";
+import PropTypes from "prop-types";
 
 const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
   const { t } = useTranslation("search");
@@ -41,6 +42,13 @@ const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
       </div>
     </>
   );
+};
+
+ActiveFilters.propTypes = {
+  filters: PropTypes.object.isRequired,
+  genres: PropTypes.array.isRequired,
+  languages: PropTypes.array.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default ActiveFilters;
