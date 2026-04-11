@@ -11,7 +11,7 @@ class JwtUtilTest {
 
     @BeforeEach
     void setUp() {
-        jwtUtil = new JwtUtil();
+        jwtUtil = new JwtUtil("test-secret-key-which-is-long-enough-123456");
     }
 
     // Token generation tests

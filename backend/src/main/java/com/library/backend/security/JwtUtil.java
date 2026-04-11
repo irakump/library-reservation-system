@@ -3,6 +3,7 @@ package com.library.backend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -17,9 +18,20 @@ import java.util.Map;
 public class JwtUtil {
 
     /**
-     * Secret key used for signing JWT tokens. (Change this to more secure)
+     * Secret key used for signing JWT tokens.
      */
-    private static final String SECRET_KEY = "metbook-library-secret-key-123456789012345";
+    private final String secretKey;
+
+    /**
+     * Constructor.
+     ** @param key the secret key used for signing and verifying JWT tokens;
+     *             injected from the application properties {@code jwt.secret}
+     *             with a default value of {@code "default-secret"} if not set
+     *
+     */
+    public JwtUtil(@Value("${jwt.secret:default-secret-key-3456789012-0987654321}") String key) {
+        this.secretKey = key;
+    }
 
     /**
      * Token expiration time in milliseconds.
@@ -32,7 +44,7 @@ public class JwtUtil {
      * @return SecretKey used for signing
      */
     private SecretKey getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        return Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
     /**
