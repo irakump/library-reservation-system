@@ -36,11 +36,11 @@ public class AuthorController {
     @GetMapping("/all/{lang}")
     public List<AuthorDTO> getAllAuthors(
             @PathVariable final String lang) {
-        List<Author> authors = repository.findAll();
+        final List<Author> authors = repository.findAll();
 
         return authors.stream()
                 .map(author -> {
-                    AuthorDTO dto = new AuthorDTO(author);
+                   final AuthorDTO dto = new AuthorDTO(author);
                     dto.setFirstName(LocalizationUtil
                                     .getLocalizedAuthorFirstName(
                                             author, lang));
@@ -54,17 +54,17 @@ public class AuthorController {
 
     /**
      * Returns an author by ID with a localized name.
-     * @param id the author ID
+     * @param authorId the author ID
      * @param lang the language code
      * @return localized author DTO or null
      */
-    @GetMapping("/{id}/{lang}")
+    @GetMapping("/{authorId}/{lang}")
     public AuthorDTO getAuthorById(
-            @PathVariable final Integer id,
+            @PathVariable final Integer authorId,
             @PathVariable final String lang) {
-        return repository.findById(id)
+        return repository.findById(authorId)
                 .map(author -> {
-                    AuthorDTO dto = new AuthorDTO(author);
+                   final AuthorDTO dto = new AuthorDTO(author);
                     dto.setFirstName(LocalizationUtil.
                             getLocalizedAuthorFirstName(author, lang));
                     dto.setLastName(LocalizationUtil.
