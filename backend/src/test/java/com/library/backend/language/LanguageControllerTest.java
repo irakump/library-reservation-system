@@ -2,6 +2,8 @@ package com.library.backend.language;
 
 import com.library.backend.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,7 +26,16 @@ import static org.mockito.Mockito.when;
         excludeAutoConfiguration = SecurityAutoConfiguration.class,
         excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JwtAuthenticationFilter.class))
 @AutoConfigureMockMvc(addFilters = false)
-public class LanguageControllerTest {
+class LanguageControllerTest {
+    private static final String ENGLISH = "english";
+    private static final String FINNISH = "finnish";
+    private static final String SWEDISH = "swedish";
+
+    private static final String ENGLISH_JA = "英語";
+    private static final String FINNISH_JA = "フィンランド語";
+
+    private static final String ENGLISH_AR = "الإنجليزية";
+    private static final String FINNISH_AR = "الفنلندية";
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,76 +43,47 @@ public class LanguageControllerTest {
     @MockitoBean
     private LanguageRepository repository;
 
-    @Test
-    public void testGetAllLanguagesEnglish() throws Exception {
-        Language english = new Language("english", "英語", "الإنجليزية");
-        Language finnish = new Language("finnish", "フィンランド語", "الفنلندية");
+    @ParameterizedTest
+    @CsvSource({
+            "en, english, finnish",
+            "ja-JP, 英語, フィンランド語",
+            "ar-u-nu-arab, الإنجليزية, الفنلندية"
+    })
+    void testGetAllLanguages(final String locale, final String expectedFirst, final String expectedSecond) throws Exception {
+
+        final Language english = new Language(ENGLISH, ENGLISH_JA, ENGLISH_AR);
+        final Language finnish = new Language(FINNISH, FINNISH_JA, FINNISH_AR);
+
         when(repository.findAll()).thenReturn(Arrays.asList(english, finnish));
 
-        mockMvc.perform(get("/api/language/all/en"))
+        mockMvc.perform(get("/api/language/all/" + locale))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].language").value("english"))
-                .andExpect(jsonPath("$[0].languageKey").value("english"))
-                .andExpect(jsonPath("$[1].language").value("finnish"))
-                .andExpect(jsonPath("$[1].languageKey").value("finnish"));
+                .andExpect(jsonPath("$[0].language").value(expectedFirst))
+                .andExpect(jsonPath("$[0].languageKey").value(ENGLISH))
+                .andExpect(jsonPath("$[1].language").value(expectedSecond))
+                .andExpect(jsonPath("$[1].languageKey").value(FINNISH));
     }
 
-    @Test
-    public void testGetAllLanguagesJapanese() throws Exception {
-        Language english = new Language("english", "英語", "الإنجليزية");
-        Language finnish = new Language("finnish", "フィンランド語", "الفنلندية");
-        when(repository.findAll()).thenReturn(Arrays.asList(english, finnish));
+    @ParameterizedTest
+    @CsvSource({
+            "en, english",
+            "ja-JP, 英語"
+    })
+    void testGetLanguageByName(final String locale, final String expectedValue) throws Exception {
 
-        mockMvc.perform(get("/api/language/all/ja-JP"))
+        final Language english = new Language(ENGLISH, ENGLISH_JA, ENGLISH_AR);
+        when(repository.findById(ENGLISH)).thenReturn(Optional.of(english));
+
+        mockMvc.perform(get("/api/language/english/" + locale))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].language").value("英語"))
-                .andExpect(jsonPath("$[0].languageKey").value("english"))
-                .andExpect(jsonPath("$[1].language").value("フィンランド語"))
-                .andExpect(jsonPath("$[1].languageKey").value("finnish"));
+                .andExpect(jsonPath("$.language").value(expectedValue))
+                .andExpect(jsonPath("$.languageKey").value(ENGLISH));
     }
 
     @Test
-    public void testGetAllLanguagesArabic() throws Exception {
-        Language english = new Language("english", "英語", "الإنجليزية");
-        Language finnish = new Language("finnish", "フィンランド語", "الفنلندية");
-        when(repository.findAll()).thenReturn(Arrays.asList(english, finnish));
-
-        mockMvc.perform(get("/api/language/all/ar-u-nu-arab"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].language").value("الإنجليزية"))
-                .andExpect(jsonPath("$[0].languageKey").value("english"))
-                .andExpect(jsonPath("$[1].language").value("الفنلندية"))
-                .andExpect(jsonPath("$[1].languageKey").value("finnish"));
-    }
-
-    @Test
-    public void testGetLanguageByNameEnglish() throws Exception {
-        Language english = new Language("english", "英語", "الإنجليزية");
-        when(repository.findById("english")).thenReturn(Optional.of(english));
-
-        mockMvc.perform(get("/api/language/english/en"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.language").value("english"))
-                .andExpect(jsonPath("$.languageKey").value("english"));
-    }
-
-    @Test
-    public void testGetLanguageByNameJapanese() throws Exception {
-        Language english = new Language("english", "英語", "الإنجليزية");
-        when(repository.findById("english")).thenReturn(Optional.of(english));
-
-        mockMvc.perform(get("/api/language/english/ja-JP"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.language").value("英語"))
-                .andExpect(jsonPath("$.languageKey").value("english"));
-    }
-
-    @Test
-    public void testGetLanguageByName_NotFound() throws Exception {
-        when(repository.findById("swedish")).thenReturn(Optional.empty());
+    void testGetLanguageByNameNotFound() throws Exception {
+        when(repository.findById(SWEDISH)).thenReturn(Optional.empty());
         mockMvc.perform(get("/api/language/swedish/en"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));

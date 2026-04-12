@@ -5,46 +5,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DataJpaTest
-public class GenreRepositoryTest {
+class GenreRepositoryTest {
+    private static final String COMEDY = "comedy";
+    private static final String ACTION = "action";
+    private static final String ROMANCE = "romance";
+    private static final String SCI_FI = "sci-fi";
+    private static final String DRAMA = "drama";
+    private static final String HORROR = "horror";
+
+    private static final String COMEDY_JA = "コメディ";
+    private static final String ACTION_JA = "アクション";
+    private static final String ROMANCE_JA = "ロマンス";
+    private static final String SCI_FI_JA = "サイファイ";
+    private static final String DRAMA_JA = "ドラマ";
+    private static final String HORROR_JA = "ホラー";
+
+    private static final String COMEDY_AR = "كوميديا";
+    private static final String ACTION_AR = "أكشن";
+    private static final String ROMANCE_AR = "رومانسية";
+    private static final String SCI_FI_AR = "خيال علمي";
+    private static final String DRAMA_AR = "دراما";
+    private static final String HORROR_AR = "رعب";
 
     @Autowired
     private GenreRepository repository;
 
     @Test
-    public void shouldSaveGenre() {
-        Genre genre = repository.save(new Genre("comedy", "コメディ", "كوميديا"));
-        assertThat(genre).isNotNull();
-        assertThat(genre.getGenre()).isEqualTo("comedy");
-        assertThat(genre.getGenreJa()).isEqualTo("コメディ");
-        assertThat(genre.getGenreAr()).isEqualTo("كوميديا");
+    void shouldSaveGenre() {
+        final Genre genre = repository.save(new Genre(COMEDY, COMEDY_JA, COMEDY_AR));
+
+        assertAll(
+                () -> assertThat(genre).isNotNull(),
+                () -> assertThat(genre.getGenre()).isEqualTo(COMEDY),
+                () -> assertThat(genre.getGenreJa()).isEqualTo(COMEDY_JA),
+                () -> assertThat(genre.getGenreAr()).isEqualTo(COMEDY_AR)
+        );
     }
 
     @Test
-    public void shouldFindGenreById() {
-        repository.save(new Genre("drama", "ドラマ", "دراما"));
-        Iterable<Genre> genres = repository.findAll();
-        assertThat(genres).extracting(Genre::getGenre).contains("drama");
-        assertThat(genres).extracting(Genre::getGenreJa).contains("ドラマ");
-        assertThat(genres).extracting(Genre::getGenreAr).contains("دراما");
+    void shouldFindGenreById() {
+        repository.save(new Genre(DRAMA, DRAMA_JA, DRAMA_AR));
+        final Iterable<Genre> genres = repository.findAll();
+
+        assertAll(
+                () -> assertThat(genres).extracting(Genre::getGenre).contains(DRAMA),
+                () -> assertThat(genres).extracting(Genre::getGenreJa).contains(DRAMA_JA),
+                () -> assertThat(genres).extracting(Genre::getGenreAr).contains(DRAMA_AR)
+        );
     }
 
     @Test
-    public void shouldFindAllGenres() {
-        repository.save(new Genre("action", "アクション", "أكشن"));
-        repository.save(new Genre("romance", "ロマンス", "رومانسية"));
-        repository.save(new Genre("sci-fi", "サイファイ", "خيال علمي"));
-        Iterable<Genre> genres = repository.findAll();
-        assertThat(genres).extracting(Genre::getGenre).contains("action", "romance", "sci-fi");
-        assertThat(genres).extracting(Genre::getGenreJa).contains("アクション", "ロマンス", "サイファイ");
-        assertThat(genres).extracting(Genre::getGenreAr).contains("أكشن", "رومانسية", "خيال علمي");
+    void shouldFindAllGenres() {
+        repository.save(new Genre(ACTION, ACTION_JA, ACTION_AR));
+        repository.save(new Genre(ROMANCE, ROMANCE_JA, ROMANCE_AR));
+        repository.save(new Genre(SCI_FI, SCI_FI_JA, SCI_FI_AR));
+        final Iterable<Genre> genres = repository.findAll();
+
+        assertAll(
+                () -> assertThat(genres).extracting(Genre::getGenre).contains(ACTION, ROMANCE, SCI_FI),
+                () -> assertThat(genres).extracting(Genre::getGenreJa).contains(ACTION_JA, ROMANCE_JA, SCI_FI_JA),
+                () -> assertThat(genres).extracting(Genre::getGenreAr).contains(ACTION_AR, ROMANCE_AR, SCI_FI_AR)
+        );
     }
 
     @Test
-    public void shouldDeleteGenre() {
-        Genre genre = repository.save(new Genre("horror", "ホラー", "رعب"));
+    void shouldDeleteGenre() {
+        final Genre genre = repository.save(new Genre(HORROR, HORROR_JA, HORROR_AR));
         repository.delete(genre);
-        assertThat(repository.findById("horror")).isEmpty();
+        assertThat(repository.findById(HORROR)).isEmpty();
     }
 }
