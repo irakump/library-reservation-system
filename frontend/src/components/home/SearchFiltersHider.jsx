@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import SearchFilters from './SearchFilters';
+import PropTypes from 'prop-types';
 
 const SearchFiltersHider = ({ filtersVisible, toggleFilters }) => {
   const { t } = useTranslation('search');
@@ -14,6 +15,11 @@ const SearchFiltersHider = ({ filtersVisible, toggleFilters }) => {
       </div>
     </div>
   );
+};
+
+SearchFiltersHider.propTypes = {
+  filtersVisible: PropTypes.bool.isRequired,
+  toggleFilters: PropTypes.func.isRequired,
 };
 
 export default SearchFiltersHider;

@@ -1,6 +1,7 @@
 import { useLayoutDirection } from '../../contexts/LayoutDirectionContext.jsx';
 import ChevronLeft from '@heroicons/react/24/solid/ChevronLeftIcon';
 import ChevronRight from '@heroicons/react/24/solid/ChevronRightIcon';
+import PropTypes from 'prop-types';
 
 export default function PaginationNext({
   setCurrentPage,
@@ -28,3 +29,9 @@ export default function PaginationNext({
     </button>
   );
 }
+
+PaginationNext.propTypes = {
+  setCurrentPage: PropTypes.func.isRequired,
+  scrollToSearchResultsHeader: PropTypes.func.isRequired,
+  pagesToShow: PropTypes.number.isRequired,
+};
