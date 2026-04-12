@@ -3,6 +3,9 @@ package com.library.backend.author;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for Author data.
+ */
 @Getter
 @Setter
 public class AuthorDTO {
