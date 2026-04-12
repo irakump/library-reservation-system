@@ -14,6 +14,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Entity representing an author.
+ */
 @Entity
 @Table(name = "author")
 @Getter
@@ -58,8 +61,13 @@ public class Author {
     @JsonIgnoreProperties("authors") // Prevent infinite recursion
     private List<Book> books;
 
-    /** Default constructor required by JPA. */
-    public Author() { }
+    /**
+     * Default constructor required by JPA.
+     * Must remain empty and public
+     */
+    public Author() {
+        // Required by JPA
+    }
 
     /**
      * Constructor with all name fields.
