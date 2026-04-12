@@ -4,7 +4,6 @@ package com.library.backend.notifications;
 import com.library.backend.book.Book;
 import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
-import com.library.backend.loan.LoanService;
 import com.library.backend.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,42 +16,42 @@ import java.util.List;
 public class NotificationService {
     private final MailService mailService;
 
-    @Autowired
-    private LoanRepository loanRepository;
+    private final LoanRepository loanRepository;
 
-    public NotificationService(MailService mailService) {
+    public NotificationService(final MailService mailService, final LoanRepository loanRepository) {
         this.mailService = mailService;
+        this.loanRepository = loanRepository;
     }
 
-    public void notifyOfNewLoan(User user, Book book) {
-        String subject = "New book loaned: " + book.getTitle();
-        String message =
+    public void notifyOfNewLoan(final User user, final Book book) {
+        final String subject = "New book loaned: " + book.getTitle();
+        final String message =
                 "Hello " + user.getNickname() + ", \n\n You loaned book " + book.getTitle() + ".";
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
     @Scheduled(cron = "0 0 20 * * *")
     public void notifyAllDueDates() {
-        LocalDate today = LocalDate.now();
-        List<Loan> dueLoans = loanRepository.findByDueDate(today);
+        final LocalDate today = LocalDate.now();
+        final List<Loan> dueLoans = loanRepository.findByDueDate(today);
 
-        for (Loan loan : dueLoans) {
+        for (final Loan loan : dueLoans) {
             notifyDueDate(loan.getUser(), loan.getBook());
         }
     }
 
-    public void notifyDueDate(User user, Book book) {
-        String subject = "Book returned: " + book.getTitle();
-        String message = "Hello " + user.getNickname() + ", \n\n The book " + book.getTitle() + " has been returned.";
+    public void notifyDueDate(final User user, final Book book) {
+        final String subject = "Book returned: " + book.getTitle();
+        final String message = "Hello " + user.getNickname() + ", \n\n The book " + book.getTitle() + " has been returned.";
         mailService.sendMail(user.getEmail(), subject, message);
     }
 
     @Scheduled(cron = "0 0 20 * * *")
     public void notifyBeforeDueDate() {
-        LocalDate notifyDay = LocalDate.now().minusDays(2);
-        List<Loan> loans = loanRepository.findByDueDate(notifyDay);
+        final LocalDate notifyDay = LocalDate.now().minusDays(2);
+        final List<Loan> loans = loanRepository.findByDueDate(notifyDay);
 
-        for (Loan loan : loans) {
+        for (final Loan loan : loans) {
             notifyDueDate(loan.getUser(), loan.getBook());
         }
     }

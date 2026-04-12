@@ -127,8 +127,9 @@ public class Book {
      * Availability status of book, e.g. true or false.
      * Updates when book is loaned and returned.
      */
-    @Getter
+
     @Setter
+    @Getter
     @Column(name = "available", nullable = false)
     private boolean available;
 

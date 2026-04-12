@@ -1,11 +1,12 @@
 package com.library.backend.user;
 
-import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
+import com.library.backend.book.BookService;
 import com.library.backend.security.AuthorizationUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * REST controller for managing user's favorite books.
@@ -19,14 +20,16 @@ public class FavoriteController {
      * Service layer for favorite book operations.
      */
     private final FavoriteService service;
+    private final BookService bookService;
 
     /**
      * Constructor.
      *
      * @param favoriteService service for favorite operations
      */
-    public FavoriteController(final FavoriteService favoriteService) {
+    public FavoriteController(final FavoriteService favoriteService, final BookService bookService) {
         this.service = favoriteService;
+        this.bookService = bookService;
     }
 
     /**
@@ -36,11 +39,12 @@ public class FavoriteController {
      * @param request HTTP request (used for authorization)
      * @return set of favorite books
      */
-    @GetMapping
-    public Set<Book> getFavorites(@PathVariable final int userId,
+    @GetMapping("/{lang}")
+    public List<BookDTO> getFavorites(@PathVariable final int userId,
+                                  @PathVariable final String lang,
                                   final HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        return service.getFavorites(userId);
+        return bookService.localizeBooks(service.getFavorites(userId), lang);
     }
 
     /**

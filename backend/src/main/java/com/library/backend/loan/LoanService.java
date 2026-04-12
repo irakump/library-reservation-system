@@ -20,35 +20,61 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+/**
+ *Service class responsible for handling business logic related to loans.
+ */
 @Service
 public class LoanService {
+    /** UserRepository dependency */
     private final UserRepository userRepo;
+
+    /** BookRepository dependency*/
     private final BookRepository bookRepo;
+
+    /** LoanRepository dependency*/
     private final LoanRepository loanRepo;
-    private final ReservationService reservationService;
-    private final NotificationService notificationService;
+
+    /** ReservationQueue dependency*/
+    private final ReservationService resService;
+
+    /** NotificationService dependency*/
+    private final NotificationService notifiService;
+
+    /** GenreRepository dependency*/
     private final GenreRepository genreRepo;
+
+    /** LanguageRepository dependency*/
     private final LanguageRepository languageRepo;
 
-    public LoanService(UserRepository userRepo, BookRepository bookRepo, LoanRepository loanRepo, @Lazy ReservationService reservationService, NotificationService notificationService,GenreRepository genreRepo, LanguageRepository languageRepo) {
+    /**
+     * Constructs a LoanService with all required dependencies.
+     */
+    public LoanService(final UserRepository userRepo, final BookRepository bookRepo, final LoanRepository loanRepo, @Lazy final ReservationService resService, final NotificationService notifiService, final GenreRepository genreRepo, final LanguageRepository languageRepo) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
-        this.reservationService = reservationService;
-        this.notificationService = notificationService;
+        this.resService = resService;
+        this.notifiService = notifiService;
         this.genreRepo = genreRepo;
         this.languageRepo = languageRepo;
     }
 
-    // Localize loans
-    public List<LoanDTO> localizeLoans(List<Loan> loans, String lang) {
+    /**
+     * Localizes a list of loans into DTOs
+     * Translates book title, description, genre, and language fields.
+     * @param loans the list of loans to localize
+     * @param lang  the language code (e.g. "en-US")
+     * @return a list of localized {@link LoanDTO} objects
+     * @throws IllegalStateException if genre or language is not found
+     */
+    public List<LoanDTO> localizeLoans(final List<Loan> loans, final String lang) {
         return loans.stream().map(l -> {
-            Genre genre = genreRepo.findById(l.getBook().getGenre())
+            final Genre genre = genreRepo.findById(l.getBook().getGenre())
                     .orElseThrow(() -> new IllegalStateException("Genre not found"));
-            Language language = languageRepo.findById(l.getBook().getLanguage())
+            final Language language = languageRepo.findById(l.getBook().getLanguage())
                     .orElseThrow(() -> new IllegalStateException("Language not found"));
 
-            LoanDTO dto = new LoanDTO(l);
+            final LoanDTO dto = new LoanDTO(l);
             dto.setTitle(LocalizationUtil.getLocalizedTitle(l.getBook(), lang));
             dto.setDescription(LocalizationUtil.getLocalizedDescription(l.getBook(), lang));
             dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
@@ -57,64 +83,92 @@ public class LoanService {
         }).toList();
     }
 
-    //Get all loans
+    /**
+     * Retrieves all loans
+     *
+     * @return a list of all loans as {@link LoanDTO} objects
+     */
     public List<LoanDTO> getAllLoans() {
-        Iterable<Loan> loans = loanRepo.findAll();
+        final Iterable<Loan> loans = loanRepo.findAll();
 
         return StreamSupport.stream(loans.spliterator(), false)
                 .map(LoanDTO::new)
                 .toList();
     }
 
-    //Get loans by user
-    public List<Loan> getActiveLoansByUser(int userId) {
+    /**
+     * Retrieves all active loans for a user
+     *
+     * @param userId the ID of the user
+     * @return a list of active loans
+     */
+    public List<Loan> getActiveLoansByUser(final int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
                 .filter(loan -> loan.getReturnDate() == null)
                 .toList();
     }
 
-    public List<Loan> getLoanHistoryByUser(int userId) {
+    /**
+     * Retrieves all non-active loans for a user
+     *
+     * @param userId the ID of the user
+     * @return a list of non-active loans
+     */
+    public List<Loan> getLoanHistoryByUser(final int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
                 .filter(loan -> loan.getReturnDate() != null)
                 .toList();
     }
 
-    // Create new loan
+    /**
+     * Creates a new loan for a user and marks the book as unavailable
+     *
+     * @param dto the data required to create a loan
+     * @param lang the language code for localization
+     * @return the created loan as a localized {@link LoanDTO}
+     * @throws RuntimeException if the user or book is not found
+     */
     @Transactional
-    public LoanDTO createLoan(CreateLoanDTO dto, String lang) {
-        User user = userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("user not found: "));
-        Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
+    public LoanDTO createLoan(final CreateLoanDTO dto, final String lang) {
+        final User user = userRepo.findById(dto.userId()).orElseThrow(() -> new RuntimeException("user not found: "));
+        final Book book = bookRepo.findById(dto.isbn()).orElseThrow(() -> new RuntimeException("isbn not found: "));
 
-        LocalDate dueDate = LocalDate.now().plusWeeks(2);
-        Loan loan = new Loan(dueDate, user, book);
+        final LocalDate dueDate = LocalDate.now().plusWeeks(2);
+        final Loan loan = new Loan(dueDate, user, book);
         loanRepo.save(loan);
 
         book.setAvailable(false);
         bookRepo.save(book);
 
-        LoanDTO newDto = new LoanDTO(loan);
+        final LoanDTO newDto = new LoanDTO(loan);
         newDto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
         newDto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
 
         return newDto;
     }
 
-    // Return a loan
+    /**
+     * Marks a loan as returned
+     * Updates related reservation queue
+     *
+     * @param dto the data required to return a loan
+     * @throws RuntimeException if the book or loan is not found
+     */
     @Transactional
-    public void returnLoan(ReturnLoanDTO dto) {
-        Book book = bookRepo.findById(dto.getIsbn()).orElseThrow(() -> new RuntimeException("book not found"));
-        Loan loan = loanRepo.findById(dto.getLoanId()).orElseThrow(() -> new RuntimeException("loan not found"));
+    public void returnLoan(final ReturnLoanDTO dto) {
+        final Book book = bookRepo.findById(dto.isbn()).orElseThrow(() -> new RuntimeException("book not found"));
+        final Loan loan = loanRepo.findById(dto.loanId()).orElseThrow(() -> new RuntimeException("loan not found"));
 
-        LocalDateTime returnDate = LocalDateTime.now();
+        final LocalDateTime returnDate = LocalDateTime.now();
         loan.setReturnDate(returnDate);
         loanRepo.save(loan);
 
         bookRepo.save(book);
 
         // Update reservation queue and book availability
-        reservationService.processReservationQueue(book, loan);
-        notificationService.notifyDueDate(loan.getUser(), book);
+        resService.processReservationQueue(book, loan);
+        notifiService.notifyDueDate(loan.getUser(), book);
     }
 }

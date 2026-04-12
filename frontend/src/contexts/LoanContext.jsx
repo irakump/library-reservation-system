@@ -28,7 +28,6 @@ export const LoanProvider = ({ children }) => {
 
   useEffect(() => {
     // Only fetch if user is logged in
-    console.log(i18n.language);
     if (isLoggedIn && user?.userId) {
       getLoans(user.userId)
         .then((res) => setLoans(res.data))

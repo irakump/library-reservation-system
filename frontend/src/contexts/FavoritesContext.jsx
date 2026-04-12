@@ -6,6 +6,9 @@ import {
 } from "../api/favoritesApi.js";
 import { useAuth } from "./AuthContext.jsx";
 import PropTypes from "prop-types";
+import i18n from "../i18n.js";
+import {useTranslation} from "react-i18next";
+
 
 // set defaults so tests wont crash
 const FavoritesContext = createContext({
@@ -20,6 +23,7 @@ export const useFavoritesContext = () => useContext(FavoritesContext);
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const { user, isLoggedIn } = useAuth();
+  const {i18n} = useTranslation();
 
   useEffect(() => {
     if (isLoggedIn && user?.userId) {
@@ -29,7 +33,7 @@ export const FavoritesProvider = ({ children }) => {
         })
         .catch((error) => console.error("Error fetching favorites: ", error));
     }
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, user, i18n.language]);
 
   const isFavorite = (isbn) => {
     return favorites.some((book) => book.isbn === isbn);

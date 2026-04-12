@@ -3,10 +3,13 @@ package com.library.backend.reservation;
 import com.library.backend.user.User;
 import com.library.backend.book.Book;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
+@Getter
 @Entity
 @Table(name = "reservation")
 public class Reservation {
@@ -20,14 +23,17 @@ public class Reservation {
     @Column(name = "created_at", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", updatable = false)
     private Timestamp createdAt;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status = Status.active;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "isbn", nullable = false)
     private Book book;
@@ -36,38 +42,6 @@ public class Reservation {
 
     public Reservation(User user, Book book) {
         this.user = user;
-        this.book = book;
-    }
-
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
         this.book = book;
     }
 

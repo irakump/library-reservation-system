@@ -5,6 +5,7 @@ import com.library.backend.book.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -76,10 +77,10 @@ public class FavoriteService {
      * Returns user's favorite books.
      *
      * @param userId user id
-     * @return set of favorite books
+     * @return list of favorite books
      */
     @Transactional
-    public Set<Book> getFavorites(final int userId) {
+    public List<Book> getFavorites(final int userId) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException(
                         USER_NOT_FOUND + userId));

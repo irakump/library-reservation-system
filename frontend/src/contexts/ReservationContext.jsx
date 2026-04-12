@@ -25,7 +25,6 @@ export const ReservationProvider = ({ children }) => {
 
   useEffect(() => {
     // Only fetch if user is logged in
-      console.log(i18n.language);
     if (isLoggedIn && user?.userId) {
       getReservations(user.userId)
         .then((res) => setReservations(res.data))

@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,9 +60,9 @@ class FavoritesTest {
         service.addFavorite(userId, "1111");
         service.addFavorite(userId, "2222");
         service.addFavorite(userId, "3333");
-        Set<Book> favs = service.getFavorites(userId);
+        List<Book> favs = service.getFavorites(userId);
 
-        Set<Book> expected = Set.of(books.get(0), books.get(1), books.get(2));
+        List<Book> expected = List.of(books.get(0), books.get(1), books.get(2));
         assertEquals(expected, favs);
     }
 
@@ -74,7 +73,7 @@ class FavoritesTest {
             service.addFavorite(userId, book.getIsbn());
         }
         service.removeFavorite(userId, "1111");
-        Set<Book> favs = service.getFavorites(userId);
+        List<Book> favs = service.getFavorites(userId);
         assertFalse(favs.contains("1111"));
     }
 
@@ -89,8 +88,8 @@ class FavoritesTest {
             service.addFavorite(userId, book.getIsbn()); //adds all books for user1
         }
 
-        Set<Book> user1favorites = service.getFavorites(userId);
-        Set<Book> user2favorites = service.getFavorites(userId2);
+        List<Book> user1favorites = service.getFavorites(userId);
+        List<Book> user2favorites = service.getFavorites(userId2);
 
         assertEquals(6, user1favorites.size());
         assertEquals(1, user2favorites.size());

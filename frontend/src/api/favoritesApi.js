@@ -1,9 +1,10 @@
 import api from "./axiosConfig";
+import i18n from "i18next";
 
 const URL = "http://localhost:8081/api";
 
 export const getFavorites = async (userId) => {
-  return await api.get(`/users/${userId}/favorites`);
+  return await api.get(`/users/${userId}/favorites/${i18n.language}`);
 };
 
 export const addFavorite = async (userId, isbn) => {

@@ -2,8 +2,12 @@ package com.library.backend.user;
 
 import com.library.backend.book.Book;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,6 +21,7 @@ public class User {
     /**
      * Unique identifier for the user.
      */
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -25,30 +30,37 @@ public class User {
     /**
      * User email address (unique).
      */
+    @Setter
+    @Getter
     @Column(name = "email", length = 100, unique = true, nullable = false)
     private String email;
 
     /**
      * Display name of the user.
      */
+    @Setter
+    @Getter
     @Column(name = "nickname", length = 50, nullable = false)
     private String nickname;
 
     /**
      * Hashed password.
      */
+    @Getter
     @Column(name = "password_hash", length = 255, nullable = false)
     private String passwordHash;
 
     /**
      * Account creation timestamp.
      */
+    @Getter
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
 
     /**
      * User role defining access level.
      */
+    @Getter
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
@@ -72,7 +84,7 @@ public class User {
      * @param book book to add
      */
     public void addFavorites(final Book book) {
-        this.getFavorites().add(book);
+        this.favorites.add(book);
     }
 
     /**
@@ -81,16 +93,16 @@ public class User {
      * @param book book to remove
      */
     public void removeFavorites(final Book book) {
-        this.getFavorites().remove(book);
+        this.favorites.remove(book);
     }
 
     /**
      * Returns favorite books.
      *
-     * @return set of favorite books
+     * @return list of favorite books
      */
-    public Set<Book> getFavorites() {
-        return favorites;
+    public List<Book> getFavorites() {
+        return List.copyOf(favorites);
     }
 
 
@@ -119,44 +131,12 @@ public class User {
 
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String userEmail) {
-        this.email = userEmail;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(final String name) {
-        this.nickname = name;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
     public void setPasswordHash(final String password) {
         this.passwordHash = password;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
     public void setCreatedAt(final Timestamp created) {
         this.createdAt = created;
-    }
-
-    public Role getRole() {
-        return role;
     }
 
     public void setRole(final Role userRole) {
