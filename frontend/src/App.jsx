@@ -20,7 +20,6 @@ import { LayoutDirectionProvider } from "./contexts/LayoutDirectionContext.jsx";
 
 function App() {
   return (
-    <>
       <AuthProvider>
         <LayoutDirectionProvider>
           <MenuProvider>
@@ -60,7 +59,6 @@ function App() {
           </MenuProvider>
         </LayoutDirectionProvider>
       </AuthProvider>
-    </>
   );
 }
 
