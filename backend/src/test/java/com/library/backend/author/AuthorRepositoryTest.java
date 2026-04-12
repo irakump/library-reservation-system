@@ -10,13 +10,13 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class AuthorRepositoryTest {
+class AuthorRepositoryTest {
 
     @Autowired
     private AuthorRepository repository;
 
     @Test
-    public void testSaveAuthor() {
+    void testSaveAuthor() {
         Author author = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
         Author saved = repository.save(author);
 
@@ -27,7 +27,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void testFindAuthorById() {
+    void testFindAuthorById() {
         Author author = new Author("George", "Orwell", "ジョージ", "オーウェル", "جورج", "أورويل");
         Author saved = repository.save(author);
 
@@ -39,13 +39,13 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void testFindById_NotFound() {
+    void testFindById_NotFound() {
         Optional<Author> found = repository.findById(999);
         assertThat(found).isEmpty();
     }
 
     @Test
-    public void testFindAllAuthors() {
+    void testFindAllAuthors() {
         repository.save(new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون"));
         repository.save(new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ"));
         repository.save(new Author("Jane", "Austen", "ジェーン", "オースティン", "جين", "أوستن"));
@@ -58,7 +58,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void testUpdateAuthor() {
+    void testUpdateAuthor() {
         Author author = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
         Author saved = repository.save(author);
 
@@ -72,7 +72,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void testDeleteAuthor() {
+    void testDeleteAuthor() {
         Author author = new Author("Test", "Author", "Test", "Author", "Test", "Author");
         Author saved = repository.save(author);
 
@@ -82,7 +82,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void testCount() {
+    void testCount() {
         repository.save(new Author("Author", "One", "Author", "One", "Author", "One"));
         repository.save(new Author("Author", "Two", "Author", "Two", "Author", "Two"));
         long count = repository.count();
