@@ -1,6 +1,5 @@
 package com.library.backend.author;
 
-import com.library.backend.book.Book;
 import com.library.backend.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import static org.mockito.Mockito.when;
         excludeAutoConfiguration = SecurityAutoConfiguration.class,
         excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JwtAuthenticationFilter.class))
 @AutoConfigureMockMvc(addFilters = false)
-public class AuthorControllerTest {
+class AuthorControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,7 +32,7 @@ public class AuthorControllerTest {
     private AuthorRepository repository;
 
     @Test
-    public void testGetAllAuthors() throws Exception {
+    void testGetAllAuthors() throws Exception {
         Author author1 = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
         author1.setAuthorId(1);
         Author author2 = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
@@ -50,7 +49,7 @@ public class AuthorControllerTest {
     }
 
     @Test
-    public void testGetAuthorById() throws Exception {
+    void testGetAuthorById() throws Exception {
         Author author = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
         author.setAuthorId(1);
         when(repository.findById(1)).thenReturn(Optional.of(author));
@@ -62,25 +61,6 @@ public class AuthorControllerTest {
                 .andExpect(jsonPath("$.lastName").value("Jansson"));
     }
 
-    /*@Test
-    public void testGetAuthorById_WithBooks() throws Exception {
-        Author author = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
-        author.setAuthorId(1);
-
-        Book book1 = new Book("123", "Book 1", "Book 1", "Book 1", 2000, "Desc", "Desc", "Desc", "Fantasy", "English", true);
-        Book book2 = new Book("456", "Book 2", "Book 2", "Book 2", 2001, "desc", "Desc", "Desc", "fantasy", "English", true);
-
-        author.setBooks(Arrays.asList(book1, book2));
-
-        when(repository.findById(1)).thenReturn(Optional.of(author));
-
-
-        mockMvc.perform(get("/api/author/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.authorId").value(1))
-                .andExpect(jsonPath("$.books").isArray())
-                .andExpect(jsonPath("$.books.length()").value(2));
-    }*/
 
 }
 
