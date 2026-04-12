@@ -3,7 +3,9 @@ package com.library.backend.user;
 import com.library.backend.book.Book;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -72,7 +74,7 @@ public class User {
      * @param book book to add
      */
     public void addFavorites(final Book book) {
-        this.getFavorites().add(book);
+        this.favorites.add(book);
     }
 
     /**
@@ -81,16 +83,16 @@ public class User {
      * @param book book to remove
      */
     public void removeFavorites(final Book book) {
-        this.getFavorites().remove(book);
+        this.favorites.remove(book);
     }
 
     /**
      * Returns favorite books.
      *
-     * @return set of favorite books
+     * @return list of favorite books
      */
-    public Set<Book> getFavorites() {
-        return favorites;
+    public List<Book> getFavorites() {
+        return List.copyOf(favorites);
     }
 
 

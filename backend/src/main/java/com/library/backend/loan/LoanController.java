@@ -16,22 +16,22 @@ public class LoanController {
     private final LoanRepository repository;
     private final LoanService loanService;
 
-    public LoanController(LoanRepository repository, LoanService loanService) {
+    public LoanController(final LoanRepository repository, final LoanService loanService) {
         this.repository = repository;
         this.loanService = loanService;
     }
 
     // Get all loans - Admin only
     @GetMapping
-    public ResponseEntity<List<LoanDTO>> getAllLoans(HttpServletRequest request) {
+    public ResponseEntity<List<LoanDTO>> getAllLoans(final HttpServletRequest request) {
         AuthorizationUtil.checkAdminAccess(request);
-        List<LoanDTO> loans = loanService.getAllLoans();
+        final List<LoanDTO> loans = loanService.getAllLoans();
         return ResponseEntity.ok(loans);
     }
 
     // Get loan by id
     @GetMapping("/{loanId}")
-    public LoanDTO getLoanById(@PathVariable Integer loanId) {
+    public LoanDTO getLoanById(@PathVariable final Integer loanId) {
         return repository.findById(loanId)
                 .map(LoanDTO::new)
                 .orElse(null);
@@ -40,37 +40,37 @@ public class LoanController {
     // Get active loans by user's id
     @GetMapping("/user/{userId}/{lang}")
     public ResponseEntity<List<LoanDTO>> getLoansByUser(
-            @PathVariable int userId,
-            @PathVariable String lang,
-            HttpServletRequest request) {
+            @PathVariable final int userId,
+            @PathVariable final String lang,
+            final HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        List<Loan> loans = loanService.getActiveLoansByUser(userId);
-        List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
+        final List<Loan> loans = loanService.getActiveLoansByUser(userId);
+        final List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
         return ResponseEntity.ok(dtos);
     }
 
     // Create new loan
     @PostMapping("/new/{lang}")
-    public ResponseEntity<LoanDTO> createLoan(@RequestBody CreateLoanDTO request, HttpServletRequest httpRequest, @PathVariable String lang) {
-        AuthorizationUtil.checkUserAccess(httpRequest, request.getUserId());
-        LoanDTO created = loanService.createLoan(request, lang);
+    public ResponseEntity<LoanDTO> createLoan(@RequestBody final CreateLoanDTO request, final HttpServletRequest httpRequest, @PathVariable final String lang) {
+        AuthorizationUtil.checkUserAccess(httpRequest, request.userId());
+        final LoanDTO created = loanService.createLoan(request, lang);
         return ResponseEntity.ok(created);
     }
 
     // Change loan
     @PutMapping("/return/{lang}")
-    public ResponseEntity<Void> returnLoan(@RequestBody ReturnLoanDTO request, HttpServletRequest httpRequest, @PathVariable String lang) {
-        AuthorizationUtil.checkUserAccess(httpRequest, request.getUserId());
+    public ResponseEntity<Void> returnLoan(@RequestBody final ReturnLoanDTO request, final HttpServletRequest httpRequest, @PathVariable final String lang) {
+        AuthorizationUtil.checkUserAccess(httpRequest, request.userId());
         loanService.returnLoan(request);
         return ResponseEntity.ok().build();
     }
 
     // Get loan history
     @GetMapping("/user/{userId}/history/{lang}")
-    public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable int userId, @PathVariable String lang, HttpServletRequest request) {
+    public ResponseEntity<List<LoanDTO>> getLoanHistoryByUser(@PathVariable final int userId, @PathVariable final String lang, final HttpServletRequest request) {
         AuthorizationUtil.checkUserAccess(request, userId);
-        List<Loan> loans = loanService.getLoanHistoryByUser(userId);
-        List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
+        final List<Loan> loans = loanService.getLoanHistoryByUser(userId);
+        final List<LoanDTO> dtos = loanService.localizeLoans(loans, lang);
         return ResponseEntity.ok(dtos);
     }
 }

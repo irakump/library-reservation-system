@@ -3,11 +3,14 @@ package com.library.backend.loan;
 import com.library.backend.book.Book;
 import com.library.backend.user.User;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "loan")
 public class Loan {
@@ -20,70 +23,38 @@ public class Loan {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Setter
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
     @Column(name = "return_date")
     private LocalDateTime returnDate;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "isbn", nullable = false)
     private Book book;
 
     protected Loan() {}
 
-    public Loan(LocalDate dueDate, User user, Book book) {
+    public Loan(final LocalDate dueDate, final User user, final Book book) {
         this.dueDate = dueDate;
         this.user = user;
         this.book = book;
     }
 
-    public int getLoanId() {
-        return loanId;
-    }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(final LocalDateTime returnDate) {
         this.returnDate = returnDate;
     }
 
-    public LocalDateTime getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Timestamp returnDate) {
+    public void setReturnDate(final Timestamp returnDate) {
         this.returnDate = returnDate.toLocalDateTime();
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 }

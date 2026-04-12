@@ -23,15 +23,15 @@ public class LoanDTO {
     private String language;
     private String genre;
 
-    public LoanDTO(Loan l) {
-        this.loanId = l.getLoanId();
-        this.createdAt = l.getCreatedAt();
-        this.dueDate = l.getDueDate();
-        this.returnDate = l.getReturnDate();
-        this.userId = l.getUser().getUserId();
-        this.isbn = l.getBook().getIsbn();
+    public LoanDTO(final Loan loan) {
+        this.loanId = loan.getLoanId();
+        this.createdAt = loan.getCreatedAt();
+        this.dueDate = loan.getDueDate();
+        this.returnDate = loan.getReturnDate();
+        this.userId = loan.getUser().getUserId();
+        this.isbn = loan.getBook().getIsbn();
 
-        Book book = l.getBook();
+        final Book book = loan.getBook();
         this.title = book.getTitle();
         this.image = book.getImage();
         this.description = book.getDescription();
