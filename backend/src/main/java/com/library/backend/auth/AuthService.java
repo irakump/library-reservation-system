@@ -49,7 +49,7 @@ public class AuthService {
         }
 
         // Create new user
-        User user = new User(
+        final User user = new User(
                 registerDto.getEmail(),
                 registerDto.getNickname(),
                 passwordEncoder.encode(registerDto.getPassword())
@@ -65,7 +65,7 @@ public class AuthService {
      */
     public LoginResponse loginUser(final LoginDto loginDto) {
         // Find user by email
-        User user = userRepo.findByEmail(loginDto.getEmail())
+        final User user = userRepo.findByEmail(loginDto.getEmail())
                 .orElseThrow(() ->
                         new RuntimeException(
                                 "Invalid email or password"));
@@ -78,7 +78,7 @@ public class AuthService {
         }
 
         // Generate JWT token
-        String token = jwtUtil.generateToken(
+        final String token = jwtUtil.generateToken(
                 user.getEmail(),
                 user.getUserId(),
                 user.getRole().toString()
@@ -86,7 +86,7 @@ public class AuthService {
 
         String createdAt = null;
         if (user.getCreatedAt() != null) {
-            DateTimeFormatter formatter =
+            final DateTimeFormatter formatter =
                     DateTimeFormatter.ofPattern(
                             "d.M.yyyy");
             createdAt = user.getCreatedAt().
