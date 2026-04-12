@@ -19,21 +19,21 @@ public final class LocalizationUtil {
      * Resolves the correct string by language.
      * Falls back to English if the translation is null.
      *
-     * @param en English value
-     * @param ja Japanese value
-     * @param ar Arabic value
+     * @param english English value
+     * @param japanese Japanese value
+     * @param arabic Arabic value
      * @param lang the language code
      * @return the resolved localized string
      */
     public static String resolve(
-            final String en,
-            final String ja,
-            final String ar,
+            final String english,
+            final String japanese,
+            final String arabic,
             final String lang) {
         return switch (lang) {
-            case "ja-JP" -> ja != null ? ja : en;
-            case "ar-u-nu-arab" -> ar != null ? ar : en;
-            default -> en;
+            case "ja-JP" -> japanese != null ? japanese : english;
+            case "ar-u-nu-arab" -> arabic != null ? arabic : english;
+            default -> english;
         };
     }
 
