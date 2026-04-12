@@ -8,7 +8,6 @@ export function createLoan(userId, isbn, lang) {
       isbn,
     })
     .then((response) => {
-        
       return response.data;
     })
     .catch((error) => {
