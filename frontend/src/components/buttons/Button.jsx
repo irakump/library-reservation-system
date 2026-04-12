@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 function Button({ onClick, children }) {
   return (
     <button
@@ -13,7 +14,7 @@ function Button({ onClick, children }) {
   );
 }
 
-Button.PropTypes = {
+Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
