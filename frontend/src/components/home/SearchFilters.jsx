@@ -238,7 +238,7 @@ const SearchFilters = () => {
                   {t("filters.year_placeholder")}
                 </option>
                 {years
-                  .sort((a, b) => b - a)
+                  .toSorted((a, b) => b - a)
                   .map((item) => (
                     <option
                       key={item}
