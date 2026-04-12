@@ -54,8 +54,6 @@ describe('SearchFilters', () => {
         }
       });
 
-      //screen.debug();
-
       // verify filters are displayed in active filters section (FilterTag buttons)
       const filterButtons = screen.getAllByRole('button');
       [languages, genres, years].forEach((items) => {
