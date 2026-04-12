@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 // Test for AuthService. Tests for Login and Register business logic
 
 @ExtendWith(MockitoExtension.class)
-public class AuthServiceTest {
+class AuthServiceTest {
 
     @Mock
     private UserRepository userRepo;
