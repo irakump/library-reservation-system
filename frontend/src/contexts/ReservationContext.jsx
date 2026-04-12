@@ -5,8 +5,8 @@ import {
   getReservations,
 } from "../api/reservationsApi.js";
 import { useAuth } from "./AuthContext.jsx";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 // define defaults to tests pass
 const ReservationContext = createContext({
@@ -20,8 +20,8 @@ export const useReservationContext = () => useContext(ReservationContext);
 export const ReservationProvider = ({ children }) => {
   const [reservations, setReservations] = useState([]);
   const { user, isLoggedIn } = useAuth();
-  const {i18n} = useTranslation();
-  const { t } = useTranslation('common');
+  const { i18n } = useTranslation();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     // Only fetch if user is logged in
@@ -45,7 +45,6 @@ export const ReservationProvider = ({ children }) => {
       setReservations((prev) => [...prev, response]);
       alert(`${t("book")} ${t("reserved")}`);
     } catch (error) {
-
       const message = error.response?.data?.message || error.message;
 
       if (message.includes("currently reserved")) {
@@ -82,4 +81,8 @@ export const ReservationProvider = ({ children }) => {
       {children}
     </ReservationContext.Provider>
   );
+};
+
+ReservationProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
