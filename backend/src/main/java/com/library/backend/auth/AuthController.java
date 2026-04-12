@@ -1,7 +1,5 @@
 package com.library.backend.auth;
 
-
-import com.library.backend.user.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller for handling user authentication.
  * Provides endpoints for user registration and login.
  */
-
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:5173/")
@@ -41,8 +38,9 @@ public class AuthController {
     public ResponseEntity<?> registerUser(
             @RequestBody final RegisterDto registerDto) {
         try {
-            User user = authService.registerUser(registerDto);
-            return ResponseEntity.ok("User registered successfully");
+            authService.registerUser(registerDto);
+            return ResponseEntity.ok(
+                    "User registered successfully");
         } catch (RuntimeException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -59,7 +57,7 @@ public class AuthController {
     public ResponseEntity<?> loginUser(
             @RequestBody final LoginDto loginDto) {
         try {
-            LoginResponse response = authService.loginUser(loginDto);
+            final LoginResponse response = authService.loginUser(loginDto);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity
