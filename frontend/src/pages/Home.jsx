@@ -15,7 +15,6 @@ const Home = () => {
   };
 
   return (
-    <>
       <SearchFilterProvider>
         <SearchResultProvider>
           <div className="bg-background py-10 sm:py-20">
@@ -27,7 +26,7 @@ const Home = () => {
           </div>
         </SearchResultProvider>
       </SearchFilterProvider>
-    </>
+
   );
 };
 
