@@ -41,7 +41,7 @@ public class BookController {
      */
     @GetMapping("/{lang}")
     public List<BookDTO> getAllBooks(@PathVariable final String lang) {
-        final List<Book> books =  repository.findAll();
+        final List<Book> books = repository.findAll();
 
         return books.stream().map(book -> {
             final BookDTO dto = new BookDTO(book);

@@ -20,17 +20,36 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+/**
+ *Service class responsible for handling business logic related to loans.
+ */
 @Service
 public class LoanService {
+    /** UserRepository dependency */
     private final UserRepository userRepo;
+
+    /** BookRepository dependency*/
     private final BookRepository bookRepo;
+
+    /** LoanRepository dependency*/
     private final LoanRepository loanRepo;
+
+    /** ReservationQueue dependency*/
     private final ReservationService resService;
+
+    /** NotificationService dependency*/
     private final NotificationService notifiService;
+
+    /** GenreRepository dependency*/
     private final GenreRepository genreRepo;
+
+    /** LanguageRepository dependency*/
     private final LanguageRepository languageRepo;
 
-    public LoanService(final UserRepository userRepo, final BookRepository bookRepo, final LoanRepository loanRepo, @Lazy final ReservationService resService, final NotificationService notifiService, final GenreRepository genreRepo, LanguageRepository languageRepo) {
+    /**
+     * Constructs a LoanService with all required dependencies.
+     */
+    public LoanService(final UserRepository userRepo, final BookRepository bookRepo, final LoanRepository loanRepo, @Lazy final ReservationService resService, final NotificationService notifiService, final GenreRepository genreRepo, final LanguageRepository languageRepo) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
@@ -40,7 +59,14 @@ public class LoanService {
         this.languageRepo = languageRepo;
     }
 
-    // Localize loans
+    /**
+     * Localizes a list of loans into DTOs
+     * Translates book title, description, genre, and language fields.
+     * @param loans the list of loans to localize
+     * @param lang  the language code (e.g. "en-US")
+     * @return a list of localized {@link LoanDTO} objects
+     * @throws IllegalStateException if genre or language is not found
+     */
     public List<LoanDTO> localizeLoans(final List<Loan> loans, final String lang) {
         return loans.stream().map(l -> {
             final Genre genre = genreRepo.findById(l.getBook().getGenre())
@@ -57,7 +83,11 @@ public class LoanService {
         }).toList();
     }
 
-    //Get all loans
+    /**
+     * Retrieves all loans
+     *
+     * @return a list of all loans as {@link LoanDTO} objects
+     */
     public List<LoanDTO> getAllLoans() {
         final Iterable<Loan> loans = loanRepo.findAll();
 
@@ -66,7 +96,12 @@ public class LoanService {
                 .toList();
     }
 
-    //Get loans by user
+    /**
+     * Retrieves all active loans for a user
+     *
+     * @param userId the ID of the user
+     * @return a list of active loans
+     */
     public List<Loan> getActiveLoansByUser(final int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
@@ -74,6 +109,12 @@ public class LoanService {
                 .toList();
     }
 
+    /**
+     * Retrieves all non-active loans for a user
+     *
+     * @param userId the ID of the user
+     * @return a list of non-active loans
+     */
     public List<Loan> getLoanHistoryByUser(final int userId) {
         return loanRepo.findByUserUserId(userId)
                 .stream()
@@ -81,7 +122,14 @@ public class LoanService {
                 .toList();
     }
 
-    // Create new loan
+    /**
+     * Creates a new loan for a user and marks the book as unavailable
+     *
+     * @param dto the data required to create a loan
+     * @param lang the language code for localization
+     * @return the created loan as a localized {@link LoanDTO}
+     * @throws RuntimeException if the user or book is not found
+     */
     @Transactional
     public LoanDTO createLoan(final CreateLoanDTO dto, final String lang) {
         final User user = userRepo.findById(dto.userId()).orElseThrow(() -> new RuntimeException("user not found: "));
@@ -101,7 +149,13 @@ public class LoanService {
         return newDto;
     }
 
-    // Return a loan
+    /**
+     * Marks a loan as returned
+     * Updates related reservation queue
+     *
+     * @param dto the data required to return a loan
+     * @throws RuntimeException if the book or loan is not found
+     */
     @Transactional
     public void returnLoan(final ReturnLoanDTO dto) {
         final Book book = bookRepo.findById(dto.isbn()).orElseThrow(() -> new RuntimeException("book not found"));

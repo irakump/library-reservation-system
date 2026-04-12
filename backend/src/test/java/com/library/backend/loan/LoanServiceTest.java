@@ -105,10 +105,10 @@ class LoanServiceTest {
         List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "en");
 
         assertEquals(1, result.size());
-        assertEquals("joku", result.get(0).getTitle());
-        assertEquals("jshdahdhad", result.get(0).getDescription());
-        assertEquals("children", result.get(0).getGenre());
-        assertEquals("finnish", result.get(0).getLanguage());
+        assertEquals("joku", result.getFirst().getTitle());
+        assertEquals("jshdahdhad", result.getFirst().getDescription());
+        assertEquals("children", result.getFirst().getGenre());
+        assertEquals("finnish", result.getFirst().getLanguage());
     }
 
     @Test
@@ -119,10 +119,10 @@ class LoanServiceTest {
         List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "ja-JP");
 
         assertEquals(1, result.size());
-        assertEquals("joku in japan", result.get(0).getTitle());
-        assertEquals("jsjdd", result.get(0).getDescription());
-        assertEquals("子供たち", result.get(0).getGenre());
-        assertEquals("フィンランド語", result.get(0).getLanguage());
+        assertEquals("joku in japan", result.getFirst().getTitle());
+        assertEquals("jsjdd", result.getFirst().getDescription());
+        assertEquals("子供たち", result.getFirst().getGenre());
+        assertEquals("フィンランド語", result.getFirst().getLanguage());
     }
 
     @Test
@@ -168,23 +168,6 @@ class LoanServiceTest {
                 () -> loanService.createLoan(dto, "en-US"));
     }
 
-    //return loans
-    //@Test
-    // void testReturnLoan() {
-    //     ReturnLoanDTO dto = new ReturnLoanDTO(1, 1, "123");
-
-    //     when(bookRepo.findById("123")).thenReturn(Optional.of(book));
-    //     when(loanRepo.findById(1)).thenReturn(Optional.of(loan));
-    //     when(userRepo.findById(1)).thenReturn(Optional.of(user));
-
-    //     loanService.returnLoan(dto);
-
-    //     assertNotNull(loan.getReturnDate());
-    //     assertTrue(book.getAvailability());//
-
-    //     verify(loanRepo).save(loan);
-    //     verify(bookRepo).save(book);
-    // }
 
     @Test
     void testReturnNotFound() {

@@ -30,7 +30,6 @@ export const FavoritesProvider = ({ children }) => {
       getFavorites(user.userId)
         .then((res) => {
           setFavorites(res.data);
-          console.log(res.data);
         })
         .catch((error) => console.error("Error fetching favorites: ", error));
     }
