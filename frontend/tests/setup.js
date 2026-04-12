@@ -7,10 +7,10 @@ import { http, HttpResponse } from 'msw';
 import bookData from '../src/book-data.json';
 
 export const restHandlers = [
-  http.get('http://localhost:8081/api/book/filter', () => {
+  http.get('http://localhost:8081/api/book/filter/en-US', () => {
     return HttpResponse.json(bookData);
   }),
-  http.get('http://localhost:8081/api/genre', () => {
+  http.get('http://localhost:8081/api/genre/all/en-US', () => {
     return HttpResponse.json([
       { genre: 'biography' },
       { genre: 'children' },
@@ -21,7 +21,7 @@ export const restHandlers = [
       { genre: 'science fiction' },
     ]);
   }),
-  http.get('http://localhost:8081/api/language', () => {
+  http.get('http://localhost:8081/api/language/all/en-US', () => {
     return HttpResponse.json([
       { language: 'english' },
       { language: 'finnish' },
@@ -41,6 +41,10 @@ vi.mock('react-i18next', () => ({
         changeLanguage: () => new Promise(() => {}),
       },
     };
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
   },
 }));
 
