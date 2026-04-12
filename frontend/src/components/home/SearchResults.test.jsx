@@ -61,9 +61,6 @@ describe('SearchResults', () => {
       const startIndex = (currentPage - 1) * resultsPerPage + 1;
       const endIndex = Math.min(currentPage * resultsPerPage, bookCount);
 
-      //console.log(startIndex, endIndex);
-      //screen.debug();
-
       expect(
         screen.getByText(`${startIndex} - ${endIndex} / ${bookCount}`),
       ).toBeInTheDocument();
