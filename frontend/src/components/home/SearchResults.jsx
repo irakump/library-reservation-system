@@ -11,7 +11,6 @@ export const SearchResults = () => {
   const searchResultsStartRef = useRef(null);
 
   const { searchResults } = useSearchResult();
-  //console.log('books: ', searchResults.length, searchResults);
 
   const resultsPerPage = 8; // !!!
   const pagesToShow = Math.ceil(searchResults.length / resultsPerPage);
@@ -40,7 +39,7 @@ export const SearchResults = () => {
       searchResultsStartRef.current.scrollIntoView();
     } catch (error) {
       // handle error, which is triggered during testing
-      //console.error('Error with scrolling to search result header:', error);
+      console.warn('Error with scrolling to search result header:', error);
     }
   };
 
@@ -53,11 +52,7 @@ export const SearchResults = () => {
             <h2 ref={searchResultsStartRef}>{t('search_results_header')}</h2>
             <h2>
               {new Intl.NumberFormat(i18n.language).format(startIndex + 1)} -{' '}
-              {new Intl.NumberFormat(i18n.language).format(
-                endIndex < searchResults.length
-                  ? endIndex
-                  : searchResults.length,
-              )}{' '}
+              {Math.min(endIndex, searchResults.length)}{' '}
               /{' '}
               {new Intl.NumberFormat(i18n.language).format(
                 searchResults.length,
@@ -98,7 +93,6 @@ export const SearchResults = () => {
                     lastDotsRendered = true;
                     return <p key={'second-nav-dots'}>...</p>;
                   }
-                  return;
                 } else {
                   return (
                     <a
