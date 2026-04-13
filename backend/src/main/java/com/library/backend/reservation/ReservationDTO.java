@@ -1,10 +1,12 @@
 package com.library.backend.reservation;
 
+import com.library.backend.author.AuthorDTO;
 import com.library.backend.book.Book;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 // Reservation Data Transfer Object
 @Getter
@@ -24,6 +26,8 @@ public class ReservationDTO {
     private String language;
     private String genre;
 
+    private List<AuthorDTO> authors;
+
     public ReservationDTO(Reservation r) {
         this.reservationId = r.getReservationId();
         this.createdAt = r.getCreatedAt();
@@ -38,6 +42,12 @@ public class ReservationDTO {
         this.year = book.getYear();
         this.language = book.getLanguage();
         this.genre = book.getGenre();
+
+        this.authors = book.getAuthors() != null
+                ? book.getAuthors().stream()
+                .map(AuthorDTO::new)
+                .toList()
+                : List.of();
     }
 
 }

@@ -1,11 +1,13 @@
 package com.library.backend.loan;
 
+import com.library.backend.author.AuthorDTO;
 import com.library.backend.book.Book;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /** DTO representing data of loan and book entities returned to client*/
 @Getter
@@ -48,6 +50,9 @@ public class LoanDTO {
     /** Genre of loaned book*/
     private String genre;
 
+    /** Authors of loaned book*/
+    private List<AuthorDTO> authors;
+
     /**
      * Constructs a LoanDTO from a {@link Loan} entity.
      * Extracts relevant information from the loan and its associated book.
@@ -69,5 +74,11 @@ public class LoanDTO {
         this.year = book.getYear();
         this.language = book.getLanguage();
         this.genre = book.getGenre();
+
+        this.authors = book.getAuthors() != null
+                ? book.getAuthors().stream()
+                .map(AuthorDTO::new)
+                .toList()
+                : List.of();
     }
 }
