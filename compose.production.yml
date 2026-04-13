@@ -5,15 +5,15 @@ services:
     image: sandrajuu/library-reservation-system-database:latest
     environment:
       MARIADB_DATABASE: metbook
-      MARIADB_USER: library_db_user
-      MARIADB_PASSWORD: password
-      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: ${DB_USERNAME}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "13306:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "library_db_user", "-ppassword"]
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "${DB_USERNAME}", "-p${DB_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,8 +25,10 @@ services:
       - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/metbook
-      SPRING_DATASOURCE_USERNAME: library_db_user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD}
     depends_on:
       mariadb:
         condition: service_healthy
