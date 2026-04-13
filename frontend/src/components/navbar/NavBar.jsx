@@ -67,17 +67,13 @@ const NavBar = () => {
                 <button onClick={() => {
                     toggleLanguageMenu();
                     setIsProfileMenuOpen(false);
-                }}></button>
+                }}>
               <img
                 src="/language-icon.png"
                 alt={t("navbar.language_icon_alt")}
                 className="h-7 mt-1 hover:cursor-pointer"
-                tabIndex={0}
-                onClick={() => {
-                    toggleLanguageMenu();
-                    setIsProfileMenuOpen(false);
-                }}
               />
+                </button>
             </div>
           )}
 
