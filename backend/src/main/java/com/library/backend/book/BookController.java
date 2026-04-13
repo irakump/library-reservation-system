@@ -68,14 +68,14 @@ public class BookController {
      *
      * @return list of years
      */
-    //@GetMapping("/years")
-    //public List<Integer> getAllBookYears() {
-    //    final List<Book> books = repository.findAll();
-    //    return books.stream()
-    //        .map(Book::getYear)
-    //        .distinct()
-    //        .toList();
-    //}
+    @GetMapping("/years")
+    public List<Integer> getAllBookYears() {
+        final List<Book> books = repository.findAll();
+        return books.stream()
+            .map(Book::getYear)
+            .distinct()
+            .toList();
+    }
 
     /**
      * Returns all books with genre.
