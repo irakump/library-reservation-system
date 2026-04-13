@@ -57,25 +57,25 @@ public class BookController {
      * @param isbn ISBN code of book
      * @return single book by ISBN code
      */
-    //@GetMapping("/{isbn}/")
-    //public Book getBookByIsbn(@PathVariable final String isbn) {
-    //    return repository.findById(isbn).orElseThrow(() ->
-    //            new IllegalArgumentException("Book not found: " + isbn));
-    //}
+    @GetMapping("/{isbn}/")
+    public Book getBookByIsbn(@PathVariable final String isbn) {
+        return repository.findById(isbn).orElseThrow(() ->
+                new IllegalArgumentException("Book not found: " + isbn));
+    }
 
     /**
      * Returns all years used by all books in the library.
      *
      * @return list of years
      */
-    //@GetMapping("/years")
-    //public List<Integer> getAllBookYears() {
-    //    final List<Book> books = repository.findAll();
-    //    return books.stream()
-    //        .map(Book::getYear)
-    //        .distinct()
-    //        .toList();
-    //}
+    @GetMapping("/years")
+    public List<Integer> getAllBookYears() {
+        final List<Book> books = repository.findAll();
+        return books.stream()
+            .map(Book::getYear)
+            .distinct()
+            .toList();
+    }
 
     /**
      * Returns all books with genre.
@@ -83,10 +83,10 @@ public class BookController {
      * @param genre genre to filter by
      * @return list of matching books
      */
-    //@GetMapping("/genre/{genre}")
-    //public List<Book> getBooksByGenre(@PathVariable final String genre) {
-    //    return (List<Book>) repository.findByGenre(genre);
-    //}
+    @GetMapping("/genre/{genre}")
+    public List<Book> getBooksByGenre(@PathVariable final String genre) {
+        return (List<Book>) repository.findByGenre(genre);
+    }
 
     /**
      * Returns all books with release year.
@@ -94,10 +94,9 @@ public class BookController {
      * @param year year to filter by
      * @return list of matching books
      */
-    //@GetMapping("/year/{year}")
-    //public List<Book> getBooksByYear(@PathVariable final int year) {
-     //   return (List<Book>) repository.findByYear(year);
-    //}
+    @GetMapping("/year/{year}")
+    public List<Book> getBooksByYear(@PathVariable final int year) {   return (List<Book>) repository.findByYear(year);
+    }
 
     /**
      * Returns all books with language.
@@ -105,10 +104,10 @@ public class BookController {
      * @param language language to filter by
      * @return list of matching books
      */
-    //@GetMapping("/language/{language}")
-    //public List<Book> getBooksByLanguage(@PathVariable final String language) {
-    //    return (List<Book>) repository.findByLanguage(language);
-    //}
+    @GetMapping("/language/{language}")
+    public List<Book> getBooksByLanguage(@PathVariable final String language) {
+        return (List<Book>) repository.findByLanguage(language);
+    }
 
     /**
      * Returns localized list of books matching all filters (any combination).
