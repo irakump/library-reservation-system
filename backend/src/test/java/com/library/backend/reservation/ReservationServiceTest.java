@@ -162,6 +162,38 @@ class ReservationServiceTest {
         assertThat(updated.isAvailable()).isTrue();
     }
 
+    // Process reservation queue, success
+    @Test
+    @Transactional
+    void shouldProcessReservationQueueAndCreateLoan() {
+
+        // Set reservations
+        Reservation r1 = new Reservation(user, book);
+        Reservation r2 = new Reservation(user, book);
+
+        reservationRepo.save(r1);
+        reservationRepo.save(r2);
+
+        book.setAvailable(false);
+        bookRepo.save(book);
+
+        // Process queue
+        service.processReservationQueue(book, null);
+
+        // Set status not_active
+        List<Reservation> all = reservationRepo.findByBookIsbnAndStatus(book.getIsbn(), Reservation.Status.not_active);
+
+        assertThat(all).isNotEmpty();
+
+        // Loan
+        List<Loan> loans = loanRepo.findByUserUserIdAndReturnDate(user.getUserId(), null);
+        assertThat(loans).hasSize(1);
+
+        // Book is not available
+        Book updated = bookRepo.findById(book.getIsbn()).orElseThrow();
+        assertThat(updated.isAvailable()).isFalse();
+    }
+
     // Localization
     @Test
     @Transactional
@@ -186,5 +218,7 @@ class ReservationServiceTest {
         assertThat(result).isNotEmpty();
         assertThat(result.get(0).getTitle()).isNotNull();
     }
+
+
 
 }
