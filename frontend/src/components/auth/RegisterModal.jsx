@@ -45,63 +45,53 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       });
   };
 
-  const validateRegisterForm = (register) => {
-    const newErrors = {
-      nickname: "",
-      email: "",
-      password: [],
-    };
+  // Validation helpers
 
-    // Nickname
-    if (!register.nickname.trim()) {
-      newErrors.nickname = t("error.nickname_required", { ns: "auth" });
+  const validateNickname = (nickname) => {
+    if (!nickname.trim()) {
+      return t("error.nickname_required", { ns: "auth" });
     }
-
-    // Email
-    if (!register.email.trim()) {
-      newErrors.email = t("error.email_required", { ns: "auth" });
-    } else if (!isValidEmail(register.email)) {
-      newErrors.email = t("error.email_format", { ns: "auth" });
-    }
-
-    // Password
-    if (!register.password.trim()) {
-      newErrors.password.push(t("error.password_required", { ns: "auth" }));
-    } else {
-      if (register.password.length < 8) {
-        newErrors.password.push(t("error.password.length", { ns: "auth" }));
-      }
-      if (!/[a-z]/.test(register.password)) {
-        newErrors.password.push(t("error.password.lowercase_letter", { ns: "auth" }));
-      }
-      if (!/[A-Z]/.test(register.password)) {
-        newErrors.password.push(t("error.password.uppercase_letter", { ns: "auth" }));
-      }
-      if (!hasNumber(register.password)) {
-        newErrors.password.push(t("error.password.number", { ns: "auth" }));
-      }
-      if (!hasSpecialCharacter(register.password)) {
-        newErrors.password.push(t("error.password.special_character", { ns: "auth" }));
-      }
-    }
-
-    setErrors({
-      ...newErrors,
-      // Set password array to string
-      password: newErrors.password.join(", "),
-    });
-
-    if (
-      newErrors.nickname ||
-      newErrors.email ||
-      newErrors.password.length > 0
-    ) {
-      return false;
-    }
-
-    // Successful validation
-    return true;
+    return "";
   };
+
+  const validateEmail = (email) => {
+    if (!email.trim()) {
+      return t("error.email_required", { ns: "auth" });
+    }
+    if (!isValidEmail(email)) {
+      return t("error.email_format", { ns: "auth" });
+    }
+    return "";
+  };
+
+  const validatePassword = (password) => {
+    const errors = [];
+
+    if (!password.trim()) {
+      errors.push(t("error.password_required", { ns: "auth" }));
+      return errors;
+    }
+
+    if (password.length < 8) {
+      errors.push(t("error.password.length", { ns: "auth" }));
+    }
+    if (!/[a-z]/.test(password)) {
+      errors.push(t("error.password.lowercase_letter", { ns: "auth" }));
+    }
+    if (!/[A-Z]/.test(password)) {
+      errors.push(t("error.password.uppercase_letter", { ns: "auth" }));
+    }
+    if (!hasNumber(password)) {
+      errors.push(t("error.password.number", { ns: "auth" }));
+    }
+    if (!hasSpecialCharacter(password)) {
+      errors.push(t("error.password.special_character", { ns: "auth" }));
+    }
+
+    return errors;
+  };
+
+  // Validation utils
 
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -113,6 +103,38 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
   const hasSpecialCharacter = (password) => {
     return /[^a-zA-Z0-9]/.test(password);
+  };
+
+  const validateRegisterForm = (register) => {
+    const newErrors = {
+      nickname: "",
+      email: "",
+      password: [],
+    };
+
+    // Set errors, use helper functions
+    newErrors.nickname = validateNickname(register.nickname);
+    newErrors.email = validateEmail(register.email);
+    newErrors.password = validatePassword(register.password);
+
+    // Nickname
+    if (!register.nickname.trim()) {
+      newErrors.nickname = t("error.nickname_required", { ns: "auth" });
+    }
+
+    setErrors({
+      ...newErrors,
+      // Set password array to string
+      password: newErrors.password.join(", "),
+    });
+
+    // Return true when validation is successful
+    return !(
+        newErrors.nickname ||
+        newErrors.email ||
+        newErrors.password.length > 0
+    );
+
   };
 
   return (
