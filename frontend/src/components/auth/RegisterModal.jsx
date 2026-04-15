@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { registerAPICall } from "../../api/authApi";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   if (!isOpen) return null;
@@ -211,6 +212,12 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       </div>
     </div>
   );
+};
+
+RegisterModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSwitchToLogin: PropTypes.func.isRequired,
 };
 
 export default RegisterModal;
