@@ -2,6 +2,10 @@ package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.genre.Genre;
+import com.library.backend.genre.GenreRepository;
+import com.library.backend.language.Language;
+import com.library.backend.language.LanguageRepository;
 import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
 import com.library.backend.notifications.NotificationService;
@@ -39,6 +43,12 @@ class ReservationServiceTest {
 
     @Autowired
     private ReservationService service;
+
+    @Autowired
+    private GenreRepository genreRepo;
+
+    @Autowired
+    private LanguageRepository languageRepo;
 
     @MockitoBean
     private NotificationService notificationService;
@@ -129,5 +139,52 @@ class ReservationServiceTest {
         ).isInstanceOf(RuntimeException.class);
     }
 
+
+    // Reservation not found
+    @Test
+    void shouldReturnNullIfReservationNotFound() {
+        ReservationDTO dto = service.getReservationById(99999);
+
+        assertThat(dto).isNull();
+    }
+
+    // No reservations, check and process reservation queue
+    @Test
+    @Transactional
+    void shouldSetBookAvailableWhenNoReservationsExist() {
+
+        book.setAvailable(false);
+        bookRepo.save(book);
+
+        service.processReservationQueue(book, null);
+
+        Book updated = bookRepo.findById(book.getIsbn()).orElseThrow();
+        assertThat(updated.isAvailable()).isTrue();
+    }
+
+    // Localization
+    @Test
+    @Transactional
+    void shouldLocalizeReservations() {
+
+        Genre genre = new Genre();
+        genre.setGenre("fantasy");
+        genreRepo.save(genre);
+
+        Language language = new Language();
+        language.setLanguage("english");
+        languageRepo.save(language);
+
+        service.createReservation(user.getUserId(), book.getIsbn());
+
+        List<Reservation> reservations =
+                reservationRepo.findByUserUserId(user.getUserId());
+
+        List<ReservationDTO> result =
+                service.localizeReservations(reservations, "en-US");
+
+        assertThat(result).isNotEmpty();
+        assertThat(result.get(0).getTitle()).isNotNull();
+    }
 
 }
