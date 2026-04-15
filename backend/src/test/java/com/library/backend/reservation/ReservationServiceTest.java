@@ -2,6 +2,8 @@ package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.loan.Loan;
+import com.library.backend.loan.LoanRepository;
 import com.library.backend.notifications.NotificationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
@@ -13,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -20,7 +23,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
 @Import(ReservationService.class)
-public class ReservationServiceTest {
+class ReservationServiceTest {
 
     @Autowired
     private UserRepository userRepo;
@@ -30,6 +33,9 @@ public class ReservationServiceTest {
 
     @Autowired
     private ReservationRepository reservationRepo;
+
+    @Autowired
+    private LoanRepository loanRepo;
 
     @Autowired
     private ReservationService service;
@@ -86,4 +92,42 @@ public class ReservationServiceTest {
         ).isInstanceOf(RuntimeException.class);
 
     }
+
+    // Try to create duplicate reservation
+    @Test
+    @Transactional
+    void shouldNotAllowDuplicateReservation() {
+        service.createReservation(user.getUserId(), book.getIsbn());
+
+        assertThatThrownBy(() ->
+                service.createReservation(user.getUserId(), book.getIsbn())
+        ).isInstanceOf(RuntimeException.class);
+    }
+
+    // Try to reserve currently loaned book
+    @Test
+    @Transactional
+    void shouldNotAllowReservationIfUserAlreadyLoanedBook() {
+        Loan loan = new Loan(
+                LocalDate.now().plusWeeks(2),
+                user,
+                book
+        );
+
+        loanRepo.save(loan);
+
+        assertThatThrownBy(() ->
+                service.createReservation(user.getUserId(), book.getIsbn())
+        ).isInstanceOf(RuntimeException.class);
+    }
+
+    // Cancel non-existing reservation
+    @Test
+    void shouldThrowIfReservationNotFound() {
+        assertThatThrownBy(() ->
+                service.cancelReservation(999, user.getUserId())
+        ).isInstanceOf(RuntimeException.class);
+    }
+
+
 }
