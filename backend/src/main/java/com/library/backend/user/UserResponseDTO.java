@@ -10,7 +10,9 @@ public class UserResponseDTO {
     private Integer userId;
     private String email;
     private String nickname;
+    @SuppressWarnings("java:S1068")
     private String role;
+    @SuppressWarnings("java:S1068")
     private String createdAt;
 
     /**
