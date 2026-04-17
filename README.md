@@ -68,7 +68,7 @@ Database & tools: MariaDB, Docker, Jenkins
 <img width="542" height="675" alt="Activity diagram" src="https://github.com/user-attachments/assets/e884941b-b39c-4334-ba4e-ffd2f811e2ef" />
 
 #### Class Diagram
-<img width="1434" height="808" alt="Class diagram" src="https://github.com/user-attachments/assets/462dee04-6065-4e86-84e9-57f246ac8bbc" />
+<img width="1272" height="725" alt="Image" src="https://github.com/user-attachments/assets/3a677cc9-ae0d-4386-b60c-517255445ccf" />
 
 #### Sequence Diagram
 <img width="819" height="738" alt="Sequence Diagram - book loan process" src="https://github.com/user-attachments/assets/95141988-bc87-4fc9-be70-bc9a823965c6" />
