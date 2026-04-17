@@ -50,7 +50,7 @@ const SearchBar = () => {
             <button
               type="button"
               onClick={emptySearchBar}
-              className="absolute inset-y-0 right-2 flex items-center cursor-pointer"
+              className="absolute inset-y-0 end-2 flex items-center cursor-pointer"
             >
               <XMark className="h-full size-6 text-gray-500 hover:text-black" />
             </button>
