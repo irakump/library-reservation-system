@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -136,6 +137,7 @@ public class Book {
     /**
      * Join Author entity class to this Book entity class through Writes table.
      */
+    @Setter
     @Getter
     @ManyToMany
     @JoinTable(
@@ -161,6 +163,7 @@ public class Book {
      * @param language language of book
      * @param available availability status of book
      */
+    @SuppressWarnings("java:S107")
     public Book(
             final String isbn,
             final String title,
@@ -185,6 +188,8 @@ public class Book {
         this.genre = genre;
         this.language = language;
         this.available = available;
+
+        this.authors = new ArrayList<>();
     }
 
     /**
