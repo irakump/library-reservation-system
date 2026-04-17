@@ -52,7 +52,7 @@ export const SearchResults = () => {
             <h2 ref={searchResultsStartRef}>{t('search_results_header')}</h2>
             <h2>
               {new Intl.NumberFormat(i18n.language).format(startIndex + 1)} -{' '}
-              {Math.min(endIndex, searchResults.length)}{' '}
+              {new Intl.NumberFormat(i18n.language).format(Math.min(endIndex, searchResults.length))}{' '}
               /{' '}
               {new Intl.NumberFormat(i18n.language).format(
                 searchResults.length,
