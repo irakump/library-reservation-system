@@ -100,11 +100,12 @@ public class BookService {
             final Genre genre = genreRepo
                     .findById(book.getGenre())
                     .orElseThrow(() ->
-                            new IllegalStateException("Genre not found: " + book.getGenre() + "for" + book.getIsbn()));
+                            new IllegalStateException("Genre not found: " + book.getGenre() + " for " + book.getIsbn()));
 
             final Language language = languageRepo
                     .findById(book.getLanguage())
-                    .orElseThrow(() -> new IllegalStateException("Langauge not found"));
+                    .orElseThrow(() ->
+                            new IllegalStateException("Langauge not found: " + book.getLanguage() + " for " + book.getIsbn()));
 
             final BookDTO dto = new BookDTO(book);
             dto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
