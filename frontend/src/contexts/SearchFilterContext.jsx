@@ -7,7 +7,7 @@ const SearchFilterContext = createContext({
     languages: [],
     years: [],
     available: true,
-    search_term: '',
+    searchTerm: '',
   },
   setSearchFilters: () => {},
 });
@@ -18,7 +18,7 @@ export const SearchFilterProvider = ({ children }) => {
     languages: [],
     years: [],
     available: true,
-    search_term: '',
+    searchTerm: '',
   });
 
   return (
