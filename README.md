@@ -16,6 +16,7 @@ MetBook is a library reservation system prototype designed for managing loans an
    - [Activity Diagram](#activity-diagram)
    - [Class Diagram](#class-diagram)
    - [Sequence Diagram](#sequence-diagram)
+   - [Package Diagram](#package-diagram)
 5. [Development](#development)
    - [Database](#database)
    - [Frontend](#frontend)
@@ -72,6 +73,9 @@ Database & tools: MariaDB, Docker, Jenkins
 
 #### Sequence Diagram
 <img width="819" height="738" alt="Sequence Diagram - book loan process" src="https://github.com/user-attachments/assets/95141988-bc87-4fc9-be70-bc9a823965c6" />
+
+#### Package Diagram
+<img width="874" height="612" alt="Image" src="https://github.com/user-attachments/assets/4a1ed2b3-046b-47c4-a579-55df1e6a400c" />
 
 ---
 
