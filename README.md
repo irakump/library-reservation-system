@@ -136,15 +136,20 @@ Deploy the project to a remote repository: `mvn deploy` (when publishing the fin
 
 ### Jenkins Requirements
 
-Jenkinsfile requires Docker Desktop to be installed. Configure credentials in Jenkins settings:  
-docker_hub (DockerHub), GitHub
+Jenkinsfile requires Docker Desktop to be installed. Configure Jenkins settings (system, tools and credentials) according to the tables below. Use the name in the second column or modify Jenkinsfile to fit yours.
 
-Install plugins:
+| System setting    | Name            |
+| ----------------- | --------------- |
+| SonarQube servers | SonarQubeServer |
 
-- Docker
-- Docker pipeline
-- JaCoCo
-- Pipeline: Stage View
+| Tool              | Name         |
+| ----------------- | ------------ |
+| SonarQube Scanner | SonarScanner |
+
+| Credential | Name       |
+| ---------- | ---------- |
+| DockerHub  | docker_hub |
+| GitHub     | GitHub-pat |
 
 Ensure that Docker Desktop is installed.
 
