@@ -27,7 +27,7 @@ pipeline {
         /* stage ('Check') {
             steps {
                 // can change branch if needed, useful for testing features
-                git url: 'https://github.com/Nurha20-24/library-reservation-system.git', credentialsId: 'GitHub-pat', branch: 'jenkins-integration'
+                git url: 'https://github.com/Nurha20-24/library-reservation-system.git', credentialsId: 'GitHub-pat', branch: 'main'
             }
         } */
 
@@ -118,6 +118,24 @@ pipeline {
             }
         }
 
+        /* SonarQube */
+        stage('SonarQube Analysis') {
+            steps {
+                dir(BACKEND_DIRECTORY) {
+                    script {
+                        def scannerHome = tool 'SonarScanner'
+                        withSonarQubeEnv('SonarQubeServer') {
+                            if (isUnix()) {
+                                sh "${scannerHome}/bin/sonar-scanner"
+                            } else {
+                                bat "${scannerHome}/bin/sonar-scanner"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         /* Docker */
         // add multi-platform support, ARM and AMD
         stage('Build and Push Docker Images to Docker Hub') {
@@ -125,20 +143,18 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS_ID, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                     sh """
                         echo \$DOCKERHUB_PASSWORD | docker login -u \$DOCKERHUB_USERNAME --password-stdin
-                        
+
                         docker buildx create --name mybuilder || true
                         docker buildx use mybuilder
-                        
+
                         docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_BACKEND}:${DOCKER_IMAGE_TAG} ./${BACKEND_DIRECTORY}
                         docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_FRONTEND}:${DOCKER_IMAGE_TAG} ./${FRONTEND_DIRECTORY}
                         docker buildx build --push --platform linux/arm64,linux/amd64 --no-cache --tag \$DOCKERHUB_USERNAME/${DOCKERHUB_REPO_DATABASE}:${DOCKER_IMAGE_TAG} ./${DATABASE_DIRECTORY}
-                        
+
                         docker logout
                     """
                 }
             }
         }
-
     }
-
 }
