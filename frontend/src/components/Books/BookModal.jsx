@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import {localizeYear} from "../../utils/utils.js";
 
 const BookModal = ({ book, pageType, setOpen }) => {
   const { t } = useTranslation("book_card");
@@ -20,6 +21,8 @@ const BookModal = ({ book, pageType, setOpen }) => {
   }, [book]);
 
   if (!book) return;
+
+  const localizedYear = localizeYear(book.year);
 
   return (
     <div
@@ -65,7 +68,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
                       )
                       .join(", ")}
                   </p>
-                  <p className="text-sm mb-1">{book.year} </p>
+                  <p className="text-sm mb-1">{localizedYear} </p>
                 </div>
               </div>
             </div>

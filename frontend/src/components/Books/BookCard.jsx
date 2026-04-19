@@ -5,6 +5,7 @@ import BookButtons from "./BookButtons.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import {localizeYear} from "../../utils/utils.js";
 
 const BookCard = ({ book, pageType, setOpen}) => {
   const [queueLength, setQueueLength] = useState(null);
@@ -19,6 +20,10 @@ const BookCard = ({ book, pageType, setOpen}) => {
         .catch(() => setQueueLength(null));
     }
   }, [isbn, book.availability]);
+
+
+  const localizedYear = localizeYear(book.year);
+
 
   return (
     <div
@@ -47,7 +52,7 @@ const BookCard = ({ book, pageType, setOpen}) => {
             ?.map((author) => `${author.firstName} ${author.lastName}`)
             .join(", ")}
         </p>
-        <p className="text-sm mb-1 text-left rtl:text-right">{book.year}</p>
+        <p className="text-sm mb-1 text-left rtl:text-right">{localizedYear}</p>
         <p className="text-sm mb-1 text-left rtl:text-right capitalize">{book.genre}</p>
 
         {book.availability === false && user && isLoggedIn && (
