@@ -12,6 +12,7 @@ import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
 import com.library.backend.util.LocalizationUtil;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -152,6 +153,7 @@ public class LoanService {
     /**
      * Marks a loan as returned
      * Updates related reservation queue
+     * Calls send notification method
      *
      * @param dto the data required to return a loan
      * @throws RuntimeException if the book or loan is not found
@@ -161,8 +163,7 @@ public class LoanService {
         final Book book = bookRepo.findById(dto.isbn()).orElseThrow(() -> new RuntimeException("book not found"));
         final Loan loan = loanRepo.findById(dto.loanId()).orElseThrow(() -> new RuntimeException("loan not found"));
 
-        final LocalDateTime returnDate = LocalDateTime.now();
-        loan.setReturnDate(returnDate);
+        loan.setReturnDate(LocalDateTime.now());
         loanRepo.save(loan);
 
         bookRepo.save(book);
@@ -170,5 +171,38 @@ public class LoanService {
         // Update reservation queue and book availability
         resService.processReservationQueue(book, loan);
         notifiService.notifyDueDate(loan.getUser(), book);
+    }
+
+    /**
+     * Checks due dates of loans every day at 13
+     * Calls notify method to send a notifications
+     * sets return date of loans due
+     * calls method for processing queue
+     */
+    @Transactional
+    @Scheduled(cron = "0 0 13 * * *", zone = "Europe/Helsinki")
+    public void returnAllBooksByDueDate() {
+        final List<Loan> dueLoans = loanRepo.findByDueDate(LocalDate.now());
+
+        for (final Loan loan : dueLoans) {
+            notifiService.notifyDueDate(loan.getUser(), loan.getBook());
+            loan.setReturnDate(LocalDateTime.now());
+            resService.processReservationQueue(loan.getBook(), loan);
+        }
+    }
+
+    /**
+     * Checks if due date is in 2 days
+     * Calls notify method to send a notice
+     */
+    @Transactional
+    @Scheduled(cron = "0 0 13 * * *", zone = "Europe/Helsinki")
+    public void checkAllComingDueDate() {
+        final LocalDate notifyDay = LocalDate.now().plusDays(2);
+        final List<Loan> loans = loanRepo.findByDueDate(notifyDay);
+
+        for (final Loan loan : loans) {
+            notifiService.notifyComingUpDueDate(loan.getUser(), loan.getBook());
+        }
     }
 }
