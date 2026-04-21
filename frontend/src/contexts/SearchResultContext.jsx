@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchFilters } from './SearchFilterContext';
 import i18n from "i18next";
@@ -22,6 +22,9 @@ export const SearchResultProvider = ({ children }) => {
       .catch((error) => console.error(error));
   };
 
+  useEffect(() => {
+    fetchSearchResults();
+  }, [searchFilters]);
 
   return (
     <SearchResultContext.Provider

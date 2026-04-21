@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSearchResult } from '../../contexts/SearchResultContext';
 import { useSearchFilters } from '../../contexts/SearchFilterContext';
 
 import MagnifyingGlass from '@heroicons/react/16/solid/MagnifyingGlassIcon';
@@ -7,7 +6,6 @@ import XMark from '@heroicons/react/24/solid/XMarkIcon';
 import { useTranslation } from 'react-i18next';
 
 const SearchBar = () => {
-  const { fetchSearchResults } = useSearchResult(); // context
   const { searchFilters, setSearchFilters } = useSearchFilters();
   const { t } = useTranslation("search");
 
@@ -15,13 +13,11 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     setSearchFilters({ ...searchFilters, searchTerm: searchTerm });
-    console.log('Search Filters:', searchFilters);
-
-    fetchSearchResults();
   };
 
   const emptySearchBar = () => {
     setSearchTerm('');
+    setSearchFilters({ ...searchFilters, searchTerm: '' });
   };
 
   return (
