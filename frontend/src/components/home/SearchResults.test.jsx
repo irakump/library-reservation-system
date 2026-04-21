@@ -14,6 +14,8 @@ vi.mock('../../contexts/LayoutDirectionContext.jsx', () => ({
 // import component after mocking
 import SearchResults from './SearchResults.jsx';
 
+window.HTMLElement.prototype.scrollIntoView = vi.fn(); //vi.fn() creates no-op function to prevent error when calling scrollIntoView
+
 describe('SearchResults', () => {
   const resultsPerPage = 8; // !! update to match actual value in SearchResults.jsx
 
