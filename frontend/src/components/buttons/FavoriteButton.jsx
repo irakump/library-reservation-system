@@ -15,14 +15,14 @@ const FavoriteButton = ({ book }) => {
     e.stopPropagation();
 
     if (favorite) {
-      removeFromfavorites(book.isbn ?? book.bookIsbn);
+      removeFromfavorites(book.isbn);
     } else {
       addToFavorites({ ...book, isbn }); // New book object to include also reservations bookIsbn as isbn
     }
   }
 
   return (
-    <button onClick={(e) => onFavoriteClick(e)} className="text-xl">
+    <button onClick={(e) => onFavoriteClick(e)} className="text-xl" aria-label="favorite button">
       {favorite ? (
         <HeartSolid className="h-6 w-6 text-favourite hover:cursor-pointer" />
       ) : (

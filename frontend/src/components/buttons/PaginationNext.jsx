@@ -12,6 +12,7 @@ export default function PaginationNext({
 
   return (
     <button
+      aria-label="next page"
       className=":bg-actionButton p-1.5 rounded-md cursor-pointer hover:bg-actionButtonHover"
       key="next-page"
       data-testid="next-page"

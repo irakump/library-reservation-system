@@ -11,6 +11,7 @@ export default function PaginationPrevious({
 
   return (
     <button
+      aria-label="previous page"
       className=":bg-actionButton p-1.5 rounded-md cursor-pointer hover:bg-actionButtonHover"
       key="previous-page"
       data-testid="previous-page"
