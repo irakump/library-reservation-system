@@ -6,11 +6,13 @@ import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import {localizeYear} from "../../utils/utils.js";
+import { useReservationContext } from "../../contexts/ReservationContext.jsx";
 
 const BookModal = ({ book, pageType, setOpen }) => {
   const { t } = useTranslation("book_card");
   const [queueLength, setQueueLength] = useState(null);
   const { user, isLoggedIn } = useAuth();
+  const { reservations } = useReservationContext();
 
   useEffect(() => {
     if (book.availability === false) {
@@ -18,7 +20,7 @@ const BookModal = ({ book, pageType, setOpen }) => {
         .then((res) => setQueueLength(res.data.queueLength))
         .catch(() => setQueueLength(null));
     }
-  }, [book]);
+  }, [book, reservations]);
 
   if (!book) return;
 

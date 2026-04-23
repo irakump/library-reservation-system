@@ -6,12 +6,14 @@ import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import {localizeYear} from "../../utils/utils.js";
+import { useReservationContext } from "../../contexts/ReservationContext.jsx";
 
 const BookCard = ({ book, pageType, setOpen}) => {
   const [queueLength, setQueueLength] = useState(null);
   const isbn = book.isbn;
   const { user, isLoggedIn } = useAuth();
   const { t } = useTranslation("book_card");
+  const { reservations } = useReservationContext();
 
   useEffect(() => {
     if (book.availability === false) {
@@ -19,7 +21,7 @@ const BookCard = ({ book, pageType, setOpen}) => {
         .then((res) => setQueueLength(res.data.queueLength))
         .catch(() => setQueueLength(null));
     }
-  }, [isbn, book.availability]);
+  }, [isbn, book.availability, reservations]);
 
   const localizedYear = localizeYear(book.year);
 
