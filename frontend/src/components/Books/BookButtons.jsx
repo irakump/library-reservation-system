@@ -4,11 +4,13 @@ import HistoryText from "../buttons/HistoryText.jsx";
 import { useTranslation } from "react-i18next";
 import {useAuth} from "../../contexts/AuthContext.jsx";
 import {useLoanContext} from "../../contexts/LoanContext.jsx";
+import { useReservationContext } from "../../contexts/ReservationContext.jsx";
 
 function BookButtons({pageType, book}) {
     const { t } = useTranslation("button")
     const {isLoggedIn} = useAuth()
     const {loans} = useLoanContext()
+    const { reservations } = useReservationContext();
     let returnButton;
     let loan;
 
@@ -25,8 +27,15 @@ function BookButtons({pageType, book}) {
             else if (loans.find((b) => b.isbn === book.isbn)) {
                 returnButton = <LoanButton pageType={pageType} book={loan}>{t("return")}</LoanButton>
                 break;
-            }
-            else {
+            } else if (reservations.find((r) => r.isbn === book.isbn)) {
+                const reservation = reservations.find((r) => r.isbn === book.isbn);
+                returnButton = (
+                <ReserveButton pageType="reservation" book={{ ...book, reservationId: reservation.reservationId }}>
+                    {t("cancel")}
+                </ReserveButton>
+            );
+            break;
+            } else {
                 returnButton = <ReserveButton pageType={pageType} book={book}>{t("reserve")}</ReserveButton>
                 break;
             }
