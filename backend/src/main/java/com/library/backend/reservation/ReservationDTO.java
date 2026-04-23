@@ -25,6 +25,7 @@ public class ReservationDTO {
     private int year;
     private String language;
     private String genre;
+    private Boolean availability;
 
     private List<AuthorDTO> authors;
 
@@ -42,6 +43,7 @@ public class ReservationDTO {
         this.year = book.getYear();
         this.language = book.getLanguage();
         this.genre = book.getGenre();
+        this.availability = book.isAvailable();
 
         this.authors = book.getAuthors() != null
                 ? book.getAuthors().stream()

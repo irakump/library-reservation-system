@@ -9,7 +9,7 @@ import {localizeYear} from "../../utils/utils.js";
 
 const BookCard = ({ book, pageType, setOpen}) => {
   const [queueLength, setQueueLength] = useState(null);
-  const isbn = pageType === "reservation" ? book.bookIsbn : book.isbn;
+  const isbn = book.isbn;
   const { user, isLoggedIn } = useAuth();
   const { t } = useTranslation("book_card");
 
@@ -21,9 +21,7 @@ const BookCard = ({ book, pageType, setOpen}) => {
     }
   }, [isbn, book.availability]);
 
-
   const localizedYear = localizeYear(book.year);
-
 
   return (
     <div
