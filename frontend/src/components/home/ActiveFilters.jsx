@@ -19,28 +19,26 @@ const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
   };
 
   return (
-    <>
       <div className="flex flex-wrap gap-2">
-        {/* remove all filters */}
-        <FilterTag
-          filterName={t("filters.clear_filters_btn")}
-          closeButton={false}
-          onRemove={() => onRemove(null, null)}
-        />
+          {/* remove all filters */}
+          <FilterTag
+              filterName={t("filters.clear_filters_btn")}
+              closeButton={false}
+              onRemove={() => onRemove(null, null)}
+          />
 
-        {/* individual filters */}
-        {Object.entries(filters).map(([filterType, filters]) =>
-          filters.map((filter) => (
-            <FilterTag
-              key={filter}
-              filterName={getDisplayName(filterType, filter)}
-              filterType={filterType}
-              onRemove={() => onRemove(filter, filterType)}
-            />
-          )),
-        )}
+          {/* individual filters */}
+          {Object.entries(filters).map(([filterType, filters]) =>
+              filters.map((filter) => (
+                  <FilterTag
+                      key={filter}
+                      filterName={getDisplayName(filterType, filter)}
+                      filterType={filterType}
+                      onRemove={() => onRemove(filter, filterType)}
+                  />
+              )),
+          )}
       </div>
-    </>
   );
 };
 
