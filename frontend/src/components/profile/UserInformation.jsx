@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/AuthContext";
+import { useLayoutDirection } from "../../contexts/LayoutDirectionContext";
 
 const UserInformation = () => {
   const { user, isLoggedIn } = useAuth();
   const { t } = useTranslation("profile");
+  const { formatDate } = useLayoutDirection();
 
   if (!isLoggedIn || !user) {
     return (
@@ -24,7 +26,7 @@ const UserInformation = () => {
     {
       id: "created",
       label: t("my_page.user_creation"),
-      value: user.createdAt,
+      value: formatDate(user.createdAt),
     },
   ];
 

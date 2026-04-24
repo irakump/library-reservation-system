@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -84,14 +85,9 @@ public class AuthService {
                 user.getRole().toString()
         );
 
-        String createdAt = null;
+        LocalDateTime createdAt = null;
         if (user.getCreatedAt() != null) {
-            final DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern(
-                            "d.M.yyyy");
-            createdAt = user.getCreatedAt().
-                    toLocalDateTime().
-                    format(formatter);
+            createdAt = user.getCreatedAt().toLocalDateTime();
         }
 
         // Return response with token and user info

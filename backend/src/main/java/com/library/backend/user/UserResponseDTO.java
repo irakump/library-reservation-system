@@ -1,5 +1,6 @@
 package com.library.backend.user;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +14,7 @@ public class UserResponseDTO {
     @SuppressWarnings("java:S1068")
     private String role;
     @SuppressWarnings("java:S1068")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     /**
      * Creates a response DTO from a User entity.
@@ -28,10 +29,7 @@ public class UserResponseDTO {
 
         // Format timestamp
         if (user.getCreatedAt() != null) {
-            LocalDateTime dateTime = user.getCreatedAt().toLocalDateTime();
-            DateTimeFormatter formatter = DateTimeFormatter
-                    .ofPattern("d.M.yyyy");
-            this.createdAt = dateTime.format(formatter);
+            this.createdAt = user.getCreatedAt().toLocalDateTime();
         }
     }
 

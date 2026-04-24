@@ -3,6 +3,8 @@ package com.library.backend.auth;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * Response object returned after successful login.
  */
@@ -20,5 +22,5 @@ public class LoginResponse {
     /** User's role (user or admin). */
     private String role;
     /** Account creation date. */
-    private String createdAt;
+    private LocalDateTime createdAt;
 }
