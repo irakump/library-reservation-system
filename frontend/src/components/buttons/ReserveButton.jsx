@@ -3,7 +3,6 @@
 import { useTranslation } from "react-i18next";
 import { useReservationContext } from "../../contexts/ReservationContext";
 import { useSearchResult } from "../../contexts/SearchResultContext.jsx";
-import { useSearchFilters } from "../../contexts/SearchFilterContext.jsx";
 import PropTypes from "prop-types";
 
 function ReserveButton({ pageType, book, children }) {
@@ -11,7 +10,6 @@ function ReserveButton({ pageType, book, children }) {
     useReservationContext();
   const { t } = useTranslation("book_card");
   const { fetchSearchResults } = useSearchResult();
-  const { setSearchFilters } = useSearchFilters();
 
   // New reservation
   return pageType === "reservation" ? (
@@ -24,7 +22,6 @@ function ReserveButton({ pageType, book, children }) {
         onClick={async (e) => {
           e.stopPropagation();
           await updateReservationStatus(book.reservationId);
-          await setSearchFilters();
           await fetchSearchResults();
         }}
       >

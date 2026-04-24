@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import {useLoanContext} from "../../contexts/LoanContext.jsx";
 import {useLayoutDirection} from "../../contexts/LayoutDirectionContext.jsx";
 import {useSearchResult} from "../../contexts/SearchResultContext.jsx";
-import {useSearchFilters} from "../../contexts/SearchFilterContext.jsx";
 import PropTypes from "prop-types";
 
 function LoanButton({pageType, book, children}) {
@@ -10,7 +9,6 @@ function LoanButton({pageType, book, children}) {
     const { t } = useTranslation("book_card");
     const {formatDate} = useLayoutDirection();
     const {fetchSearchResults} = useSearchResult();
-    const {setSearchFilters} = useSearchFilters();
 
     //new loan
     return pageType === "home" && book.availability ? (
@@ -32,7 +30,6 @@ function LoanButton({pageType, book, children}) {
                     onClick={async (e) => {
                         e.stopPropagation();
                         await removeLoans(book.userId, book.isbn, book.loanId);
-                        await setSearchFilters([]);
                         await fetchSearchResults()
                     }}>
                 {children}
