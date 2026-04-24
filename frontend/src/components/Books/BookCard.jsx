@@ -5,10 +5,11 @@ import BookButtons from "./BookButtons.jsx";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import {localizeYear} from "../../utils/utils.js";
+import { localizeYear } from "../../utils/utils.js";
 import { useReservationContext } from "../../contexts/ReservationContext.jsx";
+import i18n from "../../i18n.js";
 
-const BookCard = ({ book, pageType, setOpen}) => {
+const BookCard = ({ book, pageType, setOpen }) => {
   const [queueLength, setQueueLength] = useState(null);
   const isbn = book.isbn;
   const { user, isLoggedIn } = useAuth();
@@ -53,10 +54,19 @@ const BookCard = ({ book, pageType, setOpen}) => {
             .join(", ")}
         </p>
         <p className="text-sm mb-1 text-left rtl:text-right">{localizedYear}</p>
-        <p className="text-sm mb-1 text-left rtl:text-right capitalize">{book.genre}</p>
+        <p className="text-sm mb-1 text-left rtl:text-right capitalize">
+          {book.genre}
+        </p>
 
         {book.availability === false && user && isLoggedIn && (
-          <p className="text-sm mb-1">{t("queue_length", { queue_length: queueLength ?? "..." })}</p>
+          <p className="text-sm mb-1">
+            {t("queue_length", {
+              queue_length:
+                typeof queueLength === "number"
+                  ? new Intl.NumberFormat(i18n.language).format(queueLength)
+                  : "...",
+            })}
+          </p>
         )}
 
         <div className="mt-auto">
@@ -75,10 +85,10 @@ BookCard.propTypes = {
     year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     genre: PropTypes.string,
     authors: PropTypes.arrayOf(
-        PropTypes.shape({
-          firstName: PropTypes.string,
-          lastName: PropTypes.string,
-        })
+      PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+      }),
     ),
     availability: PropTypes.bool,
   }).isRequired,

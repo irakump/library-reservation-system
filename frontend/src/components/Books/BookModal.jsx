@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import {localizeYear} from "../../utils/utils.js";
+import { localizeYear } from "../../utils/utils.js";
 import { useReservationContext } from "../../contexts/ReservationContext.jsx";
+import i18n from "../../i18n.js";
 
 const BookModal = ({ book, pageType, setOpen }) => {
   const { t } = useTranslation("book_card");
@@ -91,7 +92,14 @@ const BookModal = ({ book, pageType, setOpen }) => {
             <div className="text-sm items-start">
               {book.availability === false && user && isLoggedIn && (
                 <p>
-                  {t("queue_length", { queue_length: queueLength ?? "..." })}
+                  {t("queue_length", {
+                    queue_length:
+                      typeof queueLength === "number"
+                        ? new Intl.NumberFormat(i18n.language).format(
+                            queueLength,
+                          )
+                        : "...",
+                  })}
                 </p>
               )}
             </div>
