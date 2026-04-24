@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import FilterTag from "./FilterTag";
 import PropTypes from "prop-types";
+import { localizeYear } from "../../utils/utils";
 
 const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
   const { t } = useTranslation("search");
@@ -15,30 +16,35 @@ const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
       const found = languages.find((l) => l.languageKey === filter);
       return found ? found.language : filter;
     }
+
+    if (filterType === "years") {
+      return localizeYear(filter);
+    }
+
     return filter;
   };
 
   return (
-      <div className="flex flex-wrap gap-2">
-          {/* remove all filters */}
-          <FilterTag
-              filterName={t("filters.clear_filters_btn")}
-              closeButton={false}
-              onRemove={() => onRemove(null, null)}
-          />
+    <div className="flex flex-wrap gap-2">
+      {/* remove all filters */}
+      <FilterTag
+        filterName={t("filters.clear_filters_btn")}
+        closeButton={false}
+        onRemove={() => onRemove(null, null)}
+      />
 
-          {/* individual filters */}
-          {Object.entries(filters).map(([filterType, filters]) =>
-              filters.map((filter) => (
-                  <FilterTag
-                      key={filter}
-                      filterName={getDisplayName(filterType, filter)}
-                      filterType={filterType}
-                      onRemove={() => onRemove(filter, filterType)}
-                  />
-              )),
-          )}
-      </div>
+      {/* individual filters */}
+      {Object.entries(filters).map(([filterType, filters]) =>
+        filters.map((filter) => (
+          <FilterTag
+            key={filter}
+            filterName={getDisplayName(filterType, filter)}
+            filterType={filterType}
+            onRemove={() => onRemove(filter, filterType)}
+          />
+        )),
+      )}
+    </div>
   );
 };
 

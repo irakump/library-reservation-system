@@ -5,6 +5,7 @@ import { useSearchResult } from "../../contexts/SearchResultContext.jsx";
 import { useSearchFilters } from "../../contexts/SearchFilterContext.jsx";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n.js";
+import { localizeYear } from "../../utils/utils";
 
 const SearchFilters = () => {
   // context
@@ -245,7 +246,7 @@ const SearchFilters = () => {
                       value={item}
                       disabled={selectedYears.includes(item)}
                     >
-                      {item}
+                      {localizeYear(item)}
                     </option>
                   ))}
               </select>
