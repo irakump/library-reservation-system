@@ -118,9 +118,17 @@ Start: run `npm run dev`
 **Test:**  
 Run `npm run test` in frontend folder to run frontend tests.
 
-**End-to-end test (Playwright):**  
+**End-to-end test (Playwright):** 
+
+**Setup before running tests:**  
+1. Create new local user (or use existing one)  
+2. Add `TEST_EMAIL` and `TEST_PASSWORD` to .env file (check .env.sample)  
+
+If needed, install Playwright browsers locally: `npx playwright install`  
+
+**Run tests:**  
 Make sure both backend and frontend are running. Then run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.  
-If needed, install Playwright browsers locally: `npx playwright install`
+
 
 ## Backend
 
