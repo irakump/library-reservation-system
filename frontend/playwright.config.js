@@ -1,5 +1,12 @@
 // @ts-check
 import { defineConfig, devices } from "@playwright/test";
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+/* Locate .env from root */
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 /**
  * Read environment variables from file.
