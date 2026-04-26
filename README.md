@@ -119,7 +119,8 @@ Start: run `npm run dev`
 Run `npm run test` in frontend folder to run frontend tests.
 
 **End-to-end test (Playwright):**  
-Make sure both backend and frontend are running. Then run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.
+Make sure both backend and frontend are running. Then run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.  
+If needed, install Playwright browsers locally: `npx playwright install`
 
 ## Backend
 
