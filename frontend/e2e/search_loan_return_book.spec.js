@@ -10,18 +10,22 @@ test.describe("Find, loan, and return book", () => {
 
   // Login
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/');
-    await page.getByRole('button', { name: /login/i }).click();
-    
-    const modal = page.locator('div.fixed.inset-0');
+    await page.goto("http://localhost:5173/");
+    await page.getByRole("button", { name: /login/i }).click();
+
+    const modal = page.locator("div.fixed.inset-0");
     await expect(modal).toBeVisible();
-    
+
     // Fill form
-    await modal.getByPlaceholder('example@gmail.com').fill(process.env.TEST_EMAIL);
-    await modal.getByPlaceholder('Enter your password').fill(process.env.TEST_PASSWORD);
-    await modal.getByRole('button', { name: /login/i }).click();
-    
-    await expect(page.getByRole('button', { name: /logout/i })).toBeVisible();
+    await modal
+      .getByPlaceholder("example@gmail.com")
+      .fill(process.env.TEST_EMAIL);
+    await modal
+      .getByPlaceholder("Enter your password")
+      .fill(process.env.TEST_PASSWORD);
+    await modal.getByRole("button", { name: /login/i }).click();
+
+    await expect(page.getByRole("button", { name: /logout/i })).toBeVisible();
   });
 
   test("Check first book info and loan book", async ({ page }) => {
@@ -99,18 +103,23 @@ test.describe("Find, loan, and return book", () => {
     await expect(loanButton).toBeVisible();
 
     // Listener for loan confirmation alert
-    const dialogPromise = page.waitForEvent('dialog');
+    const dialogPromise = page.waitForEvent("dialog");
 
     // Click Loan
     await loanButton.click();
 
     // Verify alert message and close it
     const dialog = await dialogPromise;
-    expect(dialog.message()).toContain(bookTitle + ' loaned');
+    expect(dialog.message()).toContain(bookTitle + " loaned");
     await dialog.accept();
 
+    // -- Step 3: Navigete to loans page and verify loaned book
 
-    // next test
+    await page.getByRole("button", { name: /profile/i }).click();
+    await page.getByRole("link", { name: /loans/i }).click();
 
+    await page.waitForLoadState("networkidle");
+
+    await expect(page.getByRole("heading", { name: bookTitle })).toBeVisible();
   });
 });
