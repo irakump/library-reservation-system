@@ -121,5 +121,29 @@ test.describe("Find, loan, and return book", () => {
     await page.waitForLoadState("networkidle");
 
     await expect(page.getByRole("heading", { name: bookTitle })).toBeVisible();
+
+    // -- Step 4: Return book, close alert and verify book disappears from loans page
+
+      //find loaned book
+      const book = page.locator(".bg-white.rounded-lg").filter({ hasText: bookTitle});
+      const returnButton = book.getByRole("button", { name: /return/i });
+
+      //check if button is visible
+      await expect(returnButton).toBeVisible();
+
+      //listener for alert
+      const dialogAlert = page.waitForEvent("dialog");
+
+      // click return button
+      await returnButton.click();
+
+      const dialogReturn = await dialogAlert;
+
+      //check and accept alert message
+      await expect(dialogReturn.message()).toContain(bookTitle + " returned");
+      await dialogReturn.accept();
+
+      //check that book disappeared from the page
+      await expect(page.getByText(bookTitle)).toHaveCount(0);
   });
 });
