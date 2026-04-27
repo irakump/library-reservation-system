@@ -57,7 +57,7 @@ export const LoanProvider = ({ children }) => {
       const loan = loans.find((l) => l.loanId === loanId); // Find loan to get book title
       const title = loan.title || t("book"); // Fallback title is Book
 
-      await returnLoan(userId, isbn, loanId);
+      await returnLoan(userId, isbn, loanId, i18n.language);
       setLoans((prev) => prev.filter((f) => f.loanId !== loanId));
       alert(`${title} ${t("returned")}`);
     } catch (error) {
