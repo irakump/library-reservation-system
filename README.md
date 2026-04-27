@@ -144,6 +144,10 @@ Open index.html document from target/site/jacoco.
 
 Deploy the project to a remote repository: `mvn deploy` (when publishing the final product).
 
+### Environment Variables
+
+Copy `.env.sample` file located in root folder and create environment variables file `.env`. This includes secret variables. Modify them as needed.
+
 ## Jenkins and Docker
 
 ### Jenkins Requirements
@@ -235,6 +239,9 @@ Once the container is running, open `http://localhost:3000` in the browser.
 
 > [!IMPORTANT]
 > Remember to pull changes every now and then if you want images to stay up to date.
+
+> [!IMPORTANT]
+> Make sure you have set up environment variables as `.env` file in the folder Docker images are run from. Instructions [here](#environment-variables).
 
 ## Localization
 
