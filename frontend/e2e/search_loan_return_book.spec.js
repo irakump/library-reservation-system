@@ -67,7 +67,7 @@ test.describe("Find, loan, and return book", () => {
     //console.log(bookTitle, bookAuthors, bookPublishingYear, bookGenre)
 
     // click on book heading to open book modal
-    await page.getByRole("heading", { name: bookTitle }).click();
+    await page.getByRole("heading", { name: bookTitle }).first().click();
 
     // check that book modal info matches book card info (title, authors, year, genre)
     await expect(
