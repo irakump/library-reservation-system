@@ -10,13 +10,8 @@ MetBook is a library reservation system prototype designed for managing loans an
 1. [Features](#features)
 2. [Technologies](#technologies)
 3. [Documents](#documents)
-   - [Use Case Diagram](#use-case-diagram)
    - [ER Diagram](#er-diagram)
-   - [Relational Schema](#relational-schema)
    - [Activity Diagram](#activity-diagram)
-   - [Class Diagram](#class-diagram)
-   - [Sequence Diagram](#sequence-diagram)
-   - [Package Diagram](#package-diagram)
 5. [Development](#development)
    - [Database](#database)
    - [Frontend](#frontend)
@@ -54,28 +49,21 @@ Database & tools: MariaDB, Docker, Jenkins
 
 
 ### Documents
-[Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains ER Diagrams and Sprint reports.   
-
-#### Use Case Diagram
-<img width="1217" height="1015" alt="use case diagram" src="https://github.com/user-attachments/assets/a0aba006-d85d-4600-a692-db70f193df0c" />
+[Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains Diagrams, Project reports and Sprint reports.   
+[Diagrams](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents/Diagrams) folder contains the following diagrams:
+- [Activity diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/activity%20_diagram.pdf)
+- [Class diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/class_diagram.pdf)
+- [Relational Schema](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/library_database_relational_schema.png)
+- [Package diagram](http://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/package_diagram.pdf)
+- [Sequence diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/sequence_diagram.pdf)
+- [Use case diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/use-case-diagram-sprint1.pdf)
+- ER and activity diagram, which are shown below
 
 #### ER Diagram
 ![Image of Database ER Diagram](/Documents/Diagrams/library_database_er_diagram.png)
 
-#### Relational Schema
-![Image of Database Relational Schema](/Documents/Diagrams/library_database_relational_schema.png)
-
 #### Activity Diagram
 <img width="542" height="675" alt="Activity diagram" src="https://github.com/user-attachments/assets/e884941b-b39c-4334-ba4e-ffd2f811e2ef" />
-
-#### Class Diagram
-<img width="1272" height="725" alt="Image" src="https://github.com/user-attachments/assets/3a677cc9-ae0d-4386-b60c-517255445ccf" />
-
-#### Sequence Diagram
-<img width="819" height="738" alt="Sequence Diagram - book loan process" src="https://github.com/user-attachments/assets/95141988-bc87-4fc9-be70-bc9a823965c6" />
-
-#### Package Diagram
-<img width="874" height="612" alt="Image" src="https://github.com/user-attachments/assets/4a1ed2b3-046b-47c4-a579-55df1e6a400c" />
 
 ---
 
