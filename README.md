@@ -253,7 +253,7 @@ The application has been localized into three languages: English, Japanese, and 
 
 `react-i18next` is used for localization in the application frontend. The original language of the app is English. Translations into other languages were created by translating externalized English strings using AI.
 
-To add a new language:
+To add a new localization:
 
 1. Copy all files from `frontend/public/locales/en/`.
 2. Create a new folder for the target language inside `frontend/public/locales/`.
@@ -261,9 +261,10 @@ To add a new language:
 4. Translate the strings either:
    - manually, one by one, or
    - in bulk using AI.
-
-todo:
-add info about what else to change, like navbar menus and footer menu, i18n.js, i18next.config.js
+5. Add the new locale to:
+   - `defineConfig.locales` in `frontend/i18next.config.js`,
+   - `i18n.init.preload` in `frontend/src/i18n.js`,
+   - `locales` in `frontend/src/utils/locales.js`. Also add native translation of language name here.
 
 ### Database
 
