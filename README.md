@@ -60,7 +60,7 @@ Database & tools: MariaDB, Docker, Jenkins
 - ER and activity diagram, which are shown below
 
 #### ER Diagram
-![Image of Database ER Diagram](/Documents/Diagrams/library_database_er_diagram.png)
+![Image of Database ER Diagram](/documents/diagrams/library_database_er_diagram.png)
 
 #### Activity Diagram
 <img width="542" height="675" alt="Activity diagram" src="https://github.com/user-attachments/assets/e884941b-b39c-4334-ba4e-ffd2f811e2ef" />
