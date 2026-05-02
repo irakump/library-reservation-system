@@ -2,6 +2,7 @@ package com.library.backend.reservation;
 
 import com.library.backend.author.AuthorDTO;
 import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,6 +49,27 @@ public class ReservationDTO {
         this.authors = book.getAuthors() != null
                 ? book.getAuthors().stream()
                 .map(AuthorDTO::new)
+                .toList()
+                : List.of();
+    }
+
+    public ReservationDTO(Reservation r, BookDTO book) {
+        this.reservationId = r.getReservationId();
+        this.createdAt = r.getCreatedAt();
+        this.status = r.getStatus().name();
+        this.isbn = r.getBook().getIsbn();
+        this.userId = r.getUser().getUserId();
+
+        this.title = book.getTitle();
+        this.image = book.getIsbn();
+        this.description = book.getDescription();
+        this.year = book.getYear();
+        this.language = book.getLanguage();
+        this.genre = book.getGenre();
+        this.availability = book.isAvailability();
+
+        this.authors = book.getAuthors() != null
+                ? book.getAuthors().stream()
                 .toList()
                 : List.of();
     }

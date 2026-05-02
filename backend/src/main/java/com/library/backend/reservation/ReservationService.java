@@ -1,18 +1,14 @@
 package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
 import com.library.backend.book.BookRepository;
-import com.library.backend.genre.Genre;
-import com.library.backend.genre.GenreRepository;
-import com.library.backend.language.Language;
-import com.library.backend.language.LanguageRepository;
+import com.library.backend.book.BookService;
 import com.library.backend.loan.Loan;
 import com.library.backend.loan.LoanRepository;
-import com.library.backend.notifications.MailService;
 import com.library.backend.notifications.NotificationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
-import com.library.backend.util.LocalizationUtil;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +27,15 @@ public class ReservationService {
     private final ReservationRepository reservationRepo;
     private final LoanRepository loanRepo;
     private final NotificationService notificationService;
-    private final GenreRepository genreRepo;
-    private final LanguageRepository languageRepo;
+    private final BookService bookService;
 
-    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo, NotificationService notificationService, GenreRepository genreRepo, LanguageRepository languageRepo) {
+    public ReservationService(UserRepository userRepo, BookRepository bookRepo, ReservationRepository reservationRepo, LoanRepository loanRepo, NotificationService notificationService, BookService bookService) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.reservationRepo = reservationRepo;
         this.loanRepo = loanRepo;
         this.notificationService = notificationService;
-        this.genreRepo = genreRepo;
-        this.languageRepo = languageRepo;
+        this.bookService = bookService;
     }
 
     // Get all reservations
@@ -79,7 +73,7 @@ public class ReservationService {
 
     // Process reservation queue
     @Transactional
-    public void processReservationQueue(Book book, Loan oldLoan) {
+    public void processReservationQueue(Book book) {
         List<ReservationDTO> activeReservations = getActiveReservationsByIsbn(book.getIsbn(), active);
 
         if (activeReservations.isEmpty()) {
@@ -94,7 +88,7 @@ public class ReservationService {
                 .min(Comparator.comparing(ReservationDTO::getCreatedAt))
                 .orElseThrow();
 
-        // Get oldest reservation entity
+        // Get the oldest reservation entity
         Reservation oldest = reservationRepo.findById(oldestDTO.getReservationId()).orElseThrow(() ->
                 new RuntimeException("Reservation not found"));
 
@@ -157,17 +151,11 @@ public class ReservationService {
         reservationRepo.save(reservation);
     }
 
+    //localize reservations
     public List<ReservationDTO> localizeReservations(List<Reservation> reservations, String lang) {
         return reservations.stream().map(r -> {
-            Genre genre = genreRepo.findById(r.getBook().getGenre()).orElseThrow(() -> new IllegalStateException("Genre not found"));
-            Language language = languageRepo.findById(r.getBook().getLanguage()).orElseThrow(() -> new IllegalStateException("Language not found"));
-
-            ReservationDTO dto = new ReservationDTO(r);
-            dto.setTitle(LocalizationUtil.getLocalizedTitle(r.getBook(), lang));
-            dto.setDescription(LocalizationUtil.getLocalizedDescription(r.getBook(), lang));
-            dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
-            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
-            return dto;
+            BookDTO bookDTO = bookService.localizeBook(r.getBook(), lang);
+            return new ReservationDTO(r, bookDTO);
         }).toList();
     }
 }
