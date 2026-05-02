@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import FilterTag from "./FilterTag";
 import PropTypes from "prop-types";
-import { localizeYear } from "../../utils/utils";
+import { localizeYear } from "../../utils/DateUtils.js";
 
 const ActiveFilters = ({ filters, genres, languages, onRemove }) => {
   const { t } = useTranslation("search");

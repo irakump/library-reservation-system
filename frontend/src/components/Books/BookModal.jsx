@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import { localizeYear } from "../../utils/utils.js";
+import { localizeYear } from "../../utils/DateUtils.js";
 import { useReservationContext } from "../../contexts/ReservationContext.jsx";
 import i18n from "../../i18n.js";
 
