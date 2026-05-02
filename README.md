@@ -277,6 +277,18 @@ To add a new language:
 
 ---
 
+## Repository Structure
+
+The repository contains three main folders:
+
+- **/backend** – Backend code, tests, and database scripts
+- **/documents** – Project documentation, diagrams, reports, and sprint reports
+- **/frontend** – Frontend code and related tests
+
+The project root also includes a Jenkinsfile for CI/CD pipeline configuration, Docker compose files for containerization, and a `.env.sample` file for environment variable setup example.
+
+---
+
 # API endpoints
 
 Base URL: http://localhost:8081/api
