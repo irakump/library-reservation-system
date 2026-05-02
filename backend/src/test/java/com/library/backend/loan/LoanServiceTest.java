@@ -1,9 +1,10 @@
 package com.library.backend.loan;
+import com.library.backend.author.Author;
 import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
 import com.library.backend.book.BookRepository;
-import com.library.backend.genre.Genre;
+import com.library.backend.book.BookService;
 import com.library.backend.genre.GenreRepository;
-import com.library.backend.language.Language;
 import com.library.backend.language.LanguageRepository;
 import com.library.backend.notifications.NotificationService;
 import com.library.backend.reservation.ReservationService;
@@ -49,6 +50,9 @@ class LoanServiceTest {
     @Mock
     private NotificationService notificationService;
 
+    @Mock
+    private BookService bookService;
+
     @InjectMocks
     private LoanService loanService;
 
@@ -57,15 +61,14 @@ class LoanServiceTest {
     private Loan loan;
     private Loan returnedLoan;
     private Loan upcomingLoan;
-    private Genre genre;
-    private Language language;
     private LocalDate advancedDate;
 
     @BeforeEach
     void setUp() {
         user = new User("joku@gmail.com", "joku", "LKJKJS9987dakkcvdQl");
 
-        book = new Book("88281201228", "joku", "joku in japan", "joku", 2005, "jshdahdhad", "jsjdd", "shddd", "children", "finnish", false);
+
+        book = new Book("88281201228", "joku", "joku in japan", "joku", 2005, "jshdahdhad", "jsjdd", "arabicdesc", "children", "finnish", false);
 
         Book returnedBook = new Book("11111", "Returned", "Japanese title", "Arabese title", 2833, "something", "something", "hsdksd", "skdks", "finnish", false );
 
@@ -77,8 +80,10 @@ class LoanServiceTest {
 
         upcomingLoan = new Loan(advancedDate, user, book);
 
-        genre = new Genre("children", "子供たち", "أطفال");
-        language = new Language("finnish", "フィンランド語", "الفنلندية");
+        final Author author1 = new Author("J.K.", "Rowling", "J.K.", "ローリング", "ج.ك.", "رولينغ");
+        final Author author2 = new Author("Tove", "Jansson", "トーベ", "ヤンソン", "توفه", "يانسون");
+
+        book.setAuthors(List.of(author1, author2));
     }
 
 
@@ -117,10 +122,9 @@ class LoanServiceTest {
 
     @Test
     void testLocalizeLoansEnglish() {
-        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
-        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+        when(bookService.localizeBook(book, "en-US")).thenReturn(new BookDTO(book));
 
-        List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "en");
+        List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "en-US");
 
         assertEquals(1, result.size());
         assertEquals("joku", result.getFirst().getTitle());
@@ -131,8 +135,13 @@ class LoanServiceTest {
 
     @Test
     void testLocalizeLoansJapanese() {
-        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
-        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+        BookDTO bookDTO = new BookDTO(book);
+        bookDTO.setTitle("joku in japan");
+        bookDTO.setDescription("jsjdd");
+        bookDTO.setGenre("子供たち");
+        bookDTO.setLanguage("フィンランド語");
+
+        when(bookService.localizeBook(book, "ja-JP")).thenReturn(bookDTO);
 
         List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "ja-JP");
 
@@ -145,14 +154,19 @@ class LoanServiceTest {
 
     @Test
     void testLocalizeLoansArabic() {
-        when(genreRepo.findById("children")).thenReturn(Optional.of(genre));
-        when(languageRepo.findById("finnish")).thenReturn(Optional.of(language));
+        BookDTO bookDTO = new BookDTO(book);
+        bookDTO.setTitle("arabic_title");
+        bookDTO.setDescription("arabicdesc");
+        bookDTO.setGenre("أطفال");
+        bookDTO.setLanguage("الفنلندية");
+
+        when(bookService.localizeBook(book, "ar-u-nu-arab")).thenReturn(bookDTO);
 
         List<LoanDTO> result = loanService.localizeLoans(List.of(loan), "ar-u-nu-arab");
 
         assertEquals(1, result.size());
-        assertEquals("joku", result.getFirst().getTitle());
-        assertEquals("shddd", result.getFirst().getDescription());
+        assertEquals("arabic_title", result.getFirst().getTitle());
+        assertEquals("arabicdesc", result.getFirst().getDescription());
         assertEquals("أطفال", result.getFirst().getGenre());
         assertEquals("الفنلندية", result.getFirst().getLanguage());
     }
@@ -166,6 +180,7 @@ class LoanServiceTest {
         when(userRepo.findById(1)).thenReturn(Optional.of(user));
         when(bookRepo.findById("123")).thenReturn(Optional.of(book));
         when(loanRepo.save(any(Loan.class))).thenReturn(loan);
+        when(bookService.localizeBook(book, "en-US")).thenReturn(new BookDTO(book));
 
         LoanDTO result = loanService.createLoan(dto, "en-US");
 
@@ -200,7 +215,7 @@ class LoanServiceTest {
         assertThat(loan.getReturnDate()).isNotNull();
         verify(loanRepo).save(loan);
         verify(bookRepo).save(book);
-        verify(reservationService).processReservationQueue(book, loan);
+        verify(reservationService).processReservationQueue(book);
         verify(notificationService).notifyDueDate(user, book);
     }
 
@@ -216,7 +231,6 @@ class LoanServiceTest {
     }
 
     //returnAllBooksByDueDate
-
     @Test
     void testProcessAllDueLoans() {
         Loan loan1 = new Loan(LocalDate.now(), user, book);
@@ -228,12 +242,11 @@ class LoanServiceTest {
         assertThat(loan1.getReturnDate()).isNotNull();
         assertThat(loan2.getReturnDate()).isNotNull();
         verify(notificationService, times(2)).notifyDueDate(user, book);
-        verify(reservationService, times(2)).processReservationQueue(eq(book), any(Loan.class));
+        verify(reservationService, times(2)).processReservationQueue(book);
     }
 
 
     //shouldNotifyComingDueDate
-
     @Test
     void testNotifyForDueDateInTwoDays() {
         when(loanRepo.findByDueDate(advancedDate)).thenReturn(List.of(upcomingLoan));

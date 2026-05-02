@@ -2,6 +2,7 @@ package com.library.backend.reservation;
 
 import com.library.backend.book.Book;
 import com.library.backend.book.BookRepository;
+import com.library.backend.book.BookService;
 import com.library.backend.genre.Genre;
 import com.library.backend.genre.GenreRepository;
 import com.library.backend.language.Language;
@@ -26,7 +27,7 @@ import java.util.stream.StreamSupport;
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
-@Import(ReservationService.class)
+@Import({ReservationService.class, BookService.class})
 class ReservationServiceTest {
 
     @Autowired
@@ -156,7 +157,7 @@ class ReservationServiceTest {
         book.setAvailable(false);
         bookRepo.save(book);
 
-        service.processReservationQueue(book, null);
+        service.processReservationQueue(book);
 
         Book updated = bookRepo.findById(book.getIsbn()).orElseThrow();
         assertThat(updated.isAvailable()).isTrue();
@@ -178,7 +179,7 @@ class ReservationServiceTest {
         bookRepo.save(book);
 
         // Process queue
-        service.processReservationQueue(book, null);
+        service.processReservationQueue(book);
 
         // Set status not_active
         List<Reservation> all = reservationRepo.findByBookIsbnAndStatus(book.getIsbn(), Reservation.Status.not_active);
