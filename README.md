@@ -9,7 +9,11 @@ MetBook is a library reservation system prototype designed for managing loans an
 ## Table of Contents
 1. [Features](#features)
 2. [Technologies](#technologies)
-3. [Documents](#documents)
+3. [Sprint Documentation](#sprint-documentation)
+   - [Sprint 1](#sprint-1)
+   - [Sprint 2](#sprint-2)
+   - [Sprint 8](#sprint-8)
+4. [Documents](#documents)
    - [ER Diagram](#er-diagram)
    - [Activity Diagram](#activity-diagram)
 5. [Development](#development)
@@ -29,7 +33,7 @@ MetBook is a library reservation system prototype designed for managing loans an
 - Browse, search and filter the library catalog by genre, language and year.  
 - Check availability, reserve and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
-- Register, login, favorite books and check history of loaned books. 
+- Register, login, favorite books and check history of loaned books.
 
 ### Technologies
 
@@ -37,6 +41,21 @@ Backend: Java, Spring Boot
 Frontend: React, Tailwind CSS  
 Database & tools: MariaDB, Docker, Jenkins
 
+# Sprint Documentation
+
+## Sprint 1 
+The main goals for Sprint 1 were to produce the [project plan](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_plan.pdf) and [vision](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_vision.pdf) documents, and to create the product backlog in [Trello](https://trello.com/w/sep1_melkeineturivintytot/).  
+[Sprint 1 Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_planning_report.pdf)  
+[Sprint 1 Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_review_report_group2.pdf)
+
+## Sprint 2
+During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
+[Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_planning_report.pdf)  
+[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
+
+## Sprint 8
+[Planning report]()  
+[Review report]()
 
 ### Documents
 [Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains Diagrams, Project reports and Sprint reports.   
