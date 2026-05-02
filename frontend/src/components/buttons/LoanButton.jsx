@@ -1,14 +1,15 @@
 import { useTranslation } from "react-i18next";
 import {useLoanContext} from "../../contexts/LoanContext.jsx";
-import {useLayoutDirection} from "../../contexts/LayoutDirectionContext.jsx";
 import {useSearchResult} from "../../contexts/SearchResultContext.jsx";
 import PropTypes from "prop-types";
+import {localizeDate} from "../../utils/DateUtils.js";
 
 function LoanButton({pageType, book, children}) {
     const {addToLoans, removeLoans} = useLoanContext()
     const { t } = useTranslation("book_card");
-    const {formatDate} = useLayoutDirection();
     const {fetchSearchResults} = useSearchResult();
+
+    const localizedDate = localizeDate(book.dueDate);
 
     //new loan
     return pageType === "home" && book.availability ? (
@@ -25,7 +26,7 @@ function LoanButton({pageType, book, children}) {
         ) : //return loan
         (
         <>
-            <p className="text-sm mb-2 text-left rtl:text-right text-red-600">{t("due_date", { date: formatDate(book.dueDate)})}</p>
+            <p className="text-sm mb-2 text-left rtl:text-right text-red-600">{t("due_date", { date: localizedDate})}</p>
             <button className="bg-actionButton font-semibold rounded-xl px-6 py-2 max-[200px]:px-2 max-[200px]:py-1.5 hover:bg-actionButtonHover float-right rtl:float-left cursor-pointer"
                     onClick={async (e) => {
                         e.stopPropagation();
