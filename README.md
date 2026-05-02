@@ -277,7 +277,7 @@ To add a new language:
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 The repository contains three main folders:
 
