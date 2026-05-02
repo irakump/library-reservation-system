@@ -2,6 +2,7 @@ package com.library.backend.loan;
 
 import com.library.backend.author.AuthorDTO;
 import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -78,6 +79,27 @@ public class LoanDTO {
         this.authors = book.getAuthors() != null
                 ? book.getAuthors().stream()
                 .map(AuthorDTO::new)
+                .toList()
+                : List.of();
+    }
+
+    public LoanDTO(final Loan loan, final BookDTO book) {
+        this.loanId = loan.getLoanId();
+        this.createdAt = loan.getCreatedAt();
+        this.dueDate = loan.getDueDate();
+        this.returnDate = loan.getReturnDate();
+        this.userId = loan.getUser().getUserId();
+        this.isbn = loan.getBook().getIsbn();
+
+        this.title = book.getTitle();
+        this.image = book.getImage();
+        this.description = book.getDescription();
+        this.year = book.getYear();
+        this.language = book.getLanguage();
+        this.genre = book.getGenre();
+
+        this.authors = book.getAuthors() != null
+                ? book.getAuthors().stream()
                 .toList()
                 : List.of();
     }

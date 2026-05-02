@@ -16,9 +16,9 @@ export function createLoan(userId, isbn, lang) {
     });
 }
 
-export function returnLoan(userId, isbn, loanId, lang) {
+export function returnLoan(userId, isbn, loanId) {
   return api
-    .put(`/loans/return/${lang}`, {
+    .put(`/loans/return/`, {
       userId,
       isbn,
       loanId,

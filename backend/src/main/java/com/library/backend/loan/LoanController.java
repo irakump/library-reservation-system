@@ -16,20 +16,15 @@ import java.util.List;
 @RequestMapping("/api/loans")
 public class LoanController {
 
-    /** LoanRepository dependency*/
-    private final LoanRepository repository;
-
     /** LoanService dependency*/
     private final LoanService loanService;
 
     /**
      * Creates controller with dependencies
      *
-     * @param repository   the loan repository used for database access
      * @param loanService  the service handling business logic for loans
      */
-    public LoanController(final LoanRepository repository, final LoanService loanService) {
-        this.repository = repository;
+    public LoanController(final LoanService loanService) {
         this.loanService = loanService;
     }
 
@@ -44,19 +39,6 @@ public class LoanController {
         AuthorizationUtil.checkAdminAccess(request);
         final List<LoanDTO> loans = loanService.getAllLoans();
         return ResponseEntity.ok(loans);
-    }
-
-    /**
-     * Retrieves a loan by its id
-     *
-     * @param loanId the ID of the loan to retrieve
-     * @return the corresponding {@link LoanDTO}, or null if not found
-     */
-    @GetMapping("/{loanId}")
-    public LoanDTO getLoanById(@PathVariable final Integer loanId) {
-        return repository.findById(loanId)
-                .map(LoanDTO::new)
-                .orElse(null);
     }
 
     /**
@@ -100,8 +82,8 @@ public class LoanController {
      * @param httpRequest the HTTP request containing authorization details
      * @return a {@link ResponseEntity} with no content if the operation succeeds
      */
-    @PutMapping("/return/{lang}")
-    public ResponseEntity<Void> returnLoan(@RequestBody final ReturnLoanDTO request, final HttpServletRequest httpRequest, @PathVariable final String lang) {
+    @PutMapping("/return/")
+    public ResponseEntity<Void> returnLoan(@RequestBody final ReturnLoanDTO request, final HttpServletRequest httpRequest) {
         AuthorizationUtil.checkUserAccess(httpRequest, request.userId());
         loanService.returnLoan(request);
         return ResponseEntity.ok().build();

@@ -84,7 +84,6 @@ public class BookService {
                             book.getDescription().toLowerCase(Locale.ROOT).contains(searchTermLower);
                 })
                 .toList();
-
     }
 
     /**
@@ -96,33 +95,42 @@ public class BookService {
      * @return list of localized BookDTOs
      */
     public List<BookDTO> localizeBooks(final List<Book> books, final String lang) {
-        return books.stream().map(book -> {
-            final Genre genre = genreRepo
-                    .findById(book.getGenre())
-                    .orElseThrow(() ->
-                            new IllegalStateException("Genre not found: " + book.getGenre() + " for " + book.getIsbn()));
+        return books.stream().map(book -> localizeBook(book, lang)).toList();
+    }
 
-            final Language language = languageRepo
-                    .findById(book.getLanguage())
-                    .orElseThrow(() ->
-                            new IllegalStateException("Langauge not found: " + book.getLanguage() + " for " + book.getIsbn()));
+    /**
+     * Converts books to localized BookDTOs.
+     * Localizes title, description, author, genre, and language.
+     *
+     * @param book is the book to be localized
+     * @param lang target language code, e.g. "en-US" or "ja-JP"
+     * @return localized bookDTO
+     */
+    public BookDTO localizeBook(final Book book, final String lang) {
+        final Genre genre = genreRepo.
+                findById(book.getGenre())
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Genre not found: " + book.getGenre() + " for " + book.getIsbn()));
 
-            final BookDTO dto = new BookDTO(book);
-            dto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
-            dto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
-            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
-            dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
+        final Language language = languageRepo
+                .findById(book.getLanguage())
+                .orElseThrow(() ->
+                        new IllegalStateException("Langauge not found: " + book.getLanguage() + " for " + book.getIsbn()));
 
-            dto.setAuthors(book.getAuthors().stream()
-                    .map(author -> {
-                        final AuthorDTO authorDto = new AuthorDTO(author);
-                        authorDto.setFirstName(LocalizationUtil.getLocalizedAuthorFirstName(author, lang));
-                        authorDto.setLastName(LocalizationUtil.getLocalizedAuthorLastName(author, lang));
-                        return authorDto;
-                    })
-                    .toList());
+        final BookDTO dto = new BookDTO(book);
+        dto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
+        dto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
+        dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
+        dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
 
-            return dto;
-        }).toList();
+        dto.setAuthors(book.getAuthors().stream()
+                .map(author -> {
+                    final AuthorDTO authorDto = new AuthorDTO(author);
+                    authorDto.setFirstName(LocalizationUtil.getLocalizedAuthorFirstName(author, lang));
+                    authorDto.setLastName(LocalizationUtil.getLocalizedAuthorLastName(author, lang));
+                    return authorDto;
+                })
+                .toList());
+        return dto;
     }
 }

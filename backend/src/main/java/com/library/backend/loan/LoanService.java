@@ -1,16 +1,13 @@
 package com.library.backend.loan;
 
 import com.library.backend.book.Book;
+import com.library.backend.book.BookDTO;
 import com.library.backend.book.BookRepository;
-import com.library.backend.genre.Genre;
-import com.library.backend.genre.GenreRepository;
-import com.library.backend.language.Language;
-import com.library.backend.language.LanguageRepository;
+import com.library.backend.book.BookService;
 import com.library.backend.notifications.NotificationService;
 import com.library.backend.reservation.ReservationService;
 import com.library.backend.user.User;
 import com.library.backend.user.UserRepository;
-import com.library.backend.util.LocalizationUtil;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -41,23 +38,19 @@ public class LoanService {
     /** NotificationService dependency*/
     private final NotificationService notifiService;
 
-    /** GenreRepository dependency*/
-    private final GenreRepository genreRepo;
-
-    /** LanguageRepository dependency*/
-    private final LanguageRepository languageRepo;
+    /** BookService dependency*/
+    private final BookService bookService;
 
     /**
      * Constructs a LoanService with all required dependencies.
      */
-    public LoanService(final UserRepository userRepo, final BookRepository bookRepo, final LoanRepository loanRepo, @Lazy final ReservationService resService, final NotificationService notifiService, final GenreRepository genreRepo, final LanguageRepository languageRepo) {
+    public LoanService(final UserRepository userRepo, final BookRepository bookRepo, final LoanRepository loanRepo, @Lazy final ReservationService resService, final NotificationService notifiService, final BookService bookService) {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
         this.loanRepo = loanRepo;
         this.resService = resService;
         this.notifiService = notifiService;
-        this.genreRepo = genreRepo;
-        this.languageRepo = languageRepo;
+        this.bookService = bookService;
     }
 
     /**
@@ -70,17 +63,8 @@ public class LoanService {
      */
     public List<LoanDTO> localizeLoans(final List<Loan> loans, final String lang) {
         return loans.stream().map(l -> {
-            final Genre genre = genreRepo.findById(l.getBook().getGenre())
-                    .orElseThrow(() -> new IllegalStateException("Genre not found"));
-            final Language language = languageRepo.findById(l.getBook().getLanguage())
-                    .orElseThrow(() -> new IllegalStateException("Language not found"));
-
-            final LoanDTO dto = new LoanDTO(l);
-            dto.setTitle(LocalizationUtil.getLocalizedTitle(l.getBook(), lang));
-            dto.setDescription(LocalizationUtil.getLocalizedDescription(l.getBook(), lang));
-            dto.setGenre(LocalizationUtil.getLocalizedGenre(genre, lang));
-            dto.setLanguage(LocalizationUtil.getLocalizedLanguage(language, lang));
-            return dto;
+            BookDTO bookDTO = bookService.localizeBook(l.getBook(), lang);
+            return new LoanDTO(l, bookDTO);
         }).toList();
     }
 
@@ -143,11 +127,7 @@ public class LoanService {
         book.setAvailable(false);
         bookRepo.save(book);
 
-        final LoanDTO newDto = new LoanDTO(loan);
-        newDto.setTitle(LocalizationUtil.getLocalizedTitle(book, lang));
-        newDto.setDescription(LocalizationUtil.getLocalizedDescription(book, lang));
-
-        return newDto;
+        return new LoanDTO(loan, bookService.localizeBook(book, lang));
     }
 
     /**
@@ -169,7 +149,7 @@ public class LoanService {
         bookRepo.save(book);
 
         // Update reservation queue and book availability
-        resService.processReservationQueue(book, loan);
+        resService.processReservationQueue(book);
         notifiService.notifyDueDate(loan.getUser(), book);
     }
 
@@ -187,7 +167,7 @@ public class LoanService {
         for (final Loan loan : dueLoans) {
             notifiService.notifyDueDate(loan.getUser(), loan.getBook());
             loan.setReturnDate(LocalDateTime.now());
-            resService.processReservationQueue(loan.getBook(), loan);
+            resService.processReservationQueue(loan.getBook());
         }
     }
 
