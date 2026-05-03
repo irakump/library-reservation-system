@@ -1,7 +1,6 @@
 # MetBook – A Library Reservation System
 
-MetBook is a library reservation system prototype developed for Metropolia University of Applied Sciences.
-The application solves the problem of managing e-book loans and reservations by providing a digital platform where students and teachers can browse, search, borrow, and reserve e-books without physical library cards. Books are returned automatically on the due date, and users receive email notifications about due dates and available reservations. 
+MetBook is a library reservation system prototype developed for Metropolia University of Applied Sciences. The application solves the problem of managing e-book loans and reservations by providing a digital platform where students and teachers can browse, search, borrow, and reserve e-books without physical library cards. Books are returned automatically on the due date, and users receive email notifications about due dates and available reservations. The systen supports three languages: English, Japanese, and Arabic
 
 >[!NOTE]
 >This is a prototype that mocks a real library. Instead of real e-books, loaned books appear as cards in the user’s profile.
@@ -31,10 +30,10 @@ The application solves the problem of managing e-book loans and reservations by 
 
 ### Features
 
-- Browse, search and filter the library catalog by genre, language and year.  
-- Check availability, reserve and loan books.  
+- Browse, search, and filter the library catalog by genre, language, and year.  
+- Check availability, reserve, and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
-- Register, login, favorite books and check history of loaned books.
+- Register, login, favorite books, and check history of loaned books.
 
 ### Technologies
 
@@ -150,7 +149,7 @@ Copy `.env.sample` file located in root folder and create environment variables 
 
 ### Jenkins Requirements
 
-Jenkinsfile requires Docker Desktop to be installed. Configure Jenkins settings (system, tools and credentials) according to the tables below. Use the name in the second column or modify Jenkinsfile to fit yours.
+Jenkinsfile requires Docker Desktop to be installed. Configure Jenkins settings (system, tools, and credentials) according to the tables below. Use the name in the second column or modify Jenkinsfile to fit yours.
 
 | System setting    | Name            |
 | ----------------- | --------------- |
