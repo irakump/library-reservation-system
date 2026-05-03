@@ -1,6 +1,7 @@
 # MetBook – A Library Reservation System
 
-MetBook is a library reservation system prototype developed for Metropolia University of Applied Sciences. The application solves the problem of managing e-book loans and reservations by providing a digital platform where students and teachers can browse, search, borrow, and reserve e-books without physical library cards. Users can register and log in to browse, search, and filter the catalog of e-books by genre, language, and publication year. The system allows users to track their loan history, mark favourites, and receive notifications when loans are due or when reserved books become available.
+MetBook is a library reservation system prototype developed for Metropolia University of Applied Sciences.
+The application solves the problem of managing e-book loans and reservations by providing a digital platform where students and teachers can browse, search, borrow, and reserve e-books without physical library cards. Books are returned automatically on the due date, and users receive email notifications about due dates and available reservations. 
 
 >[!NOTE]
 >This is a prototype that mocks a real library. Instead of real e-books, loaned books appear as cards in the user’s profile.
