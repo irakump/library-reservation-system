@@ -4,11 +4,7 @@ MetBook is a library reservation system prototype developed for Metropolia Unive
 
 MetBook was developed over 8 sprints 16 weeks across two courses: Software Engineering Project 1 (Sprints 1-4) and Software Engineering Project 2 (Sprints 5-8).  
 
-### Technologies
-
-Backend: Java, Spring Boot  
-Frontend: React, Tailwind CSS  
-Database & tools: MariaDB, Docker, Jenkins
+**Technologies** Java Spring Boot (backend), React with Tailwind CSS (frontend), MariaDB (database), Docker, Jenkins, SonarQube
 
 
 >[!NOTE]
