@@ -45,9 +45,16 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 
 ### Sprint Overview
 
-| Sprint | Duration      | Goals                                                                      | Course |
-|--------|---------------|----------------------------------------------------------------------------|--------|
-| Sprint 1 | 15.01 - 28.01 | Project planning, project vision, Trello and GitHub setup, Figma prototype | SEP1 |
+| Sprint   | Duration      | Goals                                                                      | Course |
+|----------|---------------|----------------------------------------------------------------------------|--------|
+| Sprint 1 | 15.01 - 28.01 | Project planning, project vision, Trello and GitHub setup, Figma prototype | SEP1   |
+| Sprint 2 | 29.01 - 11.02 | -                                                                          | SEP1   |
+| Sprint 3 | 12.02 - 04.03 | -                                                                          | SEP1   |
+| Sprint 4 | 05.03 - 16.03 | -                                                                          | SEP1   |
+| Sprint 5 | 17.03 - 30.03 | -                                                                          | SEP2   |
+| Sprint 6 | 01.04 - 13.04 | -                                                                          | SEP2   |
+| Sprint 7 | 14.04 - 28.04 | -                                                                          | SEP2   |
+| Sprint 8 | 29.04 - 05.05 | -                                                                          | SEP2   |
 
 # Sprint Documentation
 
