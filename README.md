@@ -53,8 +53,9 @@ During Sprint 2, the database was created and the implementation of the user int
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
 
 ## Sprint 8
-[Planning report]()  
-[Review report]()
+The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder.  
+[Planning report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)  
+[Review report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)
 
 ### Documents
 [Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains Diagrams, Project reports and Sprint reports.   
