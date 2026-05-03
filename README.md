@@ -94,15 +94,15 @@ Password: password
 
 - CREATE USER 'library_db_user'@'localhost' IDENTIFIED BY 'password';
 
-Create database:  
-Use **database.sql** file.   
+Create the database by running the `database.sql` script.  
+
 
 > [!IMPORTANT]
 > After creating the database, give permissions to user:  
 >GRANT ALL PRIVILEGES ON metbook.\* TO 'library_db_user'@'localhost';  
 >FLUSH PRIVILEGES;  
 
-Next, add the data in the following order of .sql files:  
+Next, run the following SQL files in this order:  
 1. genre
 2. language  
 3. author  
