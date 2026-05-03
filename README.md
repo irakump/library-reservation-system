@@ -17,14 +17,14 @@ Database & tools: MariaDB, Docker, Jenkins
 
 ## Table of Contents
 1. [Features](#features)
-2[Sprint Documentation](#sprint-documentation)
+2. [Sprint Documentation](#sprint-documentation)
    - [Sprint 1](#sprint-1)
    - [Sprint 2](#sprint-2)
    - [Sprint 8](#sprint-8)
-3[Documents](#documents)
+3. [Documents](#documents)
    - [ER Diagram](#er-diagram)
    - [Activity Diagram](#activity-diagram)
-4[Development](#development)
+4. [Development](#development)
    - [Database](#database)
    - [Frontend](#frontend)
    - [Backend](#backend)
@@ -34,7 +34,7 @@ Database & tools: MariaDB, Docker, Jenkins
      - [Build and Run Docker Images Locally as a Container](#build-and-run-docker-images-locally-as-a-container)
      - [Run Published Docker Images](#run-published-docker-images)
    - [Localization](#localization)
-5[API endpoints](#api-endpoints)
+5. [API endpoints](#api-endpoints)
 
 ### Features
 
