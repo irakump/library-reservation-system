@@ -42,6 +42,12 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 
 ## Sprint Structure
 The project was developed using Agile methodology with Scrum framework. Each sprint lasted 2 weeks. Trello was used for backlog management and task tracking. The lecturer served as Product Owner.
+
+### Sprint Overview
+
+| Sprint | Duration | Focus | Course |
+|--------|----------|-------|--------|
+
 # Sprint Documentation
 
 ## Sprint 1 
