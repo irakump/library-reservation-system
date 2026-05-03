@@ -17,10 +17,10 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 2. [Sprint Structure](#sprint-structure)
     - [Sprint Overview](#sprint-overview)
 3. [Sprint Documentation](#sprint-documentation)
-   - [Sprint 1](#sprint-1)
-   - [Sprint 2](#sprint-2)
+   - [Sprint 1](#sprint-1---project-planning)
+   - [Sprint 2](#sprint-2---database-implementation)
    - [Sprint 7](#sprint-7)
-   - [Sprint 8](#sprint-8)
+   - [Sprint 8](#sprint-8---finalizing)
 4. [Documents](#documents)
    - [ER Diagram](#er-diagram)
    - [Activity Diagram](#activity-diagram)
@@ -69,12 +69,12 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 
 # Sprint Documentation
 
-## Sprint 1 
+## Sprint 1 - Project Planning
 The main goals for Sprint 1 were to produce the [project plan](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_plan.pdf) and [vision](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_vision.pdf) documents, and to create the product backlog in [Trello](https://trello.com/w/sep1_melkeineturivintytot/).  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_review_report_group2.pdf)
 
-## Sprint 2
+## Sprint 2 - Database implementation  
 During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
@@ -82,7 +82,7 @@ During Sprint 2, the database was created and the implementation of the user int
 ## Sprint 7 - Quality Assurance
 - TODO 
 
-## Sprint 8
+## Sprint 8 - Finalizing
 The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder. Additionally, the [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf) was moved from the README to the documents folder.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)
