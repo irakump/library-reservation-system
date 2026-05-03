@@ -19,6 +19,7 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 3. [Sprint Documentation](#sprint-documentation)
    - [Sprint 1](#sprint-1)
    - [Sprint 2](#sprint-2)
+   - [Sprint 3](#sprint-3)
    - [Sprint 8](#sprint-8)
 4. [Documents](#documents)
    - [ER Diagram](#er-diagram)
@@ -77,6 +78,9 @@ The main goals for Sprint 1 were to produce the [project plan](https://github.co
 During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
+
+## Sprint 7 - Quality Assurance
+- TODO 
 
 ## Sprint 8
 The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder. Additionally, the [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf) was moved from the README to the documents folder.  
