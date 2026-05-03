@@ -15,6 +15,7 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 1. [Product Vision](#product-vision)
     - [Features](#features)
 2. [Sprint Structure](#sprint-structure)
+    - [Sprint Overview](#sprint-overview)
 3. [Sprint Documentation](#sprint-documentation)
    - [Sprint 1](#sprint-1)
    - [Sprint 2](#sprint-2)
