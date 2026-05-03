@@ -44,8 +44,8 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 
 ## Sprint 1 
 The main goals for Sprint 1 were to produce the [project plan](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_plan.pdf) and [vision](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_vision.pdf) documents, and to create the product backlog in [Trello](https://trello.com/w/sep1_melkeineturivintytot/).  
-[Sprint 1 Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_planning_report.pdf)  
-[Sprint 1 Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_review_report_group2.pdf)
+[Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_planning_report.pdf)  
+[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_review_report_group2.pdf)
 
 ## Sprint 2
 During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
