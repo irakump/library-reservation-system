@@ -17,7 +17,6 @@ Database & tools: MariaDB, Docker, Jenkins
 
 ## Table of Contents
 1. [Features](#features)
-2. [Technologies](#technologies)
 3. [Sprint Documentation](#sprint-documentation)
    - [Sprint 1](#sprint-1)
    - [Sprint 2](#sprint-2)
