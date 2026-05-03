@@ -12,7 +12,8 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 
 
 ## Table of Contents
-1. [Features](#features)
+1. [Product Vision](#product-vision)
+    - [Features](#features)
 2. [Sprint Structure](#sprint-structure)
 3. [Sprint Documentation](#sprint-documentation)
    - [Sprint 1](#sprint-1)
@@ -33,12 +34,20 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
    - [Localization](#localization)
 6. [API endpoints](#api-endpoints)
 
+## Product Vision
+
+-  TODO
+
 ### Features
+- TODO need update
 
 - Browse, search, and filter the library catalog by genre, language, and year.  
 - Check availability, reserve, and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
 - Register, login, favorite books, and check history of loaned books.
+
+**Definition of Success:**
+- TODO
 
 ## Sprint Structure
 The project was developed using Agile methodology with Scrum framework. Each sprint lasted 2 weeks. Trello was used for backlog management and task tracking. The lecturer served as Product Owner.
