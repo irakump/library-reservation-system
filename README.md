@@ -40,6 +40,9 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
 - Register, login, favorite books, and check history of loaned books.
 
+## Sprint Structure
+The project was developed using Agile methodology with Scrum framework. Trello was used for backlog management and task tracking.
+
 # Sprint Documentation
 
 ## Sprint 1 
