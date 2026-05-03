@@ -214,9 +214,9 @@ Once container is running, open `http://localhost:3000` in the browser.
 
 ### Run Published Docker Images
 Images are published in Docker Hub:  
-Database: https://hub.docker.com/r/sandrajuu/library-reservation-system-database   
-Frontend: https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend   
-Backend: https://hub.docker.com/r/sandrajuu/library-reservation-system-backend   
+[Database](https://hub.docker.com/r/sandrajuu/library-reservation-system-database)   
+[Frontend](https://hub.docker.com/r/sandrajuu/library-reservation-system-frontend)   
+[Backend](https://hub.docker.com/r/sandrajuu/library-reservation-system-backend)   
 
 File `compose.production.yml` in root directory contains everything needed to get published images up and running together as a container. Navigate to the directory `compose.production.yml` file is in and then run the following through terminal:
 
