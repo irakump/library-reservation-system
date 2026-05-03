@@ -45,7 +45,7 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 
 ### Sprint Overview
 
-| Sprint | Duration | Focus | Course |
+| Sprint | Duration | Goals | Course |
 |--------|----------|-------|--------|
 
 # Sprint Documentation
