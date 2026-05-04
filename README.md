@@ -37,8 +37,7 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 6. [API endpoints](#api-endpoints)
 
 ## Product Vision
-
--  TODO: add vision
+MetBook is designed to provide Metropolia's students and teachers with a simple and accessible way to reserve and borrow books digitally.
 
 ### Features
 - TODO: need to update
