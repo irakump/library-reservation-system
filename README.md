@@ -34,7 +34,8 @@ MetBook was developed over 8 sprints (16 weeks) across two courses: Software Eng
      - [Build and Run Docker Images Locally as a Container](#build-and-run-docker-images-locally-as-a-container)
      - [Run Published Docker Images](#run-published-docker-images)
    - [Localization](#localization)
-6. [API endpoints](#api-endpoints)
+6. [Repository Structure](#repository-structure)
+7. [API endpoints](#api-endpoints)
 
 ## Product Vision
 MetBook is designed to provide Metropolia's students and teachers with a simple, accessible way to reserve and borrow books digitally.
@@ -76,6 +77,18 @@ The main goals for Sprint 1 were to produce the [project plan](https://github.co
 During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
+
+## Sprint 3 - CI/CD Integration, Feature Extension, and Basic Docker Image
+
+Sprint 3 focused extending the fuctional prototype by implementing all core features. The unit tests were expanded and core functionality was validated through testing. Jenkins was integrated for CI/CD, with the pipeline configured to include automated unit tests and code coverage reporting using JaCoCo. Initial Docker images were created and tested locally.  
+[Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_3_planning_report.pdf)  
+[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_3_review_report.pdf)
+
+## Sprint 4 - Finalizing, Containerizing, and Sharing the Prototype
+
+During Sprint 4, the product functionality was fully integrated and features tested. Docker images were created for all application components (frontend, backend, and database) and successfully pushed to Docker Hub for public access. The public images were containerized and the functionality tested.  
+[Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_4_planning_report.pdf)  
+[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_4_review_report.pdf)  
 
 ## Sprint 5 - UI Localization
 The objective of Sprint 5 was to prepare the application for full multilingual support for Arabic, Japanese and English languages. The localization of the user interface was implemented using [i18next](https://www.npmjs.com/package/i18next) framework by separating the translatable content from core entities.
