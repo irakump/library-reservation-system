@@ -168,14 +168,7 @@ Start: run `npm run dev`
 ## Backend
 
 Run `mvn clean install` to build, test and install.   
-Start backend: `mvn spring-boot:run`      
-
-**Test:**   
-Run test files or test methods separately, or run `mvn test` / `mvn clean install` to execute all tests.
-
-**JaCoCo report:**  
-Run `mvn clean test` (compile and unit tests) and `mvn clean verify` (integration tests).   
-Open index.html document from target/site/jacoco.   
+Start backend: `mvn spring-boot:run`
 
 Deploy the project to a remote repository: `mvn deploy` (when publishing the final product).
 
@@ -326,10 +319,10 @@ To add a new language:
 
 ## Testing
 
-**Frontend:**
+### Frontend:
 Run `npm run test` in frontend folder
 
-**End-to-end test (Playwright):**
+### End-to-end test (Playwright):
 
 Setup before running tests:
 1. Create new local user (or use existing one)
@@ -340,10 +333,10 @@ If needed, install Playwright browsers locally: `npx playwright install`
 
 Run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.
 
-**Backend:**
+### Backend:
 Run `mvn test` / `mvn clean install` or alternatively run the test files or methods separately.
 
-**JaCoCo report:**
+### JaCoCo report:
 Run `mvn clean test` and `mvn clean verify` to execute and receive a JaCoCo-report from the tests.
 To view report go to target/site/jacoco and open index.html.
 
