@@ -339,3 +339,13 @@ The project root also includes a Jenkinsfile for CI/CD pipeline configuration, D
 # API endpoints
 
 The API endpoints are described in [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf).
+
+## Course Information
+- Course: Software Engineering Project
+- Semester: Spring 2026
+
+- ## Team Members
+- Anni Alanen - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
+- Ira Kumpula - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
+- Nur Hana - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
+- Sandra Juursoo - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, CI/CD Engineer, Scrum Master
