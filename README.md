@@ -150,21 +150,6 @@ Optional: add mock user data (only for development):
 Install dependencies: run `npm install` in frontend folder   
 Start: run `npm run dev`
 
-**Test:**  
-Run `npm run test` in frontend folder to run frontend tests.
-
-**End-to-end test (Playwright):** 
-
-**Setup before running tests:**  
-1. Create new local user (or use existing one)  
-2. Add `TEST_EMAIL` and `TEST_PASSWORD` to .env file (check .env.sample)  
-
-If needed, install Playwright browsers locally: `npx playwright install`  
-
-**Run tests:**  
-Make sure both backend and frontend are running. Then run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.  
-
-
 ## Backend
 
 Run `mvn clean install` to build, test and install.   
@@ -321,6 +306,31 @@ To add a new language:
 
 1. Add all necessary fields to Entity class(es) according to the database structure.
 2. Update `LocalizationUtil` in `backend/src/main/java/com/library/backend/util/LocalizationUtil.java` to support the new language code and fields.
+
+---
+
+## Testing
+
+**Frontend:**
+Run `npm run test` in frontend folder
+
+**End-to-end test (Playwright):**
+
+Setup before running tests:
+1. Create new local user (or use existing one)
+2. Add `TEST_EMAIL` and `TEST_PASSWORD` to .env file (check .env.sample)
+3. Make sure both backend and frontend are running.
+
+If needed, install Playwright browsers locally: `npx playwright install`
+
+Run `npm run test:e2e` in frontend folder to run Playwright end-to-end tests.
+
+**Backend:**
+Run `mvn test` / `mvn clean install` or alternatively run the test files or methods separately.
+
+**JaCoCo report:**
+Run `mvn clean test` and `mvn clean verify` to execute and receive a JaCoCo-report from the tests.
+To view report go to target/site/jacoco and open index.html.
 
 ---
 
