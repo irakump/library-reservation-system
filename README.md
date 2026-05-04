@@ -48,7 +48,7 @@ MetBook is designed to provide Metropolia's students and teachers with a simple 
 - Register, login, favorite books, and check history of loaned books.
 
 **Definition of Success:**
-- TODO: add definition of success
+The project is complete when all core features are implemented and tested, the application is localized in three languages, and the application builds and deploys successfully through the Jenkins pipeline.
 
 ## Sprint Structure
 The project was developed using Agile methodology with Scrum framework. Each sprint lasted 2 weeks. Trello was used for backlog management and task tracking. The lecturer served as Product Owner.
