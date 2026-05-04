@@ -56,14 +56,14 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 
 | Sprint   | Duration      | Goals                                                                                          | Course |
 |----------|---------------|------------------------------------------------------------------------------------------------|--------|
-| Sprint 1 | 15.01 - 28.01 | Project planning, project vision, Trello and GitHub setup, Figma prototype                     | SEP1   |
+| Sprint 1 | 15.01 - 29.01 | Project planning, project vision, Trello and GitHub setup, Figma prototype                     | SEP1   |
 | Sprint 2 | 29.01 - 11.02 | Database implementation, UI development, Maven setup, unit testing, code coverage report       | SEP1   |
-| Sprint 3 | 12.02 - 04.03 | Core feature implementation, Jenkins CI setup, JaCoCo report, initial Docker image             | SEP1   |
-| Sprint 4 | 05.03 - 16.03 | Finalize functionality, UI, and responsive design, Docker containerization, final presentation | SEP1   |
+| Sprint 3 | 12.02 - 05.03 | Core feature implementation, Jenkins CI setup, JaCoCo report, initial Docker image             | SEP1   |
+| Sprint 4 | 05.03 - 17.03 | Finalize functionality, UI, and responsive design, Docker containerization, final presentation | SEP1   |
 | Sprint 5 | 17.03 - 30.03 | UI localization with react-i18next (English, Japanese, Arabic)                                 | SEP2   |
-| Sprint 6 | 01.04 - 13.04 | Database localization, SonarQube, code cleanup, acceptance test planning                       | SEP2   |
+| Sprint 6 | 01.04 - 14.04 | Database localization, SonarQube, code cleanup, acceptance test planning                       | SEP2   |
 | Sprint 7 | 14.04 - 28.04 | Functional and non-functional testing, SonarQube                                               | SEP2   |
-| Sprint 8 | 29.04 - 05.05 | Documentation, final presentation                                                              | SEP2   |
+| Sprint 8 | 28.04 - 05.05 | Documentation, final presentation                                                              | SEP2   |
 
 # Sprint Documentation
 
