@@ -78,13 +78,15 @@ During Sprint 2, the database was created and the implementation of the user int
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
 
 ## Sprint 5 - UI Localization
-The objective of Sprint 5 was to prepare the application for full multilingual support for Arabic, Japanese and English languages. The localization of the user interface was implemented using [i18next framework](https://www.npmjs.com/package/i18next) by separating the translatable content from core entities. 
+The objective of Sprint 5 was to prepare the application for full multilingual support for Arabic, Japanese and English languages. The localization of the user interface was implemented using [i18next](https://www.npmjs.com/package/i18next) framework by separating the translatable content from core entities. 
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_5_planning_report.pdf)
+
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_5_review_report.pdf)
 
 ## Sprint 6 - Database Localization
 The goal of the Sprint 6 was to extend localization into the database layer and improve overall code quality through static code analysis and refactoring. Database localization was implemented using field localization for text-based content (e.g., titles, descriptions). The regional formatting of dates and numbers is handled in the frontend. 
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6%20_planning_report.pdf)
+
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6_review_report.pdf)
 
 ## Sprint 7 - Quality Assurance
