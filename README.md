@@ -37,15 +37,14 @@ MetBook was developed over 8 sprints 16 weeks across two courses: Software Engin
 6. [API endpoints](#api-endpoints)
 
 ## Product Vision
-MetBook is designed to provide Metropolia's students and teachers with a simple and accessible way to reserve and borrow books digitally.
+MetBook is designed to provide Metropolia's students and teachers with a simple, accessible way to reserve and borrow books digitally.
 
 ### Features
-- TODO: need to update
-
 - Browse, search, and filter the library catalog by genre, language, and year.  
 - Check availability, reserve, and loan books.  
 - Receive email notifications for due dates and when a reserved book becomes loaned to the next user.   
 - Register, login, favorite books, and check history of loaned books.
+- Full localization in English, Japanese, and Arabic
 
 **Definition of Success:**
 The project is complete when all core features are implemented and tested, the application is localized in three languages, and the application builds and deploys successfully through the Jenkins pipeline.
