@@ -60,9 +60,9 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 |----------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------|--------|
 | Sprint 1 | 15.01 - 28.01 | Project planning, project vision, Trello and GitHub setup, Figma prototype                                                                      | SEP1   |
 | Sprint 2 | 29.01 - 11.02 | Implement database, initiate user interface development, user stories implementation(search, filter), Maven, unit testing, code coverage report | SEP1   |
-| Sprint 3 | 12.02 - 04.03 | Implement core user stories(auth, reservations, loans..), Jenkins, JaCoCo-report, initial Docker                                                | SEP1   |
-| Sprint 4 | 05.03 - 16.03 | -                                                                                                                                               | SEP1   |
-| Sprint 5 | 17.03 - 30.03 | -                                                                                                                                               | SEP2   |
+| Sprint 3 | 12.02 - 04.03 | Implement core user stories(auth, reservations, loans, favourites...), Jenkins, JaCoCo-report, initial Docker                                   | SEP1   |
+| Sprint 4 | 05.03 - 16.03 | Finalize functionality, UI, responsive design, Docker containerization, final presentation                                                      | SEP1   |
+| Sprint 5 | 17.03 - 30.03 | UI localization with react-i18next (English, Japanese, Arabic)                                                                                  | SEP2   |
 | Sprint 6 | 01.04 - 13.04 | -                                                                                                                                               | SEP2   |
 | Sprint 7 | 14.04 - 28.04 | -                                                                                                                                               | SEP2   |
 | Sprint 8 | 29.04 - 05.05 | -                                                                                                                                               | SEP2   |
