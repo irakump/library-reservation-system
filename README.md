@@ -88,7 +88,7 @@ The goal of the Sprint 6 was to extend localization into the database layer and 
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6_review_report.pdf)
 
 ## Sprint 7 - Quality Assurance
-
+Sprint 7 focused on functional and non-functional testing. Backend unit tests coverage reached 81.3%. SonarQube analysis achieved A grades across all categories. Non-functional testing included user acceptance testing, heuristic evaluation, accessibility testing and end-to-end testing with Playwright.
 
 ## Sprint 8 - Finalizing
 The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder. Additionally, the [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf) was moved from the README to the documents folder.  
