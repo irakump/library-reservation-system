@@ -82,7 +82,7 @@ During Sprint 2, the database was created and the implementation of the user int
 
 Sprint 3 focused extending the fuctional prototype by implementing all core features. The unit tests were expanded and core functionality was validated through testing. Jenkins was integrated for CI/CD, with the pipeline configured to include automated unit tests and code coverage reporting using JaCoCo. Initial Docker images were created and tested locally.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_3_planning_report.pdf)  
-[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_3_review_report.pdf)
+[Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/Sprint_3_Review_Report.pdf)
 
 ## Sprint 4 - Finalizing, Containerizing, and Sharing the Prototype
 
