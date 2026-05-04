@@ -2,7 +2,7 @@
 
 MetBook is a library reservation system prototype developed for Metropolia University of Applied Sciences. The application solves the problem of managing e-book loans and reservations by providing a digital platform where students and teachers can browse, search, borrow, and reserve e-books without physical library cards. Books are returned automatically on the due date, and users receive email notifications about due dates and available reservations. The system supports three languages: English, Japanese, and Arabic.   
 
-MetBook was developed over 8 sprints 16 weeks across two courses: Software Engineering Project 1 (Sprints 1-4) and Software Engineering Project 2 (Sprints 5-8).  
+MetBook was developed over 8 sprints (16 weeks) across two courses: Software Engineering Project 1 (Sprints 1-4) and Software Engineering Project 2 (Sprints 5-8).  
 
 **Technologies:** Java Spring Boot (backend), React with Tailwind CSS (frontend), MariaDB (database), Docker, Jenkins, SonarQube
 
@@ -88,7 +88,7 @@ The goal of the Sprint 6 was to extend localization into the database layer and 
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6_review_report.pdf)
 
 ## Sprint 7 - Quality Assurance
-- TODO 
+
 
 ## Sprint 8 - Finalizing
 The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder. Additionally, the [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf) was moved from the README to the documents folder.  
