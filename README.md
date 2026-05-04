@@ -63,9 +63,9 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 | Sprint 3 | 12.02 - 04.03 | Implement core user stories(auth, reservations, loans, favourites...), Jenkins, JaCoCo-report, initial Docker                                   | SEP1   |
 | Sprint 4 | 05.03 - 16.03 | Finalize functionality, UI, responsive design, Docker containerization, final presentation                                                      | SEP1   |
 | Sprint 5 | 17.03 - 30.03 | UI localization with react-i18next (English, Japanese, Arabic)                                                                                  | SEP2   |
-| Sprint 6 | 01.04 - 13.04 | -                                                                                                                                               | SEP2   |
-| Sprint 7 | 14.04 - 28.04 | -                                                                                                                                               | SEP2   |
-| Sprint 8 | 29.04 - 05.05 | -                                                                                                                                               | SEP2   |
+| Sprint 6 | 01.04 - 13.04 | Database localization, SonarQube, code cleanup, acceptance test planning                                                                        | SEP2   |
+| Sprint 7 | 14.04 - 28.04 | Functional and non-functional testing                                                                                                           | SEP2   |
+| Sprint 8 | 29.04 - 05.05 | Documentation, final presentation                                                                                                               | SEP2   |
 
 # Sprint Documentation
 
