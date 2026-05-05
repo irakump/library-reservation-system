@@ -111,14 +111,14 @@ The project was finalized in Sprint 8, with a focus on updating the documentatio
 [Review report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)
 
 ### Documents
-[Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents) folder contains Diagrams, Project reports and Sprint reports.   
-[Diagrams](https://github.com/Nurha20-24/library-reservation-system/tree/main/Documents/Diagrams) folder contains the following diagrams:
-- [Activity diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/activity%20_diagram.pdf)
-- [Class diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/class_diagram.pdf)
-- [Relational Schema](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/library_database_relational_schema.png)
-- [Package diagram](http://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/package_diagram.pdf)
-- [Sequence diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/sequence_diagram.pdf)
-- [Use case diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/Documents/Diagrams/use-case-diagram-sprint1.pdf)
+[Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents) folder contains Diagrams, Project reports and Sprint reports.   
+[Diagrams](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/diagrams) folder contains the following diagrams:
+- [Activity diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/activity%20_diagram.pdf)
+- [Class diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/class_diagram.pdf)
+- [Relational Schema](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_relational_schema.png)
+- [Package diagram](http://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/package_diagram.pdf)
+- [Sequence diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/sequence_diagram.pdf)
+- [Use case diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf)
 - ER and activity diagram, which are shown below
 
 #### ER Diagram
