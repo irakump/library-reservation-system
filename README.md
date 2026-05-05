@@ -38,8 +38,10 @@ MetBook was developed over 8 sprints (16 weeks) across two courses: Software Eng
      - [Build and Run Docker Images Locally as a Container](#build-and-run-docker-images-locally-as-a-container)
      - [Run Published Docker Images](#run-published-docker-images)
    - [Localization](#localization)
-6. [Repository Structure](#repository-structure)
+6. [Testing](#testing)
 7. [API endpoints](#api-endpoints)
+8. [Repository Structure](#repository-structure)
+9. [Authors](#authors)
 
 ## Product Vision
 MetBook is designed to provide Metropolia's students and teachers with a simple, accessible way to reserve and borrow books digitally.
@@ -347,6 +349,12 @@ To view report go to target/site/jacoco and open index.html.
 
 ---
 
+## API endpoints
+
+The API endpoints are described in [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf).
+
+---
+
 ## Repository Structure
 
 The repository contains three main folders:
@@ -359,16 +367,15 @@ The project root also includes a Jenkinsfile for CI/CD pipeline configuration, D
 
 ---
 
-## API endpoints
+## Authors
 
-The API endpoints are described in [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf).
+This project was done in spring of 2026 as part of the Software Engineering Project course in Metropolia UAS.
 
-## Course Information
-- Course: Software Engineering Project
-- Semester: Spring 2026
+### Team Members
+Anni Alanen - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
 
-- ### Team Members
-- Anni Alanen - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
-- Ira Kumpula - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
-- Nur Hana - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
-- Sandra Juursoo - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, CI/CD Engineer, Scrum Master
+Ira Kumpula - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
+
+Nur Hana - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
+
+Sandra Juursoo - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, CI/CD Engineer, Scrum Master
