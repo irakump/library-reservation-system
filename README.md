@@ -66,51 +66,51 @@ The project was developed using Agile methodology with Scrum framework. Each spr
 | Sprint 7 | 14.04 - 28.04 | Functional and non-functional testing, SonarQube                                               | SEP2   |
 | Sprint 8 | 28.04 - 05.05 | Documentation, final presentation                                                              | SEP2   |
 
-# Sprint Documentation
+## Sprint Documentation
 
-## Sprint 1 - Project Planning
+### Sprint 1 - Project Planning
 The main goals for Sprint 1 were to produce the [project plan](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_plan.pdf) and [vision](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/project_vision.pdf) documents, and to create the product backlog in [Trello](https://trello.com/w/sep1_melkeineturivintytot/).  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_1_review_report_group2.pdf)
 
-## Sprint 2 - Database implementation  
+### Sprint 2 - Database implementation  
 During Sprint 2, the database was created and the implementation of the user interface was initiated. In addition, Maven was integrated into the project, and code coverage reporting using JaCoCo was set up for unit testing. [Use Case Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf) and [ER Diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/library_database_er_diagram.png) were created.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_2_review_report.pdf)
 
-## Sprint 3 - CI/CD Integration, Feature Extension, and Basic Docker Image
+### Sprint 3 - CI/CD Integration, Feature Extension, and Basic Docker Image
 
 Sprint 3 focused extending the fuctional prototype by implementing all core features. The unit tests were expanded and core functionality was validated through testing. Jenkins was integrated for CI/CD, with the pipeline configured to include automated unit tests and code coverage reporting using JaCoCo. Initial Docker images were created and tested locally.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_3_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/Sprint_3_Review_Report.pdf)
 
-## Sprint 4 - Finalizing, Containerizing, and Sharing the Prototype
+### Sprint 4 - Finalizing, Containerizing, and Sharing the Prototype
 
 During Sprint 4, the product functionality was fully integrated and features tested. Docker images were created for all application components (frontend, backend, and database) and successfully pushed to Docker Hub for public access. The public images were containerized and the functionality tested.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_4_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_4_review_report.pdf)  
 
-## Sprint 5 - UI Localization
+### Sprint 5 - UI Localization
 The objective of Sprint 5 was to prepare the application for full multilingual support for Arabic, Japanese and English languages. The localization of the user interface was implemented using [i18next](https://www.npmjs.com/package/i18next) framework by separating the translatable content from core entities.
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_5_planning_report.pdf)
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_5_review_report.pdf)
 
-## Sprint 6 - Database Localization
+### Sprint 6 - Database Localization
 The goal of the Sprint 6 was to extend localization into the database layer and improve overall code quality through static code analysis and refactoring. Database localization was implemented using field localization for text-based content (e.g., titles, descriptions). The regional formatting of dates and numbers is handled in the frontend.
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6%20_planning_report.pdf)
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_6_review_report.pdf)
 
-## Sprint 7 - Quality Assurance
+### Sprint 7 - Quality Assurance
 Sprint 7 focused on functional and non-functional testing. A [test plan](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/test-plan-report.pdf) was created covering objective, resources, test environment and test tasks. Backend unit test target was set at 80%, and the final coverage reached 81.3%. SonarQube analysis achieved A grades across all categories. Non-functional testing included [user acceptance testing](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/user-acceptance-test-report.pdf), [heuristic evaluation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/heuristic-evaluation-report.pdf), [accessibility testing](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/Accessibility-tests-bug-report.pdf) and end-to-end testing with Playwright.    
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_7_planning_report.pdf)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/sprint_reports/sprint_7_review_report.pdf)
 
-## Sprint 8 - Finalizing
+### Sprint 8 - Finalizing
 The project was finalized in Sprint 8, with a focus on updating the documentation. The README was refactored to include Sprint documentation, and relevant documents were added to the documents folder. Additionally, the [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf) was moved from the README to the documents folder.  
 [Planning report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)  
 [Review report](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/sprint_reports)
 
-### Documents
+## Documents
 [Documents](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents) folder contains Diagrams, Project reports and Sprint reports.   
 [Diagrams](https://github.com/Nurha20-24/library-reservation-system/tree/main/documents/diagrams) folder contains the following diagrams:
 - [Activity diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/activity%20_diagram.pdf)
@@ -129,9 +129,9 @@ The project was finalized in Sprint 8, with a focus on updating the documentatio
 
 ---
 
-# How to run the project
+## How to run the project
 
-## Database
+### Database
 
 Create user (use these as they're hardcoded to files)  
 User: library_db_user  
@@ -160,12 +160,12 @@ Optional: add mock user data (only for development):
 3. reservation
 4. favorite
 
-## Frontend
+### Frontend
 
 Install dependencies: run `npm install` in frontend folder   
 Start: run `npm run dev`
 
-## Backend
+### Backend
 
 Run `mvn clean install` to build, test and install.   
 Start backend: `mvn spring-boot:run`
