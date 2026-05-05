@@ -241,7 +241,7 @@ docker compose -f compose.yml build
 
 # Start
 docker compose -f compose.yml start
-# or
+# or start for the first time
 docker compose -f compose.yml up -d
 
 # Stop
@@ -269,7 +269,7 @@ docker compose -f compose.production.yml pull
 
 # Start
 docker compose -f compose.production.yml start
-# or
+# or start for the first time
 docker compose -f compose.production.yml up -d
 
 # Stop
