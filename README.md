@@ -119,6 +119,7 @@ The project was finalized in Sprint 8, with a focus on updating the documentatio
 - [Package diagram](http://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/package_diagram.pdf)
 - [Sequence diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/sequence_diagram.pdf)
 - [Use case diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/use-case-diagram-sprint1.pdf)
+- [Deployment diagram](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/diagrams/deployment_diagram.pdf)
 - ER and activity diagram, which are shown below
 
 #### ER Diagram
