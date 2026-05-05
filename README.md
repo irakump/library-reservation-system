@@ -342,7 +342,7 @@ To view report go to target/site/jacoco and open index.html.
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 The repository contains three main folders:
 
@@ -354,7 +354,7 @@ The project root also includes a Jenkinsfile for CI/CD pipeline configuration, D
 
 ---
 
-# API endpoints
+## API endpoints
 
 The API endpoints are described in [API documentation](https://github.com/Nurha20-24/library-reservation-system/blob/main/documents/project_reports/api_documentation.pdf).
 
@@ -362,7 +362,7 @@ The API endpoints are described in [API documentation](https://github.com/Nurha2
 - Course: Software Engineering Project
 - Semester: Spring 2026
 
-- ## Team Members
+- ### Team Members
 - Anni Alanen - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
 - Ira Kumpula - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
 - Nur Hana - Full Stack Developer, Test Engineer, UI/UX designer, System Designer, Scrum Master
